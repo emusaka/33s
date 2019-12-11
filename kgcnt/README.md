@@ -7,4 +7,4 @@
 <div>IPアドレス→ピリオド数は必ず3個である。</div>
 <div></div>
 <div></div>
-![img](https://github.com/emusaka/33s/blob/master/kgcnt/readme_images/kgcnt1.png)
+
