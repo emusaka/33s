@@ -5,4 +5,4 @@
 IPアドレスが間違っていないかの確認など。
 IPアドレス→ピリオド数は必ず3個である。
 
-![img](https://github.com/emusaka/33s/blob/master/kgcnt/readme_images/kgcnt1.png)
+![img](readme_images/kgcnt1.png)
