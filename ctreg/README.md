@@ -8,4 +8,4 @@
 手作業だと、通常Ctrl+Endで最終行把握するが、隠し行に気付かなくヒューマンエラーとなる可能性あり、プログラムで解決したいため。
 
 
-![img](readme_images/kgcnt1.png)
+![img](sono1n.PNG)
