@@ -1,6 +1,5 @@
 Function rndchr(suei As String) As String
     Dim aa As Long, bb As Integer, san As Integer
-    '最小値～最大値の範囲で乱数の整数を取得  変数二文字化　86_014k
     Randomize
     san = Int(4 * Rnd + 1)  '1~4が取得範囲
     If suei = "suu" Then  '数字指名
