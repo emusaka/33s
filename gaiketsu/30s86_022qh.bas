@@ -1935,13 +1935,15 @@ End If 'り(not"*")
     bfshn.Cells(sr(0) + 4, a).Select
     
     Call samaru(a, mr(1, 1, 1))  '当列さまる
-    
-    For ii = 0 To pap(2, 0)  '30s86_022qh
+
+    For ii = 0 To pap(2, 0)  '30s86_022qhs
+        If StrConv(Left(mr(1, 1, 1), 1), 8) <> "*" Then
         If Int(Abs(er2(ii))) <> 0 Then
             Call samaru(Int(Abs(er2(ii))), mr(1, 1, 1))   '当シート突合列（２行目）さまる
         End If
+        End If
     Next
-    
+
     bfshn.Cells(sr(0) + 3, a).Value = Now() '活用例1タイムスタンプ入れる
     bfshn.Cells(sr(0) + 2, 4).Value = Now() '活用例1タイムスタンプ入れる sr(0) + 3,→sr(0) + 2　３０ｓ７４
     '↓一行毎にインクリメント（ID変わったときのみリセットされる） 。※bfn、shn側は更新されない（初回複写時の値が載ってるだけ）。
