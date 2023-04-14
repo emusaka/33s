@@ -1,4 +1,3 @@
-Attribute VB_Name = "gaiketu"
 Public flag As Boolean 'UserForm1連携のため要public
 Public dw As String, fmt As String 'UserForm2連携のため要public
 Const hrkt As Long = 0  'strconv,phonetic関連 phonetic無効(新)　'この行、消さない
@@ -308,11 +307,11 @@ For a = dd1 To dd2 '選択範囲列分の繰り返し　ら
     mr(2, 1, 1) = rvsrz3(mr(0, 1, 1), 3, "ｦ", 0)  'ファイル名
     
     mr(2, 7, 1) = kg1 'ゐ　７行目第二因子
-    If StrConv(Left(mr(1, 1, 1), 1), 8) = "*" Then 'り　30s57左一文字が＊だけの時（＊?の時は?がmr(2,0,1)に入る）
+If StrConv(Left(mr(1, 1, 1), 1), 8) = "*" Then 'り　30s57左一文字が＊だけの時（＊?の時は?がmr(2,0,1)に入る）
         bfshn.Cells(sr(0), a).Value = bfshn.Cells(sr(0) + 3, a).Value
         bfshn.Cells(sr(0) + 1, a).Value = bfshn.Cells(sr(0) + 4, a).Value
         bfshn.Cells(sr(0) + 2, a).Value = bfshn.Cells(sr(0) + 5, a).Value
-    Else  'り(*だけでない通常時、外結最後部まで続く)
+Else  'り(*だけでない通常時、外結最後部まで続く)
     
     For ii = 1 To 7  '空白確認（bni=1）
         If bfshn.Cells(sr(ii), a).Value = "" Then nn = sr(ii)
@@ -1782,6 +1781,25 @@ Call papchk(pap(), 0, bun)
         Application.Cursor = xlDefault
         cnt = 0
     End If
+  
+    DoEvents
+    '再計算を自動に戻す
+    Application.Calculation = xlCalculationAutomatic
+  
+'MsgBox "hi"
+    '突合列さまる(-99、＊では実施しないので、こちらに）
+    For ii = 0 To pap(2, 0)  '30s86_022qhs
+        'If StrConv(Left(mr(1, 1, 1), 1), 8) <> "*" Then
+        If Int(Abs(er2(ii))) <> 0 Then
+            Call samaru(Int(Abs(er2(ii))), mr(1, 1, 1))   '当シート突合列（２行目）さまる
+        End If
+        'End If
+        
+    Next
+  
+    '再計算を手動に戻す
+    Application.Calculation = xlCalculationManual
+  
   End If 'るA　-99or*,**は通過、ここまで
   
 ' 86_020p　戻す。一括踏襲のところは、bni→bunへ置換
@@ -1822,8 +1840,11 @@ Call papchk(pap(), 0, bun)
   End If
 '◇Ｅ◇ここまで(not98)
         
-'??-99､-98用ここから??
-  If er(6, bni) <= -90 And StrConv(Left(bfshn.Cells(sr(1), a).Value, 1), 8) <> "*" Then 'るC　20190214　*ありは実施しないに
+        
+'-99､-98用ここから
+  'If er(6, bni) <= -90 And StrConv(Left(bfshn.Cells(sr(1), a).Value, 1), 8) <> "*" Then 'るC　20190214　*ありは実施しないに
+    '↓30s86_022qhs
+  If er(6, bni) <= -90 And StrConv(Left(bfshn.Cells(sr(1), a).Value, 1), 8) <> "*" And h >= k Then 'るC　20190214　*ありは実施しないに
     
         '独立集計(ｈ変更)
         'こちらの「ど」の対応はどうするか要検討
@@ -1906,8 +1927,24 @@ Call papchk(pap(), 0, bun)
             Next
         End If
         Application.Cursor = xlDefault
-  '??-99用ここまで??
+  '-99用ここまで
+
+'  Else
+'
+'    '突合列さまる(-99では実施しないので、こちらに）
+'    For ii = 0 To pap(2, 0)  '30s86_022qhs
+'        If StrConv(Left(mr(1, 1, 1), 1), 8) <> "*" Then
+'        If Int(Abs(er2(ii))) <> 0 Then
+'            Call samaru(Int(Abs(er2(ii))), mr(1, 1, 1))   '当シート突合列（２行目）さまる
+'        End If
+'        End If
+'        MsgBox "hi"
+'    Next
+  
   End If  'るC
+    
+    
+    
     Range(bfshn.Cells(k, a), bfshn.Cells(h, a)).WrapText = False  '86_016t（折り返ししないAPIのXML膨張防止）こっちに
     
   '左下ステータス表示部　ここだけ特殊バージョン
@@ -1936,13 +1973,7 @@ End If 'り(not"*")
     
     Call samaru(a, mr(1, 1, 1))  '当列さまる
 
-    For ii = 0 To pap(2, 0)  '30s86_022qhs
-        If StrConv(Left(mr(1, 1, 1), 1), 8) <> "*" Then
-        If Int(Abs(er2(ii))) <> 0 Then
-            Call samaru(Int(Abs(er2(ii))), mr(1, 1, 1))   '当シート突合列（２行目）さまる
-        End If
-        End If
-    Next
+
 
     bfshn.Cells(sr(0) + 3, a).Value = Now() '活用例1タイムスタンプ入れる
     bfshn.Cells(sr(0) + 2, 4).Value = Now() '活用例1タイムスタンプ入れる sr(0) + 3,→sr(0) + 2　３０ｓ７４
@@ -4045,4 +4076,5 @@ Sub iechc(hk1 As String)  '以前はigchc
     hk1 = Left(twn, 7) & "r"   'ラピド固定
     twbsh.Cells(2, 2).Value = syutoku() & "r" '新設86_016e
 End Sub
+
 
