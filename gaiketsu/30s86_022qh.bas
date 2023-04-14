@@ -1,16 +1,16 @@
 Attribute VB_Name = "gaiketu"
-Public flag As Boolean 'UserForm1˜AŒg‚Ì‚½‚ß—vpublic
-Public dw As String, fmt As String 'UserForm2˜AŒg‚Ì‚½‚ß—vpublic
-Const hrkt As Long = 0  'strconv,phoneticŠÖ˜A phonetic–³Œø(V)@'‚±‚ÌsAÁ‚³‚È‚¢
-'Const hrkt As Long = 16  'strconv,phoneticŠÖ˜A phonetic—LŒø(]—ˆ)@'‚±‚ÌsAÁ‚³‚È‚¢
+Public flag As Boolean 'UserForm1é€£æºã®ãŸã‚è¦public
+Public dw As String, fmt As String 'UserForm2é€£æºã®ãŸã‚è¦public
+Const hrkt As Long = 0  'strconv,phoneticé–¢é€£ phoneticç„¡åŠ¹(æ–°)ã€€'ã“ã®è¡Œã€æ¶ˆã•ãªã„
+'Const hrkt As Long = 16  'strconv,phoneticé–¢é€£ phoneticæœ‰åŠ¹(å¾“æ¥)ã€€'ã“ã®è¡Œã€æ¶ˆã•ãªã„
 Dim cnt As Long, k As Long, xFlag As Boolean, shog As String
 Dim bfn As String, shn As String, bfshn As Worksheet, twbsh As Worksheet, twt As Worksheet
 Dim dd1 As Long, dd2 As Long, gg2 As Long, gg1 As Long, mghz As Long, mg2 As Long
 Dim twn As String, sr(8) As Long
-'[[[[[[[[[[[[[[
+'ãƒ¼â—‡ãƒ¼â—‡ãƒ¼â—‡ãƒ¼â—‡ãƒ¼â—‡ãƒ¼â—‡ãƒ¼â—‡ãƒ¼â—‡ãƒ¼â—‡ãƒ¼â—‡ãƒ¼â—‡ãƒ¼â—‡ãƒ¼â—‡ãƒ¼
 Function kgcnt(cef As String, kgr As String) As Long
-    '•¶š—ñ‚ÉŠÜ‚Ü‚ê‚é‹æØ‚è•¶š‚Ì”‚ğ•Ô‚·
-    'cef:•¶š—ñAkgr:‹æØ‚è•¶š
+    'æ–‡å­—åˆ—ã«å«ã¾ã‚Œã‚‹åŒºåˆ‡ã‚Šæ–‡å­—ã®æ•°ã‚’è¿”ã™
+    'cef:æ–‡å­—åˆ—ã€kgr:åŒºåˆ‡ã‚Šæ–‡å­—
     Dim cunt As Long
     cunt = 0
     If kgr <> "" Then
@@ -22,30 +22,30 @@ Function kgcnt(cef As String, kgr As String) As Long
     End If
     kgcnt = cunt
 End Function
-'[[[[[[[[[[[[[[
+'ãƒ¼â—‡ãƒ¼â—‡ãƒ¼â—‡ãƒ¼â—‡ãƒ¼â—‡ãƒ¼â—‡ãƒ¼â—‡ãƒ¼â—‡ãƒ¼â—‡ãƒ¼â—‡ãƒ¼â—‡ãƒ¼â—‡ãƒ¼â—‡ãƒ¼
 Function ctreg(rtyu As String, tyui As String) As Long
-    'ÅIs‚ğ•Ô‚·(ctrl+endŸs‚ªhidden‚Ìê‡‚Ì‘Îˆ”Å)
+    'æœ€çµ‚è¡Œã‚’è¿”ã™(ctrl+endæ¬¡è¡ŒãŒhiddenã®å ´åˆã®å¯¾å‡¦ç‰ˆ)
     ctreg = Workbooks(rtyu).Worksheets(tyui).Range("A1").SpecialCells(xlLastCell).Row()
     ctreg = ctreg + 1
     Do Until Workbooks(rtyu).Sheets(tyui).Cells(ctreg, 1).EntireRow.Hidden = False
         ctreg = ctreg + 1
-    Loop  'ctrl+end‚ÌŸs‚ªhidden‚¾‚Á‚½‚çAhidden‚³‚ê‚½ÅIs‚ğ•Ô‚·B
+    Loop  'ctrl+endã®æ¬¡è¡ŒãŒhiddenã ã£ãŸã‚‰ã€hiddenã•ã‚ŒãŸæœ€çµ‚è¡Œã‚’è¿”ã™ã€‚
     ctreg = ctreg - 1
 End Function
-'[[[ˆÈãAŒ³pubikoued
-Sub GetRGBValue() '‹¤—L‘ÎÛŠO
+'ãƒ¼â—‡ãƒ¼â—‡ãƒ¼ä»¥ä¸Šã€å…ƒpubikoued
+Sub GetRGBValue() 'â—‡å…±æœ‰å¯¾è±¡å¤–
     Dim ii As Long
-    g1g = Selection.Row    '‘I‘ğŠJns
-    g2g = Selection.Rows(Selection.Rows.Count).Row   '‘I‘ğI—¹s
-    d1d = Selection.Column    '‘I‘ğŠJn—ñ
-    d2d = Selection.Columns(Selection.Columns.Count).Column    '‘I‘ğI—¹—ñ
+    g1g = Selection.Row    'é¸æŠé–‹å§‹è¡Œ
+    g2g = Selection.Rows(Selection.Rows.Count).Row   'é¸æŠçµ‚äº†è¡Œ
+    d1d = Selection.Column    'é¸æŠé–‹å§‹åˆ—
+    d2d = Selection.Columns(Selection.Columns.Count).Column    'é¸æŠçµ‚äº†åˆ—
     
     For ii = 1 To 21
         haro = Cells(ii, d1d).Font.Color
         Cells(ii, d1d).Font.Color = haro
     Next
 End Sub
-'[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[
+'ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼
 Function syutoku() As String
 
     If Left(Application.OperatingSystem, 9) = "Macintosh" Then
@@ -62,91 +62,91 @@ End Function
 '
 '
 'End Sub
-Sub kinkyu()  '‚±‚ê‚ª‚ ‚é–‚Å‹­§I—¹Aƒf[ƒ^Á–Å‚ğ‘j~‚Å‚«‚Ä‚¢‚é‚Ì‚ÅA‚±‚ê‚ÍÁ‚³‚È‚¢B
+Sub kinkyu()  'ã“ã‚ŒãŒã‚ã‚‹äº‹ã§å¼·åˆ¶çµ‚äº†ã€ãƒ‡ãƒ¼ã‚¿æ¶ˆæ»…ã‚’é˜»æ­¢ã§ãã¦ã„ã‚‹ã®ã§ã€ã“ã‚Œã¯æ¶ˆã•ãªã„ã€‚
     On Error GoTo myError
-    bfn = ActiveWorkbook.Name 'bfn,shn‚ÍƒpƒuƒŠƒbƒN
+    bfn = ActiveWorkbook.Name 'bfn,shnã¯ãƒ‘ãƒ–ãƒªãƒƒã‚¯
     shn = ActiveSheet.Name
-    '«‚±‚Ì2s‚ÅƒGƒ‰[‚ª‹N‚±‚é
+    'â†“ã“ã®2è¡Œã§ã‚¨ãƒ©ãƒ¼ãŒèµ·ã“ã‚‹
     ThisWorkbook.Activate
-    Sheets("£WŒv_—Œ`").Activate
+    Sheets("â–²é›†è¨ˆ_é››å½¢").Activate
     DoEvents
-    Workbooks(bfn).Activate          '‚±‚¿‚ç‚Öi‚¢‚©‚ªHj
+    Workbooks(bfn).Activate          'ã“ã¡ã‚‰ã¸ï¼ˆã„ã‹ãŒï¼Ÿï¼‰
     Sheets(shn).Activate
     DoEvents
     Exit Sub
 myError:
-    MsgBox "ƒGƒ‰[‚Å‚·BI‚í‚è‚Ü‚·B"
+    MsgBox "ã‚¨ãƒ©ãƒ¼ã§ã™ã€‚çµ‚ã‚ã‚Šã¾ã™ã€‚"
     End
 End Sub
-'[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[
+'ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼
 Sub kyosydou()
-    '‹¤’ÊiŠOŒ‹A‰‰ñA•¡Êj‹¤’Ê‚Ì‰“®‚ğ‚Ü‚Æ‚ß‚éB
+    'å…±é€šï¼ˆå¤–çµã€åˆå›ã€è¤‡å†™ï¼‰å…±é€šã®åˆå‹•ã‚’ã¾ã¨ã‚ã‚‹ã€‚
     kinkyu
 
     Dim ii As Long, nm As Variant
-    Dim xsheet As Worksheet 'xWsheet¨xsheet
+    Dim xsheet As Worksheet 'xWsheetâ†’xsheet
 
     Application.CutCopyMode = False
     DoEvents
-    gg1 = Selection.Row    '‘I‘ğŠJns
-    gg2 = Selection.Rows(Selection.Rows.Count).Row   '‘I‘ğI—¹s
-    dd1 = Selection.Column    '‘I‘ğŠJn—ñ
-    dd2 = Selection.Columns(Selection.Columns.Count).Column    '‘I‘ğI—¹—ñ
+    gg1 = Selection.Row    'é¸æŠé–‹å§‹è¡Œ
+    gg2 = Selection.Rows(Selection.Rows.Count).Row   'é¸æŠçµ‚äº†è¡Œ
+    dd1 = Selection.Column    'é¸æŠé–‹å§‹åˆ—
+    dd2 = Selection.Columns(Selection.Columns.Count).Column    'é¸æŠçµ‚äº†åˆ—
     
-    If dd1 = 0 Then MsgBox "dd1‚ªƒ[ƒ‚Å‚·‚Ë"
-    bfn = ActiveWorkbook.Name 'bfn,shn‚ÍƒpƒuƒŠƒbƒN
+    If dd1 = 0 Then MsgBox "dd1ãŒã‚¼ãƒ­ã§ã™ã­"
+    bfn = ActiveWorkbook.Name 'bfn,shnã¯ãƒ‘ãƒ–ãƒªãƒƒã‚¯
     shn = ActiveSheet.Name
-    Set bfshn = Workbooks(bfn).Worksheets(shn) '30‚“63‚æ‚èB“–ƒV[ƒgE“–ƒtƒ@ƒCƒ‹
+    Set bfshn = Workbooks(bfn).Worksheets(shn) '30ï½“63ã‚ˆã‚Šã€‚å½“ã‚·ãƒ¼ãƒˆãƒ»å½“ãƒ•ã‚¡ã‚¤ãƒ«
     
-    twn = ThisWorkbook.Name 'ƒ}ƒNƒƒtƒ@ƒCƒ‹–¼‚»‚Ì‚à‚Ì(?.xlsm)
-    Set twbsh = Workbooks(twn).Worksheets("£WŒv_—Œ`") '30‚“74‚æ‚è
+    twn = ThisWorkbook.Name 'ãƒã‚¯ãƒ­ãƒ•ã‚¡ã‚¤ãƒ«åãã®ã‚‚ã®(?.xlsm)
+    Set twbsh = Workbooks(twn).Worksheets("â–²é›†è¨ˆ_é››å½¢") '30ï½“74ã‚ˆã‚Š
     
-    nm = Array("", "‘ÎÛ¼°Ä–¼", "“–F“Ë‡—ñ", "‘ÎF“Ë‡—ñ", "‘ÎFµ°Ù1—ñ", "‘ÎF¶³İÄ—ñ", "‘ÎF‰ÁZ—ñ¥‘¼", "“–F“]Ú—ñ", "‘ÎF“]Ú—ñ", "‘ÎFÀ¿‰ÁZ—ñ", "“–FÀ¿“]Ú—ñ") '30s63,array‰»
-    If IsError(Application.Match(nm(1), Range(bfshn.Cells(1, 2), bfshn.Cells(200, 2)), 0)) Then Call oshimai("", bfn, shn, 4, 2, "iˆ—’†~ju" & nm(1) & "v‚ªŒ©‚Â‚©‚è‚Ü‚¹‚ñ")
+    nm = Array("", "å¯¾è±¡ï½¼ï½°ï¾„å", "å½“ï¼šçªåˆåˆ—", "å¯¾ï¼šçªåˆåˆ—", "å¯¾ï¼šï½µï½°ï¾™1åˆ—", "å¯¾ï¼šï½¶ï½³ï¾ï¾„åˆ—", "å¯¾ï¼šåŠ ç®—åˆ—ï½¥ä»–", "å½“ï¼šè»¢è¼‰åˆ—", "å¯¾ï¼šè»¢è¼‰åˆ—", "å¯¾ï¼šå®Ÿè³ªåŠ ç®—åˆ—", "å½“ï¼šå®Ÿè³ªè»¢è¼‰åˆ—") '30s63,arrayåŒ–
+    If IsError(Application.Match(nm(1), Range(bfshn.Cells(1, 2), bfshn.Cells(200, 2)), 0)) Then Call oshimai("", bfn, shn, 4, 2, "ï¼ˆå‡¦ç†ä¸­æ­¢ï¼‰ã€Œ" & nm(1) & "ã€ãŒè¦‹ã¤ã‹ã‚Šã¾ã›ã‚“")
     For ii = 1 To 8
         sr(ii) = WorksheetFunction.Match(nm(ii), Range(bfshn.Cells(1, 2), bfshn.Cells(200, 2)), 0)
         If sr(0) < sr(ii) Then sr(0) = sr(ii)
     Next
-    sr(0) = sr(8) + 1  '‰º‘¤‚©‚çˆÚİ
+    sr(0) = sr(8) + 1  'ä¸‹å´ã‹ã‚‰ç§»è¨­
     
-    If IsError(Application.Match("B", Range(bfshn.Cells(1, 1), bfshn.Cells(1, 5000)), 0)) Then
-        Call oshimai("", bfn, shn, 1, 0, "u" & shn & "vƒV[ƒg‰Eã‚ÉuBv‚ª‚ ‚è‚Ü‚¹‚ñB“ü‚ê‚Ä‰º‚³‚¢B")
+    If IsError(Application.Match("ã€‚", Range(bfshn.Cells(1, 1), bfshn.Cells(1, 5000)), 0)) Then
+        Call oshimai("", bfn, shn, 1, 0, "ã€Œ" & shn & "ã€ã‚·ãƒ¼ãƒˆå³ä¸Šã«ã€Œã€‚ã€ãŒã‚ã‚Šã¾ã›ã‚“ã€‚å…¥ã‚Œã¦ä¸‹ã•ã„ã€‚")
     Else
-        mghz = Application.Match("B", Range(bfshn.Cells(1, 1), bfshn.Cells(1, 5000)), 0)
+        mghz = Application.Match("ã€‚", Range(bfshn.Cells(1, 1), bfshn.Cells(1, 5000)), 0)
     End If
     shog = "log_" & syutoku() & "_" & Format(Date, "yyyymm")
     
-    'ƒƒOƒV[ƒg—L–³chkA30s82A‰‰ñ‚Ì‚İ¨‚±‚±‚ÉˆÚİ
+    'ãƒ­ã‚°ã‚·ãƒ¼ãƒˆæœ‰ç„¡chkã€30s82ã€åˆå›ã®ã¿â†’ã“ã“ã«ç§»è¨­
     For Each xsheet In ThisWorkbook.Sheets
-        If xsheet.Name = shog Then xFlag = True 'booleanŒ^‚Ì‰Šú’l‚Ífalse
+        If xsheet.Name = shog Then xFlag = True 'booleanå‹ã®åˆæœŸå€¤ã¯false
     Next xsheet
-    If xFlag = True Then ' ŠY“–‚ÌƒV[ƒg‚ª‚ ‚éê‡‚Ìˆ—
-        'i‰½‚à‚µ‚È‚¢j
-    Else ' ŠY“–‚ÌƒV[ƒg‚ª‚È‚¢ê‡‚Ìˆ— '
+    If xFlag = True Then ' è©²å½“ã®ã‚·ãƒ¼ãƒˆãŒã‚ã‚‹å ´åˆã®å‡¦ç†
+        'ï¼ˆä½•ã‚‚ã—ãªã„ï¼‰
+    Else ' è©²å½“ã®ã‚·ãƒ¼ãƒˆãŒãªã„å ´åˆã®å‡¦ç† '
         Workbooks(twn).Activate '30s83
         Worksheets.Add
         ActiveSheet.Name = shog
-        nm = Array("", "€–Ú–¼", "€”Ô", "log", "date", "timestamp", "ƒƒ‚", "to", "Å‰E—ñ", "from9") '30s83,array‰»
+        nm = Array("", "é …ç›®å", "é …ç•ª", "log", "date", "timestamp", "ãƒ¡ãƒ¢", "to", "æœ€å³åˆ—", "from9") '30s83,arrayåŒ–
         For ii = 1 To 9
             Workbooks(twn).Sheets(shog).Cells(1, ii).Value = nm(ii)
         Next
-        Workbooks(bfn).Activate          '‚±‚¿‚ç‚Öi‚¢‚©‚ªHj
+        Workbooks(bfn).Activate          'ã“ã¡ã‚‰ã¸ï¼ˆã„ã‹ãŒï¼Ÿï¼‰
         bfshn.Select
     End If
     
     xFlag = False
-    For Each xsheet In ThisWorkbook.Sheets     '“]‹L—L–³chkA30s82e
-        If xsheet.Name = "‚‘¬ƒV[ƒg_" & syutoku() Then xFlag = True
+    For Each xsheet In ThisWorkbook.Sheets     'è»¢è¨˜æœ‰ç„¡chkã€30s82e
+        If xsheet.Name = "é«˜é€Ÿã‚·ãƒ¼ãƒˆ_" & syutoku() Then xFlag = True
     Next xsheet
 
-    If xFlag = True Then ' ŠY“–‚ÌƒV[ƒg‚ª‚ ‚éê‡‚Ìˆ—
-        Set twt = Workbooks(twn).Worksheets("‚‘¬ƒV[ƒg_" & syutoku()) '30s82f
+    If xFlag = True Then ' è©²å½“ã®ã‚·ãƒ¼ãƒˆãŒã‚ã‚‹å ´åˆã®å‡¦ç†
+        Set twt = Workbooks(twn).Worksheets("é«˜é€Ÿã‚·ãƒ¼ãƒˆ_" & syutoku()) '30s82f
         twt.Cells.Clear
     
         ThisWorkbook.Activate
-        twbsh.Select '30s86_017q@•Ï‚ÈƒGƒ‰[‰ğÁ—p(ƒtƒHƒ“ƒg‚ğƒe[ƒ}‚ÌF‚É‚·‚é‚ÆÄ‹N“®‚·‚éŒ)
-                                  'ª100%‰ğÁ‚µ‚Ä‚¢‚é–ó‚Å‚Í‚È‚¢
-        Sheets("‚‘¬ƒV[ƒg_" & syutoku()).Activate
+        twbsh.Select '30s86_017qã€€å¤‰ãªã‚¨ãƒ©ãƒ¼è§£æ¶ˆç”¨(ãƒ•ã‚©ãƒ³ãƒˆã‚’ãƒ†ãƒ¼ãƒã®è‰²ã«ã™ã‚‹ã¨å†èµ·å‹•ã™ã‚‹ä»¶)
+                                  'â†‘100%è§£æ¶ˆã—ã¦ã„ã‚‹è¨³ã§ã¯ãªã„
+        Sheets("é«˜é€Ÿã‚·ãƒ¼ãƒˆ_" & syutoku()).Activate
         Rows("6:6").Select
         Selection.Delete Shift:=xlUp
         DoEvents
@@ -155,205 +155,205 @@ Sub kyosydou()
         Workbooks(bfn).Activate       '86_017h
         bfshn.Select
         DoEvents
-    Else ' ŠY“–‚ÌƒV[ƒg‚ª‚È‚¢ê‡‚Ìˆ— '
+    Else ' è©²å½“ã®ã‚·ãƒ¼ãƒˆãŒãªã„å ´åˆã®å‡¦ç† '
         Worksheets.Add
-        ActiveSheet.Name = "‚‘¬ƒV[ƒg_" & syutoku()
-        Set twt = Workbooks(twn).Worksheets("‚‘¬ƒV[ƒg_" & syutoku()) '30s82f
+        ActiveSheet.Name = "é«˜é€Ÿã‚·ãƒ¼ãƒˆ_" & syutoku()
+        Set twt = Workbooks(twn).Worksheets("é«˜é€Ÿã‚·ãƒ¼ãƒˆ_" & syutoku()) '30s82f
         Workbooks(bfn).Activate
         bfshn.Select
     End If
     
-    bfshn.Cells(1, 4).Value = Application.WorksheetFunction.Sum(bfshn.Range("A:A")) + 1 '30s83 =sum(a:a)+1‚©‚ç‚±‚¿‚ç‚Ö
+    bfshn.Cells(1, 4).Value = Application.WorksheetFunction.Sum(bfshn.Range("A:A")) + 1 '30s83 =sum(a:a)+1ã‹ã‚‰ã“ã¡ã‚‰ã¸
     Exit Sub
 End Sub
-'[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[ŠO•”Œ‹‡
-Sub gaiketsu()   'ˆê”Ôãª‚ÉƒpƒuƒŠƒbƒN•Ï”‚ ‚èBŒ©“¦‚µ’ˆÓ@@f‹ŒuŠO•”Œ‹‡v
+'ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼å¤–éƒ¨çµåˆ
+Sub gaiketsu()   'ä¸€ç•ªä¸Šâ†‘ã«ãƒ‘ãƒ–ãƒªãƒƒã‚¯å¤‰æ•°ã‚ã‚Šã€‚è¦‹é€ƒã—æ³¨æ„ã€€ã€€â€™æ—§ã€Œå¤–éƒ¨çµåˆã€
     Dim f As String, xsheet As Worksheet, xbook As Workbook, wsfag As Boolean
     Dim bun As Long, bni As Long
     Dim mr() As String, er() As Currency
-    Dim nkg As Long, kahi As Long, cted(1) As Long, rrr As Long 'ppp¨rrr 86_014r
-    Dim pap() As Long   'pap”z—ñ•Ï”‰»(86_019d)
+    Dim nkg As Long, kahi As Long, cted(1) As Long, rrr As Long 'pppâ†’rrr 86_014r
+    Dim pap() As Long   'papé…åˆ—å¤‰æ•°åŒ–(86_019d)
     Dim er2() As Currency, er3() As Currency, er5() As Long, er78() As Currency, er9() As Currency, er34 As String
     Dim mr2() As String, mr3() As String, mr5() As String, mr8() As String, mr9() As String
     Dim a As Long, pkt As Long, nn As Long, n1 As Long, qq As Long, pqp As Long
     Dim am1 As String, am2 As String, h As Long, m As Long, k0 As Long, h0 As Long, n2 As Long, kg1 As String
     Dim qap As Long, ii As Long, jj As Long, trt As Long, tst As Long, dif As Long, axa As Long
-    Dim saemp '©¡‚àŒ^‚ªİ’è‚³‚ê‚Ä‚¢‚È‚¢
+    Dim saemp 'â†ä»Šã‚‚å‹ãŒè¨­å®šã•ã‚Œã¦ã„ãªã„
     Dim hirt As Variant, hiru As Variant, tameshi As Range, ct8 As String, tempo As String, baba As String
     Dim kasan As Variant, c5 As Long, c99 As String, c98 As String, ct3 As String, hk1 As String, rog As String
     Dim zzz As String, zyyz() As String, xxxx() As String, zxxz() As String, nifuku As Long
   
-    'ÄŒvZ‚ğˆê’U©“®‚É
+    'å†è¨ˆç®—ã‚’ä¸€æ—¦è‡ªå‹•ã«
     Application.Calculation = xlCalculationAutomatic
-    '‚¨‚Ü‚¶‚È‚¢(uƒR[ƒh‚ÌÀs‚ª’†’f‚³‚ê‚Ü‚µ‚½v‘Îˆ)
+    'ãŠã¾ã˜ãªã„(ã€Œã‚³ãƒ¼ãƒ‰ã®å®Ÿè¡ŒãŒä¸­æ–­ã•ã‚Œã¾ã—ãŸã€å¯¾å‡¦)
     Application.EnableCancelKey = xlDisabled
-    UserForm1.StartUpPosition = 1 '1@ƒGƒNƒZƒ‹‚Ì’†‰›A@2@‰æ–Ê‚Ì’†‰›A@3@‰æ–Ê‚Ì¶ã
+    UserForm1.StartUpPosition = 1 '1ã€€ã‚¨ã‚¯ã‚»ãƒ«ã®ä¸­å¤®ã€ã€€2ã€€ç”»é¢ã®ä¸­å¤®ã€ã€€3ã€€ç”»é¢ã®å·¦ä¸Š
     UserForm1.Show vbModeless
     UserForm1.Repaint
 
-    kyosydou  '‹¤’Ê‚Ì‰“®
+    kyosydou  'å…±é€šã®åˆå‹•
  
-    bfshn.Cells(sr(3), 5).Value = chekku     'Excelƒ\[ƒgd—l•\‹L@30s86_020t@Excelƒo[ƒWƒ‡ƒ“ƒ`ƒFƒbƒN
-    bfshn.Cells(sr(5), 5).Value = "hrkt_" & hrkt     'Excelƒ\[ƒgd—l•\‹L@30s86_020t@Excelƒo[ƒWƒ‡ƒ“ƒ`ƒFƒbƒN
+    bfshn.Cells(sr(3), 5).Value = chekku     'Excelã‚½ãƒ¼ãƒˆä»•æ§˜è¡¨è¨˜ã€€30s86_020tã€€Excelãƒãƒ¼ã‚¸ãƒ§ãƒ³ãƒã‚§ãƒƒã‚¯
+    bfshn.Cells(sr(5), 5).Value = "hrkt_" & hrkt     'Excelã‚½ãƒ¼ãƒˆä»•æ§˜è¡¨è¨˜ã€€30s86_020tã€€Excelãƒãƒ¼ã‚¸ãƒ§ãƒ³ãƒã‚§ãƒƒã‚¯
     
-    If bfshn.Cells(sr(3), 5).Value = "‹Œ¿°Ä" And hrkt = 0 Then MsgBox "‹Œ¿°Ä(2013)‚Åhrkt=0(phonetic•sg—p)‚Å‚·BƒL[‚É“¯‚¶‚Ğ‚ç‚ª‚ÈƒJƒ^ƒJƒi‚ ‚é(u‚ vuƒAv‚È‚Ç)Œëì“®‚ÌŠëŒ¯‚ ‚è’ˆÓB"
+    If bfshn.Cells(sr(3), 5).Value = "æ—§ï½¿ï½°ï¾„" And hrkt = 0 Then MsgBox "æ—§ï½¿ï½°ï¾„(2013)ã§hrkt=0(phoneticä¸ä½¿ç”¨)ã§ã™ã€‚ã‚­ãƒ¼ã«åŒã˜ã²ã‚‰ãŒãªã‚«ã‚¿ã‚«ãƒŠã‚ã‚‹æ™‚(ã€Œã‚ã€ã€Œã‚¢ã€ãªã©)èª¤ä½œå‹•ã®å±é™ºã‚ã‚Šæ³¨æ„ã€‚"
     
     twt.Cells.Clear
 
     Workbooks(bfn).Activate
     bfshn.Select
         
-    If dd1 = 0 Then Call oshimai("", bfn, shn, 1, 0, "dd1‚ªƒ[ƒ‚Å‚·")
+    If dd1 = 0 Then Call oshimai("", bfn, shn, 1, 0, "dd1ãŒã‚¼ãƒ­ã§ã™")
 
-    '‚»‚Ì“ú‚Ì‰‰ñƒ`ƒFƒbƒN
+    'ãã®æ—¥ã®åˆå›ãƒã‚§ãƒƒã‚¯
     ii = 1
     Do Until Workbooks(twn).Sheets(shog).Cells(ii, 1).Value = ""
         ii = ii + 1
         If ii = 50000 Then
-            MsgBox "‹ó”’s‚ªŒ©‚Â‚©‚ç‚È‚¢‚æ‚¤‚Å‚·"
+            MsgBox "ç©ºç™½è¡ŒãŒè¦‹ã¤ã‹ã‚‰ãªã„ã‚ˆã†ã§ã™"
             Exit Sub
         End If
     Loop
     
     If Workbooks(twn).Sheets(shog).Cells(ii - 1, 4).Value <> Val(Format(Now(), "yyyymmdd")) Then
-        Call oshimai("", bfn, shn, 1, 0, "‚»‚Ì“ú‚Ì‰‰ñ‚ÍAÅ‰‚É[FIRST]ƒ{ƒ^ƒ“‚ğ‰Ÿ‚µ‚Ä‰º‚³‚¢B")
+        Call oshimai("", bfn, shn, 1, 0, "ãã®æ—¥ã®åˆå›ã¯ã€æœ€åˆã«[FIRST]ãƒœã‚¿ãƒ³ã‚’æŠ¼ã—ã¦ä¸‹ã•ã„ã€‚")
     End If
     
     If bfshn.Cells(sr(0) - 1, 5) = "" Then
-        Call oshimai("", bfn, shn, sr(0) - 1, 5, "šWŒv–¼‚ğ“ü—Í‚µ‚Ä‰º‚³‚¢B")
+        Call oshimai("", bfn, shn, sr(0) - 1, 5, "â˜…é›†è¨ˆåã‚’å…¥åŠ›ã—ã¦ä¸‹ã•ã„ã€‚")
     End If
 
-    Call iechc(hk1) '‹Œigchc(hk1)
+    Call iechc(hk1) 'æ—§igchc(hk1)
     hk1 = ""
     flag = False
 
     ii = 1
-    '“–ƒV[ƒg‘¤‚Ìall1’T‚µ
+    'å½“ã‚·ãƒ¼ãƒˆå´ã®all1æ¢ã—
     Do Until bfshn.Cells(ii, 1).Value = "all1"
         If IsNumeric(bfshn.Cells(ii, 1).Value) And bfshn.Cells(ii, 1).Value <> "" Then '17s
-            Call oshimai("", bfn, shn, ii, 1, "ˆê—ñ–Ú‚Í”’l‚ğ“ü‚ê‚È‚¢‚Å‰º‚³‚¢")
+            Call oshimai("", bfn, shn, ii, 1, "ä¸€åˆ—ç›®ã¯æ•°å€¤ã‚’å…¥ã‚Œãªã„ã§ä¸‹ã•ã„")
         End If
         ii = ii + 1
         If ii = 100 Then
-            Call oshimai("", bfn, shn, 1, 0, "“–ƒV[ƒguall1v‚ªŒ©‚Â‚©‚ç‚È‚¢‚æ‚¤‚Å‚·")
+            Call oshimai("", bfn, shn, 1, 0, "å½“ã‚·ãƒ¼ãƒˆã€Œall1ã€ãŒè¦‹ã¤ã‹ã‚‰ãªã„ã‚ˆã†ã§ã™")
         End If
     Loop
 
-    k = ii + 1     'kŠm’è'k‚Íƒf[ƒ^ŠJns(ƒTƒ“ƒvƒ‹s‚Å‚Í‚È‚­‚È‚Á‚½B)
-    bfshn.Cells(1, 2).Value = k     'ƒf[ƒ^ŠJns
+    k = ii + 1     'kç¢ºå®š'kã¯ãƒ‡ãƒ¼ã‚¿é–‹å§‹è¡Œ(ã‚µãƒ³ãƒ—ãƒ«è¡Œã§ã¯ãªããªã£ãŸã€‚)
+    bfshn.Cells(1, 2).Value = k     'ãƒ‡ãƒ¼ã‚¿é–‹å§‹è¡Œ
 
-    '‚±‚Ì“_‚Å‚Ìii‚ÍA“–ƒV[ƒg‚Ìuall1v‹LÚs
+    'ã“ã®æ™‚ç‚¹ã§ã®iiã¯ã€å½“ã‚·ãƒ¼ãƒˆã®ã€Œall1ã€è¨˜è¼‰è¡Œ
     Do Until bfshn.Cells(ii, 1).Value = ""
         ii = ii + 1
     Loop
-    '‚±‚±‚Å‚Ìii‚Í“–ƒV[ƒgall1—ñ‚Ì‹ó”’‚É‚È‚Á‚½sAƒf[ƒ^–³‚µ‚Ìê‡‚Íƒf[ƒ^ŠJns
+    'ã“ã“ã§ã®iiã¯å½“ã‚·ãƒ¼ãƒˆall1åˆ—ã®ç©ºç™½ã«ãªã£ãŸè¡Œã€ãƒ‡ãƒ¼ã‚¿ç„¡ã—ã®å ´åˆã¯ãƒ‡ãƒ¼ã‚¿é–‹å§‹è¡Œ
     
-    'ƒI[ƒgƒtƒBƒ‹ƒ^‚ªİ’è‚³‚ê‚Ä‚ê‚ÎA‰ğœ
+    'ã‚ªãƒ¼ãƒˆãƒ•ã‚£ãƒ«ã‚¿ãŒè¨­å®šã•ã‚Œã¦ã‚Œã°ã€è§£é™¤
     If ActiveSheet.AutoFilterMode Then Selection.AutoFilter
-    nn = 0 'ƒZƒ‹‹ó”’ƒ`ƒFƒbƒNƒtƒ‰ƒO
-    If dd1 <= 5 Then Call oshimai("", bfn, shn, 1, 0, "ƒ^ƒeƒˆƒRI—¹A6—ñ–ÚˆÈ~‚ª‘ÎÛ‚Å‚·")    '‚æ
-    If dd2 >= mghz Then Call oshimai("", bfn, shn, 1, 0, "˜gŠO‚ª‘I‘ğ‚³‚ê‚Ä‚Ü‚·")    '86_108i
+    nn = 0 'ã‚»ãƒ«ç©ºç™½ãƒã‚§ãƒƒã‚¯ãƒ•ãƒ©ã‚°
+    If dd1 <= 5 Then Call oshimai("", bfn, shn, 1, 0, "ã‚¿ãƒ†ãƒ¨ã‚³çµ‚äº†ã€6åˆ—ç›®ä»¥é™ãŒå¯¾è±¡ã§ã™")    'ã‚ˆ
+    If dd2 >= mghz Then Call oshimai("", bfn, shn, 1, 0, "æ å¤–ãŒé¸æŠã•ã‚Œã¦ã¾ã™")    '86_108i
 
     
-For a = dd1 To dd2 '‘I‘ğ”ÍˆÍ—ñ•ª‚ÌŒJ‚è•Ô‚µ@‚ç
+For a = dd1 To dd2 'é¸æŠç¯„å›²åˆ—åˆ†ã®ç¹°ã‚Šè¿”ã—ã€€ã‚‰
     
     Application.Goto bfshn.Cells(k, a - 3), True
     bfshn.Cells(k, a).Select
     
-    kg1 = "" 'ƒŠƒZƒbƒg@kg2‚Ímr(2,3,bni)‚Ìredim‚ÅƒŠƒZƒbƒg‚³‚ê‚éB
-    bni = 1  'ƒŠƒZƒbƒg
-    bun = 1  'ƒŠƒZƒbƒg
-    nkg = 0 'ƒŠƒZƒbƒg
+    kg1 = "" 'ãƒªã‚»ãƒƒãƒˆã€€kg2ã¯mr(2,3,bni)ã®redimã§ãƒªã‚»ãƒƒãƒˆã•ã‚Œã‚‹ã€‚
+    bni = 1  'ãƒªã‚»ãƒƒãƒˆ
+    bun = 1  'ãƒªã‚»ãƒƒãƒˆ
+    nkg = 0 'ãƒªã‚»ãƒƒãƒˆ
     nifuku = 0
     
-    '•¡•¶ß—p‹æØ‚è•¶š‚ÌŠm’è@fnywti¨rvsrz3‚ğ—¬—p
-    kg1 = Mid(rvsrz3(bfshn.Cells(sr(7), a).Value, 3, "¦", 0), 1, 1)  'kg2’è‹`‚Íæ 30s73:nkg2¨0
+    'è¤‡æ–‡ç¯€ç”¨åŒºåˆ‡ã‚Šæ–‡å­—ã®ç¢ºå®šã€€fnywtiâ†’rvsrz3ã‚’æµç”¨
+    kg1 = Mid(rvsrz3(bfshn.Cells(sr(7), a).Value, 3, "ï½¦", 0), 1, 1)  'kg2å®šç¾©ã¯å…ˆ 30s73:nkg2â†’0
 
     If bfshn.Cells(sr(6), a).Value <= -90 Then
-        bun = 1 '-90‘ä‚Í‹­§1
+        bun = 1 '-90å°ã¯å¼·åˆ¶1
     ElseIf kg1 = "" Then
-        nkg = 1 '‚î‹æØ‚è–³w’è(kg1="")‚Í•¶ßƒ[ƒi‹æØ‚è‚µ‚È‚¢j
-    Else '•¡•¶ß”(bun)Šm’è‚Ì‚½‚ß‚Ìƒ‹[ƒ`ƒ“(kg1<>"")
+        nkg = 1 'ã‚åŒºåˆ‡ã‚Šç„¡æŒ‡å®š(kg1="")ã¯æ–‡ç¯€ã‚¼ãƒ­ï¼ˆåŒºåˆ‡ã‚Šã—ãªã„ï¼‰
+    Else 'è¤‡æ–‡ç¯€æ•°(bun)ç¢ºå®šã®ãŸã‚ã®ãƒ«ãƒ¼ãƒãƒ³(kg1<>"")
         For ii = 1 To 8
             Do Until rvsrz3(bfshn.Cells(sr(ii), a).Value, bni, kg1, 0) = ""
                 bni = bni + 1
-                If bni > 120 Then Call oshimai("", bfn, shn, 4, 2, "bni120’´‚¦")
+                If bni > 120 Then Call oshimai("", bfn, shn, 4, 2, "bni120è¶…ãˆ")
             Loop
             bni = bni - 1
             If ii = 2 And bni > 1 Then
                 nifuku = 1
-                MsgBox "2s–Ú‚Å‚Ì•¡•¶ß‚ ‚èB’ˆÓ‚ğB"  '‰ğ‹Ö‚Ö@86_016v
+                MsgBox "2è¡Œç›®ã§ã®è¤‡æ–‡ç¯€ã‚ã‚Šã€‚æ³¨æ„ã‚’ã€‚"  'è§£ç¦ã¸ã€€86_016v
             End If
-            If bun < bni Then bun = bni 'i‚±‚Ì“_‚ÅbunŠm’èj
+            If bun < bni Then bun = bni 'ï¼ˆã“ã®æ™‚ç‚¹ã§bunç¢ºå®šï¼‰
             bni = 1
         Next
     End If
 
-'Ÿ‚`Ÿ’P•¶ß
-    bni = 1 'ƒŠƒZƒbƒg
+'â—†ï¼¡â—†å˜æ–‡ç¯€
+    bni = 1 'ãƒªã‚»ãƒƒãƒˆ
     ReDim pap(9, bun) 'As long  30s86_019c
-    ReDim er(11, bun) 'As Currency 10¨11 30s83
-    ReDim mr(4, 11, bun) 'As String 30s81‘æ‚Rˆöq‰» 10¨11 30s83 ,mr(3¨mr(4F¦6¦¨¦F¦ —p
+    ReDim er(11, bun) 'As Currency 10â†’11 30s83
+    ReDim mr(4, 11, bun) 'As String 30s81ç¬¬ï¼“å› å­åŒ– 10â†’11 30s83 ,mr(3â†’mr(4ï¼šï½¦6ï½¦â†’ï½¦Fï½¦ ç”¨
     
-    'ÄŒvZ‚ğè“®‚É
+    'å†è¨ˆç®—ã‚’æ‰‹å‹•ã«
     Application.Calculation = xlCalculationManual
     Application.DisplayStatusBar = True
     
-    For ii = 1 To 7 'mr(0,‹Lq@@ii=2‚©‚ç‚Å‚à‘åä•v‚Æv‚í‚ê‚éB
-        mr(0, ii, 1) = rvsrz3(bfshn.Cells(sr(ii), a).Value, 1, kg1, nkg)  'ns–Ú‚Ì‘Sˆöq@bni:1
+    For ii = 1 To 7 'mr(0,è¨˜è¿°ã€€ã€€ii=2ã‹ã‚‰ã§ã‚‚å¤§ä¸ˆå¤«ã¨æ€ã‚ã‚Œã‚‹ã€‚
+        mr(0, ii, 1) = rvsrz3(bfshn.Cells(sr(ii), a).Value, 1, kg1, nkg)  'nè¡Œç›®ã®å…¨å› å­ã€€bni:1
     Next
     
-    '1•¶ß–Ú“Á’
-    mr(1, 1, 1) = rvsrz3(mr(0, 1, 1), 2, "¦", 2)  'ƒV[ƒg–¼
-    mr(2, 1, 1) = rvsrz3(mr(0, 1, 1), 3, "¦", 0)  'ƒtƒ@ƒCƒ‹–¼
+    '1æ–‡ç¯€ç›®ç‰¹æ³¨
+    mr(1, 1, 1) = rvsrz3(mr(0, 1, 1), 2, "ï½¦", 2)  'ã‚·ãƒ¼ãƒˆå
+    mr(2, 1, 1) = rvsrz3(mr(0, 1, 1), 3, "ï½¦", 0)  'ãƒ•ã‚¡ã‚¤ãƒ«å
     
-    mr(2, 7, 1) = kg1 '‚î@‚Vs–Ú‘æ“ñˆöq
-    If StrConv(Left(mr(1, 1, 1), 1), 8) = "*" Then '‚è@30s57¶ˆê•¶š‚ª–‚¾‚¯‚Ìi–?‚Ì‚Í?‚ªmr(2,0,1)‚É“ü‚éj
+    mr(2, 7, 1) = kg1 'ã‚ã€€ï¼—è¡Œç›®ç¬¬äºŒå› å­
+    If StrConv(Left(mr(1, 1, 1), 1), 8) = "*" Then 'ã‚Šã€€30s57å·¦ä¸€æ–‡å­—ãŒï¼Šã ã‘ã®æ™‚ï¼ˆï¼Š?ã®æ™‚ã¯?ãŒmr(2,0,1)ã«å…¥ã‚‹ï¼‰
         bfshn.Cells(sr(0), a).Value = bfshn.Cells(sr(0) + 3, a).Value
         bfshn.Cells(sr(0) + 1, a).Value = bfshn.Cells(sr(0) + 4, a).Value
         bfshn.Cells(sr(0) + 2, a).Value = bfshn.Cells(sr(0) + 5, a).Value
-    Else  '‚è(*‚¾‚¯‚Å‚È‚¢’ÊíAŠOŒ‹ÅŒã•”‚Ü‚Å‘±‚­)
+    Else  'ã‚Š(*ã ã‘ã§ãªã„é€šå¸¸æ™‚ã€å¤–çµæœ€å¾Œéƒ¨ã¾ã§ç¶šã)
     
-    For ii = 1 To 7  '‹ó”’Šm”Fibni=1j
+    For ii = 1 To 7  'ç©ºç™½ç¢ºèªï¼ˆbni=1ï¼‰
         If bfshn.Cells(sr(ii), a).Value = "" Then nn = sr(ii)
     Next
     
-    If bfshn.Cells(sr(6), a).Value > -90 Then     '‚±‚±‚Å‚Ìii‚Í8 -99‚Í8s–ÚŠm”F‚µ‚È‚¢
-        If bfshn.Cells(sr(8), a).Value = "" Then nn = sr(8) 'ii¨8@i“¯’lj
+    If bfshn.Cells(sr(6), a).Value > -90 Then     'ã“ã“ã§ã®iiã¯8 -99ã¯8è¡Œç›®ç¢ºèªã—ãªã„
+        If bfshn.Cells(sr(8), a).Value = "" Then nn = sr(8) 'iiâ†’8ã€€ï¼ˆåŒå€¤ï¼‰
     End If
-    If nn > 0 Then Call oshimai("", bfn, shn, nn, a, "ŠOŒ‹İ’èî•ñ‚ª‹ó—“‚ÌŠ‚ª‚ ‚è‚Ü‚·")
-'‚`’P•¶ß‚±‚±‚Ü‚Åª
+    If nn > 0 Then Call oshimai("", bfn, shn, nn, a, "å¤–çµè¨­å®šæƒ…å ±ãŒç©ºæ¬„ã®æ‰€ãŒã‚ã‚Šã¾ã™")
+'â—‡ï¼¡â—‡å˜æ–‡ç¯€ã“ã“ã¾ã§â†‘
 
-'Ÿ‚aŸ•¡•¶ßforiF€”õ•Òj‚Ó‚ «@•¶ß–ˆ‚Ìfor‚ª‚±‚±‚©‚çn‚Ü‚é
+'â—†ï¼¢â—†è¤‡æ–‡ç¯€forï¼ˆï¼šæº–å‚™ç·¨ï¼‰ãµã‚â†“ã€€æ–‡ç¯€æ¯ã®forãŒã“ã“ã‹ã‚‰å§‹ã¾ã‚‹
     For bni = 1 To bun
-        nn = 0 'ƒZƒ‹‹ó”’ƒ`ƒFƒbƒNƒtƒ‰ƒO¨H
+        nn = 0 'ã‚»ãƒ«ç©ºç™½ãƒã‚§ãƒƒã‚¯ãƒ•ãƒ©ã‚°â†’ï¼Ÿ
         mr(2, 0, bni) = bfn '30s82
         mr(1, 0, bni) = shn  '30s82
         For ii = 1 To 7
-            mr(0, ii, bni) = rvsrz3(bfshn.Cells(sr(ii), a).Value, bni, kg1, nkg)  'ns–Ú‚Ì‘Sˆöq
-            If mr(0, ii, bni) = "" Then mr(0, ii, bni) = mr(0, ii, bni - 1)  '2•¶ß–ÚˆÈ~A‹ó—“‚È‚ç‘OßƒRƒsƒy
+            mr(0, ii, bni) = rvsrz3(bfshn.Cells(sr(ii), a).Value, bni, kg1, nkg)  'nè¡Œç›®ã®å…¨å› å­
+            If mr(0, ii, bni) = "" Then mr(0, ii, bni) = mr(0, ii, bni - 1)  '2æ–‡ç¯€ç›®ä»¥é™ã€ç©ºæ¬„ãªã‚‰å‰ç¯€ã‚³ãƒ”ãƒš
         Next
         
         If bfshn.Cells(sr(6), a).Value <= -90 Then
-            mr(1, 1, bni) = shn  'ƒV[ƒg–¼@'-90‘ä‚ÍƒZƒ‹Œ©‚¸Abfshn‹­§@ƒZƒ‹‚Í“ú•t‘®‚È‚Ç©—R‚É‘‚¯‚ç‚ê‚éB
-            mr(2, 1, bni) = bfn  'ƒtƒ@ƒCƒ‹–¼
+            mr(1, 1, bni) = shn  'ã‚·ãƒ¼ãƒˆåã€€'-90å°ã¯ã‚»ãƒ«è¦‹ãšã€bfshnå¼·åˆ¶ã€€ã‚»ãƒ«ã¯æ—¥ä»˜æ›¸å¼ãªã©è‡ªç”±ã«æ›¸ã‘ã‚‰ã‚Œã‚‹ã€‚
+            mr(2, 1, bni) = bfn  'ãƒ•ã‚¡ã‚¤ãƒ«å
         Else
-            mr(1, 1, bni) = rvsrz3(mr(0, 1, bni), 2, "¦", 2)  'ƒV[ƒg–¼ ""‚É‚Í‚È‚ç‚È‚¢
-            mr(2, 1, bni) = rvsrz3(mr(0, 1, bni), 3, "¦", 0)  'ƒtƒ@ƒCƒ‹–¼30s73:nkg2¨0
+            mr(1, 1, bni) = rvsrz3(mr(0, 1, bni), 2, "ï½¦", 2)  'ã‚·ãƒ¼ãƒˆå ""ã«ã¯ãªã‚‰ãªã„
+            mr(2, 1, bni) = rvsrz3(mr(0, 1, bni), 3, "ï½¦", 0)  'ãƒ•ã‚¡ã‚¤ãƒ«å30s73:nkg2â†’0
         End If
-        If Left(StrConv(mr(1, 1, bni), 8), 1) = "\" Then mr(1, 1, bni) = shn '¨ƒV[ƒg–¼•ÏŠ·
-        If mr(1, 1, bni) = "" Then Call oshimai("", bfn, shn, sr(1), a, "‘ÎÛƒV[ƒg–¼(" & bni & "•¶ß–Ú)‚ª‹ó—“‚Å‚·")
+        If Left(StrConv(mr(1, 1, bni), 8), 1) = "\" Then mr(1, 1, bni) = shn 'ï¿¥â†’ã‚·ãƒ¼ãƒˆåå¤‰æ›
+        If mr(1, 1, bni) = "" Then Call oshimai("", bfn, shn, sr(1), a, "å¯¾è±¡ã‚·ãƒ¼ãƒˆå(" & bni & "æ–‡ç¯€ç›®)ãŒç©ºæ¬„ã§ã™")
         If mr(2, 1, bni) = "" Then mr(2, 1, bni) = bfn
-        mr(4, 1, bni) = mr(1, 1, bni)    '86_014s ‚±‚êA”²‚¯‚Ä‚½B
-        wsfag = False   'ƒtƒ@ƒCƒ‹EƒV[ƒg—L–³chk
+        mr(4, 1, bni) = mr(1, 1, bni)    '86_014s ã“ã‚Œã€æŠœã‘ã¦ãŸã€‚
+        wsfag = False   'ãƒ•ã‚¡ã‚¤ãƒ«ãƒ»ã‚·ãƒ¼ãƒˆæœ‰ç„¡chk
         Do Until wsfag = True
             For Each xbook In Workbooks
                 If xbook.Name = mr(2, 1, bni) Then wsfag = True
             Next xbook
             If wsfag = False Then
-'                If MsgBox("ƒtƒ@ƒCƒ‹‚ªŠm”F‚Å‚«‚Ü‚¹‚ñ‚ªA" & vbCrLf & "‘±s‚µ‚Ü‚·‚©H", 289, "ƒtƒ@ƒCƒ‹•s–¾") = vbCancel Then 'ƒLƒƒƒ“ƒZƒ‹
-                    'ª‚±‚Ìè–@iYes,No‘I‘ğ•û®j‚Í‚±‚±‚Å‚ÍˆÓ–¡‚È‚©‚Á‚½‚Ì‚ÅA‚±‚Ì‚â‚è•û‚Í’†~B«‚±‚¿‚ç‚Ö
-                    Call oshimai("", bfn, shn, sr(1), a, "À{’†~‚µ‚Ü‚µ‚½B" & vbCrLf & "ƒtƒ@ƒCƒ‹‚ªŠm”F‚Å‚«‚Ü‚¹‚ñ")
+'                If MsgBox("ãƒ•ã‚¡ã‚¤ãƒ«ãŒç¢ºèªã§ãã¾ã›ã‚“ãŒã€" & vbCrLf & "ç¶šè¡Œã—ã¾ã™ã‹ï¼Ÿ", 289, "ãƒ•ã‚¡ã‚¤ãƒ«ä¸æ˜") = vbCancel Then 'ã‚­ãƒ£ãƒ³ã‚»ãƒ«æ™‚
+                    'â†‘ã“ã®æ‰‹æ³•ï¼ˆYes,Noé¸æŠæ–¹å¼ï¼‰ã¯ã“ã“ã§ã¯æ„å‘³ãªã‹ã£ãŸã®ã§ã€ã“ã®ã‚„ã‚Šæ–¹ã¯ä¸­æ­¢ã€‚â†“ã“ã¡ã‚‰ã¸
+                    Call oshimai("", bfn, shn, sr(1), a, "å®Ÿæ–½ä¸­æ­¢ã—ã¾ã—ãŸã€‚" & vbCrLf & "ãƒ•ã‚¡ã‚¤ãƒ«ãŒç¢ºèªã§ãã¾ã›ã‚“")
 '                end if
             End If
         Loop
@@ -362,18 +362,18 @@ For a = dd1 To dd2 '‘I‘ğ”ÍˆÍ—ñ•ª‚ÌŒJ‚è•Ô‚µ@‚ç
         For Each xsheet In Workbooks(mr(2, 1, bni)).Sheets
             If xsheet.Name = mr(1, 1, bni) Then wsfag = True
         Next xsheet
-        If wsfag = False Then Call oshimai("", bfn, shn, sr(1), a, mr(1, 1, bni) & " ‚ÌƒV[ƒg‚ª•s–¾‚Å‚·(" & bni & "•¶ß–Ú)")
+        If wsfag = False Then Call oshimai("", bfn, shn, sr(1), a, mr(1, 1, bni) & " ã®ã‚·ãƒ¼ãƒˆãŒä¸æ˜ã§ã™(" & bni & "æ–‡ç¯€ç›®)")
     
-        nn = 0 'ˆê’UƒŠƒZƒbƒg
+        nn = 0 'ä¸€æ—¦ãƒªã‚»ãƒƒãƒˆ
             
-            For ii = 2 To 6  '(ƒ‘)‚Í‚±‚±‚Å’è‚Ü‚éB
-                mr(2, ii, bni) = rvsrz3(mr(0, ii, bni), 3, "¦", 0)
+            For ii = 2 To 6  '(ãƒ±)ã¯ã“ã“ã§å®šã¾ã‚‹ã€‚
+                mr(2, ii, bni) = rvsrz3(mr(0, ii, bni), 3, "ï½¦", 0)
             Next
-            mr(3, 4, bni) = rvsrz3(mr(0, 4, bni), 4, "¦", 0) '‘æ3ˆöqiH–’†j
+            mr(3, 4, bni) = rvsrz3(mr(0, 4, bni), 4, "ï½¦", 0) 'ç¬¬3å› å­ï¼ˆå·¥äº‹ä¸­ï¼‰
             
-            If bni >= 2 Then mr(2, 7, bni) = mr(2, 7, bni - 1) '–ß‚Á‚½(‚î)‹­§‘OßƒRƒs[
+            If bni >= 2 Then mr(2, 7, bni) = mr(2, 7, bni - 1) 'æˆ»ã£ãŸ(ã‚)å¼·åˆ¶å‰ç¯€ã‚³ãƒ”ãƒ¼
 
-            'mr(2, 11, bni)EEE€€‚Æ‚©‚ª“ü‚éB«er(11,bni)‚ÍƒŠƒtƒ@ƒ‰•Ï”
+            'mr(2, 11, bni)ãƒ»ãƒ»ãƒ»é …æº–ã¨ã‹ãŒå…¥ã‚‹ã€‚â†“er(11,bni)ã¯ãƒªãƒ•ã‚¡ãƒ©å¤‰æ•°
             mr(2, 11, bni) = koudicd(mr(2, 1, bni), mr(1, 1, bni), er(11, bni), mr(0, 4, bni))
             
             mr(1, 2, bni) = yhwat1(bfn, shn, 2, sr(2), a, bni, kg1, nkg, mr(2, 4, bni), mr(0, 2, bni))
@@ -388,49 +388,49 @@ For a = dd1 To dd2 '‘I‘ğ”ÍˆÍ—ñ•ª‚ÌŒJ‚è•Ô‚µ@‚ç
             mr(4, 7, bni) = zhwat1(bfn, shn, 2, sr(7), a, bni, kg1, nkg, mr(2, 4, bni), mr(0, 7, bni))
        
             For ii = 2 To 7
-                er(ii, bni) = Val(mr(1, ii, bni)) 'ƒ‘‘Î‰FvalŠÖ”‚Í”š‚Æ”F¯o—ˆ‚éŠ‚Ü‚Å‚ğ”’l•ÏŠ·‚·‚éB—v‚Í‘æˆê—ñ–Ú‚ğB
+                er(ii, bni) = Val(mr(1, ii, bni)) 'ãƒ±å¯¾å¿œæ™‚ï¼švalé–¢æ•°ã¯æ•°å­—ã¨èªè­˜å‡ºæ¥ã‚‹æ‰€ã¾ã§ã‚’æ•°å€¤å¤‰æ›ã™ã‚‹ã€‚è¦ã¯ç¬¬ä¸€åˆ—ç›®ã‚’ã€‚
             Next
     
-        If nn > 0 Then Call oshimai("", bfn, shn, nn, a, "iˆ—’†~j" & vbCrLf & "”’lˆÈŠO‚Ìî•ñ‚ª‚ ‚è‚Ü‚·B")
-        If er(5, 1) >= 0 And er(7, 1) < 0 And er(6, 1) > -90 Then Call oshimai("", bfn, shn, 1, 0, "iˆ—’†~F•¶–@ƒGƒ‰[j" & vbCrLf & "er(5,0)>=0@‚Å@er(7,0)<0@‚Å‚·B")  'bni¨1
+        If nn > 0 Then Call oshimai("", bfn, shn, nn, a, "ï¼ˆå‡¦ç†ä¸­æ­¢ï¼‰" & vbCrLf & "æ•°å€¤ä»¥å¤–ã®æƒ…å ±ãŒã‚ã‚Šã¾ã™ã€‚")
+        If er(5, 1) >= 0 And er(7, 1) < 0 And er(6, 1) > -90 Then Call oshimai("", bfn, shn, 1, 0, "ï¼ˆå‡¦ç†ä¸­æ­¢ï¼šæ–‡æ³•ã‚¨ãƒ©ãƒ¼ï¼‰" & vbCrLf & "er(5,0)>=0ã€€ã§ã€€er(7,0)<0ã€€ã§ã™ã€‚")  'bniâ†’1
     
-        If er(6, bni) > -90 Then '8”Ô–Úi“]Ú—ñj‚Ìˆ—
-            c98 = bfshn.Cells(sr(8), a).Value  '26‚“
+        If er(6, bni) > -90 Then '8ç•ªç›®ï¼ˆè»¢è¼‰åˆ—ï¼‰ã®å‡¦ç†
+            c98 = bfshn.Cells(sr(8), a).Value  '26ï½“
             mr(0, 8, bni) = rvsrz3(bfshn.Cells(sr(8), a).Value, bni, kg1, nkg)
-            mr(2, 8, bni) = rvsrz3(mr(0, 8, bni), 3, "¦", 0) ' '30s73:nkg2¨0
-            mr(1, 8, bni) = yhwat1(mr(2, 1, bni), mr(1, 1, bni), er(11, bni), sr(8), a, bni, kg1, nkg, mr(2, 4, bni), mr(0, 8, bni)) 'kg2—L_30s56
-            mr(4, 8, bni) = zhwat1(mr(2, 1, bni), mr(1, 1, bni), er(11, bni), sr(8), a, bni, kg1, nkg, mr(2, 4, bni), mr(0, 8, bni)) 'kg2—L_30s56
+            mr(2, 8, bni) = rvsrz3(mr(0, 8, bni), 3, "ï½¦", 0) ' '30s73:nkg2â†’0
+            mr(1, 8, bni) = yhwat1(mr(2, 1, bni), mr(1, 1, bni), er(11, bni), sr(8), a, bni, kg1, nkg, mr(2, 4, bni), mr(0, 8, bni)) 'kg2æœ‰_30s56
+            mr(4, 8, bni) = zhwat1(mr(2, 1, bni), mr(1, 1, bni), er(11, bni), sr(8), a, bni, kg1, nkg, mr(2, 4, bni), mr(0, 8, bni)) 'kg2æœ‰_30s56
         
-            If bni >= 2 Then '2•¶ß–ÚˆÈ~‚©‚ç‚Æ‚¢‚¤‚Ì‚ªƒ~ƒ\A1•¶ß–Ú‚Í‰º‹L
+            If bni >= 2 Then '2æ–‡ç¯€ç›®ä»¥é™ã‹ã‚‰ã¨ã„ã†ã®ãŒãƒŸã‚½ã€1æ–‡ç¯€ç›®ã¯ä¸‹è¨˜
                 If mr(0, 8, bni) = "" Then mr(0, 8, bni) = mr(0, 8, bni - 1)
-                If mr(2, 8, bni) = "" Then mr(2, 8, bni) = mr(2, 8, bni - 1) 'mr(2,8,0)Œë“®ì‘j~ 2•¶ß–ÚˆÈ~A‹ó—“‚È‚ç‘OßƒRƒsƒy
-                mr(1, 8, bni) = yhwat1(mr(2, 1, bni), mr(1, 1, bni), er(11, bni), sr(8), a, bni, kg1, nkg, mr(2, 4, bni), mr(0, 8, bni)) 'kg2—L_30s56
-                mr(4, 8, bni) = zhwat1(mr(2, 1, bni), mr(1, 1, bni), er(11, bni), sr(8), a, bni, kg1, nkg, mr(2, 4, bni), mr(0, 8, bni)) 'kg2—L_30s56
+                If mr(2, 8, bni) = "" Then mr(2, 8, bni) = mr(2, 8, bni - 1) 'mr(2,8,0)èª¤å‹•ä½œé˜»æ­¢ 2æ–‡ç¯€ç›®ä»¥é™ã€ç©ºæ¬„ãªã‚‰å‰ç¯€ã‚³ãƒ”ãƒš
+                mr(1, 8, bni) = yhwat1(mr(2, 1, bni), mr(1, 1, bni), er(11, bni), sr(8), a, bni, kg1, nkg, mr(2, 4, bni), mr(0, 8, bni)) 'kg2æœ‰_30s56
+                mr(4, 8, bni) = zhwat1(mr(2, 1, bni), mr(1, 1, bni), er(11, bni), sr(8), a, bni, kg1, nkg, mr(2, 4, bni), mr(0, 8, bni)) 'kg2æœ‰_30s56
             End If
             er(8, bni) = Val(mr(1, 8, bni))
-            pap(8, 0) = kgcnt(mr(1, 8, bni), mr(2, 4, bni)) '30s86_019  papx¨pap(x,0) ˆÈ‰º“¯‚¶ ,0)‚ÍŠù‘¶‰ü’z•ª(‚¢‚¶‚ç‚È‚¢,papzousei‚µ‚È‚¢)
+            pap(8, 0) = kgcnt(mr(1, 8, bni), mr(2, 4, bni)) '30s86_019  papxâ†’pap(x,0) ä»¥ä¸‹åŒã˜ ,0)ã¯æ—¢å­˜æ”¹ç¯‰åˆ†(ã„ã˜ã‚‰ãªã„,papzouseiã—ãªã„)
             
-'            pap(8, bni) = kgcnt(mr(1, 8, bni), mr(2, 4, bni)) '86_019e  bni:1?@,bni)‚ÍV‹K‘¢¬•ª
-            '«“™‰¿
-            Call papzousei(pap(), mr(), 8, bni) '86_019e  bni:1?@,bni)‚Ípapzousei‚ÍV‹K‘¢¬•ª‚ª‘ÎÛ(Šù‘¶‰ü’z•ª‚Í‚â‚ç‚È‚¢)
+'            pap(8, bni) = kgcnt(mr(1, 8, bni), mr(2, 4, bni)) '86_019e  bni:1?ã€€,bni)ã¯æ–°è¦é€ æˆåˆ†
+            'â†“ç­‰ä¾¡
+            Call papzousei(pap(), mr(), 8, bni) '86_019e  bni:1?ã€€,bni)ã¯papzouseiã¯æ–°è¦é€ æˆåˆ†ãŒå¯¾è±¡(æ—¢å­˜æ”¹ç¯‰åˆ†ã¯ã‚„ã‚‰ãªã„)
             
-            If Round(er(6, bni)) <> -2 And er(8, bni) < 0 Then   '•¡”—ñ‰ğ‹Ö86_013f
+            If Round(er(6, bni)) <> -2 And er(8, bni) < 0 Then   'è¤‡æ•°åˆ—è§£ç¦86_013f
                 If pap(8, 0) = 0 Then
-                    If mr(2, 8, bni) = "" Then mr(2, 8, bni) = "A" '‹æØ‚è•¶šƒfƒtƒH‚ÍuAvi-15‚Å‚à“K—pj
+                    If mr(2, 8, bni) = "" Then mr(2, 8, bni) = "ã€" 'åŒºåˆ‡ã‚Šæ–‡å­—ãƒ‡ãƒ•ã‚©ã¯ã€Œã€ã€ï¼ˆ-15ã§ã‚‚é©ç”¨ï¼‰
                 Else
-                    If rvsrz3(mr(2, 8, bni), 0 + 1, mr(2, 4, bni), 0) = "" Then mr(2, 8, bni) = "A" & mr(2, 8, bni) '30s86_018c
+                    If rvsrz3(mr(2, 8, bni), 0 + 1, mr(2, 4, bni), 0) = "" Then mr(2, 8, bni) = "ã€" & mr(2, 8, bni) '30s86_018c
                 End If
             End If
         
-            If er(6, bni) <= -3 And er(8, bni) < 0 Then Call oshimai("", bfn, shn, 1, 0, "uc=-3ˆÈ‰º‚Íd•¡˜A‚È‚èŒ^(e<0)‚ÍÀs‚Å‚«‚È‚¢‚Å‚·B")
+            If er(6, bni) <= -3 And er(8, bni) < 0 Then Call oshimai("", bfn, shn, 1, 0, "ã€Œc=-3ä»¥ä¸‹ã¯é‡è¤‡é€£ãªã‚Šå‹(e<0)ã¯å®Ÿè¡Œã§ããªã„ã§ã™ã€‚")
             
-            '30s86_012s’Ç‰Á«
-            If er(5, bni) < 0 And er(7, bni) = 0 Then Call oshimai("", bfn, shn, sr(7), a, "·•ª7s0‚ÍÀ{‚³‚ê‚È‚­‚È‚è‚Ü‚µ‚½B")
+            '30s86_012sè¿½åŠ â†“
+            If er(5, bni) < 0 And er(7, bni) = 0 Then Call oshimai("", bfn, shn, sr(7), a, "å·®åˆ†æ™‚7è¡Œ0ã¯å®Ÿæ–½ã•ã‚Œãªããªã‚Šã¾ã—ãŸã€‚")
             
-            '30s82d’Ç‰Á«                      er(5,1)¨er(5,bni) 86_010
-            If (er(6, 1) = -1 Or er(6, 1) = -2) And er(5, bni) >= 0 And kg1 <> "" And rvsrz3(bfshn.Cells(sr(7), a).Value, 2, kg1, 0) <> "" Then Call oshimai("", bfn, shn, nn, a, "6s-1-2‚Ì‚Ånot·•ª(’Êí)‚Í7s•¡•¶ß•s‰Â‚Å‚·B")
+            '30s82dè¿½åŠ â†“                      er(5,1)â†’er(5,bni) 86_010
+            If (er(6, 1) = -1 Or er(6, 1) = -2) And er(5, bni) >= 0 And kg1 <> "" And rvsrz3(bfshn.Cells(sr(7), a).Value, 2, kg1, 0) <> "" Then Call oshimai("", bfn, shn, nn, a, "6è¡Œ-1-2ã®æ™‚ã§notå·®åˆ†æ™‚(é€šå¸¸æ™‚)ã¯7è¡Œè¤‡æ–‡ç¯€ä¸å¯ã§ã™ã€‚")
  
-            '«‡•ÏX@30s86_012w
+            'â†“é †å¤‰æ›´ã€€30s86_012w
             If Round(er(6, bni)) = -2 Then
                 mr(0, 9, bni) = mr(0, 8, bni)
                 mr(2, 9, bni) = mr(2, 8, bni)
@@ -444,16 +444,16 @@ For a = dd1 To dd2 '‘I‘ğ”ÍˆÍ—ñ•ª‚ÌŒJ‚è•Ô‚µ@‚ç
             End If
 
             If (er(2, bni) < 0 And er(5, bni) >= 0 And er(6, bni) > 0 And (er(7, bni) = 0 Or er(7, bni) = 0.1) And er(8, bni) <> 0) Then
-                'MsgBox "Ğ”’ŠoŠY“–" '©“Á–½ğŒ’Ç‰Á30s86_012w
-                bfshn.Cells(sr(6), 5).Value = "“Á–½" '©20191118@‚±‚¿‚ç‚Ö@86_015c
+                'MsgBox "ç¤¾æ•°æŠ½å‡ºè©²å½“" 'â†ç‰¹å‘½æ¡ä»¶è¿½åŠ 30s86_012w
+                bfshn.Cells(sr(6), 5).Value = "ç‰¹å‘½" 'â†20191118ã€€ã“ã¡ã‚‰ã¸ã€€86_015c
             Else
                 bfshn.Cells(sr(6), 5).Value = ""
             End If
           
-            If Not (er(2, bni) < 0 And er(5, bni) >= 0 And er(6, bni) > 0 And (er(7, bni) = 0 Or er(7, bni) = 0.1) And er(8, bni) > 0) Then '“Á–½ğŒ•ÏX30s86_012wA’Ç‰Á30s86_012s
-            '   6s[‚Q‚Å‚È‚¢A@@@@@@‚©‚Â@‚Ws‚O‚Å‚È‚¢A@@@‚©‚Â@i‚Ts{ ‚ ‚é‚¢‚Í@‚Us‚OˆÈ‰ºj@‚È‚ç‚Î
-                If (Not Round(er(6, bni)) = -2) And (Not er(8, bni) = 0) And (er(5, bni) >= 0 Or er(6, bni) <= 0) Then 'Vd—l(30s83)
-                '10s–Úˆ—(er(10,0)‚ÍÀ¿‚Ì“–ƒV[ƒg“]Ú—ñ) (“Á–½ğŒ‚Ì˜AÚŒ^‚ÍÀ{‚·‚é30s86_012w)
+            If Not (er(2, bni) < 0 And er(5, bni) >= 0 And er(6, bni) > 0 And (er(7, bni) = 0 Or er(7, bni) = 0.1) And er(8, bni) > 0) Then 'ç‰¹å‘½æ¡ä»¶å¤‰æ›´30s86_012wã€è¿½åŠ 30s86_012s
+            '   6è¡Œãƒ¼ï¼’ã§ãªã„ã€ã€€ã€€ã€€ã€€ã€€ã€€ã‹ã¤ã€€ï¼˜è¡Œï¼ã§ãªã„ã€ã€€ã€€ã€€ã‹ã¤ã€€ï¼ˆï¼•è¡Œï¼‹ ã‚ã‚‹ã„ã¯ã€€ï¼–è¡Œï¼ä»¥ä¸‹ï¼‰ã€€ãªã‚‰ã°
+                If (Not Round(er(6, bni)) = -2) And (Not er(8, bni) = 0) And (er(5, bni) >= 0 Or er(6, bni) <= 0) Then 'æ–°ä»•æ§˜(30s83)
+                '10è¡Œç›®å‡¦ç†(er(10,0)ã¯å®Ÿè³ªã®å½“ã‚·ãƒ¼ãƒˆè»¢è¼‰åˆ—) (ç‰¹å‘½æ¡ä»¶ã®é€£è¼‰å‹ã¯å®Ÿæ–½ã™ã‚‹30s86_012w)
                     mr(0, 10, bni) = mr(0, 8, bni)
                     mr(2, 10, bni) = mr(2, 8, bni)
                     mr(1, 10, bni) = mr(1, 8, bni)
@@ -470,198 +470,198 @@ For a = dd1 To dd2 '‘I‘ğ”ÍˆÍ—ñ•ª‚ÌŒJ‚è•Ô‚µ@‚ç
                         End If
                     End If
                 End If
-            End If '“Á–½ğŒ’Ç‰Á30s86_012s
+            End If 'ç‰¹å‘½æ¡ä»¶è¿½åŠ 30s86_012s
         End If
 
-        nn = 0 'ˆê’UƒŠƒZƒbƒg
+        nn = 0 'ä¸€æ—¦ãƒªã‚»ãƒƒãƒˆ
 
-        'logˆ—•”
+        'logå‡¦ç†éƒ¨
         ii = 1
 
-        If StrConv(Left(mr(0, 1, bni), 1), 8) <> "*" And bfn <> twn Then '*Ú“ª«‚âAƒc[ƒ‹‚»‚Ì‚à‚Ì‚ÌŠOŒ‹‚ÍƒƒO¶¬‘ÎÛŠO
+        If StrConv(Left(mr(0, 1, bni), 1), 8) <> "*" And bfn <> twn Then '*æ¥é ­è¾ã‚„ã€ãƒ„ãƒ¼ãƒ«ãã®ã‚‚ã®ã®å¤–çµã¯ãƒ­ã‚°ç”Ÿæˆå¯¾è±¡å¤–
             Do Until ii = 0
-                If rvsrz3(rog, ii, "ƒ‘", 0) = "" Then
-                    rog = mr(2, 1, bni) & "\" & mr(1, 1, bni) & "ƒ‘" & rog  'rog‚Í‚»‚ÌŠOŒ‹À{”ÍˆÍ‚Å‚Ì‘ÎÛƒV[ƒgƒtƒ@ƒCƒ‹‚ÌW‡‘Ì(ƒ‘‚Å˜AŒ‹)
+                If rvsrz3(rog, ii, "ãƒ±", 0) = "" Then
+                    rog = mr(2, 1, bni) & "\" & mr(1, 1, bni) & "ãƒ±" & rog  'rogã¯ãã®å¤–çµå®Ÿæ–½ç¯„å›²ã§ã®å¯¾è±¡ã‚·ãƒ¼ãƒˆãƒ•ã‚¡ã‚¤ãƒ«ã®é›†åˆä½“(ãƒ±ã§é€£çµ)
                     ii = 0
-                ElseIf rvsrz3(rog, ii, "ƒ‘", 0) = mr(2, 1, bni) & "\" & mr(1, 1, bni) Then
+                ElseIf rvsrz3(rog, ii, "ãƒ±", 0) = mr(2, 1, bni) & "\" & mr(1, 1, bni) Then
                     ii = 0
                 Else
                     ii = ii + 1
                 End If
-                If ii = 200 Then Call oshimai("", bfn, shn, k, a, "‚¤‚Ü‚­‚¢‚Á‚Ä‚È‚¢B")
+                If ii = 200 Then Call oshimai("", bfn, shn, k, a, "ã†ã¾ãã„ã£ã¦ãªã„ã€‚")
             Loop
 
         
         End If
-        If er(2, bni) > 0 And er(9, bni) > 0 And er(10, bni) <> 0 And er(7, bni) = 0 And er(5, bni) >= 0 Then '«“Á–½ğŒl—¶
-            Call oshimai("", bfn, shn, 1, 0, "ˆ—’†~Bc‰ÁZ‚ ‚è‚Å“¯—ñ“]Ú‚µ‚æ‚¤‚Æ‚µ‚Ä‚¢‚Ü‚·BŠm”F‚ğB")
+        If er(2, bni) > 0 And er(9, bni) > 0 And er(10, bni) <> 0 And er(7, bni) = 0 And er(5, bni) >= 0 Then 'â†“ç‰¹å‘½æ¡ä»¶è€ƒæ…®
+            Call oshimai("", bfn, shn, 1, 0, "å‡¦ç†ä¸­æ­¢ã€‚cåŠ ç®—ã‚ã‚Šã§åŒåˆ—è»¢è¼‰ã—ã‚ˆã†ã¨ã—ã¦ã„ã¾ã™ã€‚ç¢ºèªã‚’ã€‚")
         End If
-        Call papzousei(pap(), mr(), 2, bni) '86_019e@papzousei‚ÍAV‹K‹æ‰æ•ª(bni:1?)‚ğ‘¢¬
+        Call papzousei(pap(), mr(), 2, bni) '86_019eã€€papzouseiã¯ã€æ–°è¦åŒºç”»åˆ†(bni:1?)ã‚’é€ æˆ
     Next
-'‚a•¡•¶ß‚Ó‚ i€”õ•Òj‚±‚±‚Ü‚Åª
+'â—‡ï¼¢â—‡è¤‡æ–‡ç¯€ãµã‚ï¼ˆæº–å‚™ç·¨ï¼‰ã“ã“ã¾ã§â†‘
 
-'Ÿ‚bŸ’P•¶ßi–{”ÔƒvƒŒj‚±‚±‚©‚ç«
-    bni = 1 '1•¶ß–Ú‚Å”»’fAÀ{•”•ª'‚¤‚ 
+'â—†ï¼£â—†å˜æ–‡ç¯€ï¼ˆæœ¬ç•ªãƒ—ãƒ¬ï¼‰ã“ã“ã‹ã‚‰â†“
+    bni = 1 '1æ–‡ç¯€ç›®ã§åˆ¤æ–­ã€å®Ÿæ–½éƒ¨åˆ†'ã†ã‚
 
-    '‘O‰ñƒf[ƒ^ƒRƒs[
-    If StrConv(Left(bfshn.Cells(sr(1), a).Value, 2), 8) <> "**" Then '**‚Í‚â‚ç‚È‚¢‚Ö024_ŒŸØ2
+    'å‰å›ãƒ‡ãƒ¼ã‚¿ã‚³ãƒ”ãƒ¼
+    If StrConv(Left(bfshn.Cells(sr(1), a).Value, 2), 8) <> "**" Then '**ã¯ã‚„ã‚‰ãªã„ã¸024_æ¤œè¨¼2
         bfshn.Cells(sr(0), a).Value = bfshn.Cells(sr(0) + 3, a).Value
         bfshn.Cells(sr(0) + 1, a).Value = bfshn.Cells(sr(0) + 4, a).Value
         bfshn.Cells(sr(0) + 2, a).Value = bfshn.Cells(sr(0) + 5, a).Value
     End If
-    h = Application.WorksheetFunction.Sum(bfshn.Range("A:A")) + 1 + k - 2 'Œ»ó‚ÌÅ‰ºs(ˆÈ‰ºL‚Ñ‚Ä‚¢‚­)¦ƒf[ƒ^–³‚µ‚Ì‚Í€–Ús‚Æ‚È‚èAh=k-1‚Æ‚È‚é‚Ì‚Å’ˆÓ
+    h = Application.WorksheetFunction.Sum(bfshn.Range("A:A")) + 1 + k - 2 'ç¾çŠ¶ã®æœ€ä¸‹è¡Œ(ä»¥ä¸‹ä¼¸ã³ã¦ã„ã)â€»ãƒ‡ãƒ¼ã‚¿ç„¡ã—ã®æ™‚ã¯é …ç›®è¡Œã¨ãªã‚Šã€h=k-1ã¨ãªã‚‹ã®ã§æ³¨æ„
     
-    '‘ÌÙ(teisai)‚±‚±‚©‚ç
-    trt = 0 'ƒŠƒZƒbƒg trtEEEƒ^ƒCƒv‚Ì’è‹`@trt:ƒZƒ‹‚Ìƒ^ƒCƒv
-    'trtF0‰ŠúØ¾¯Ä,-9E-99Œ^,-2“–—ñ‰ÁZŒ^,-1“–—ñ“]ÚŒ^,1‹­§•¶š—ñŒ^
-    'trtF-9E-99Œ^ ,-1“–—ñ“]ÚŒ^A-2“–—ñ‰ÁZŒ^(ŠÜ“Á–½‰ÁZŒ^)A1‹­§•¶š—ñŒ^(ŠÜ“Á–½˜AÚŒ^)
-    'trt’è‹`•”
-    If er(6, bni) <= -90 Then '-99‚Í‚±‚¿‚ç
+    'ä½“è£(teisai)ã“ã“ã‹ã‚‰
+    trt = 0 'ãƒªã‚»ãƒƒãƒˆ trtãƒ»ãƒ»ãƒ»ã‚¿ã‚¤ãƒ—ã®å®šç¾©ã€€trt:ã‚»ãƒ«ã®ã‚¿ã‚¤ãƒ—
+    'trtï¼š0åˆæœŸï¾˜ï½¾ï½¯ï¾„,-9ãƒ»-99å‹,-2å½“åˆ—åŠ ç®—å‹,-1å½“åˆ—è»¢è¼‰å‹,1å¼·åˆ¶æ–‡å­—åˆ—å‹
+    'trtï¼š-9ãƒ»-99å‹ ,-1å½“åˆ—è»¢è¼‰å‹ã€-2å½“åˆ—åŠ ç®—å‹(å«ç‰¹å‘½åŠ ç®—å‹)ã€1å¼·åˆ¶æ–‡å­—åˆ—å‹(å«ç‰¹å‘½é€£è¼‰å‹)
+    'trtå®šç¾©éƒ¨
+    If er(6, bni) <= -90 Then '-99ã¯ã“ã¡ã‚‰
         trt = -9
-        '«“Á–½ğŒi‰ÁZor˜AÚŒ^j
+        'â†“ç‰¹å‘½æ¡ä»¶ï¼ˆåŠ ç®—oré€£è¼‰å‹ï¼‰
     ElseIf er(2, bni) < 0 And er(5, bni) >= 0 And er(6, bni) > 0 And (er(7, bni) = 0 Or er(7, bni) = 0.1) And er(8, bni) <> 0 Then
         If er(8, bni) > 0 Then
-            trt = -2 '“Á–½‰ÁZŒ^
+            trt = -2 'ç‰¹å‘½åŠ ç®—å‹
         Else
-            trt = 1 '“Á–½˜AÚŒ^
+            trt = 1 'ç‰¹å‘½é€£è¼‰å‹
         End If
     ElseIf er(6, bni) > 0 Or Round(er(6, bni)) = -2 Then
-        trt = -2  '“–—ñ‰ÁZŒ^ ·•ª‚à
+        trt = -2  'å½“åˆ—åŠ ç®—å‹ å·®åˆ†æ™‚ã‚‚
     ElseIf er(5, bni) >= 0 Then
         If er(10, bni) < 0 Then
-            trt = 1   '‹­§•¶š—ñŒ^
-            'MsgBox "‹­§•¶š—ñ‚Å‚·B"
+            trt = 1   'å¼·åˆ¶æ–‡å­—åˆ—å‹
+            'MsgBox "å¼·åˆ¶æ–‡å­—åˆ—ã§ã™ã€‚"
         Else
-            trt = -1    '“–—ñ“]ÚŒ^
-            'MsgBox "˜AÚ‚¶‚á‚È‚¢‚Å‚·B"
+            trt = -1    'å½“åˆ—è»¢è¼‰å‹
+            'MsgBox "é€£è¼‰ã˜ã‚ƒãªã„ã§ã™ã€‚"
         End If
-    ElseIf er(5, bni) < 0 Then  '·•ª•¶š”äŠr
+    ElseIf er(5, bni) < 0 Then  'å·®åˆ†æ–‡å­—æ¯”è¼ƒæ™‚
         If mr(2, 6, bni) = "1" Then
-            Call oshimai("", bfn, shn, sr(6), a, "·•ª‚Ì6sop1‚Ì‰^—p‚ÍI‚í‚Á‚Ä‚¢‚é")
+            Call oshimai("", bfn, shn, sr(6), a, "å·®åˆ†æ™‚ã®6è¡Œop1ã®é‹ç”¨ã¯çµ‚ã‚ã£ã¦ã„ã‚‹")
         ElseIf mr(2, 6, bni) = "-1" Then
-            trt = -1 '·•ª‚ğ•¶š(ÊŞØ­°)‚Å•\Œ» ¨“]ÚŒ^
+            trt = -1 'å·®åˆ†ã‚’æ–‡å­—(ï¾Šï¾ï¾˜ï½­ï½°)ã§è¡¨ç¾ â†’è»¢è¼‰å‹
         Else
-            trt = -1 '·•ª‚ğ”(0,1)‚Å•\Œ»A-2¨-1‚Ö(Å‰•¶šA‚ ‚Æ‚Å”’l‚Ì‚½‚ß)
+            trt = -1 'å·®åˆ†ã‚’æ•°(0,1)ã§è¡¨ç¾ã€-2â†’-1ã¸(æœ€åˆæ–‡å­—ã€ã‚ã¨ã§æ•°å€¤ã®ãŸã‚)
         End If
     End If
-    If trt = 0 Then Call oshimai("", bfn, shn, 1, 0, " trt = 0 H")  'trtƒ[ƒó‘Ô‚Å–³‚¢‚±‚Æ‚ÌŠm”F”O‚Ì‚½‚ß
+    If trt = 0 Then Call oshimai("", bfn, shn, 1, 0, " trt = 0 ï¼Ÿ")  'trtã‚¼ãƒ­çŠ¶æ…‹ã§ç„¡ã„ã“ã¨ã®ç¢ºèªå¿µã®ãŸã‚
         
-    'tst’è‹`•”‚±‚±‚©‚ç
-    tst = -1 'ƒŠƒZƒbƒg@tst:ƒZƒ‹‚ÌŒ^
-    'tst : -1‰ŠúØ¾¯Ä , °2’Ê‰İ,   0•W€,   1•¶š—ñ,@ 7ˆêŠ‡“¥PŒ^ , 8‚¿‚Ü‚¿‚Ü
+    'tstå®šç¾©éƒ¨ã“ã“ã‹ã‚‰
+    tst = -1 'ãƒªã‚»ãƒƒãƒˆã€€tst:ã‚»ãƒ«ã®å‹
+    'tst : -1åˆæœŸï¾˜ï½¾ï½¯ï¾„ , ï½°2é€šè²¨,   0æ¨™æº–,   1æ–‡å­—åˆ—,ã€€ 7ä¸€æ‹¬è¸è¥²å‹ , 8ã¡ã¾ã¡ã¾
         
     If trt = -9 Then
-        If (er(3, bni) < 0 Or er(3, bni) = 0.1) And (er(4, bni) < 0 Or er(4, bni) = 0.1) Then '[[
-            tst = 1     '•¶š—ñŒ^
+        If (er(3, bni) < 0 Or er(3, bni) = 0.1) And (er(4, bni) < 0 Or er(4, bni) = 0.1) Then 'ãƒ¼ãƒ¼
+            tst = 1     'æ–‡å­—åˆ—å‹
         ElseIf (er(4, bni) < 0 Or er(4, bni) = 0.1) Then
-            tst = -2     '’Ê‰İŒ^
-        ElseIf (er(3, bni) < 0 Or er(3, bni) = 0.1) Then '‘ÎÛƒV[ƒg–¼‚ğ–Í•í@a11_1—ñ¨‘ÎÛƒV[ƒg‚É•ÏX
-            tst = 7 'ˆêŠ‡“¥PŒ^(–Í•íŒ^)
+            tst = -2     'é€šè²¨å‹
+        ElseIf (er(3, bni) < 0 Or er(3, bni) = 0.1) Then 'å¯¾è±¡ã‚·ãƒ¼ãƒˆåã‚’æ¨¡å€£ã€€a11_1åˆ—â†’å¯¾è±¡ã‚·ãƒ¼ãƒˆã«å¤‰æ›´
+            tst = 7 'ä¸€æ‹¬è¸è¥²å‹(æ¨¡å€£å‹)
         Else
-            tst = 0 '•W€Œ^
+            tst = 0 'æ¨™æº–å‹
         End If
     ElseIf trt = -2 Then
-        If (er(3, bni) < 0 Or er(3, bni) = 0.1) And (er(4, bni) < 0 Or er(4, bni) = 0.1) Then  '[[
-            tst = 0     '•W€Œ^
-        ElseIf (er(4, bni) < 0 Or er(4, bni) = 0.1) Then  '{[
-            tst = 7     'ˆêŠ‡Œ^
-        ElseIf (er(3, bni) < 0 Or er(3, bni) = 0.1) Then  '[{
-                        '‰½‚à‚µ‚È‚¢(tst = -1)
-                        '«‚±‚¿‚ç‚Ö“]Œü 30s86_014f
-            tst = 8     'ˆêŠ‡Œ^
-            MsgBox "‚¿‚Ü‚¿‚Ü(tst = 8)"
-        Else                                              '{{
-            tst = -2    '’Ê‰İŒ^
+        If (er(3, bni) < 0 Or er(3, bni) = 0.1) And (er(4, bni) < 0 Or er(4, bni) = 0.1) Then  'ãƒ¼ãƒ¼
+            tst = 0     'æ¨™æº–å‹
+        ElseIf (er(4, bni) < 0 Or er(4, bni) = 0.1) Then  'ï¼‹ãƒ¼
+            tst = 7     'ä¸€æ‹¬å‹
+        ElseIf (er(3, bni) < 0 Or er(3, bni) = 0.1) Then  'ãƒ¼ï¼‹
+                        'ä½•ã‚‚ã—ãªã„(tst = -1)
+                        'â†“ã“ã¡ã‚‰ã¸è»¢å‘ 30s86_014f
+            tst = 8     'ä¸€æ‹¬å‹
+            MsgBox "ã¡ã¾ã¡ã¾(tst = 8)"
+        Else                                              'ï¼‹ï¼‹
+            tst = -2    'é€šè²¨å‹
         End If
-    ElseIf trt = 1 Then '‹­§•¶š—ñ
-        tst = 1 '•¶š—ñŒ^
+    ElseIf trt = 1 Then 'å¼·åˆ¶æ–‡å­—åˆ—
+        tst = 1 'æ–‡å­—åˆ—å‹
     ElseIf trt = -1 Then
-        If (er(3, bni) < 0 Or er(3, bni) = 0.1) And (er(4, bni) < 0 Or er(4, bni) = 0.1) Then  '[[
-            tst = 1     '•¶š—ñŒ^
-        ElseIf (er(4, bni) < 0 Or er(4, bni) = 0.1) Then  '{[
-            tst = 7     'ˆêŠ‡Œ^
-        ElseIf (er(3, bni) < 0 Or er(3, bni) = 0.1) Then  '[{
-            tst = 8     '‚¿‚Ü‚¿‚ÜƒZƒ‹“¥PŒ^
-            MsgBox "‚¿‚Ü‚¿‚Ü(tst = 8)"
-        Else                                              '{{
-            tst = 0    '•W€Œ^
+        If (er(3, bni) < 0 Or er(3, bni) = 0.1) And (er(4, bni) < 0 Or er(4, bni) = 0.1) Then  'ãƒ¼ãƒ¼
+            tst = 1     'æ–‡å­—åˆ—å‹
+        ElseIf (er(4, bni) < 0 Or er(4, bni) = 0.1) Then  'ï¼‹ãƒ¼
+            tst = 7     'ä¸€æ‹¬å‹
+        ElseIf (er(3, bni) < 0 Or er(3, bni) = 0.1) Then  'ãƒ¼ï¼‹
+            tst = 8     'ã¡ã¾ã¡ã¾ã‚»ãƒ«è¸è¥²å‹
+            MsgBox "ã¡ã¾ã¡ã¾(tst = 8)"
+        Else                                              'ï¼‹ï¼‹
+            tst = 0    'æ¨™æº–å‹
         End If
     End If
     
-    If tst = -1 Then Call oshimai("", bfn, shn, 1, 0, " tst = -1 H")
+    If tst = -1 Then Call oshimai("", bfn, shn, 1, 0, " tst = -1 ï¼Ÿ")
     
-    If h >= k And StrConv(Left(bfshn.Cells(sr(1), a).Value, 2), 8) <> "**" Then 'Šù‘¶s–³‚¢‚Í‚±‚¿‚çÀs‚µ‚È‚¢‚Ö,u––‚ v‚àÀs‚µ‚È‚¢
-        '‘I‘ğ—ñ‚ÌŠù‘¶ƒf[ƒ^ƒNƒŠƒA(–‘OŠù‘¶s)
+    If h >= k And StrConv(Left(bfshn.Cells(sr(1), a).Value, 2), 8) <> "**" Then 'æ—¢å­˜è¡Œç„¡ã„æ™‚ã¯ã“ã¡ã‚‰å®Ÿè¡Œã—ãªã„ã¸,ã€Œï¼Šï¼Šã‚ã€ã‚‚å®Ÿè¡Œã—ãªã„
+        'é¸æŠåˆ—ã®æ—¢å­˜ãƒ‡ãƒ¼ã‚¿ã‚¯ãƒªã‚¢(äº‹å‰æ—¢å­˜è¡Œ)
         With Range(bfshn.Cells(k, a), bfshn.Cells(h, a))
             .ClearContents
-            .ClearComments '30s79ƒRƒƒ“ƒg‚àƒNƒŠƒA
+            .ClearComments '30s79ã‚³ãƒ¡ãƒ³ãƒˆã‚‚ã‚¯ãƒªã‚¢
             .Interior.Pattern = xlNone '30s79
-            .NumberFormatLocal = "G/•W€"  '30s83ƒfƒtƒHƒ‹ƒg‚Å‚Ü‚¸
+            .NumberFormatLocal = "G/æ¨™æº–"  '30s83ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã§ã¾ãš
         End With
 
 
-        '“–—ñ–‘O‚Ì‘ÌÙˆê—¥‰» 86_013d trt,tst‰»
-        If trt = -9 Then '-99‚Í‚±‚¿‚ç   86_020r‹L¨@E‚Å“¯‚¶‚±‚ÆÀ{‚·‚é‚æ‚¤‚É‚È‚Á‚½‚Ì‚ÅA‚±‚¿‚ç‚Í•s—v‚©‚à
-            If tst = 1 Then '©“–—ñ“]Ú•¶šŒ^
+        'å½“åˆ—äº‹å‰ã®ä½“è£ä¸€å¾‹åŒ– 86_013d trt,tståŒ–
+        If trt = -9 Then '-99ã¯ã“ã¡ã‚‰   86_020rè¨˜â†’ã€€â—‡Eâ—‡ã§åŒã˜ã“ã¨å®Ÿæ–½ã™ã‚‹ã‚ˆã†ã«ãªã£ãŸã®ã§ã€ã“ã¡ã‚‰ã¯ä¸è¦ã‹ã‚‚
+            If tst = 1 Then 'â†å½“åˆ—è»¢è¼‰æ–‡å­—å‹
                 Range(bfshn.Cells(k, a), bfshn.Cells(h, a)).NumberFormatLocal = "@"
-            ElseIf tst = -2 Then  '’Ê‰İŒ^
-                Range(bfshn.Cells(k, a), bfshn.Cells(h, a)).NumberFormatLocal = "#,##0;[Ô]-#,##0"
-            ElseIf tst = 7 Then '‘ÎÛƒV[ƒg–¼‚ğ–Í•í@a11_1—ñ¨‘ÎÛƒV[ƒg‚É•ÏX
-                Range(bfshn.Cells(k, a), bfshn.Cells(h, a)).NumberFormatLocal = bfshn.Cells(sr(1), a).NumberFormatLocal 'sr(4)¨sr(1)‚Ö30s68
+            ElseIf tst = -2 Then  'é€šè²¨å‹
+                Range(bfshn.Cells(k, a), bfshn.Cells(h, a)).NumberFormatLocal = "#,##0;[èµ¤]-#,##0"
+            ElseIf tst = 7 Then 'å¯¾è±¡ã‚·ãƒ¼ãƒˆåã‚’æ¨¡å€£ã€€a11_1åˆ—â†’å¯¾è±¡ã‚·ãƒ¼ãƒˆã«å¤‰æ›´
+                Range(bfshn.Cells(k, a), bfshn.Cells(h, a)).NumberFormatLocal = bfshn.Cells(sr(1), a).NumberFormatLocal 'sr(4)â†’sr(1)ã¸30s68
             End If
-        'Vd—l-99ˆÈŠO •¶š—ñw–¼or˜AÚ@er(7, bni) > 0‚Í-1‚Ì•¡”—ñ‘Î‰
+        'æ–°ä»•æ§˜-99ä»¥å¤– æ–‡å­—åˆ—æŒ‡åoré€£è¼‰ã€€er(7, bni) > 0ã¯-1ã®è¤‡æ•°åˆ—å¯¾å¿œ
         ElseIf tst = 1 Then
             Range(bfshn.Cells(k, a), bfshn.Cells(h, a)).NumberFormatLocal = "@"
         ElseIf tst = -2 Then
-            Range(bfshn.Cells(k, a), bfshn.Cells(h, a)).NumberFormatLocal = "#,##0;[Ô]-#,##0"
+            Range(bfshn.Cells(k, a), bfshn.Cells(h, a)).NumberFormatLocal = "#,##0;[èµ¤]-#,##0"
         ElseIf tst = 0 Then
-            Range(bfshn.Cells(k, a), bfshn.Cells(h, a)).NumberFormatLocal = "G/•W€"
+            Range(bfshn.Cells(k, a), bfshn.Cells(h, a)).NumberFormatLocal = "G/æ¨™æº–"
         End If
-        '‘ÌÙ(teisai)‚±‚±‚Ü‚Å 86_012g
+        'ä½“è£(teisai)ã“ã“ã¾ã§ 86_012g
         
-        If er(2, 1) < 0 Or kgcnt(mr(1, 2, 1), mr(2, 4, bni)) > 0 Then  '30s45‰E’[ƒNƒŠƒA‚Ö
-            With Range(bfshn.Cells(k, mghz), bfshn.Cells(h, mghz + 2)) '3–Ú—ñ–Ú‚Ü‚Åíœ‚Ö30s80
+        If er(2, 1) < 0 Or kgcnt(mr(1, 2, 1), mr(2, 4, bni)) > 0 Then  '30s45å³ç«¯ã‚¯ãƒªã‚¢ã¸
+            With Range(bfshn.Cells(k, mghz), bfshn.Cells(h, mghz + 2)) '3ç›®åˆ—ç›®ã¾ã§å‰Šé™¤ã¸30s80
                 .ClearContents
-                .NumberFormatLocal = "@" '•¶š—ñ
+                .NumberFormatLocal = "@" 'æ–‡å­—åˆ—
             End With
-            With Range(bfshn.Cells(k, mghz + 1), bfshn.Cells(h, mghz + 1))  '2—ñ–Ú‚Í”’l—p
+            With Range(bfshn.Cells(k, mghz + 1), bfshn.Cells(h, mghz + 1))  '2åˆ—ç›®ã¯æ•°å€¤ç”¨
                 .ClearContents
-                .NumberFormatLocal = "G/•W€"
+                .NumberFormatLocal = "G/æ¨™æº–"
             End With
         End If
     End If
     
-    '4—ñ–Ú‚É—v‘f“]‹L(-90‘ä‚àÀ{A‚Ws–Ú•Ê“r) ¦•¶š—ñ•ÏŠ·Ï‚İ
+    '4åˆ—ç›®ã«è¦ç´ è»¢è¨˜(-90å°ã‚‚å®Ÿæ–½ã€ï¼˜è¡Œç›®åˆ¥é€”) â€»æ–‡å­—åˆ—å¤‰æ›æ¸ˆã¿
     For ii = 1 To 7
-        hk1 = "" '‘æ3ˆöq‘Î‰
-        If StrConv(Left(mr(0, ii, bni), 1), 8) = "*" Then  '30s75i*—L–³‚à’Ç‰Áj
-            bfshn.Cells(sr(ii), 4).Value = "*¦" & mr(4, ii, bni) & "¦" & mr(2, ii, bni) & hk1
+        hk1 = "" 'ç¬¬3å› å­å¯¾å¿œ
+        If StrConv(Left(mr(0, ii, bni), 1), 8) = "*" Then  '30s75ï¼ˆ*æœ‰ç„¡ã‚‚è¿½åŠ ï¼‰
+            bfshn.Cells(sr(ii), 4).Value = "*ï½¦" & mr(4, ii, bni) & "ï½¦" & mr(2, ii, bni) & hk1
         Else
-            bfshn.Cells(sr(ii), 4).Value = "¦" & mr(4, ii, bni) & "¦" & mr(2, ii, bni) & hk1
+            bfshn.Cells(sr(ii), 4).Value = "ï½¦" & mr(4, ii, bni) & "ï½¦" & mr(2, ii, bni) & hk1
         End If
     Next
 
-    '8s“à—e‚ğ4—ñ–Ú‚É—v‘f“]‹L@¦•¶š—ñ•ÏŠ·Ï‚İ
-    If mr(2, 8, bni) = Chr(Val("&H" & "0A")) Then 's‚Ì–c‚ç‚İ‘j~16s
+    '8è¡Œå†…å®¹ã‚’4åˆ—ç›®ã«è¦ç´ è»¢è¨˜ã€€â€»æ–‡å­—åˆ—å¤‰æ›æ¸ˆã¿
+    If mr(2, 8, bni) = Chr(Val("&H" & "0A")) Then 'è¡Œã®è†¨ã‚‰ã¿é˜»æ­¢16s
         If StrConv(Left(mr(0, 8, bni), 1), 8) = "*" Then
-            bfshn.Cells(sr(8), 4).Value = "*¦" & mr(4, 8, bni) & "¦(LF)"
+            bfshn.Cells(sr(8), 4).Value = "*ï½¦" & mr(4, 8, bni) & "ï½¦(LF)"
         Else
-            bfshn.Cells(sr(8), 4).Value = "¦" & mr(4, 8, bni) & "¦(LF)"
+            bfshn.Cells(sr(8), 4).Value = "ï½¦" & mr(4, 8, bni) & "ï½¦(LF)"
         End If
     Else
         If StrConv(Left(mr(0, 8, bni), 1), 8) = "*" Then
-            bfshn.Cells(sr(8), 4).Value = "*¦" & mr(4, 8, bni) & "¦" & mr(2, 8, bni)
+            bfshn.Cells(sr(8), 4).Value = "*ï½¦" & mr(4, 8, bni) & "ï½¦" & mr(2, 8, bni)
         Else
-            bfshn.Cells(sr(8), 4).Value = "¦" & mr(4, 8, bni) & "¦" & mr(2, 8, bni)
+            bfshn.Cells(sr(8), 4).Value = "ï½¦" & mr(4, 8, bni) & "ï½¦" & mr(2, 8, bni)
         End If
     End If
     
     If er(6, bni) < -90 Then
-        '85_024ŒŸØ6@-90‘ä‚Å‚Ts–Úƒ‘‘Î‰—p
-        pap(5, 0) = kgcnt(mr(1, 5, bni), mr(2, 4, bni)) '5s–Úƒ‘‚Ì” 30s48
+        '85_024æ¤œè¨¼6ã€€-90å°ã§ï¼•è¡Œç›®ãƒ±å¯¾å¿œç”¨
+        pap(5, 0) = kgcnt(mr(1, 5, bni), mr(2, 4, bni)) '5è¡Œç›®ãƒ±ã®æ•° 30s48
         ReDim er5(pap(5, 0))
         ReDim mr5(pap(5, 0))
-        er5(0) = Val(mr(1, 5, bni)) 'ƒ‘‚Å‚È‚¢Œü‚¯@erx()‚Í’Ê‰İŒ^‚È‚Ì‚Åval‚ğ”í‚¹‚´‚é‚ğ“¾‚È‚¢B
+        er5(0) = Val(mr(1, 5, bni)) 'ãƒ±ã§ãªã„æ™‚å‘ã‘ã€€erx()ã¯é€šè²¨å‹ãªã®ã§valã‚’è¢«ã›ã–ã‚‹ã‚’å¾—ãªã„ã€‚
         mr5(0) = mr(2, 5, bni)
         If pap(5, 0) > 0 Then 'mr(2, 4, bni) <> ""
             For ii = 0 To pap(5, 0)
@@ -672,29 +672,29 @@ For a = dd1 To dd2 '‘I‘ğ”ÍˆÍ—ñ•ª‚ÌŒJ‚è•Ô‚µ@‚ç
     End If
 '?????
    
-  bfshn.Cells(sr(0), 4).Value = bni & "/" & bun & "•¶ß"   '30s86_012Vİ
-  bfshn.Cells(sr(0) + 1, 4).Value = rvsrz3(bfshn.Cells(1, a).Address(RowAbsolute:=True, ColumnAbsolute:=False), 1, "$", 0) & "—ñ"
+  bfshn.Cells(sr(0), 4).Value = bni & "/" & bun & "æ–‡ç¯€"   '30s86_012æ–°è¨­
+  bfshn.Cells(sr(0) + 1, 4).Value = rvsrz3(bfshn.Cells(1, a).Address(RowAbsolute:=True, ColumnAbsolute:=False), 1, "$", 0) & "åˆ—"
    
-'‚b’P•¶ßi–{”ÔƒvƒŒj‚±‚±‚Ü‚Åª
+'â—‡ï¼£â—‡å˜æ–‡ç¯€ï¼ˆæœ¬ç•ªãƒ—ãƒ¬ï¼‰ã“ã“ã¾ã§â†‘
  
- '‚éA ˆÈ~-99or*,**‚Í‚±‚±’Ê‰ß
+ 'ã‚‹A ä»¥é™-99or*,**ã¯ã“ã“é€šé
   If er(6, bni) > -90 And StrConv(Left(bfshn.Cells(sr(1), a).Value, 1), 8) <> "*" Then
 
-'Ÿ‚cŸ•¡•¶ßforiF–{”ÔÀs•Òj‚Ó‚¢«@•¶ß–ˆ‚Ìfor‚ª‚±‚±‚©‚çn‚Ü‚é ƒ‹[ƒv•”
-    For bni = 1 To bun    'ã‚ÉˆÚs‚Ö@86_016w
+'â—†ï¼¤â—†è¤‡æ–‡ç¯€forï¼ˆï¼šæœ¬ç•ªå®Ÿè¡Œç·¨ï¼‰ãµã„â†“ã€€æ–‡ç¯€æ¯ã®forãŒã“ã“ã‹ã‚‰å§‹ã¾ã‚‹ ãƒ«ãƒ¼ãƒ—éƒ¨
+    For bni = 1 To bun    'ä¸Šã«ç§»è¡Œã¸ã€€86_016w
     
-    '5—ñ–Ú‚æ‚è¶“]Ú–h~ 86_012_m
+    '5åˆ—ç›®ã‚ˆã‚Šå·¦è»¢è¼‰é˜²æ­¢ 86_012_m
     If er(7, bni) >= 1 And er(7, bni) <= 5 And er(5, bni) >= 0 Then
-        Call oshimai("", bfn, shn, 1, 0, "5—ñ–Ú‚æ‚è¶‚É“]Ú‚µ‚È‚¢‚Å‰º‚³‚¢B")
+        Call oshimai("", bfn, shn, 1, 0, "5åˆ—ç›®ã‚ˆã‚Šå·¦ã«è»¢è¼‰ã—ãªã„ã§ä¸‹ã•ã„ã€‚")
     End If
     
-    'ƒ‹[ƒv‘O‚Ì‰Šú’l
-    n1 = k  'n1F‘O‰ñ“Ë‡ˆ—‘ÎÛs_“–ƒV[ƒg‚Å‚ÌAk‚Íƒf[ƒ^ŠJnsiŒÅ’èjm2¨n1
-    pap(2, 0) = kgcnt(mr(1, 2, bni), mr(2, 4, bni)) '86_016w mr(1, 2, 1)¨mr(1, 2, bni)
+    'ãƒ«ãƒ¼ãƒ—å‰ã®åˆæœŸå€¤
+    n1 = k  'n1ï¼šå‰å›çªåˆå‡¦ç†å¯¾è±¡è¡Œ_å½“ã‚·ãƒ¼ãƒˆã§ã®ã€kã¯ãƒ‡ãƒ¼ã‚¿é–‹å§‹è¡Œï¼ˆå›ºå®šï¼‰m2â†’n1
+    pap(2, 0) = kgcnt(mr(1, 2, bni), mr(2, 4, bni)) '86_016w mr(1, 2, 1)â†’mr(1, 2, bni)
     ReDim er2(pap(2, 0))
     ReDim mr2(pap(2, 0))
     
-    er2(0) = Val(mr(1, 2, bni)) 'mr2Šˆ«‰»(30s86_017a)@mr(1, 2, 1)¨mr(1, 2, bni)
+    er2(0) = Val(mr(1, 2, bni)) 'mr2æ´»æ€§åŒ–(30s86_017a)ã€€mr(1, 2, 1)â†’mr(1, 2, bni)
     mr2(0) = mr(2, 2, bni)
     If pap(2, 0) > 0 Then
         For ii = 0 To pap(2, 0)
@@ -703,11 +703,11 @@ For a = dd1 To dd2 '‘I‘ğ”ÍˆÍ—ñ•ª‚ÌŒJ‚è•Ô‚µ@‚ç
         Next
     End If
         
-    '‰º‘¤‚©‚ç‚±‚¿‚ç‚Ö@86_020c
-    pap(3, 0) = kgcnt(mr(1, 3, bni), mr(2, 4, bni)) '3s–Úƒ‘‚Ì”
+    'ä¸‹å´ã‹ã‚‰ã“ã¡ã‚‰ã¸ã€€86_020c
+    pap(3, 0) = kgcnt(mr(1, 3, bni), mr(2, 4, bni)) '3è¡Œç›®ãƒ±ã®æ•°
     ReDim er3(pap(3, 0))
     ReDim mr3(pap(3, 0))
-    er3(0) = Val(mr(1, 3, bni)) 'ƒ‘‚Å‚È‚¢Œü‚¯@erx()‚Í’Ê‰İŒ^‚È‚Ì‚Åval‚ğ”í‚¹‚´‚é‚ğ“¾‚È‚¢(ˆÈ‰º“¯)B
+    er3(0) = Val(mr(1, 3, bni)) 'ãƒ±ã§ãªã„æ™‚å‘ã‘ã€€erx()ã¯é€šè²¨å‹ãªã®ã§valã‚’è¢«ã›ã–ã‚‹ã‚’å¾—ãªã„(ä»¥ä¸‹åŒ)ã€‚
     mr3(0) = mr(2, 3, bni)
     If pap(3, 0) > 0 Then
         For ii = 0 To pap(3, 0)
@@ -716,197 +716,197 @@ For a = dd1 To dd2 '‘I‘ğ”ÍˆÍ—ñ•ª‚ÌŒJ‚è•Ô‚µ@‚ç
         Next
     End If
         
-    '‹ß—‚‘¬í•ÊŠm”F@619 “––Ê’P•¶ß‚Å(æ‹ß—‰Â”Ûer2(pap(2,0))‚Ì‚½‚ßB)
-    mr(1, 11, bni) = "" 'ˆê’UƒŠƒZƒbƒg ƒ‚‘¬/‹ß—‚‘¬/ƒm[ƒ}ƒ‹@‚ª“ü‚éB
+    'è¿‘ä¼¼é«˜é€Ÿç¨®åˆ¥ç¢ºèªã€€619 å½“é¢å˜æ–‡ç¯€ã§(âˆµè¿‘ä¼¼å¯å¦er2(pap(2,0))ã®ãŸã‚ã€‚)
+    mr(1, 11, bni) = "" 'ä¸€æ—¦ãƒªã‚»ãƒƒãƒˆ ç´”é«˜é€Ÿ/è¿‘ä¼¼é«˜é€Ÿ/ãƒãƒ¼ãƒãƒ«ã€€ãŒå…¥ã‚‹ã€‚
 
-    If er(2, 1) < 0 Then '@bni¨1‚É‘Š·‚¦(‚±‚±‚ÌğŒ•ªŠò‘S‘Ì‚ğ)@86_016w
-        If er(6, 1) < 0 Then mr(1, 11, 1) = "‹ß—‚‘¬" Else mr(1, 11, 1) = "ƒ‚‘¬"
+    If er(2, 1) < 0 Then 'ã€€bniâ†’1ã«æ›¸æ›ãˆ(ã“ã“ã®æ¡ä»¶åˆ†å²å…¨ä½“ã‚’)ã€€86_016w
+        If er(6, 1) < 0 Then mr(1, 11, 1) = "è¿‘ä¼¼é«˜é€Ÿ" Else mr(1, 11, 1) = "ç´”é«˜é€Ÿ"
     Else
-        mr(1, 11, 1) = "ƒm[ƒ}ƒ‹"
-    End If 'bni:2ˆÈ~‚Ímr(1,11,bni)null‚È‚Ì‚Å’ˆÓ
+        mr(1, 11, 1) = "ãƒãƒ¼ãƒãƒ«"
+    End If 'bni:2ä»¥é™ã¯mr(1,11,bni)nullãªã®ã§æ³¨æ„
     
-    bfshn.Cells(sr(2), 5).Value = mr(1, 11, 1)     'ƒm[ƒ}ƒ‹EƒE‹ß—•\‹L‚T—ñ@bni¨1
+    bfshn.Cells(sr(2), 5).Value = mr(1, 11, 1)     'ãƒãƒ¼ãƒãƒ«ãƒ»ç´”ãƒ»è¿‘ä¼¼è¡¨è¨˜ï¼•åˆ—ã€€bniâ†’1
     
-    'mghz@‚Ss–Ú‚É‹æØ‚è•¶š‚ğ“ü‚ê‚é mghz‚Ì—v‘f¶¬‚Åg—p  mghz¨mghz+1‚Ö
+    'mghzã€€ï¼”è¡Œç›®ã«åŒºåˆ‡ã‚Šæ–‡å­—ã‚’å…¥ã‚Œã‚‹ mghzã®è¦ç´ ç”Ÿæˆã§ä½¿ç”¨  mghzâ†’mghz+1ã¸
 '    With bfshn.Cells(sr(4), mghz)
-    '«30s86_022mh
+    'â†“30s86_022mh
     With bfshn.Cells(sr(4), mghz + 1)
-        .NumberFormatLocal = "@"  '•¶š—ñ‚Æ‚µ‚Ä“ü‚ê‚é
+        .NumberFormatLocal = "@"  'æ–‡å­—åˆ—ã¨ã—ã¦å…¥ã‚Œã‚‹
         .Value = mr(2, 4, bni)
     End With
     
-    'ŸŸŸ
-        If (er(2, 1) < 0 Or pap(2, 0) > 0) Then   '2s–Ú‚Éƒ‘‚ª‚ ‚é‚©‚‘¬À{(1•¶ß–Ú‚Å”»’f)A1•¶ß–Úƒ‘‚ ‚é¨‘S•¶ßƒ‘“K—p‚³‚ê‚éB
+    'â—†â—†â—†
+        If (er(2, 1) < 0 Or pap(2, 0) > 0) Then   '2è¡Œç›®ã«ãƒ±ãŒã‚ã‚‹æ™‚ã‹é«˜é€Ÿæ™‚å®Ÿæ–½(1æ–‡ç¯€ç›®ã§åˆ¤æ–­)ã€1æ–‡ç¯€ç›®ãƒ±ã‚ã‚‹æ™‚â†’å…¨æ–‡ç¯€ãƒ±é©ç”¨ã•ã‚Œã‚‹ã€‚
 
-        If k <= h Then '“–ƒV[ƒgŠù‘¶î•ñ‚ ‚è
+        If k <= h Then 'å½“ã‚·ãƒ¼ãƒˆæ—¢å­˜æƒ…å ±ã‚ã‚Š
             If StrConv(bfshn.Cells(sr(1), a), 8) = "\" And er(6, 1) >= 0 And mr(1, 2, bni) <> mr(1, 3, bni) And pap(2, 0) > 0 Then
-                    'Call oshimai("", bfn, shn, sr(2), a, "\‚Ì‚Å‰¼‘zƒL[g—p•6s>0‚Ì‚Æ‚«‚Í2s3sˆê’v‚ª•K—v‚Å‚·B") '–³ŒÀƒ‹[ƒv–h~s
-                    'MsgBox "2s3s•sˆê’v(–³ŒÀƒ‹[ƒv‚Ì‰Â”\«—L)" '86_016r@86_021b‰ğœA–³ŒÀƒ‹[ƒv‚·‚é‚È‚ç–ß‚·
+                    'Call oshimai("", bfn, shn, sr(2), a, "\ã®æ™‚ã§ä»®æƒ³ã‚­ãƒ¼ä½¿ç”¨ï¼†6è¡Œ>0ã®ã¨ãã¯2è¡Œ3è¡Œä¸€è‡´ãŒå¿…è¦ã§ã™ã€‚") 'ç„¡é™ãƒ«ãƒ¼ãƒ—é˜²æ­¢s
+                    'MsgBox "2è¡Œ3è¡Œä¸ä¸€è‡´(ç„¡é™ãƒ«ãƒ¼ãƒ—ã®å¯èƒ½æ€§æœ‰)" '86_016rã€€86_021bè§£é™¤ã€ç„¡é™ãƒ«ãƒ¼ãƒ—ã™ã‚‹ãªã‚‰æˆ»ã™
             End If
             
-            'mghz2—ñ‚Ìî•ñ–„‚ß‚İi’l‚Æ”’l‚Ì‘®‚Å“\•t)
-            If er(2, 1) < 0 Then '‚‘¬i’P”—ñ‚à•¡”—ñ‚àj
+            'mghz2åˆ—ã®æƒ…å ±åŸ‹ã‚è¾¼ã¿ï¼ˆå€¤ã¨æ•°å€¤ã®æ›¸å¼ã§è²¼ä»˜)
+            If er(2, 1) < 0 Then 'é«˜é€Ÿï¼ˆå˜æ•°åˆ—ã‚‚è¤‡æ•°åˆ—ã‚‚ï¼‰
 
-                bfshn.Cells(k, mghz).Select '“®ì‰Â‹‰»
+                bfshn.Cells(k, mghz).Select 'å‹•ä½œå¯è¦–åŒ–
                 DoEvents    '86_019r
-                Application.Calculation = xlCalculationAutomatic    '”®ŒvZ•û–@©“®‚É@'VŒ`®@85_007
+                Application.Calculation = xlCalculationAutomatic    'æ•°å¼è¨ˆç®—æ–¹æ³•è‡ªå‹•ã«ã€€'æ–°å½¢å¼ã€€85_007
 
 '                tempo = "R[0]C[" & LTrim(Str(Abs(er2(0)) - mghz)) & "]"
-                '«30s86_022k
+                'â†“30s86_022k
                 tempo = "R[0]C[" & LTrim(Str(Abs(er2(0)) - (mghz + 1))) & "]"
 
                 baba = tempo
                 
-                For ii = 1 To pap(2, 0) '”®‚Ì‘f¶¬
+                For ii = 1 To pap(2, 0) 'æ•°å¼ã®ç´ ç”Ÿæˆ
 '                    tempo = "&" & "R" & LTrim(Str(Abs(sr(4)))) & "C[0]" & "&" & "R[0]C[" & LTrim(Str(Abs(er2(ii)) - mghz)) & "]"
-                '«30s86_022m
+                'â†“30s86_022m
                     tempo = "&" & "R" & LTrim(Str(Abs(sr(4)))) & "C[0]" & "&" & "R[0]C[" & LTrim(Str(Abs(er2(ii)) - (mghz + 1))) & "]"
                     baba = baba & tempo
 'MsgBox sr(4)
                 Next
 
-'                Range(bfshn.Cells(k, mghz), bfshn.Cells(h, mghz)).NumberFormatLocal = "G/•W€"    'mghz—ñˆê’U•W€‚Öi”®“ü‚ê‚é‚½‚ßj
-                '«30s86_022k
-                Range(bfshn.Cells(k, mghz + 1), bfshn.Cells(h, mghz + 1)).NumberFormatLocal = "G/•W€" 'mghz—ñˆê’U•W€‚Öi”®“ü‚ê‚é‚½‚ßj
+'                Range(bfshn.Cells(k, mghz), bfshn.Cells(h, mghz)).NumberFormatLocal = "G/æ¨™æº–"    'mghzåˆ—ä¸€æ—¦æ¨™æº–ã¸ï¼ˆæ•°å¼å…¥ã‚Œã‚‹ãŸã‚ï¼‰
+                'â†“30s86_022k
+                Range(bfshn.Cells(k, mghz + 1), bfshn.Cells(h, mghz + 1)).NumberFormatLocal = "G/æ¨™æº–" 'mghzåˆ—ä¸€æ—¦æ¨™æº–ã¸ï¼ˆæ•°å¼å…¥ã‚Œã‚‹ãŸã‚ï¼‰
 
-'                bfshn.Cells(sr(8), mghz).FormulaR1C1 = "=" & baba & "&" & """" & """"     '©”®‰E’[‚Éu&""v‚ğ•t‰Á(‹ó”’ƒZƒ‹‚ªu0v‚É‚È‚é‘Îô)@30s86_020s
-                '«30s86_022k
-                bfshn.Cells(sr(8), mghz + 1).FormulaR1C1 = "=" & baba & "&" & """" & """"   '©”®‰E’[‚Éu&""v‚ğ•t‰Á(‹ó”’ƒZƒ‹‚ªu0v‚É‚È‚é‘Îô)@30s86_020s
+'                bfshn.Cells(sr(8), mghz).FormulaR1C1 = "=" & baba & "&" & """" & """"     'â†æ•°å¼å³ç«¯ã«ã€Œ&""ã€ã‚’ä»˜åŠ (ç©ºç™½ã‚»ãƒ«ãŒã€Œ0ã€ã«ãªã‚‹å¯¾ç­–)ã€€30s86_020s
+                'â†“30s86_022k
+                bfshn.Cells(sr(8), mghz + 1).FormulaR1C1 = "=" & baba & "&" & """" & """"   'â†æ•°å¼å³ç«¯ã«ã€Œ&""ã€ã‚’ä»˜åŠ (ç©ºç™½ã‚»ãƒ«ãŒã€Œ0ã€ã«ãªã‚‹å¯¾ç­–)ã€€30s86_020s
                 
 
-                '«ŠÖ”“\‚è•t‚¯‰»@86_020g@8s–Ú¨“–ƒV[ƒg‚É
-'                Call copipe(bfn, shn, sr(8), mghz, sr(8), mghz, bfn, shn, k, mghz, h, mghz, 3)  '3¨FormulaR1C1
-                '«30s86_022k
-                Call copipe(bfn, shn, sr(8), mghz + 1, sr(8), mghz + 1, bfn, shn, k, mghz + 1, h, mghz + 1, 3) '3¨FormulaR1C1
+                'â†“é–¢æ•°è²¼ã‚Šä»˜ã‘åŒ–ã€€86_020gã€€8è¡Œç›®â†’å½“ã‚·ãƒ¼ãƒˆã«
+'                Call copipe(bfn, shn, sr(8), mghz, sr(8), mghz, bfn, shn, k, mghz, h, mghz, 3)  '3â†’FormulaR1C1
+                'â†“30s86_022k
+                Call copipe(bfn, shn, sr(8), mghz + 1, sr(8), mghz + 1, bfn, shn, k, mghz + 1, h, mghz + 1, 3) '3â†’FormulaR1C1
 
 
                 
                 
-                '’l‚É•ÏŠ· 'Ÿ30s86_022j‚±‚±‚ªˆ«‚³
-'                Call copipe(bfn, shn, k, mghz, h, mghz, bfn, shn, k, mghz, h, mghz, 1)  '1¨ValueƒRƒsƒy@‹Œcpp2A-4163
-                '«30s86_022k(16ƒPƒ^‚Ì”’l‚ª‰»‚¯‚é‘Îô)•¶š—ñ‚Æ‚µ‚Ä“\‚è•t‚¯‚Å‰ğŒˆA’A‚µA‹ó”’‚ª¸‡‚Å‚Ä‚Á‚Ø‚ñ‚É—ˆ‚é•›ì—p”­¶satesate•Ï”‚Å‰ğŒˆ
-                Range(bfshn.Cells(k, mghz), bfshn.Cells(h, mghz)).NumberFormatLocal = "@"  'mghz•¶š—ñ‚Ö
-                Call copipe(bfn, shn, k, mghz + 1, h, mghz + 1, bfn, shn, k, mghz, h, mghz, 1) '1¨ValueƒRƒsƒy@‹Œcpp2A-4163
+                'å€¤ã«å¤‰æ› 'â—†30s86_022jã“ã“ãŒæ‚ªã•
+'                Call copipe(bfn, shn, k, mghz, h, mghz, bfn, shn, k, mghz, h, mghz, 1)  '1â†’Valueã‚³ãƒ”ãƒšã€€æ—§cpp2ã€-4163
+                'â†“30s86_022k(16ã‚±ã‚¿ã®æ•°å€¤ãŒåŒ–ã‘ã‚‹å¯¾ç­–)æ–‡å­—åˆ—ã¨ã—ã¦è²¼ã‚Šä»˜ã‘ã§è§£æ±ºã€ä½†ã—ã€ç©ºç™½ãŒæ˜‡é †ã§ã¦ã£ãºã‚“ã«æ¥ã‚‹å‰¯ä½œç”¨ç™ºç”Ÿsatesateå¤‰æ•°ã§è§£æ±º
+                Range(bfshn.Cells(k, mghz), bfshn.Cells(h, mghz)).NumberFormatLocal = "@"  'mghzæ–‡å­—åˆ—ã¸
+                Call copipe(bfn, shn, k, mghz + 1, h, mghz + 1, bfn, shn, k, mghz, h, mghz, 1) '1â†’Valueã‚³ãƒ”ãƒšã€€æ—§cpp2ã€-4163
                 
 
 
                  '30s86_020s
-                If hrkt = 16 Then baba = "ASC(PHONETIC(R[0]C[-1]))" Else baba = "ASC(R[0]C[-1])"  '‘O—ñ‚ğƒRƒs‚é”®
+                If hrkt = 16 Then baba = "ASC(PHONETIC(R[0]C[-1]))" Else baba = "ASC(R[0]C[-1])"  'å‰åˆ—ã‚’ã‚³ãƒ”ã‚‹æ•°å¼
 'MsgBox baba
                 bfshn.Cells(k, mghz + 1).FormulaR1C1 = "=" & baba
 
-                '«ŠÖ”“\‚è•t‚¯‰»@86_020g
-                Call copipe(bfn, shn, k, mghz + 1, k, mghz + 1, bfn, shn, k + 1, mghz + 1, h, mghz + 1, 3) '3¨FormulaR1C1
+                'â†“é–¢æ•°è²¼ã‚Šä»˜ã‘åŒ–ã€€86_020g
+                Call copipe(bfn, shn, k, mghz + 1, k, mghz + 1, bfn, shn, k + 1, mghz + 1, h, mghz + 1, 3) '3â†’FormulaR1C1
 
-                'mghz+1¨mghzA’l‰»
-                Call copipe(bfn, shn, k, mghz + 1, h, mghz + 1, bfn, shn, k, mghz, h, mghz, 1)    '1¨Value
+                'mghz+1â†’mghzã€å€¤åŒ–
+                Call copipe(bfn, shn, k, mghz + 1, h, mghz + 1, bfn, shn, k, mghz, h, mghz, 1)    '1â†’Value
 
-                'mghz+1—ñ(s”Ô†)‚Ìˆ—(ƒtƒBƒ‹Šˆ—p)@¦‚±‚±‚É‚ ‚é‚Ì‚Ímghz+1‚Ì”®‚ğ‚³‚Á‚³‚ÆÁ‚·‚½‚ß
+                'mghz+1åˆ—(è¡Œç•ªå·)ã®å‡¦ç†(ãƒ•ã‚£ãƒ«æ´»ç”¨)ã€€â€»ã“ã“ã«ã‚ã‚‹ã®ã¯mghz+1ã®æ•°å¼ã‚’ã•ã£ã•ã¨æ¶ˆã™ãŸã‚
                 bfshn.Cells(k, mghz + 1).Value = k
 
                 If h > k Then
-                    Range(bfshn.Cells(k, mghz + 1), bfshn.Cells(k, mghz + 1)).AutoFill Destination:=Range(bfshn.Cells(k, mghz + 1), bfshn.Cells(h, mghz + 1)), Type:=xlFillSeries '©˜A‘±‚·‚é”’l
+                    Range(bfshn.Cells(k, mghz + 1), bfshn.Cells(k, mghz + 1)).AutoFill Destination:=Range(bfshn.Cells(k, mghz + 1), bfshn.Cells(h, mghz + 1)), Type:=xlFillSeries 'â†é€£ç¶šã™ã‚‹æ•°å€¤
                 End If
 
-                '30s86_022mh mghz‚Ìu""v‚ÌƒZƒ‹‚ğA‹ó”’‚Éiƒ\[ƒg‚Åã‚Éo‚È‚¢‚æ‚¤‚É‚·‚é‚½‚ßj
+                '30s86_022mh mghzã®ã€Œ""ã€ã®ã‚»ãƒ«ã‚’ã€ç©ºç™½ã«ï¼ˆã‚½ãƒ¼ãƒˆã§ä¸Šã«å‡ºãªã„ã‚ˆã†ã«ã™ã‚‹ãŸã‚ï¼‰
                 Call saato(bfn, shn, mghz, k, mghz, h, mghz + 1, 1)
                 satesate = k
                 Do Until satesate = h + 1
                     If bfshn.Cells(satesate, mghz).Value <> "" Then
                         If satesate > k Then
-MsgBox "‹ó”’”­“®"
-                            Range(bfshn.Cells(k, mghz), bfshn.Cells(satesate - 1, mghz)).NumberFormatLocal = "G/•W€"
-                            Call copipe(bfn, shn, k, mghz, satesate - 1, mghz, bfn, shn, k, mghz, satesate - 1, mghz, 1) '1¨ValueƒRƒsƒy@‹Œcpp2A-4163
+MsgBox "ç©ºç™½ç™ºå‹•"
+                            Range(bfshn.Cells(k, mghz), bfshn.Cells(satesate - 1, mghz)).NumberFormatLocal = "G/æ¨™æº–"
+                            Call copipe(bfn, shn, k, mghz, satesate - 1, mghz, bfn, shn, k, mghz, satesate - 1, mghz, 1) '1â†’Valueã‚³ãƒ”ãƒšã€€æ—§cpp2ã€-4163
                         End If
                         Exit Do
                     End If
                     satesate = satesate + 1
                 Loop
                 Call saato(bfn, shn, mghz + 1, k, mghz, h, mghz + 1, 1)
-                Range(bfshn.Cells(k, mghz), bfshn.Cells(h, mghz)).NumberFormatLocal = "@"  'mghz•¶š—ñ‚Ö
-                '‚±‚±‚Ü‚Å30s86_022mh mghz‚Ìu""v‚ÌƒZƒ‹‚ğA‹ó”’‚Éiƒ\[ƒg‚Åã‚Éo‚È‚¢‚æ‚¤‚É‚·‚é‚½‚ßj‚±‚±‚Ü‚Å
+                Range(bfshn.Cells(k, mghz), bfshn.Cells(h, mghz)).NumberFormatLocal = "@"  'mghzæ–‡å­—åˆ—ã¸
+                'ã“ã“ã¾ã§30s86_022mh mghzã®ã€Œ""ã€ã®ã‚»ãƒ«ã‚’ã€ç©ºç™½ã«ï¼ˆã‚½ãƒ¼ãƒˆã§ä¸Šã«å‡ºãªã„ã‚ˆã†ã«ã™ã‚‹ãŸã‚ï¼‰ã“ã“ã¾ã§
                     
 
-                'ƒ”¨³Ş(EEASC ‚Åˆ—‚³‚ê‚È‚¢‚Ì‚ÅBstrconv24‚Å‚ÍAƒ”¨³Ş‚³‚ê‚é‚Ì‚ÅA‚±‚±‚Ü‚Å‚â‚Á‚Ä‰‚ß‚ÄASC‚Æstrconv8‚ª“™‰¿‚É‚È‚éB
-                Range(Workbooks(bfn).Sheets(shn).Cells(k, mghz), Workbooks(bfn).Sheets(shn).Cells(h, mghz)).Replace What:="ƒ”", _
-                    Replacement:="³Ş", LookAt:=xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
+                'ãƒ´â†’ï½³ï¾(ãƒ»ãƒ»ASC ã§å‡¦ç†ã•ã‚Œãªã„ã®ã§ã€‚strconv24ã§ã¯ã€ãƒ´â†’ï½³ï¾ã•ã‚Œã‚‹ã®ã§ã€ã“ã“ã¾ã§ã‚„ã£ã¦åˆã‚ã¦ASCã¨strconv8ãŒç­‰ä¾¡ã«ãªã‚‹ã€‚
+                Range(Workbooks(bfn).Sheets(shn).Cells(k, mghz), Workbooks(bfn).Sheets(shn).Cells(h, mghz)).Replace What:="ãƒ´", _
+                    Replacement:="ï½³ï¾", LookAt:=xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
                     ReplaceFormat:=False
 
-                '«30s86_022k ã‘¤‚ÉˆÚ“®
-'               Range(bfshn.Cells(k, mghz), bfshn.Cells(h, mghz)).NumberFormatLocal = "@"  'mghz—ñˆê’U•¶š—ñ‚Ö–ß‚·i”®“ü‚êA’l‰»‚µ‚½‚Ì‚Åj
+                'â†“30s86_022k ä¸Šå´ã«ç§»å‹•
+'               Range(bfshn.Cells(k, mghz), bfshn.Cells(h, mghz)).NumberFormatLocal = "@"  'mghzåˆ—ä¸€æ—¦æ–‡å­—åˆ—ã¸æˆ»ã™ï¼ˆæ•°å¼å…¥ã‚Œã€å€¤åŒ–ã—ãŸã®ã§ï¼‰
                 DoEvents
 
-'ŸŸŸ
+'â—†â—†â—†
                 
-                Application.Calculation = xlCalculationManual  'ÄŒvZÄ‚Ñè“®‚Éid‚­‚È‚é‚½‚ßj30s66
+                Application.Calculation = xlCalculationManual  'å†è¨ˆç®—å†ã³æ‰‹å‹•ã«ï¼ˆé‡ããªã‚‹ãŸã‚ï¼‰30s66
                      
-                If pap(2, 0) > 0 Then '30s86_020c@020q‚‘¬ê—p‚Æ‚µ‚Ä•œ‹A@‚Qs•¡”—ñ‚Å‰º‘¤‚ªall‹ó”’chk 30s86_020a
+                If pap(2, 0) > 0 Then '30s86_020cã€€020qé«˜é€Ÿå°‚ç”¨ã¨ã—ã¦å¾©å¸°ã€€ï¼’è¡Œè¤‡æ•°åˆ—ã§ä¸‹å´ãŒallç©ºç™½chk 30s86_020a
                     ii = h
-                    Do Until bfshn.Cells(ii, mghz) <> StrConv(wetaiou("", "", 0, er3(), mr(2, 4, bni), mr(1, 11, 1), mr3(), 3), 8 + hrkt) '©g‚Á‚Ä‚é‚Ìmr(2,4,bni)‚¾‚¯
+                    Do Until bfshn.Cells(ii, mghz) <> StrConv(wetaiou("", "", 0, er3(), mr(2, 4, bni), mr(1, 11, 1), mr3(), 3), 8 + hrkt) 'â†ä½¿ã£ã¦ã‚‹ã®mr(2,4,bni)ã ã‘
                         ii = ii - 1
                     Loop
                     If ii < h Then
 
                         Range(bfshn.Cells(ii + 1, mghz), bfshn.Cells(h, mghz)).ClearContents
                     Else
-                        'MsgBox "mghzƒNƒŠƒA‚Í‚ ‚è‚Ü‚¹‚ñ‚Å‚µ‚½(2s•¡”—ñ)"
+                        'MsgBox "mghzã‚¯ãƒªã‚¢ã¯ã‚ã‚Šã¾ã›ã‚“ã§ã—ãŸ(2è¡Œè¤‡æ•°åˆ—)"
                     End If
                 End If
-            Else '’á‘¬i’P”—ñ‚à•¡”—ñ‚àj
-                bfshn.Cells(sr(8), mghz).Value = "(•sg—p(‚¿‚Ü‚¿‚Üpap(2,0)‚0)"
+            Else 'ä½é€Ÿï¼ˆå˜æ•°åˆ—ã‚‚è¤‡æ•°åˆ—ã‚‚ï¼‰
+                bfshn.Cells(sr(8), mghz).Value = "(ä¸ä½¿ç”¨(ã¡ã¾ã¡ã¾pap(2,0)â‰ 0)"
                 For ii = k To h
                     bfshn.Cells(ii, mghz).Value = wetaiou(bfn, shn, ii, er2(), mr(2, 4, bni), mr(1, 11, 1), mr2(), 2) 'mghz
-                    bfshn.Cells(ii, mghz + 1).Value = ii 'mghz+1ˆ—
-                    Call hdrst(ii, a)         '¶‰ºƒXƒe[ƒ^ƒX•\¦•”
+                    bfshn.Cells(ii, mghz + 1).Value = ii 'mghz+1å‡¦ç†
+                    Call hdrst(ii, a)         'å·¦ä¸‹ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹è¡¨ç¤ºéƒ¨
                 Next
                 
-                '30s86_020m ’á‘¬‚É‚à“K—p‚³‚¹‚é‚½‚ßA‚±‚¿‚ç‚É‚à@‚Qs•¡”—ñ‚Å‰º‘¤‚ªall‹ó”’chk 30s86_020a
-                If pap(2, 0) > 0 Then '30s86_020c@@020q’á‘¬ê—p‚Æ‚µ‚ÄŠJİ
+                '30s86_020m ä½é€Ÿã«ã‚‚é©ç”¨ã•ã›ã‚‹ãŸã‚ã€ã“ã¡ã‚‰ã«ã‚‚ã€€ï¼’è¡Œè¤‡æ•°åˆ—ã§ä¸‹å´ãŒallç©ºç™½chk 30s86_020a
+                If pap(2, 0) > 0 Then '30s86_020cã€€ã€€020qä½é€Ÿå°‚ç”¨ã¨ã—ã¦é–‹è¨­
                     ii = h
-                    Do Until bfshn.Cells(ii, mghz) <> wetaiou("", "", 0, er3(), mr(2, 4, bni), mr(1, 11, 1), mr3(), 3) '©g‚Á‚Ä‚é‚Ìmr(2,4,bni)‚¾‚¯
+                    Do Until bfshn.Cells(ii, mghz) <> wetaiou("", "", 0, er3(), mr(2, 4, bni), mr(1, 11, 1), mr3(), 3) 'â†ä½¿ã£ã¦ã‚‹ã®mr(2,4,bni)ã ã‘
                         ii = ii - 1
                     Loop
                     If ii < h Then
                         Range(bfshn.Cells(ii + 1, mghz), bfshn.Cells(h, mghz)).ClearContents
                     Else
-                        'MsgBox "mghzƒNƒŠƒA‚Í‚ ‚è‚Ü‚¹‚ñ‚Å‚µ‚½(2s•¡”—ñ)"
+                        'MsgBox "mghzã‚¯ãƒªã‚¢ã¯ã‚ã‚Šã¾ã›ã‚“ã§ã—ãŸ(2è¡Œè¤‡æ•°åˆ—)"
                     End If
                 End If
             End If
             cnt = 0
-        End If '“–ƒV[ƒgŠù‘¶î•ñ‚ ‚è
+        End If 'å½“ã‚·ãƒ¼ãƒˆæ—¢å­˜æƒ…å ±ã‚ã‚Š
         
-        If er(2, 1) > 0 Then er(2, bni) = mghz Else er(2, bni) = -mghz '©86_016w
+        If er(2, 1) > 0 Then er(2, bni) = mghz Else er(2, bni) = -mghz 'â†86_016w
     End If
 
-    '(‚ˆ•ÏX)”ñ“Æ—§WŒv@iu‚Çv‘Î‰‚ ‚×‚±‚×‚Éj '–‚Çv‚É‚à‘Î‰ 2s•¡”—ñ‚É‚à‘Î‰‚Æ‚È‚Á‚Ä‚¢‚éB‚î•¡•¶ß‚É‚à‘Î‰
-    If Not (InStr(1, mr(0, 2, bni), "¦") > 0 And InStr(1, rvsrz3(mr(0, 2, bni), 1, "¦", 0), "‚Ç") > 0) Then  'h•Ï‚¦‚é
+    '(ï½ˆå¤‰æ›´)éç‹¬ç«‹é›†è¨ˆã€€ï¼ˆã€Œã©ã€å¯¾å¿œã‚ã¹ã“ã¹ã«ï¼‰ 'ï¼Šã©ã€ã«ã‚‚å¯¾å¿œ 2è¡Œè¤‡æ•°åˆ—ã«ã‚‚å¯¾å¿œã¨ãªã£ã¦ã„ã‚‹ã€‚ã‚è¤‡æ–‡ç¯€ã«ã‚‚å¯¾å¿œ
+    If Not (InStr(1, mr(0, 2, bni), "ï½¦") > 0 And InStr(1, rvsrz3(mr(0, 2, bni), 1, "ï½¦", 0), "ã©") > 0) Then  'hå¤‰ãˆã‚‹
         ii = h
         Do Until ii = k - 1
             If bfshn.Cells(ii, Abs(er(2, 1))) <> "" Then Exit Do
             ii = ii - 1
         Loop
         h = ii
-    Else  'h•Ï‚¦‚È‚¢
-        MsgBox "‚Ç‘Î‰"
+    Else  'hå¤‰ãˆãªã„
+        MsgBox "ã©å¯¾å¿œ"
     End If
     
     DoEvents
     
     ct3 = ""
     ct8 = "" '86_019o
-    With Workbooks(mr(2, 1, bni)).Sheets(mr(1, 1, bni)) 'ƒtƒBƒ‹ƒ^‰ğœ‚·‚éiƒRƒsƒy‚Å‚ÌA‚Í‚µ‚å‚ç‚ê–h~j
+    With Workbooks(mr(2, 1, bni)).Sheets(mr(1, 1, bni)) 'ãƒ•ã‚£ãƒ«ã‚¿è§£é™¤ã™ã‚‹ï¼ˆã‚³ãƒ”ãƒšã§ã®ã€ã¯ã—ã‚‡ã‚‰ã‚Œé˜²æ­¢ï¼‰
         If .FilterMode Then .ShowAllData
     End With
 
     cted(0) = ctdg(mr(2, 1, bni), mr(1, 1, bni), er(4, bni), a)
-   ' If cted(0) > 500000 Then Call oshimai("", bfn, shn, 1, 0, "‘ÎÛƒV[ƒgs”50–œs’´‚¦")  '30s86_021e
+   ' If cted(0) > 500000 Then Call oshimai("", bfn, shn, 1, 0, "å¯¾è±¡ã‚·ãƒ¼ãƒˆè¡Œæ•°50ä¸‡è¡Œè¶…ãˆ")  '30s86_021e
     
     cted(1) = ctdr(mr(2, 1, bni), mr(1, 1, bni), er(4, bni), a)
 
-'ŸŸŸŸŸŸ
-    If h >= k And (mr(1, 11, 1) = "ƒ‚‘¬" Or mr(1, 11, 1) = "‹ß—‚‘¬") Then   'mghzƒ\[ƒg
-        '¸‡ƒL[(mghz—ñ)‚ğ¸‡‚É=xlAscending ¸‡ˆ—‚Í‹ß—‚‘¬(ˆê•¶ß‚Ì‚İ)Eƒ‚‘¬(‘S•¶ß)‹¤‚ÉÀ{‚Ö
+'â—†â—†â—†â—†â—†â—†
+    If h >= k And (mr(1, 11, 1) = "ç´”é«˜é€Ÿ" Or mr(1, 11, 1) = "è¿‘ä¼¼é«˜é€Ÿ") Then   'mghzã‚½ãƒ¼ãƒˆ
+        'æ˜‡é †ã‚­ãƒ¼(mghzåˆ—)ã‚’æ˜‡é †ã«=xlAscending æ˜‡é †å‡¦ç†ã¯è¿‘ä¼¼é«˜é€Ÿ(ä¸€æ–‡ç¯€ã®ã¿)ãƒ»ç´”é«˜é€Ÿ(å…¨æ–‡ç¯€)å…±ã«å®Ÿæ–½ã¸
         Call saato(bfn, shn, mghz, k, mghz, h, mghz + 1, 1)
     
     
@@ -914,23 +914,23 @@ MsgBox "‹ó”’”­“®"
     End If
 
 
-    k0 = k  '•¡•¶ßˆê’UƒŠƒZƒbƒgd—l‚Ö
-    h0 = h '•¡•¶ßˆê’UƒŠƒZƒbƒgd—l‚Ö
+    k0 = k  'è¤‡æ–‡ç¯€ä¸€æ—¦ãƒªã‚»ãƒƒãƒˆä»•æ§˜ã¸
+    h0 = h 'è¤‡æ–‡ç¯€ä¸€æ—¦ãƒªã‚»ãƒƒãƒˆä»•æ§˜ã¸
    
-    If h >= k And (mr(1, 11, 1) = "‹ß—‚‘¬") Then
-        am1 = "" '‹ß—‚Í‰‰ñ’l‹­§null‚ÖB(ksÌ—p‚Å‚«‚È‚¢‚½‚ß)
+    If h >= k And (mr(1, 11, 1) = "è¿‘ä¼¼é«˜é€Ÿ") Then
+        am1 = "" 'è¿‘ä¼¼æ™‚ã¯åˆå›å€¤å¼·åˆ¶nullã¸ã€‚(kè¡Œæ¡ç”¨ã§ããªã„ãŸã‚)
         n1 = k
-    ElseIf er(2, 1) < 0 Then  '‚‘¬‚Í‚±‚¿‚ç
-        am1 = bfshn.Cells(k, Abs(er(2, bni))).Value  '30s83‚±‚¿‚ç‚Å•œŠˆ
+    ElseIf er(2, 1) < 0 Then  'é«˜é€Ÿæ™‚ã¯ã“ã¡ã‚‰
+        am1 = bfshn.Cells(k, Abs(er(2, bni))).Value  '30s83ã“ã¡ã‚‰ã§å¾©æ´»
         n1 = bfshn.Cells(k, Abs(er(2, bni)) + 1).Value
-    Else  '’Êí
-        am1 = bfshn.Cells(k, Abs(er(2, bni))).Value  '30s83‚±‚¿‚ç‚Å•œŠˆ
+    Else  'é€šå¸¸
+        am1 = bfshn.Cells(k, Abs(er(2, bni))).Value  '30s83ã“ã¡ã‚‰ã§å¾©æ´»
         n1 = k
     End If
-    '‚“‚©v
+    'ï½“ã‹ã€
 
-    pap(5, 0) = kgcnt(mr(1, 5, bni), mr(2, 4, bni)) '5s–Úƒ‘‚Ì”
-    pap(9, 0) = kgcnt(mr(1, 9, bni), mr(2, 4, bni)) 'pap6‚©‚ç•ÏX
+    pap(5, 0) = kgcnt(mr(1, 5, bni), mr(2, 4, bni)) '5è¡Œç›®ãƒ±ã®æ•°
+    pap(9, 0) = kgcnt(mr(1, 9, bni), mr(2, 4, bni)) 'pap6ã‹ã‚‰å¤‰æ›´
     
     ReDim er5(pap(5, 0))
     ReDim mr5(pap(5, 0))
@@ -956,200 +956,200 @@ MsgBox "‹ó”’”­“®"
         Next
     End If
     
-    pap(8, 0) = kgcnt(mr(1, 8, bni), mr(2, 4, bni)) '8s–Úƒ‘‚Ì”  –‚Ì‚à‰¼‚Å
+    pap(8, 0) = kgcnt(mr(1, 8, bni), mr(2, 4, bni)) '8è¡Œç›®ãƒ±ã®æ•°  ï¼Šã®æ™‚ã‚‚ä»®ã§
    
-    'pap(8,0)Ä’è‹`i–‚Ì‚Æ‚«j30‚“70
-    If StrConv(Left(rvsrz3(mr(0, 8, bni), 1, "¦", 0), 1), 8) = "*" Then '30s74‰ü—Ç
-        paq8 = pap(8, 0) / 2 'paq8‚Í”¼”(F–‚ÌƒOƒ‹[ƒsƒ“ƒO”@.5‚à‚ ‚è“¾‚é)
+    'pap(8,0)å†å®šç¾©ï¼ˆï¼Šã®ã¨ãï¼‰30ï½“70
+    If StrConv(Left(rvsrz3(mr(0, 8, bni), 1, "ï½¦", 0), 1), 8) = "*" Then '30s74æ”¹è‰¯
+        paq8 = pap(8, 0) / 2 'paq8ã¯åŠæ•°(ï¼šï¼Šã®ã‚°ãƒ«ãƒ¼ãƒ”ãƒ³ã‚°æ•°ã€€.5ã‚‚ã‚ã‚Šå¾—ã‚‹)
         qap = 0
         For ii = 0 To Int(paq8)
-            If ii = Int(paq8) And paq8 - Int(paq8) = 0 Then 'ÅIü‚©‚Âpap(8,0)‹ô”(ŒÇ—§)
+            If ii = Int(paq8) And paq8 - Int(paq8) = 0 Then 'æœ€çµ‚å‘¨ã‹ã¤pap(8,0)å¶æ•°(å­¤ç«‹)
                 qap = qap + 1
             Else
-                fma = Val(rvsrz3(mr(1, 8, bni), ii * 2 + 1, mr(2, 4, bni), 0)) 'from—ñ
+                fma = Val(rvsrz3(mr(1, 8, bni), ii * 2 + 1, mr(2, 4, bni), 0)) 'fromåˆ—
                 If fma = 0.1 Then fma = cted(1)  '85_020
-                tob = Val(rvsrz3(mr(1, 8, bni), ii * 2 + 2, mr(2, 4, bni), 0)) 'to—ñ
+                tob = Val(rvsrz3(mr(1, 8, bni), ii * 2 + 2, mr(2, 4, bni), 0)) 'toåˆ—
                 If tob = 0.1 Then tob = cted(1)  '85_020
                 qap = qap + Abs(fma - tob) + 1
             End If
         Next
-        pap(8, 0) = qap - 1 'pap(8,0)Ä’è‹`Š®—¹
+        pap(8, 0) = qap - 1 'pap(8,0)å†å®šç¾©å®Œäº†
     End If
-            '«-1:•¡”—ñ”äŠr‚Åg—p30s79A0:7‘¤A1F8‘¤¨I—¹
-    ReDim er78(-1 To 1, -1 To pap(8, 0)) '©pap(7,0)<=pap(8,0)@‚Æ‚¢‚¤‘O’ñ,-1‚Íc=-1-2‚Ì‚¾‚¯g—p(tensai‘¤‚Å)
+            'â†“-1:è¤‡æ•°åˆ—æ¯”è¼ƒã§ä½¿ç”¨30s79ã€0:7å´ã€1ï¼š8å´â†’çµ‚äº†
+    ReDim er78(-1 To 1, -1 To pap(8, 0)) 'â†pap(7,0)<=pap(8,0)ã€€ã¨ã„ã†å‰æ,-1ã¯c=-1-2ã®æ™‚ã ã‘ä½¿ç”¨(tensaiå´ã§)
     ReDim mr8(-2 To pap(8, 0)) '30s75
     
     er78(1, 0) = Val(mr(1, 8, bni))
     
-    If er(10, bni) = -0.1 Then er78(1, 0) = er(10, bni) '30s86_018d ’Ç‰Áis”Ô†˜AÚ•â³‘Î‰j
+    If er(10, bni) = -0.1 Then er78(1, 0) = er(10, bni) '30s86_018d è¿½åŠ ï¼ˆè¡Œç•ªå·é€£è¼‰è£œæ­£å¯¾å¿œï¼‰
     
     If pap(8, 0) > 0 Then
         mr8(0) = rvsrz3(mr(2, 8, bni), 0 + 1, mr(2, 4, bni), 0)
 
         If StrConv(Left(bfshn.Cells(sr(8), a).Value, 1), 8) = "*" Then
             qaap = 0
-            For ii = 0 To Int(paq8) 'ü
-                fma = Val(rvsrz3(mr(1, 8, bni), ii * 2 + 1, mr(2, 4, bni), 0)) 'from—ñ
+            For ii = 0 To Int(paq8) 'å‘¨
+                fma = Val(rvsrz3(mr(1, 8, bni), ii * 2 + 1, mr(2, 4, bni), 0)) 'fromåˆ—
                 If fma = 0.1 Then fma = cted(1)
                 er78(1, qaap) = fma
-                If ii < Int(paq8) Or paq8 - Int(paq8) = 0.5 Then   'ÅIü‚Å‚È‚¢A‚ ‚é‚¢‚ÍÅIü‚Åto‚ ‚è
-                    tob = Val(rvsrz3(mr(1, 8, bni), ii * 2 + 2, mr(2, 4, bni), 0)) 'to—ñ
+                If ii < Int(paq8) Or paq8 - Int(paq8) = 0.5 Then   'æœ€çµ‚å‘¨ã§ãªã„ã€ã‚ã‚‹ã„ã¯æœ€çµ‚å‘¨ã§toã‚ã‚Š
+                    tob = Val(rvsrz3(mr(1, 8, bni), ii * 2 + 2, mr(2, 4, bni), 0)) 'toåˆ—
                     If tob = 0.1 Then tob = cted(1)  '85_020
                     If fma > tob Then sa8 = -1 Else sa8 = 1
-                    For qap = qaap + 1 To qaap + 1 + Abs(fma - tob) - 1 'fromto‚Ífor“Á«ãAÀ{‚³‚ê‚È‚¢
+                    For qap = qaap + 1 To qaap + 1 + Abs(fma - tob) - 1 'fromï¼toã¯forç‰¹æ€§ä¸Šã€å®Ÿæ–½ã•ã‚Œãªã„
                         er78(1, qap) = er78(1, qaap) + (sa8) * (qap - qaap)
                     Next
                 End If
                 qaap = qap
-            '–‚Ì‚ÍAmr8(qap)‚Í“––Ê•sg—p‚Æ‚·‚é@'30s75
+            'ï¼Šã®æ™‚ã¯ã€mr8(qap)ã¯å½“é¢ä¸ä½¿ç”¨ã¨ã™ã‚‹ã€€'30s75
             Next
         Else
-            For ii = 1 To pap(8, 0) '‚±‚ê‚Ü‚Å’Ê‚è
+            For ii = 1 To pap(8, 0) 'ã“ã‚Œã¾ã§é€šã‚Š
                 er78(1, ii) = Val(rvsrz3(mr(1, 8, bni), ii + 1, mr(2, 4, bni), 0))
                 mr8(ii) = rvsrz3(mr(2, 8, bni), ii + 1, mr(2, 4, bni), 0)
             Next
         End If
            
-        '30s86_017v “Á—á‘[’ui‚±‚ê˜AÚ‚Å‚È‚¢‚Æ‚«‚àÀ{‚³‚ê‚Ä‚¢‚é‚æ‚¤‚Å‚ ‚éB–â‘è‚Ì‚Æ‚«‚ÍƒvƒƒOƒ‰ƒ€‰ü‘Pj86_020j
+        '30s86_017v ç‰¹ä¾‹æªç½®ï¼ˆã“ã‚Œé€£è¼‰ã§ãªã„ã¨ãã‚‚å®Ÿæ–½ã•ã‚Œã¦ã„ã‚‹ã‚ˆã†ã§ã‚ã‚‹ã€‚å•é¡Œã®ã¨ãã¯ãƒ—ãƒ­ã‚°ãƒ©ãƒ æ”¹å–„ï¼‰86_020j
         If mr(2, 8, bni) = mr(2, 4, bni) Then
-            MsgBox "˜AÚ‚Ì“Á—á‘[’umr8(0)¨" & mr(2, 8, bni) & "‚Ö"
+            MsgBox "é€£è¼‰æ™‚ã®ç‰¹ä¾‹æªç½®mr8(0)â†’" & mr(2, 8, bni) & "ã¸"
             mr8(0) = mr(2, 8, bni)
         End If
     Else
         mr8(0) = mr(2, 8, bni)
     End If
     
-    'pap(8,0)‚±‚±‚Ü‚ÅB‚±‚±‚©‚çpap(7,0)
-    'fma,tob‚Ípap(7,0)‚Æ‚µ‚ÄÄƒŠƒZƒbƒg‚³‚ê‚Äg—p‚³‚ê‚é(pap(8,0)‚Ì‚ª“¥P‚³‚ê‚Äg—p‚³‚ê‚È‚¢)
+    'pap(8,0)ã“ã“ã¾ã§ã€‚ã“ã“ã‹ã‚‰pap(7,0)
+    'fma,tobã¯pap(7,0)ã¨ã—ã¦å†ãƒªã‚»ãƒƒãƒˆã•ã‚Œã¦ä½¿ç”¨ã•ã‚Œã‚‹(pap(8,0)ã®ãŒè¸è¥²ã•ã‚Œã¦ä½¿ç”¨ã•ã‚Œãªã„)
     
     soroeru = 0
-    er78(0, -1) = 0 '30s62 -1‚Íc=-1-2‚Ì‚¾‚¯g—p(tensai‘¤‚Å)
-    er78(0, 0) = Val(mr(1, 7, bni)) '(1,0)¨(0,0)C³30s61_4
+    er78(0, -1) = 0 '30s62 -1ã¯c=-1-2ã®æ™‚ã ã‘ä½¿ç”¨(tensaiå´ã§)
+    er78(0, 0) = Val(mr(1, 7, bni)) '(1,0)â†’(0,0)ä¿®æ­£30s61_4
     
-    pap(7, 0) = kgcnt(mr(1, 7, bni), mr(2, 4, bni)) '7s–Úƒ‘‚Ì”  –‚Ì‚à‰¼‚Å
-    If pap(8, 0) > 0 Then 'er78‚ğ’è‚ß‚éB
-        '‚Vs–Ú
-        If StrConv(Left(bfshn.Cells(sr(7), a).Value, 1), 8) = "*" Then  '–‚Ìü‰ñƒ‹[ƒ`ƒ“
-            If Val(rvsrz3(mr(1, 7, bni), pap(7, 0) + 1, mr(2, 4, bni), 0)) = 0.1 Then '7s‰E‚ªu?v
+    pap(7, 0) = kgcnt(mr(1, 7, bni), mr(2, 4, bni)) '7è¡Œç›®ãƒ±ã®æ•°  ï¼Šã®æ™‚ã‚‚ä»®ã§
+    If pap(8, 0) > 0 Then 'er78ã‚’å®šã‚ã‚‹ã€‚
+        'ï¼—è¡Œç›®
+        If StrConv(Left(bfshn.Cells(sr(7), a).Value, 1), 8) = "*" Then  'ï¼Šã®å‘¨å›ãƒ«ãƒ¼ãƒãƒ³
+            If Val(rvsrz3(mr(1, 7, bni), pap(7, 0) + 1, mr(2, 4, bni), 0)) = 0.1 Then '7è¡Œå³ãŒã€Œ?ã€
                 soroeru = 1
                 paq7 = (pap(7, 0) - 1) / 2
-                'ˆê”Ô‰E‚Éu?vƒAƒŠ¨soroeruƒrƒbƒg‚ğ—§‚Ä‚ÄA[‚Í–³‚¢‘O’ñ(Fpap(7,0)-1)‚Åpaq7‚ğİ’è
+                'ä¸€ç•ªå³ã«ã€Œ?ã€ã‚¢ãƒªâ†’soroeruãƒ“ãƒƒãƒˆã‚’ç«‹ã¦ã¦ã€ãƒ¼ã¯ç„¡ã„å‰æ(ï¼špap(7,0)-1)ã§paq7ã‚’è¨­å®š
             Else
-                paq7 = pap(7, 0) / 2 'paq7‚Í”¼”(F–‚ÌƒOƒ‹[ƒsƒ“ƒO”@.5‚à‚ ‚è“¾‚é)
+                paq7 = pap(7, 0) / 2 'paq7ã¯åŠæ•°(ï¼šï¼Šã®ã‚°ãƒ«ãƒ¼ãƒ”ãƒ³ã‚°æ•°ã€€.5ã‚‚ã‚ã‚Šå¾—ã‚‹)
             End If
             
             qaap = 0
-            For ii = 0 To Int(paq7) '–ƒyƒAƒOƒ‹[ƒv–ˆ‚Åü‰ñ
-                fma = Val(rvsrz3(mr(1, 7, bni), ii * 2 + 1, mr(2, 4, bni), 0)) 'from—ñ
-                er78(0, qaap) = fma  'ƒyƒAƒOƒ‹[ƒv–ˆ‚ÌˆêŒÂ–Ú
-                qap = qaap  '‚±‚±‚Å‚Ìqap‚ÍŒ»fma‚Ì”z—ñˆÊ’u(0,2,,,)
+            For ii = 0 To Int(paq7) 'ï¼Šãƒšã‚¢ã‚°ãƒ«ãƒ¼ãƒ—æ¯ã§å‘¨å›
+                fma = Val(rvsrz3(mr(1, 7, bni), ii * 2 + 1, mr(2, 4, bni), 0)) 'fromåˆ—
+                er78(0, qaap) = fma  'ãƒšã‚¢ã‚°ãƒ«ãƒ¼ãƒ—æ¯ã®ä¸€å€‹ç›®
+                qap = qaap  'ã“ã“ã§ã®qapã¯ç¾fmaã®é…åˆ—ä½ç½®(0,2,,,)
                 pap(7, 0) = qaap
                 If ii < Int(paq7) Or paq7 - Int(paq7) = 0.5 Then
-                '(‰E‚Ì[‚Í–³‚¢‰¼’è‚Å‚Ì)ÅIü‚Å‚È‚¢A‚ ‚é‚¢‚ÍÅIü‚Åto‚ ‚è
-                '¦‰E‚ª[‚Ìˆ—‚Í‰º‚Ìsoreoeru=1@‚ÌŠ‚ÅÀ{‚³‚ê‚éB
-                    tob = Val(rvsrz3(mr(1, 7, bni), ii * 2 + 2, mr(2, 4, bni), 0)) 'to—ñ
+                '(å³ã®ãƒ¼ã¯ç„¡ã„ä»®å®šã§ã®)æœ€çµ‚å‘¨ã§ãªã„ã€ã‚ã‚‹ã„ã¯æœ€çµ‚å‘¨ã§toã‚ã‚Š
+                'â€»å³ãŒãƒ¼ã®å‡¦ç†ã¯ä¸‹ã®soreoeru=1ã€€ã®æ‰€ã§å®Ÿæ–½ã•ã‚Œã‚‹ã€‚
+                    tob = Val(rvsrz3(mr(1, 7, bni), ii * 2 + 2, mr(2, 4, bni), 0)) 'toåˆ—
                     
                     If qaap + 1 + Abs(fma - tob) - 1 > pap(8, 0) Then
-                        Call oshimai("", bfn, shn, 1, 0, "“]Ú—ñ”F7s–Ú>8s–Ú‚Å‚·BŠm”F‚ğB")
+                        Call oshimai("", bfn, shn, 1, 0, "è»¢è¼‰åˆ—æ•°ï¼š7è¡Œç›®>8è¡Œç›®ã§ã™ã€‚ç¢ºèªã‚’ã€‚")
                     End If
                     
                     If fma > tob Then sa7 = -1 Else sa7 = 1
-                    For qap = qaap + 1 To qaap + 1 + Abs(fma - tob) - 1 '30‚“70fromto“±“ü
+                    For qap = qaap + 1 To qaap + 1 + Abs(fma - tob) - 1 '30ï½“70fromtoå°å…¥
                         er78(0, qap) = er78(0, qaap) + (sa7) * (qap - qaap)
                     Next
                     pap(7, 0) = qap - 1
-                    qaap = qap '‚±‚±‚Å‚Ìqap,qaap‚ÍA‚ ‚é–ƒOƒ‹[ƒv¸ZŒã‚Ìnext‚Ìfma“ü‚ê‚ŞˆÊ’u
+                    qaap = qap 'ã“ã“ã§ã®qap,qaapã¯ã€ã‚ã‚‹ï¼Šã‚°ãƒ«ãƒ¼ãƒ—ç²¾ç®—å¾Œã®nextã®fmaå…¥ã‚Œè¾¼ã‚€ä½ç½®
                 End If
             Next
             
-            If pap(7, 0) > pap(8, 0) Then Call oshimai("", bfn, shn, 1, 0, "pap(7,0)>pap(8,0)‚Å‚·BŠm”F‚ğB")
+            If pap(7, 0) > pap(8, 0) Then Call oshimai("", bfn, shn, 1, 0, "pap(7,0)>pap(8,0)ã§ã™ã€‚ç¢ºèªã‚’ã€‚")
  
-            If soroeru = 1 Then '7s‰E‚ªu?vEEpap(8,0)‚Æ‘µ‚¦‚é
+            If soroeru = 1 Then '7è¡Œå³ãŒã€Œ?ã€ãƒ»ãƒ»pap(8,0)ã¨æƒãˆã‚‹
                 For qaap = pap(7, 0) + 1 To pap(8, 0)
                     er78(0, qaap) = er78(0, pap(7, 0)) + (qaap - pap(7, 0))
                 Next
                 If er78(0, qaap - 1) >= mghz Then
-                    Call oshimai("", bfn, shn, 1, Int(er78(0, qaap - 1)), "mghz‚Í‚İo‚Ä‚Ü‚·B" & vbCrLf _
-                    & rvsrz3(bfshn.Cells(1, Int(er78(0, qaap - 1))).Address(RowAbsolute:=True, ColumnAbsolute:=False), 1, "$", 0) & "—ñ‚Ü‚Åƒf[ƒ^‚ ‚è")
+                    Call oshimai("", bfn, shn, 1, Int(er78(0, qaap - 1)), "mghzã¯ã¿å‡ºã¦ã¾ã™ã€‚" & vbCrLf _
+                    & rvsrz3(bfshn.Cells(1, Int(er78(0, qaap - 1))).Address(RowAbsolute:=True, ColumnAbsolute:=False), 1, "$", 0) & "åˆ—ã¾ã§ãƒ‡ãƒ¼ã‚¿ã‚ã‚Š")
                 End If
                 pap(7, 0) = pap(8, 0)
             End If
-        Else '•’Ê‚Ìƒ‹[ƒ`ƒ“
-            If pap(7, 0) > pap(8, 0) Then Call oshimai("", bfn, shn, 1, 0, "pap(7,0)>pap(8,0)‚Å‚·BŠm”F‚ğB")
+        Else 'æ™®é€šã®ãƒ«ãƒ¼ãƒãƒ³
+            If pap(7, 0) > pap(8, 0) Then Call oshimai("", bfn, shn, 1, 0, "pap(7,0)>pap(8,0)ã§ã™ã€‚ç¢ºèªã‚’ã€‚")
             For ii = 1 To pap(8, 0)
                 er78(0, ii) = Val(rvsrz3(mr(1, 7, bni), ii + 1, mr(2, 4, bni), 0))
             Next
         End If
     End If
-'papŒn‚Ì’lô’è‚Í‚±‚±‚Ü‚ÅBˆÈ~‚Åpap‚Ì’l‚Í‚È‚¢‚Æv‚í‚ê‚éB
+'papç³»ã®å€¤ç­–å®šã¯ã“ã“ã¾ã§ã€‚ä»¥é™ã§papã®å€¤ã¯ãªã„ã¨æ€ã‚ã‚Œã‚‹ã€‚
 
-    '«mr8(pap(7,0))¨mr8(0) 86_017v
-    If Len(mr8(0)) > 1 And (er(8, bni) < 0 Or Round(er(6, bni), 0) = -15 Or Round(er(6, bni), 0) = -14) Then   '-14’Ç‰Á202005
+    'â†“mr8(pap(7,0))â†’mr8(0) 86_017v
+    If Len(mr8(0)) > 1 And (er(8, bni) < 0 Or Round(er(6, bni), 0) = -15 Or Round(er(6, bni), 0) = -14) Then   '-14è¿½åŠ 202005
         If Val("&H" & mr8(0)) <> 0 Then
-            'MsgBox "16i•ÏŠ·ƒAƒŠ " & mr8(0) & "¨" & Chr(Val("&H" & mr8(0)))
+            'MsgBox "16é€²å¤‰æ›ã‚¢ãƒª " & mr8(0) & "â†’" & Chr(Val("&H" & mr8(0)))
             mr8(0) = Chr(Val("&H" & mr8(0)))
         Else
-            MsgBox "16i•ÏŠ·ƒTƒŒƒYF" & mr8(0)
+            MsgBox "16é€²å¤‰æ›ã‚µãƒ¬ã‚ºï¼š" & mr8(0)
         End If
-        '16i•ÏŠ·‘ÎÛ‚ÍAƒ}ƒjƒ…ƒAƒ‹˜AÚ‚Ìmr8‚¾‚¯‚Å‚ ‚éB
+        '16é€²å¤‰æ›å¯¾è±¡ã¯ã€ãƒãƒ‹ãƒ¥ã‚¢ãƒ«é€£è¼‰ã®mr8ã ã‘ã§ã‚ã‚‹ã€‚
     End If
 
-    If (er(5, bni) < 0 And pap(7, 0) <> pap(8, 0)) Then Call oshimai("", bfn, shn, sr(7), a, "—ñ”‚ªˆê’v‚µ‚Ü‚¹‚ñi·•ª‚Ì•¡”—ñ”äŠrj")
+    If (er(5, bni) < 0 And pap(7, 0) <> pap(8, 0)) Then Call oshimai("", bfn, shn, sr(7), a, "åˆ—æ•°ãŒä¸€è‡´ã—ã¾ã›ã‚“ï¼ˆå·®åˆ†ã®è¤‡æ•°åˆ—æ¯”è¼ƒï¼‰")
     
-    '4—ñ–Ú‚É—v‘f“]‹L(‚Ws–Ú•Ê“r) ¦‚Q•¶ßˆÈ~‚àÀ{,4—ñ–Ú”½‰f‚Ö
+    '4åˆ—ç›®ã«è¦ç´ è»¢è¨˜(ï¼˜è¡Œç›®åˆ¥é€”) â€»ï¼’æ–‡ç¯€ä»¥é™ã‚‚å®Ÿæ–½,4åˆ—ç›®åæ˜ ã¸
     For ii = 1 To 7
-        hk1 = "" '‘æ3ˆöq‘Î‰
+        hk1 = "" 'ç¬¬3å› å­å¯¾å¿œ
         If mr(3, ii, bni) <> "" Then
-        'MsgBox "‘æ3ˆöq:" & mr(3, ii, bni)
-        hk1 = "¦" & mr(3, ii, bni)
+        'MsgBox "ç¬¬3å› å­:" & mr(3, ii, bni)
+        hk1 = "ï½¦" & mr(3, ii, bni)
         End If
-        If StrConv(Left(mr(0, ii, bni), 1), 8) = "*" Then  '30s75i*—L–³‚à’Ç‰Áj@'mr(1,¨mr(4 ‚Ö
-            bfshn.Cells(sr(ii), 4).Value = "*¦" & mr(4, ii, bni) & "¦" & mr(2, ii, bni) & hk1
+        If StrConv(Left(mr(0, ii, bni), 1), 8) = "*" Then  '30s75ï¼ˆ*æœ‰ç„¡ã‚‚è¿½åŠ ï¼‰ã€€'mr(1,â†’mr(4 ã¸
+            bfshn.Cells(sr(ii), 4).Value = "*ï½¦" & mr(4, ii, bni) & "ï½¦" & mr(2, ii, bni) & hk1
         Else
-            bfshn.Cells(sr(ii), 4).Value = "¦" & mr(4, ii, bni) & "¦" & mr(2, ii, bni) & hk1
+            bfshn.Cells(sr(ii), 4).Value = "ï½¦" & mr(4, ii, bni) & "ï½¦" & mr(2, ii, bni) & hk1
         End If
     Next
 
-    '8s“à—e‚ğ4—ñ–Ú‚É—v‘f“]‹L@¦•¶š—ñ•ÏŠ·Ï‚İ
-    If mr(2, 8, bni) = Chr(Val("&H" & "0A")) Then 's‚Ì–c‚ç‚İ‘j~16s
-        If StrConv(Left(mr(0, 8, bni), 1), 8) = "*" Then  'mr(1,¨mr(4 ‚Ö
-            bfshn.Cells(sr(8), 4).Value = "*¦" & mr(4, 8, bni) & "¦(LF)"
+    '8è¡Œå†…å®¹ã‚’4åˆ—ç›®ã«è¦ç´ è»¢è¨˜ã€€â€»æ–‡å­—åˆ—å¤‰æ›æ¸ˆã¿
+    If mr(2, 8, bni) = Chr(Val("&H" & "0A")) Then 'è¡Œã®è†¨ã‚‰ã¿é˜»æ­¢16s
+        If StrConv(Left(mr(0, 8, bni), 1), 8) = "*" Then  'mr(1,â†’mr(4 ã¸
+            bfshn.Cells(sr(8), 4).Value = "*ï½¦" & mr(4, 8, bni) & "ï½¦(LF)"
         Else
-            bfshn.Cells(sr(8), 4).Value = "¦" & mr(4, 8, bni) & "¦(LF)"
+            bfshn.Cells(sr(8), 4).Value = "ï½¦" & mr(4, 8, bni) & "ï½¦(LF)"
         End If
     Else
         If StrConv(Left(mr(0, 8, bni), 1), 8) = "*" Then
-            bfshn.Cells(sr(8), 4).Value = "*¦" & mr(4, 8, bni) & "¦" & mr(2, 8, bni)
+            bfshn.Cells(sr(8), 4).Value = "*ï½¦" & mr(4, 8, bni) & "ï½¦" & mr(2, 8, bni)
         Else
-            bfshn.Cells(sr(8), 4).Value = "¦" & mr(4, 8, bni) & "¦" & mr(2, 8, bni)
+            bfshn.Cells(sr(8), 4).Value = "ï½¦" & mr(4, 8, bni) & "ï½¦" & mr(2, 8, bni)
         End If
     End If
     
-    bfshn.Cells(sr(0), 4).Value = bni & "/" & bun & "•¶ß"
-    bfshn.Cells(sr(4), 5).Value = mr(2, 11, bni)    'koumi€€‚Æ‚©j
-    cnt = 0  '¶‰ºƒJƒEƒ“ƒ^ƒŠƒZƒbƒg
+    bfshn.Cells(sr(0), 4).Value = bni & "/" & bun & "æ–‡ç¯€"
+    bfshn.Cells(sr(4), 5).Value = mr(2, 11, bni)    'koumï¼ˆé …æº–ã¨ã‹ï¼‰
+    cnt = 0  'å·¦ä¸‹ã‚«ã‚¦ãƒ³ã‚¿ãƒªã‚»ãƒƒãƒˆ
     qq = er(11, bni)
 
-    '‘ÎÛƒV[ƒg‚Ìu1v’T‚µ 30s81 ã‘¤‚©‚çˆø‚Á‰z‚µ
-    If Left(mr(2, 11, bni), 2) = "€–³" And qq = 0 Then qq = 1 '€–³‚Ìê‡iEj
-    If Left(mr(2, 11, bni), 2) <> "€€" Then 'E€–Ús‚ ‚éê‡‚Í‚»‚ÌŸsA‚È‚¢ê‡‚Í‚Ps–Ú‚©‚ç’T‚·
+    'å¯¾è±¡ã‚·ãƒ¼ãƒˆã®ã€Œ1ã€æ¢ã— 30s81 ä¸Šå´ã‹ã‚‰å¼•ã£è¶Šã—
+    If Left(mr(2, 11, bni), 2) = "é …ç„¡" And qq = 0 Then qq = 1 'é …ç„¡ã®å ´åˆï¼ˆãƒ»ï¼‰
+    If Left(mr(2, 11, bni), 2) <> "é …æº–" Then 'ãƒ»é …ç›®è¡Œã‚ã‚‹å ´åˆã¯ãã®æ¬¡è¡Œã€ãªã„å ´åˆã¯ï¼‘è¡Œç›®ã‹ã‚‰æ¢ã™
         Do Until Workbooks(mr(2, 1, bni)).Sheets(mr(1, 1, bni)).Cells(qq, Abs(er(4, bni))).Value = "all1" Or Workbooks(mr(2, 1, bni)).Sheets(mr(1, 1, bni)).Cells(qq, Abs(er(4, bni))).Value = 1
             qq = qq + 1
-            If qq = 2000 Then Call oshimai("", bfn, shn, k, a, "‘ÎÛƒV[ƒg‚Ìall1—ñ‚Ìu1v‚ªŒ©‚Â‚©‚ç‚È‚¢‚æ‚¤‚Å‚·B")
+            If qq = 2000 Then Call oshimai("", bfn, shn, k, a, "å¯¾è±¡ã‚·ãƒ¼ãƒˆã®all1åˆ—ã®ã€Œ1ã€ãŒè¦‹ã¤ã‹ã‚‰ãªã„ã‚ˆã†ã§ã™ã€‚")
         Loop
         If Workbooks(mr(2, 1, bni)).Sheets(mr(1, 1, bni)).Cells(qq, Abs(er(4, bni))).Value = "all1" Then qq = qq + 1
-    Else '€€FŸs‚©‚çE@€‡2A€‡a‚à
+    Else 'é …æº–ï¼šæ¬¡è¡Œã‹ã‚‰ãƒ»ã€€é …é †2ã€é …é †aã‚‚
         qq = qq + 1
     End If
     
     If pap(8, 0) > 0 Then
-        '7s•ª ˆê’U‰¼Š®¬A•Û—¯@30s79 •¡”—ñƒRƒƒ“ƒg‘}“ü
-        If pap(7, 0) > 0 Then '©QÆƒV[ƒg‚É€–Ús‚ª–³‚¢ê‡‚ğœ‚­
+        '7è¡Œåˆ† ä¸€æ—¦ä»®å®Œæˆã€ä¿ç•™ã€€30s79 è¤‡æ•°åˆ—ã‚³ãƒ¡ãƒ³ãƒˆæŒ¿å…¥
+        If pap(7, 0) > 0 Then 'â†å‚ç…§ã‚·ãƒ¼ãƒˆã«é …ç›®è¡ŒãŒç„¡ã„å ´åˆã‚’é™¤ã
             Call tnsai(ct8, tst, ct3, er78(), a, sr(7), bni, 1, k - 1, -7, mr(), er(), pap(7, 0), mr8())
         End If
-        '8sŠ®¬Aˆê’U•Û—¯
-        If er(11, bni) > 0 And pap(8, 0) > 0 Then '©QÆƒV[ƒg‚É€–Ús‚ª–³‚¢ê‡‚ğœ‚­
-            If mr(2, 11, bni) = "€ŒÅ" Then
+        '8è¡Œå®Œæˆã€ä¸€æ—¦ä¿ç•™
+        If er(11, bni) > 0 And pap(8, 0) > 0 Then 'â†å‚ç…§ã‚·ãƒ¼ãƒˆã«é …ç›®è¡ŒãŒç„¡ã„å ´åˆã‚’é™¤ã
+            If mr(2, 11, bni) = "é …å›º" Then
                 Call tnsai(ct8, tst, ct3, er78(), a, sr(8), bni, 1, qq - 1, -8, mr(), er(), 0, mr8())
             Else
                 Call tnsai(ct8, tst, ct3, er78(), a, sr(8), bni, 1, Int(er(11, bni)), -8, mr(), er(), 0, mr8())
@@ -1157,144 +1157,144 @@ MsgBox "‹ó”’”­“®"
         End If
     End If
 
-    'Ÿ‚‘¬ƒV[ƒgì¬30s82f
-        If mr(1, 11, 1) = "ƒ‚‘¬" Then
+    'â—†é«˜é€Ÿã‚·ãƒ¼ãƒˆä½œæˆ30s82f
+        If mr(1, 11, 1) = "ç´”é«˜é€Ÿ" Then
             Call kskst(pap(7, 0), h, er78(), er9(), mr9(), er3, mr3(), er5(), mr5(), c5, pap(3, 0), pap(5, 0), bni, qq, rrr, mr(), er(), a, cted())
-            hirt = Range(twt.Cells(1, 1), twt.Cells(rrr + 1, 9)).Value '¦rrr¨rrr+1(€–³ˆ½‚¢‚Íƒf[ƒ^‚·‚Á‚©‚ç‚©‚ñ‘Îô)@86_018i
-        End If '‚‘¬ƒV[ƒgì¬‚±‚±‚Ü‚Å
+            hirt = Range(twt.Cells(1, 1), twt.Cells(rrr + 1, 9)).Value 'â€»rrrâ†’rrr+1(é …ç„¡æˆ–ã„ã¯ãƒ‡ãƒ¼ã‚¿ã™ã£ã‹ã‚‰ã‹ã‚“å¯¾ç­–)ã€€86_018i
+        End If 'é«˜é€Ÿã‚·ãƒ¼ãƒˆä½œæˆã“ã“ã¾ã§
     
-    ii = qq 'rrr‚Í‚‘¬ƒV[ƒg‚Ìƒf[ƒ^I—¹s(ŠÜƒƒbƒNˆöq)‚ğ‰·‘¶‚ÖAii‚ª‘‚¦‚Ä‚¢‚­
-    cnt = 0 'ƒJƒEƒ“ƒ^ƒŠƒZƒbƒg
-    pqp = 0 'ƒƒbƒNƒIƒ“‰Â”ÛƒŠƒZƒbƒg
+    ii = qq 'rrrã¯é«˜é€Ÿã‚·ãƒ¼ãƒˆã®ãƒ‡ãƒ¼ã‚¿çµ‚äº†è¡Œ(å«ãƒ­ãƒƒã‚¯å› å­)ã‚’æ¸©å­˜ã¸ã€iiãŒå¢—ãˆã¦ã„ã
+    cnt = 0 'ã‚«ã‚¦ãƒ³ã‚¿ãƒªã‚»ãƒƒãƒˆ
+    pqp = 0 'ãƒ­ãƒƒã‚¯ã‚ªãƒ³å¯å¦ãƒªã‚»ãƒƒãƒˆ
 
-    If mr(1, 11, 1) = "ƒ‚‘¬" Or mr(1, 11, 1) = "‹ß—‚‘¬" Then
+    If mr(1, 11, 1) = "ç´”é«˜é€Ÿ" Or mr(1, 11, 1) = "è¿‘ä¼¼é«˜é€Ÿ" Then
         hiru = Range(bfshn.Cells(1, mghz), bfshn.Cells(h, mghz + 1)).Value
     End If
 
     Application.Goto bfshn.Cells(k, a - 3), True  '86_020n
     bfshn.Cells(k, a).Select
     
-    'Ÿ‚±‚±‚©‚çs–ˆ
-    Do While ii <= cted(0) '628‚æ‚è
+    'â—†ã“ã“ã‹ã‚‰è¡Œæ¯
+    Do While ii <= cted(0) '628ã‚ˆã‚Š
         ct3 = ""
         ct8 = "" '86_019o
         If Abs(er(4, bni)) >= 1 Then
             If Workbooks(mr(2, 1, bni)).Sheets(mr(1, 1, bni)).Cells(ii, Abs(er(4, bni))).Value = "" Then
-                Exit Do  '‘ÎÛƒV[ƒg‚Ìall_1—ñ
+                Exit Do  'å¯¾è±¡ã‚·ãƒ¼ãƒˆã®all_1åˆ—
             End If
         End If
 
-        If mr(1, 11, 1) = "ƒ‚‘¬" Then  '‚‘¬ƒƒbƒNƒIƒ“”»’è
-            If hirt(ii, 2) = "000_0000000" Then  'ƒ‚‘¬‚Í‚‘¬ƒV[ƒgQÆ‚Ö@30s86_012r   0¨0000000  86_019c
-                UserForm4.StartUpPosition = 2 '1@ƒGƒNƒZƒ‹‚Ì’†‰›A@2@‰æ–Ê‚Ì’†‰›A@3@‰æ–Ê‚Ì¶ã
+        If mr(1, 11, 1) = "ç´”é«˜é€Ÿ" Then  'é«˜é€Ÿãƒ­ãƒƒã‚¯ã‚ªãƒ³åˆ¤å®š
+            If hirt(ii, 2) = "000_0000000" Then  'ç´”é«˜é€Ÿæ™‚ã¯é«˜é€Ÿã‚·ãƒ¼ãƒˆå‚ç…§ã¸ã€€30s86_012r   0â†’0000000  86_019c
+                UserForm4.StartUpPosition = 2 '1ã€€ã‚¨ã‚¯ã‚»ãƒ«ã®ä¸­å¤®ã€ã€€2ã€€ç”»é¢ã®ä¸­å¤®ã€ã€€3ã€€ç”»é¢ã®å·¦ä¸Š
                 UserForm4.Show vbModeless
                 UserForm4.Repaint
-                bfshn.Cells(sr(2), 5).Value = "ƒ‚Û¯¸" '20191118
-                k0 = h0  '‚±‚ê‚ªƒ|ƒCƒ“ƒg
+                bfshn.Cells(sr(2), 5).Value = "ç´”é«˜ï¾›ï½¯ï½¸" '20191118
+                k0 = h0  'ã“ã‚ŒãŒãƒã‚¤ãƒ³ãƒˆ
                 pqp = 1
                 Unload UserForm4
                 UserForm1.Repaint
             End If
             
-            ct3 = hirt(ii + pqp, 6)  '‚±‚±‚Åct3’“ü(“Á–½ğŒ‚Åg—pA“]ÚƒGƒŒƒƒ“ƒg)
-            ct8 = hirt(ii + pqp, 8)  '   30s86_019o(“Á–½ğŒ‚Åg—pA“]ÚƒGƒŒƒƒ“ƒg(’l‚Ì•û))
+            ct3 = hirt(ii + pqp, 6)  'ã“ã“ã§ct3æ³¨å…¥(ç‰¹å‘½æ¡ä»¶ã§ä½¿ç”¨ã€è»¢è¼‰ã‚¨ãƒ¬ãƒ¡ãƒ³ãƒˆ)
+            ct8 = hirt(ii + pqp, 8)  '   30s86_019o(ç‰¹å‘½æ¡ä»¶ã§ä½¿ç”¨ã€è»¢è¼‰ã‚¨ãƒ¬ãƒ¡ãƒ³ãƒˆ(å€¤ã®æ–¹))
             
-            '«‚±‚ê‚·‚é‚½‚ß‚ÉA‚Ts‚O‚Å‚àA‚‘¬ƒV[ƒg‚R—ñ–Ú‚É‚P‚ğ–„‚ß‚ŞB‚ÖB
+            'â†“ã“ã‚Œã™ã‚‹ãŸã‚ã«ã€ï¼•è¡Œï¼ã§ã‚‚ã€é«˜é€Ÿã‚·ãƒ¼ãƒˆï¼“åˆ—ç›®ã«ï¼‘ã‚’åŸ‹ã‚è¾¼ã‚€ã€‚ã¸ã€‚
             If hirt(ii + pqp, 3) = "" Then
                 c5 = 0
-            Else  '«c5ÅI‘Il(ƒ‚‘¬)’Ç‰Á(86_020f)
-                                           '«g—p‚³‚ê‚Ä‚é‚Ìmr(2,4,bni)‚¾‚¯
-                If pap(2, 0) > 0 And wetaiou("", "", 0, er3(), mr(2, 4, bni), mr(1, 11, 1), mr3(), 3) = hirt(ii + pqp, 1) Then '¤¤¤¤‚¾‚¯¨•sÌ—p
+            Else  'â†“c5æœ€çµ‚é¸è€ƒ(ç´”é«˜é€Ÿ)è¿½åŠ (86_020f)
+                                           'â†“ä½¿ç”¨ã•ã‚Œã¦ã‚‹ã®mr(2,4,bni)ã ã‘
+                If pap(2, 0) > 0 And wetaiou("", "", 0, er3(), mr(2, 4, bni), mr(1, 11, 1), mr3(), 3) = hirt(ii + pqp, 1) Then 'ï½¤ï½¤ï½¤ï½¤ã ã‘â†’ä¸æ¡ç”¨
                     c5 = 0
-                    MsgBox "2s–Ú•¡”—ñ‚ÌŠÂ‹«‚Å‘ÎÛ—ñ‚ªall‹ó”’Ao‚Ü‚µ‚½A–³‹‚³‚ê‚Ü‚·(ƒ‚‘¬)B”ğ‚¯‚½‚¯‚ê‚Î2s–Ú’P”—ñ‚ÅB"
-                Else 'Ì—p
+                    MsgBox "2è¡Œç›®è¤‡æ•°åˆ—ã®ç’°å¢ƒã§å¯¾è±¡åˆ—ãŒallç©ºç™½ã€å‡ºã¾ã—ãŸã€ç„¡è¦–ã•ã‚Œã¾ã™(ç´”é«˜é€Ÿ)ã€‚é¿ã‘ãŸã‘ã‚Œã°2è¡Œç›®å˜æ•°åˆ—ã§ã€‚"
+                Else 'æ¡ç”¨
                     c5 = 1
-                    qq = Val(rvsrz3(hirt(ii + pqp, 2) & "", 2, "_", 0)) '‚‘¬ƒV[ƒg¨‘ÎÛƒV[ƒg‚Ìs‚ÉŠ·Z,”z—ñ•Ï”“±“üAc5=1‚Ì‚İ‚É“K—p‚Ö  86_019c
+                    qq = Val(rvsrz3(hirt(ii + pqp, 2) & "", 2, "_", 0)) 'é«˜é€Ÿã‚·ãƒ¼ãƒˆâ†’å¯¾è±¡ã‚·ãƒ¼ãƒˆã®è¡Œã«æ›ç®—,é…åˆ—å¤‰æ•°å°å…¥ã€c5=1ã®ã¿ã«é©ç”¨ã¸  86_019c
                 End If
             End If
         
-        Else  'ƒ‚‘¬ˆÈŠO@ct3‚Í•K‚¸""
-            c5 = kaunta(mr(), ii, pap(5, 0), bni, er5(), mr5()) '‚±‚±‚Å‚Ìii‚Í‚‘¬ƒV[ƒg‚Ì0ƒJƒEƒ“ƒgs
-             'i‚±‚±‚Å‚Ìc5 = 1‚ÍA‚Ü‚¾‰¼Ì—pó‘Ôj
-            If c5 = 1 Then  '‚ÅA©c5ÅI‘Il(notƒ‚‘¬)@'«g—p‚³‚ê‚Ä‚é‚Ìmr(2,4,bni)‚¾‚¯
+        Else  'ç´”é«˜é€Ÿä»¥å¤–ã€€ct3ã¯å¿…ãš""
+            c5 = kaunta(mr(), ii, pap(5, 0), bni, er5(), mr5()) 'ã“ã“ã§ã®iiã¯é«˜é€Ÿã‚·ãƒ¼ãƒˆã®0ã‚«ã‚¦ãƒ³ãƒˆè¡Œ
+             'ï¼ˆã“ã“ã§ã®c5 = 1ã¯ã€ã¾ã ä»®æ¡ç”¨çŠ¶æ…‹ï¼‰
+            If c5 = 1 Then  'ã§ã€â†c5æœ€çµ‚é¸è€ƒ(notç´”é«˜é€Ÿ)ã€€'â†“ä½¿ç”¨ã•ã‚Œã¦ã‚‹ã®mr(2,4,bni)ã ã‘
                 If pap(2, 0) > 0 And wetaiou("", "", 0, er3(), mr(2, 4, bni), mr(1, 11, 1), mr3(), 3) = wetaiou(mr(2, 1, bni), mr(1, 1, bni), ii, er3(), mr(2, 4, bni), mr(1, 11, 1), mr3(), 3) Then
-                    c5 = 0 'Ì—p—\’è¨•sÌ—p‚Ö@86_020f’Ç‰Á
-                    MsgBox "2s–Ú•¡”—ñ‚ÌŠÂ‹«‚Å‘ÎÛ—ñ‚ªall‹ó”’Ao‚Ü‚µ‚½A–³‹‚³‚ê‚Ü‚·(notƒ‚‘¬)B”ğ‚¯‚½‚¯‚ê‚Î2s–Ú’P”—ñ‚ÅB"
-                Else 'Ì—p—\’è¨–{Ì—p‚Ö
-                    qq = ii 'c5=1Šm’è‚Ì‚İ‚É“K—p‚Ö(ˆê‰ƒoƒO)@86_015b@]—ˆ‚Í‚±‚¿‚ç‚Å‚¯‚Å‚ ‚Á‚½
+                    c5 = 0 'æ¡ç”¨äºˆå®šâ†’ä¸æ¡ç”¨ã¸ã€€86_020fè¿½åŠ 
+                    MsgBox "2è¡Œç›®è¤‡æ•°åˆ—ã®ç’°å¢ƒã§å¯¾è±¡åˆ—ãŒallç©ºç™½ã€å‡ºã¾ã—ãŸã€ç„¡è¦–ã•ã‚Œã¾ã™(notç´”é«˜é€Ÿ)ã€‚é¿ã‘ãŸã‘ã‚Œã°2è¡Œç›®å˜æ•°åˆ—ã§ã€‚"
+                Else 'æ¡ç”¨äºˆå®šâ†’æœ¬æ¡ç”¨ã¸
+                    qq = ii 'c5=1ç¢ºå®šæ™‚ã®ã¿ã«é©ç”¨ã¸(ä¸€å¿œãƒã‚°)ã€€86_015bã€€å¾“æ¥ã¯ã“ã¡ã‚‰ã§ã‘ã§ã‚ã£ãŸ
                 End If
             End If
         End If
         
-        'ƒJƒEƒ“ƒg‘ÎÛ‚Å‚ ‚ê‚ÎÀ{i‚Å–³‚¯‚ê‚Î”ò‚Î‚·j
+        'ã‚«ã‚¦ãƒ³ãƒˆå¯¾è±¡ã§ã‚ã‚Œã°å®Ÿæ–½ï¼ˆã§ç„¡ã‘ã‚Œã°é£›ã°ã™ï¼‰
         If c5 = 1 Then
-            'ƒ‘•¡•¶ß‚Ì•Ô‚è’l‚ğ•Ô‚·(›ƒ‘¤ƒ‘Œ`®)B•¡•¶ß‚Å–³‚­‚Ä‚àíg‚í‚ê‚é(am2)
-            If mr(1, 11, 1) = "ƒ‚‘¬" Then  '‚‘¬ƒƒbƒNƒIƒ“”»’è
-'                am2 = hirt(ii + pqp, 1)   '30s85_027ŒŸØ6
+            'ãƒ±è¤‡æ–‡ç¯€ã®è¿”ã‚Šå€¤ã‚’è¿”ã™(â—‹ãƒ±â–½ãƒ±â—‡å½¢å¼)ã€‚è¤‡æ–‡ç¯€ã§ç„¡ãã¦ã‚‚å¸¸æ™‚ä½¿ã‚ã‚Œã‚‹(am2)
+            If mr(1, 11, 1) = "ç´”é«˜é€Ÿ" Then  'é«˜é€Ÿãƒ­ãƒƒã‚¯ã‚ªãƒ³åˆ¤å®š
+'                am2 = hirt(ii + pqp, 1)   '30s85_027æ¤œè¨¼6
                 am2 = WorksheetFunction.Clean(hirt(ii + pqp, 1))   '30s86_022i
             Else
                 am2 = wetaiou(mr(2, 1, bni), mr(1, 1, bni), qq, er3(), mr(2, 4, bni), mr(1, 11, 1), mr3(), 3) '30s51
             End If
             
-            If am2 = "" Then am2 = "[(î•ñ‹ó”’s)["
+            If am2 = "" Then am2 = "ãƒ¼(æƒ…å ±ç©ºç™½è¡Œ)ãƒ¼"
             hk1 = ""
 
-            '“Ë‡ƒL[unicode¨?‚É‚È‚é‘ÎôŠJn@86_016q
-            If InStr(am2, "?") = 0 And InStr(StrConv(am2, 8 + hrkt), "?") > 0 Then MsgBox "uni‚ ‚è’ˆÓi" & am2  '86_020s@24¨8 + hrkt
+            'çªåˆã‚­ãƒ¼unicodeâ†’?ã«ãªã‚‹å¯¾ç­–é–‹å§‹ã€€86_016q
+            If InStr(am2, "?") = 0 And InStr(StrConv(am2, 8 + hrkt), "?") > 0 Then MsgBox "uniã‚ã‚Šæ³¨æ„ï¼ˆ" & am2  '86_020sã€€24â†’8 + hrkt
 
-            'p”»’è--¡--¡--¡--@p¨pkt@86_014n
-            If mr(1, 11, 1) = "ƒ‚‘¬" Or mr(1, 11, 1) = "‹ß—‚‘¬" Then  '‚‘¬ƒƒbƒNƒIƒ“”»’è
+            'påˆ¤å®š--â– --â– --â– --ã€€pâ†’pktã€€86_014n
+            If mr(1, 11, 1) = "ç´”é«˜é€Ÿ" Or mr(1, 11, 1) = "è¿‘ä¼¼é«˜é€Ÿ" Then  'é«˜é€Ÿãƒ­ãƒƒã‚¯ã‚ªãƒ³åˆ¤å®š
                pkt = kskup(am1, am2, n1, n2, h, er(2, bni), er(6, bni), k0, h0, pap(2, 0), er2(), mr(1, 11, 1), pqp, er5(0), er3(), hiru)
-            Else '’á‘¬
+            Else 'ä½é€Ÿ
                pkt = tskup(am1, am2, n1, n2, h, er(2, bni), er(6, bni), k0, h0, pap(2, 0), er2(), mr(1, 11, 1), pqp, er5(0), er3())
             End If
 
-            kahi = 0 '(‰ÁZ‰Â”Û”»•Êƒtƒ‰ƒO) zyou¨kahi‚Ö@86_014j
+            kahi = 0 '(åŠ ç®—å¯å¦åˆ¤åˆ¥ãƒ•ãƒ©ã‚°) zyouâ†’kahiã¸ã€€86_014j
             kasan = 0 '16s
             
             If pkt = -1 Then Exit Do
-            If pkt = -2 Then 'š629(85_001) pap(2,0)‚Íƒ[ƒ‚Å‚ ‚éB@‚‘¬ƒxƒ^
-                MsgBox "‚‘¬ƒxƒ^"
-                '“Á–½ğŒ‚Å‚Ì‚‘¬ƒxƒ^‚Í‚Ç‚¤‚È‚é‚Ì‚Å‚µ‚å‚¤‚©H«¡‚Í‹­§I—¹
-                If (er(2, bni) < 0 And er(5, bni) >= 0 And er(6, bni) > 0 And (er(7, bni) = 0 Or er(7, bni) = 0.1) And er(8, bni) <> 0) Then Call oshimai("", bfn, shn, 1, 0, "“Á–½ğŒA‘åä•vH")
+            If pkt = -2 Then 'â˜…629(85_001) pap(2,0)ã¯ã‚¼ãƒ­ã§ã‚ã‚‹ã€‚ã€€é«˜é€Ÿãƒ™ã‚¿
+                MsgBox "é«˜é€Ÿãƒ™ã‚¿"
+                'ç‰¹å‘½æ¡ä»¶ã§ã®é«˜é€Ÿãƒ™ã‚¿ã¯ã©ã†ãªã‚‹ã®ã§ã—ã‚‡ã†ã‹ï¼Ÿâ†“ä»Šã¯å¼·åˆ¶çµ‚äº†
+                If (er(2, bni) < 0 And er(5, bni) >= 0 And er(6, bni) > 0 And (er(7, bni) = 0 Or er(7, bni) = 0.1) And er(8, bni) <> 0) Then Call oshimai("", bfn, shn, 1, 0, "ç‰¹å‘½æ¡ä»¶ã€å¤§ä¸ˆå¤«ï¼Ÿ")
                 
-                If rrr - qq <= 1 Then '‘ÎÛƒV[ƒgƒf[ƒ^2sˆÈ‰º‚È‚ç‚‘¬ƒxƒ^‚Å‚È‚­’Êí•û–@‚É–ß‚·(p=2)
+                If rrr - qq <= 1 Then 'å¯¾è±¡ã‚·ãƒ¼ãƒˆãƒ‡ãƒ¼ã‚¿2è¡Œä»¥ä¸‹ãªã‚‰é«˜é€Ÿãƒ™ã‚¿ã§ãªãé€šå¸¸æ–¹æ³•ã«æˆ»ã™(p=2)
                      pkt = 2
                 Else
-                    MsgBox "•\‹ó”’ƒxƒ^“\‚è“]ÚŠJn‚µ‚Ü‚·B" & vbCrLf & _
-                    "s”F(—\’è)" & rrr - qq + 1 & vbCrLf & _
-                    "—ñ”F(—\’è)" & 1 _
-                    , 64, "ƒxƒ^“\‚èu“]ÚvŠJn"
+                    MsgBox "è¡¨ç©ºç™½ãƒ™ã‚¿è²¼ã‚Šè»¢è¼‰é–‹å§‹ã—ã¾ã™ã€‚" & vbCrLf & _
+                    "è¡Œæ•°ï¼š(äºˆå®š)" & rrr - qq + 1 & vbCrLf & _
+                    "åˆ—æ•°ï¼š(äºˆå®š)" & 1 _
+                    , 64, "ãƒ™ã‚¿è²¼ã‚Šã€Œè»¢è¼‰ã€é–‹å§‹"
                     
-                    'ˆê—ñ“ñ—ñA‚T—ñ‚ÌƒI[ƒgƒtƒBƒ‹Õ’n
+                    'ä¸€åˆ—äºŒåˆ—ã€ï¼•åˆ—ã®ã‚ªãƒ¼ãƒˆãƒ•ã‚£ãƒ«è·¡åœ°
                     Call betat4(bfn, shn, k, 0.4, k + rrr - qq, 0.4, bfn, shn, k, 1, "pp", "1")
                     
-                    If Not StrConv(Left(mr(0, 2, bni), 1), 8) = "*" Then '[‚Q‚É‚à2s–ŠT”O”½‰f‚Ö
+                    If Not StrConv(Left(mr(0, 2, bni), 1), 8) = "*" Then 'ãƒ¼ï¼’ã«ã‚‚2è¡Œï¼Šæ¦‚å¿µåæ˜ ã¸
                         Call betat4(bfn, shn, k, 0.4, k + rrr - qq, 0.4, bfn, shn, k, 2, "pp", "c")
                     End If
                     
-                    Call cpp2("", Now(), 0, 0, 0, -1, bfn, shn, k, 5, k + rrr - qq, 5, -4163) '5—ñ–Úinowj‚±‚ê‚É‹Ãk ‘¬
+                    Call cpp2("", Now(), 0, 0, 0, -1, bfn, shn, k, 5, k + rrr - qq, 5, -4163) '5åˆ—ç›®ï¼ˆnowï¼‰ã“ã‚Œã«å‡ç¸® é€Ÿ
                     
-                    '“Ë‡—ñ@'«•¶š—ñ‚Å‚Ì’l‰»i‘¬’B‚Ì‚½‚ßj
-                    Call betat4(twn, "‚‘¬ƒV[ƒg_" & syutoku(), qq, 1, rrr, 1, bfn, shn, k, Abs(er2(0)), "mm", "")
+                    'çªåˆåˆ—ã€€'â†“æ–‡å­—åˆ—ã§ã®å€¤åŒ–ï¼ˆé€Ÿé”ã®ãŸã‚ï¼‰
+                    Call betat4(twn, "é«˜é€Ÿã‚·ãƒ¼ãƒˆ_" & syutoku(), qq, 1, rrr, 1, bfn, shn, k, Abs(er2(0)), "mm", "")
                     
-                    '“–—ñ
-                    If mr(2, 9, bni) <> "" And Round(er(9, bni)) = 0 Then '¦¦’è”‰ÁZ‘Î‰
+                    'å½“åˆ—
+                    If mr(2, 9, bni) <> "" And Round(er(9, bni)) = 0 Then 'ï½¦ï½¦å®šæ•°åŠ ç®—å¯¾å¿œ
                         Call betat4(bfn, shn, k, 0.4, k + rrr - qq, 0.4, bfn, shn, k, a, "pm", mr(2, 9, bni))
-                    ElseIf (er(8, bni) = 0 Or er(7, bni) <> 0) And er(6, bni) > 0.5 Then  '‰ÁZˆ—•”(“¯—ñ“]Ú‚È‚çÀs‚µ‚È‚¢)
+                    ElseIf (er(8, bni) = 0 Or er(7, bni) <> 0) And er(6, bni) > 0.5 Then  'åŠ ç®—å‡¦ç†éƒ¨(åŒåˆ—è»¢è¼‰ãªã‚‰å®Ÿè¡Œã—ãªã„)
                         Call betat4(mr(2, 1, bni), mr(1, 1, bni), qq, Int(er(6, bni)), rrr, Int(er(6, bni)), bfn, shn, k, a, "pm", "")
                     End If
                    
-                    If pap(7, 0) <> pap(8, 0) Then MsgBox "p=-2‚Åpap(7,0) <> pap(8,0)‚Å‚·.—¯ˆÓ‚ğ(ˆ—‚Í‘±s)"
-                        'MsgBox "‰¡•ûŒüƒxƒ^“\‚è‚Å‚·"
+                    If pap(7, 0) <> pap(8, 0) Then MsgBox "p=-2ã§pap(7,0) <> pap(8,0)ã§ã™.ç•™æ„ã‚’(å‡¦ç†ã¯ç¶šè¡Œ)"
+                        'MsgBox "æ¨ªæ–¹å‘ãƒ™ã‚¿è²¼ã‚Šã§ã™"
                     If er(8, bni) <> 0 Then
-                        For jj = 0 To pap(7, 0) 'pap(7,0),pap(8,0)0‚Ì‚Íˆê‰ñƒ|ƒbƒLƒŠÀ{
+                        For jj = 0 To pap(7, 0) 'pap(7,0),pap(8,0)ï¼0ã®æ™‚ã¯ä¸€å›ãƒãƒƒã‚­ãƒªå®Ÿæ–½
                             qap = jj
                             If er78(1, jj) <> 0 Then
                                 If er78(0, jj) = 0 Then
                                     axa = a
                                     If er(6, bni) > 0 And er(5, bni) >= 0 Then
-                                        Call oshimai("", bfn, shn, 1, 0, "ˆ—’†~Ba‰ÁZ‚ ‚è‚Å“¯—ñ“]Ú‚µ‚æ‚¤‚Æ‚µ‚Ä‚¢‚Ü‚·BŠm”F‚ğB")
+                                        Call oshimai("", bfn, shn, 1, 0, "å‡¦ç†ä¸­æ­¢ã€‚aåŠ ç®—ã‚ã‚Šã§åŒåˆ—è»¢è¼‰ã—ã‚ˆã†ã¨ã—ã¦ã„ã¾ã™ã€‚ç¢ºèªã‚’ã€‚")
                                     End If
                                 Else
                                     axa = er78(0, jj)
@@ -1303,42 +1303,42 @@ MsgBox "‹ó”’”­“®"
                     
                             If pap(7, 0) > 0 And jj <> pap(7, 0) Then
                                 Do While er78(0, jj + 1) - er78(0, jj) = 1 And er78(1, jj + 1) - er78(1, jj) = 1
-                                    jj = jj + 1   ' for“à‚Ìjj‚ğ‘‚â‚·B
+                                    jj = jj + 1   ' forå†…ã®jjã‚’å¢—ã‚„ã™ã€‚
                                     If jj = pap(7, 0) Then Exit Do
                                 Loop
-                                'If qap <> jj Then MsgBox "‰¡•ûŒüƒxƒ^“\‚è‚Å‚·"
+                                'If qap <> jj Then MsgBox "æ¨ªæ–¹å‘ãƒ™ã‚¿è²¼ã‚Šã§ã™"
                             End If
                             DoEvents
-                            Application.StatusBar = "‰¡ƒxƒ^’†A" & Str(jj) & " / " & Str(pap(7, 0)) & " A " & Str(Abs(qap - jj) + 1) & "—ñ"
+                            Application.StatusBar = "æ¨ªãƒ™ã‚¿ä¸­ã€" & Str(jj) & " / " & Str(pap(7, 0)) & " ã€ " & Str(Abs(qap - jj) + 1) & "åˆ—"
                 
-                            If (er(3, bni) < 0 Or er(3, bni) = 0.1) And (er(4, bni) < 0 Or er(4, bni) = 0.1) Then '•¶š—ñ
-                                er34 = "mm" '•¶š—ñw’è([[)
-                            ElseIf er(3, bni) > 0.2 And (er(4, bni) < 0 Or er(4, bni) = 0.1) Then '’Ê‰İ
-                                er34 = "pm"  '’Ê‰İw’èi{[j
+                            If (er(3, bni) < 0 Or er(3, bni) = 0.1) And (er(4, bni) < 0 Or er(4, bni) = 0.1) Then 'æ–‡å­—åˆ—æ™‚
+                                er34 = "mm" 'æ–‡å­—åˆ—æŒ‡å®š(ãƒ¼ãƒ¼)
+                            ElseIf er(3, bni) > 0.2 And (er(4, bni) < 0 Or er(4, bni) = 0.1) Then 'é€šè²¨æ™‚
+                                er34 = "pm"  'é€šè²¨æŒ‡å®šï¼ˆï¼‹ãƒ¼ï¼‰
                             ElseIf (er(3, bni) < 0 Or er(3, bni) = 0.1) Then
-                                er34 = "mp"  'ƒZƒ‹“¥P "ap"¨"mpi[{j"@’xEƒRƒsƒyƒpƒ^[ƒ“
+                                er34 = "mp"  'ã‚»ãƒ«è¸è¥² "ap"â†’"mpï¼ˆãƒ¼ï¼‹ï¼‰"ã€€é…ãƒ»ã‚³ãƒ”ãƒšãƒ‘ã‚¿ãƒ¼ãƒ³
                             Else
-                                er34 = "pp"  'i{{j
+                                er34 = "pp"  'ï¼ˆï¼‹ï¼‹ï¼‰
                             End If
-                            If Abs(er78(1, qap)) = 0.1 Then MsgBox "betat4‹““®’ˆÓa" '86_019a
+                            If Abs(er78(1, qap)) = 0.1 Then MsgBox "betat4æŒ™å‹•æ³¨æ„a" '86_019a
                             Call betat4(mr(2, 1, bni), mr(1, 1, bni), qq, er78(1, qap), rrr, er78(1, jj), bfn, shn, k, axa, er34, mr8(jj))
                         Next
                     End If
                     Exit Do
                 End If
                 Application.StatusBar = False
-            End If  'p=-2‚±‚±‚Ü‚Å
+            End If  'p=-2ã“ã“ã¾ã§
 
-            '“Ë‡æ‚ÉAM‚ ‚é(p=1)‚Ìˆ—@n2F“–ƒV[ƒgˆ—s@qqF‘ÎÛƒV[ƒgæs
+            'çªåˆå…ˆã«AMã‚ã‚‹æ™‚(p=1)ã®å‡¦ç†ã€€n2ï¼šå½“ã‚·ãƒ¼ãƒˆå‡¦ç†è¡Œã€€qqï¼šå¯¾è±¡ã‚·ãƒ¼ãƒˆå–è¾¼è¡Œ
             If pkt = 1 Then
                 If Round(er(6, bni)) = -2 Then
-                    'c=-2‚Ì‰ÁZˆ—(‚ËA‚Ğ)
+                    'c=-2ã®åŠ ç®—å‡¦ç†(ã­ã€ã²)
                     'If er(7, bni) <> 0 And er(5, bni) >= 0 Then
-                    '«30s86_020n bni¨1
+                    'â†“30s86_020n bniâ†’1
                     If er(7, bni) <> 0 And er(5, 1) >= 0 Then
-                        Call oshimai("", bfn, shn, 1, 0, "u-2v‚Å‘¼—ñ‘€ì‚ğ‚µ‚æ‚¤‚Æ‚µ‚Ä‚¢‚Ü‚·BC³‚ğB")
+                        Call oshimai("", bfn, shn, 1, 0, "ã€Œ-2ã€ã§ä»–åˆ—æ“ä½œã‚’ã—ã‚ˆã†ã¨ã—ã¦ã„ã¾ã™ã€‚ä¿®æ­£ã‚’ã€‚")
                     End If
-                    '€€“K—p”p~30s64
+                    'é …æº–é©ç”¨å»ƒæ­¢30s64
                     If mr(2, 9, bni) <> "" And Round(er(9, bni)) = 0 Then
                         kasan = tszn(er9(), bni, mr(), qq, pap(9, 0), mr9())
                         kahi = 1
@@ -1350,92 +1350,92 @@ MsgBox "‹ó”’”­“®"
                     End If
                     If kahi = 1 Then bfshn.Cells(n2, a).Value = bfshn.Cells(n2, a).Value + kasan
                 ElseIf er(8, bni) <> 0 And Not (er(5, bni) < 0 And er(6, bni) > 0) Then
-                    '“]Úˆ—(˜AÚŒ^) ‹­§“¯—ñE(ã‘Œ^) ‚¦A‚¤@‘¼—ñ(ã‘Œ^) ‚³A‚¹A‚¿A‚Æ (‹­§“¯—ñ)
-                    If (er(2, bni) < 0 And er(5, bni) >= 0 And er(6, bni) > 0 And (er(7, bni) = 0 Or er(7, bni) = 0.1) And er(8, bni) > 0) Then  '30s86_012w '“Á–½‰ÁZŒ^‚Ì•û
-                    '“Á–½ğŒ@“Á–½(‰ÁZŒ^)‚Í‚±‚±‚ÍƒXƒ‹[
+                    'è»¢è¼‰å‡¦ç†(é€£è¼‰å‹) å¼·åˆ¶åŒåˆ—ãƒ»(ä¸Šæ›¸å‹) ãˆã€ã†ã€€ä»–åˆ—(ä¸Šæ›¸å‹) ã•ã€ã›ã€ã¡ã€ã¨ (å¼·åˆ¶åŒåˆ—)
+                    If (er(2, bni) < 0 And er(5, bni) >= 0 And er(6, bni) > 0 And (er(7, bni) = 0 Or er(7, bni) = 0.1) And er(8, bni) > 0) Then  '30s86_012w 'ç‰¹å‘½åŠ ç®—å‹ã®æ–¹
+                    'ç‰¹å‘½æ¡ä»¶ã€€ç‰¹å‘½æ™‚(åŠ ç®—å‹)ã¯ã“ã“ã¯ã‚¹ãƒ«ãƒ¼
                     'MsgBox "iei"
-                    Else  '‚±‚ê‚Ü‚Å‚Í‚±‚¿‚ç«@“Á–½(˜AÚŒ^)‚à‚±‚¿‚ç
+                    Else  'ã“ã‚Œã¾ã§ã¯ã“ã¡ã‚‰â†“ã€€ç‰¹å‘½æ™‚(é€£è¼‰å‹)ã‚‚ã“ã¡ã‚‰
                         If er(6, bni) = -5 Or er(6, bni) = -7 Then
                             bfshn.Cells(n2, a).Value = hunpan(mr(2, 1, bni), mr(1, 1, bni), qq, er(3, bni), er(4, bni), er(5, bni), er(6, bni), er(8, bni), mr(2, 6, bni), hk1)
                             If hk1 <> "" And er(7, bni) <> 0 Then bfshn.Cells(n2, a).Value = hk1
-                        Else '“Á–½ğŒ(˜AÚŒ^)‚Å‚Í«‚±‚¿‚ç‚ğ’Ê‚éB
-                            Call tnsai(ct8, tst, ct3, er78(), a, n2, bni, pkt, qq, 0, mr(), er(), pap(7, 0), mr8()) '30s62ˆêŒ³‰»
+                        Else 'ç‰¹å‘½æ¡ä»¶(é€£è¼‰å‹)ã§ã¯â†“ã“ã¡ã‚‰ã‚’é€šã‚‹ã€‚
+                            Call tnsai(ct8, tst, ct3, er78(), a, n2, bni, pkt, qq, 0, mr(), er(), pap(7, 0), mr8()) '30s62ä¸€å…ƒåŒ–
                         End If
                     End If
                 End If
                 
-                '‰ÁZˆ—(“¯—ñ“]Ú‚È‚çÀs‚µ‚È‚¢) ‚©A‚¦A‚«A‚ 
+                'åŠ ç®—å‡¦ç†(åŒåˆ—è»¢è¼‰ãªã‚‰å®Ÿè¡Œã—ãªã„) ã‹ã€ãˆã€ãã€ã‚
                 If (er(10, bni) = 0 Or Abs(er(7, bni)) > 0.2) And (er(6, bni) > 0 Or Round(er(6, bni)) = -1) Then
                     If (er(5, bni) >= 0 And er(6, bni) < 0 And er(7, bni) <> 0) Or _
                     (er(2, bni) < 0 And er(5, bni) >= 0 And er(6, bni) > 0 And Int(er(7, bni)) = 0 And er(8, bni) <> 0) Then
-                        kasan = 1  '6s-1‚Å‘¼—ñ“]Ú or “Á–½ğŒ86_14s
+                        kasan = 1  '6è¡Œ-1ã§ä»–åˆ—è»¢è¼‰æ™‚ or ç‰¹å‘½æ¡ä»¶æ™‚86_14s
                         kahi = 1
-                    ElseIf mr(2, 9, bni) <> "" And Round(er(9, bni)) = 0 Then '¦¦’è”‰ÁZ‘Î‰
-                        '“Á–½ó‹µ‚Ì‰ÁZŒ^‚Í‚±‚±‚ğ’Ê‚éƒP[ƒX‚ ‚éiŠù‘¶p=1‚È‚çj¨’Ê‚ç‚È‚¢‚Ö86_14s
+                    ElseIf mr(2, 9, bni) <> "" And Round(er(9, bni)) = 0 Then 'ï½¦ï½¦å®šæ•°åŠ ç®—å¯¾å¿œ
+                        'ç‰¹å‘½çŠ¶æ³ã®åŠ ç®—å‹ã¯ã“ã“ã‚’é€šã‚‹ã‚±ãƒ¼ã‚¹ã‚ã‚‹ï¼ˆæ—¢å­˜p=1ãªã‚‰ï¼‰â†’é€šã‚‰ãªã„ã¸86_14s
                         kasan = tszn(er9(), bni, mr(), qq, pap(9, 0), mr9())
                         kahi = 1
                     ElseIf Round(er(9, bni)) > 0 Then
-                        '“Á–½ó‹µ‚Ì‰ÁZŒ^‚Í‚±‚±‚ğ’Ê‚éƒP[ƒX‚ ‚éiŠù‘¶p=1‚È‚çj­¨’Ê‚ç‚È‚¢‚Ö86_14s
+                        'ç‰¹å‘½çŠ¶æ³ã®åŠ ç®—å‹ã¯ã“ã“ã‚’é€šã‚‹ã‚±ãƒ¼ã‚¹ã‚ã‚‹ï¼ˆæ—¢å­˜p=1ãªã‚‰ï¼‰å°‘â†’é€šã‚‰ãªã„ã¸86_14s
                         If Workbooks(mr(2, 1, bni)).Sheets(mr(1, 1, bni)).Cells(qq, er(9, bni)).Value = "" _
                             Or (mr(2, 9, bni) = "n0" And Workbooks(mr(2, 1, bni)).Sheets(mr(1, 1, bni)).Cells(qq, er(9, bni)).Value = 0) Then
-                            '‰ÁZ‘ÎÛƒZƒ‹‚ª‹ó”’or0‚È‚ç‰ÁZˆ—À{‚µ‚È‚¢
+                            'åŠ ç®—å¯¾è±¡ã‚»ãƒ«ãŒç©ºç™½or0ãªã‚‰åŠ ç®—å‡¦ç†å®Ÿæ–½ã—ãªã„
                         Else
-                            '“Á–½ó‹µ‚Ì‰ÁZŒ^‚Í‚±‚±‚ğ’Ê‚éƒP[ƒX‚ ‚éiŠù‘¶p=1‚È‚çj‘½¨’Ê‚ç‚È‚¢‚Ö86_14s
+                            'ç‰¹å‘½çŠ¶æ³ã®åŠ ç®—å‹ã¯ã“ã“ã‚’é€šã‚‹ã‚±ãƒ¼ã‚¹ã‚ã‚‹ï¼ˆæ—¢å­˜p=1ãªã‚‰ï¼‰å¤šâ†’é€šã‚‰ãªã„ã¸86_14s
                             kasan = tszn(er9(), bni, mr(), qq, pap(9, 0), mr9())
                             kahi = 1
                         End If
                     End If
                     
                     If kahi = 1 Then
-                        If er(2, 1) < 0 And n2 > h0 Then  '‚‘¬‚©‚ÂV‹K‚ÌŠù‘¶
-                            hirt(n2 - h0 + 1, 5) = hirt(n2 - h0 + 1, 5) + kasan    '5—ñ–Úˆ—
-                            '(‚‘¬ƒV[ƒg‚T—ñ–Úg—pA‚‘¬‚©‚ÂV‹K‚ÌŠù‘¶Ai“Á–½ğŒ‚à‚±‚ÌƒP[ƒX‚ ‚èj
+                        If er(2, 1) < 0 And n2 > h0 Then  'é«˜é€Ÿã‹ã¤æ–°è¦ã®æ—¢å­˜
+                            hirt(n2 - h0 + 1, 5) = hirt(n2 - h0 + 1, 5) + kasan    '5åˆ—ç›®å‡¦ç†
+                            '(é«˜é€Ÿã‚·ãƒ¼ãƒˆï¼•åˆ—ç›®ä½¿ç”¨ã€é«˜é€Ÿã‹ã¤æ–°è¦ã®æ—¢å­˜ã€ï¼ˆç‰¹å‘½æ¡ä»¶ã‚‚ã“ã®ã‚±ãƒ¼ã‚¹ã‚ã‚Šï¼‰
                         Else
                             bfshn.Cells(n2, a).Value = bfshn.Cells(n2, a).Value + kasan
-                            '“Á–½ğŒ‚Å‚±‚ÌƒP[ƒX‚à‚ ‚é@Å‰‚©‚çŠù‘¶‚Ì
+                            'ç‰¹å‘½æ¡ä»¶ã§ã“ã®ã‚±ãƒ¼ã‚¹ã‚‚ã‚ã‚‹ã€€æœ€åˆã‹ã‚‰æ—¢å­˜ã®æ™‚
                         End If
                     End If
                 End If
                 n1 = n2
-            End If '(p=1‚±‚±‚Ü‚Å)
+            End If '(p=1ã“ã“ã¾ã§)
             
-            '“Ë‡æ‚ÉAM–³‚¢i’Ç‰Áj(p=2)@n2F“–ƒV[ƒgˆ—s@qqF‘ÎÛƒV[ƒgæs
+            'çªåˆå…ˆã«AMç„¡ã„æ™‚ï¼ˆè¿½åŠ ï¼‰(p=2)ã€€n2ï¼šå½“ã‚·ãƒ¼ãƒˆå‡¦ç†è¡Œã€€qqï¼šå¯¾è±¡ã‚·ãƒ¼ãƒˆå–è¾¼è¡Œ
             If pkt = 2 And er(6, bni) >= 0 Then
-                '’á‘¬V‹K‚Í‚¿‚Ü‚¿‚Ü1,2,5—ñ’Ç‰Á‚Öiu‚ÇvWŒv‚Ì‘Î‰d—ljÅ‰‚É@86_011q
-                If mr(1, 11, 1) = "ƒm[ƒ}ƒ‹" And bfshn.Cells(n2, 1).Value <> 1 Then
+                'ä½é€Ÿæ–°è¦ã¯ã¡ã¾ã¡ã¾1,2,5åˆ—è¿½åŠ ã¸ï¼ˆã€Œã©ã€é›†è¨ˆæ™‚ã®å¯¾å¿œä»•æ§˜ï¼‰æœ€åˆã«ã€€86_011q
+                If mr(1, 11, 1) = "ãƒãƒ¼ãƒãƒ«" And bfshn.Cells(n2, 1).Value <> 1 Then
                     bfshn.Cells(n2, 1).Value = 1
                     If Not StrConv(Left(mr(0, 2, bni), 1), 8) = "*" Then '30s73
                         bfshn.Cells(n2, 2).Value = "c"
                     End If
-                    bfshn.Cells(n2, 5).Value = Now() 'ƒ^ƒCƒ€ƒXƒ^ƒ“ƒv’Ç‹L
+                    bfshn.Cells(n2, 5).Value = Now() 'ã‚¿ã‚¤ãƒ ã‚¹ã‚¿ãƒ³ãƒ—è¿½è¨˜
                 End If
             
                 If bfshn.Cells(n2, Abs(er(2, bni))).Value <> "" Then
-                    Call oshimai("", bfn, shn, 1, 0, "V‹K—\’ès‚ÉŠù‚Éî•ñ‚ª‚ ‚è‚Ü‚·BŠm”F‚ğB")
+                    Call oshimai("", bfn, shn, 1, 0, "æ–°è¦äºˆå®šè¡Œã«æ—¢ã«æƒ…å ±ãŒã‚ã‚Šã¾ã™ã€‚ç¢ºèªã‚’ã€‚")
                 End If
                     
-                If bfshn.Cells(n2 + 1, a).Value <> "" Then Call oshimai("", bfn, shn, 1, 0, "V‹KŸs‚ÉŠù‚Éî•ñ‚ª‚ ‚è‚Ü‚·BŠm”F‚ğB")
+                If bfshn.Cells(n2 + 1, a).Value <> "" Then Call oshimai("", bfn, shn, 1, 0, "æ–°è¦æ¬¡è¡Œã«æ—¢ã«æƒ…å ±ãŒã‚ã‚Šã¾ã™ã€‚ç¢ºèªã‚’ã€‚")
 
-                If er(2, 1) < 0 Then  '85_007 ‚‘¬ê‡•ª‚¯
-                        hirt(n2 - h0 + 1, 4) = am2      '4—ñ–Úˆ—
-                Else  'ƒm[ƒ}ƒ‹i•¡”—ñE’P—ñj
+                If er(2, 1) < 0 Then  '85_007 é«˜é€Ÿæ™‚å ´åˆåˆ†ã‘
+                        hirt(n2 - h0 + 1, 4) = am2      '4åˆ—ç›®å‡¦ç†
+                Else  'ãƒãƒ¼ãƒãƒ«ï¼ˆè¤‡æ•°åˆ—ãƒ»å˜åˆ—ï¼‰
                     If pap(2, 0) > 0 Then
-                        '86_012j’Ç‰ÁƒoƒO‘Î‰
-                        With bfshn.Cells(n2, Abs(er(2, bni)))  'ƒL[’Ç‰Áimghz)ƒm[ƒ}ƒ‹•¡”—ñ
+                        '86_012jè¿½åŠ ãƒã‚°å¯¾å¿œ
+                        With bfshn.Cells(n2, Abs(er(2, bni)))  'ã‚­ãƒ¼è¿½åŠ ï¼ˆmghz)ãƒãƒ¼ãƒãƒ«è¤‡æ•°åˆ—æ™‚
                             .NumberFormatLocal = "@"
                             .Value = am2
                         End With
                     Else  '
-                        With bfshn.Cells(n2, Abs(er2(0)))  'ƒL[’Ç‰Áimghz‚ÌƒP[ƒX‚Í”­¶‚µ‚È‚¢Ber(2,x)‚Å‚Í‚È‚­er(x)‚È‚Ì‚Å
+                        With bfshn.Cells(n2, Abs(er2(0)))  'ã‚­ãƒ¼è¿½åŠ ï¼ˆmghzã®ã‚±ãƒ¼ã‚¹ã¯ç™ºç”Ÿã—ãªã„ã€‚er(2,x)ã§ã¯ãªãer(x)ãªã®ã§
                             .NumberFormatLocal = "@"
                             .Value = am2
                         End With
                     End If
                 End If
                 
-                If pap(2, 0) > 0 Then   '‚Qs–Úƒ‘‘Î‰(•¡”—ñ‚Ì‚Æ‚«) ¦‘S•”‚Ì•¡”—ñ‚ª‘ÎÛ@mghz‚Å‚Í‚È‚¢
-                    For jj = 0 To pap(2, 0) 'qap¨jj
-                        If Round(Abs(er2(jj))) > 0 Then  '30s70 0.4(null,[)‚Í–³‹‚Æ‚·‚é(ƒGƒ‰[–h~‚Ì‚½‚ß)
+                If pap(2, 0) > 0 Then   'ï¼’è¡Œç›®ãƒ±å¯¾å¿œ(è¤‡æ•°åˆ—ã®ã¨ã) â€»å…¨éƒ¨ã®è¤‡æ•°åˆ—ãŒå¯¾è±¡ã€€mghzã§ã¯ãªã„
+                    For jj = 0 To pap(2, 0) 'qapâ†’jj
+                        If Round(Abs(er2(jj))) > 0 Then  '30s70 0.4(null,ãƒ¼)ã¯ç„¡è¦–ã¨ã™ã‚‹(ã‚¨ãƒ©ãƒ¼é˜²æ­¢ã®ãŸã‚)
                             With bfshn.Cells(n2, Abs(er2(jj)))
                                 .NumberFormatLocal = "@"
                                 .Value = rvsrz3(am2, jj + 1, mr(2, 4, bni), 0)
@@ -1444,20 +1444,20 @@ MsgBox "‹ó”’”­“®"
                     Next
                 End If
              
-                '“]Úˆ—•” ˜AŒ‹Œ^ ‚ A‚¢A‚µA‚»A‚ÂA‚È(“Ç“_‚ ‚è)‹­§“¯—ñEã‘Œ^ ‚¦A‚¤ i‘¼—ñ“]ÚjEã‘Œ^ ‚³A‚¹ ‹­§“¯—ñ
+                'è»¢è¼‰å‡¦ç†éƒ¨ é€£çµå‹ ã‚ã€ã„ã€ã—ã€ãã€ã¤ã€ãª(èª­ç‚¹ã‚ã‚Š)å¼·åˆ¶åŒåˆ—ãƒ»ä¸Šæ›¸å‹ ãˆã€ã† ï¼ˆä»–åˆ—è»¢è¼‰ï¼‰ãƒ»ä¸Šæ›¸å‹ ã•ã€ã› å¼·åˆ¶åŒåˆ—
                 If er(8, bni) <> 0 And Not (er(5, bni) < 0 And (Round(er(6, bni)) = -2 Or er(6, bni) > 0)) Then
-                    If (er(2, bni) < 0 And er(5, bni) >= 0 And er(6, bni) > 0 And (er(7, bni) = 0 Or er(7, bni) = 0.1) And er(8, bni) > 0) Then  '“Á–½‰ÁZŒ^‚Ì•û
-                        '“Á–½ğŒ’Ç‰Á30s86_012s@'“Á–½“]Ú‚Í‚µ‚Ä‚Í‚¢‚¯‚Ü‚¹‚ñ‚Å‚·B@'“Á–½ğŒ@“Á–½(‰ÁZŒ^)‚Í‚±‚±‚ÍƒXƒ‹[
-                    Else  '‚±‚ê‚Ü‚Å‚Í‚±‚¿‚ç«@“Á–½(˜AÚŒ^)‚Í‚±‚¿‚ç@“Á–½ğŒ(˜AÚŒ^)‚Å‚Í«‚±‚¿‚ç‚ğ’Ê‚éB
-                        Call tnsai(ct8, tst, ct3, er78(), a, n2, bni, pkt, qq, 0, mr(), er(), pap(7, 0), mr8()) '30s62ˆêŒ³‰»
+                    If (er(2, bni) < 0 And er(5, bni) >= 0 And er(6, bni) > 0 And (er(7, bni) = 0 Or er(7, bni) = 0.1) And er(8, bni) > 0) Then  'ç‰¹å‘½åŠ ç®—å‹ã®æ–¹
+                        'ç‰¹å‘½æ¡ä»¶è¿½åŠ 30s86_012sã€€'ç‰¹å‘½æ™‚è»¢è¼‰ã¯ã—ã¦ã¯ã„ã‘ã¾ã›ã‚“ã§ã™ã€‚ã€€'ç‰¹å‘½æ¡ä»¶ã€€ç‰¹å‘½æ™‚(åŠ ç®—å‹)ã¯ã“ã“ã¯ã‚¹ãƒ«ãƒ¼
+                    Else  'ã“ã‚Œã¾ã§ã¯ã“ã¡ã‚‰â†“ã€€ç‰¹å‘½æ™‚(é€£è¼‰å‹)ã¯ã“ã¡ã‚‰ã€€ç‰¹å‘½æ¡ä»¶(é€£è¼‰å‹)ã§ã¯â†“ã“ã¡ã‚‰ã‚’é€šã‚‹ã€‚
+                        Call tnsai(ct8, tst, ct3, er78(), a, n2, bni, pkt, qq, 0, mr(), er(), pap(7, 0), mr8()) '30s62ä¸€å…ƒåŒ–
                     End If
                 End If
 
-                '‰ÁZˆ—•”(“¯—ñ“]Ú‚È‚çÀs‚µ‚È‚¢) ‚©A‚¦A‚«,‚ 
-                If (er(10, bni) = 0 Or er(7, bni) <> 0) And er(6, bni) > 0 Then  '“Á–½ğŒ‘Î‰”Å‚Ö
-                    '“Á–½ğŒ‰ÁZŒ^‚Í‚±‚±‚Å‚àˆ—‚³‚ê‚éB@'€€“K—p”p~30s64
+                'åŠ ç®—å‡¦ç†éƒ¨(åŒåˆ—è»¢è¼‰ãªã‚‰å®Ÿè¡Œã—ãªã„) ã‹ã€ãˆã€ã,ã‚
+                If (er(10, bni) = 0 Or er(7, bni) <> 0) And er(6, bni) > 0 Then  'ç‰¹å‘½æ¡ä»¶å¯¾å¿œç‰ˆã¸
+                    'ç‰¹å‘½æ¡ä»¶åŠ ç®—å‹ã¯ã“ã“ã§ã‚‚å‡¦ç†ã•ã‚Œã‚‹ã€‚ã€€'é …æº–é©ç”¨å»ƒæ­¢30s64
                     If (er(2, bni) < 0 And er(5, bni) >= 0 And er(6, bni) > 0 And Int(er(7, bni)) = 0 And er(8, bni) <> 0) Then
-                        '“Á–½ğŒˆê—¥‚±‚ê‚Å@30s86s
+                        'ç‰¹å‘½æ¡ä»¶ä¸€å¾‹ã“ã‚Œã§ã€€30s86s
                         kahi = 1
                         kasan = 1
                     ElseIf mr(2, 9, bni) <> "" And Round(er(9, bni)) = 0 Then
@@ -1475,172 +1475,172 @@ MsgBox "‹ó”’”­“®"
                     If kahi = 1 Then
                         If er(2, 1) < 0 Then
                             hirt(n2 - h0 + 1, 5) = kasan
-                            '“Á–½ğŒ‚±‚Á‚¿‚Á‚Û‚¢@‚‘¬‚È‚Ì‚Å
+                            'ç‰¹å‘½æ¡ä»¶ã“ã£ã¡ã£ã½ã„ã€€é«˜é€Ÿãªã®ã§
                         Else
                             bfshn.Cells(n2, a).Value = kasan
                         End If
                     End If
                 End If
                     
-                If er(2, 1) > 0 Then h0 = n2 'h0‚àXV(‚‘¬ˆÈŠO) ¦ˆê•¶ß–Ú‚Å”»’f30s22
-                '‚P—ñ‚Q—ñ‚T—ñ@‚¿‚Ü‚¿‚Ü¨•¶ßÅŒã‚É‚Ü‚Æ‚ß‚Ä‚Å
+                If er(2, 1) > 0 Then h0 = n2 'h0ã‚‚æ›´æ–°(é«˜é€Ÿæ™‚ä»¥å¤–) â€»ä¸€æ–‡ç¯€ç›®ã§åˆ¤æ–­30s22
+                'ï¼‘åˆ—ï¼’åˆ—ï¼•åˆ—ã€€ã¡ã¾ã¡ã¾â†’æ–‡ç¯€æœ€å¾Œã«ã¾ã¨ã‚ã¦ã§
                 h = h + 1
             
-            End If '(p=2‚±‚±‚Ü‚Å)
+            End If '(p=2ã“ã“ã¾ã§)
             
-            If (pkt = 2 Or pkt = 1) Then  '-1-2V‹KˆÈŠO‚Ì Vİ
+            If (pkt = 2 Or pkt = 1) Then  '-1-2æ–°è¦ä»¥å¤–ã®æ™‚ æ–°è¨­
                 am1 = am2
                 n1 = n2
             End If
-        End If 'ƒJƒEƒ“ƒg‘ÎÛs‚¤‚±‚±‚Ü‚Å
+        End If 'ã‚«ã‚¦ãƒ³ãƒˆå¯¾è±¡æ™‚è¡Œã†ã“ã“ã¾ã§
 
         ii = ii + 1
         If er(2, 1) < 0 Then
             Call hdrst2(ii, a, 10000, k0, h0)
         Else
-            Call hdrst2(ii, a, 1000, k0, h0) '201904@100¨1000
+            Call hdrst2(ii, a, 1000, k0, h0) '201904ã€€100â†’1000
         End If
-    Loop '‚±‚±‚©‚çs–ˆ‚±‚±‚Ü‚Å
+    Loop 'â—‡ã“ã“ã‹ã‚‰è¡Œæ¯ã“ã“ã¾ã§
   
-    '‚±‚±‚Å‚ÌqqEE‘ÎÛƒV[ƒg‚ÅÅI‚ÅƒJƒEƒ“ƒg‘ÎÛ‚Æ‚µ‚½s
-    bfshn.Cells(2, 4).Value = k0 'LoopI—¹Œãs‚¤30s86_002‚æ‚è
-    bfshn.Cells(3, 4).Value = h0 'LoopI—¹Œãs‚¤30s86_002‚æ‚è
+    'ã“ã“ã§ã®qqãƒ»ãƒ»å¯¾è±¡ã‚·ãƒ¼ãƒˆã§æœ€çµ‚ã§ã‚«ã‚¦ãƒ³ãƒˆå¯¾è±¡ã¨ã—ãŸè¡Œ
+    bfshn.Cells(2, 4).Value = k0 'Loopçµ‚äº†å¾Œè¡Œã†30s86_002ã‚ˆã‚Š
+    bfshn.Cells(3, 4).Value = h0 'Loopçµ‚äº†å¾Œè¡Œã†30s86_002ã‚ˆã‚Š
    
-    If mr(1, 11, 1) = "ƒ‚‘¬" Or mr(1, 11, 1) = "‹ß—‚‘¬" Then Erase hiru
+    If mr(1, 11, 1) = "ç´”é«˜é€Ÿ" Or mr(1, 11, 1) = "è¿‘ä¼¼é«˜é€Ÿ" Then Erase hiru
     
-    If mr(1, 11, 1) = "ƒ‚‘¬" Then '‚‘¬ƒV[ƒgA[E—ñ“ü‚ê‚İ–ß‚µA“–—ñA“Ë‡—ñ‚Öƒxƒ^
-        Range(twt.Cells(1, 1), twt.Cells(rrr + 1, 5)).Value = hirt  '¦€–³‘Îô(rrr¨rrr+1)
+    If mr(1, 11, 1) = "ç´”é«˜é€Ÿ" Then 'é«˜é€Ÿã‚·ãƒ¼ãƒˆAãƒ¼Eåˆ—å…¥ã‚Œè¾¼ã¿æˆ»ã—ã€å½“åˆ—ã€çªåˆåˆ—ã¸ãƒ™ã‚¿
+        Range(twt.Cells(1, 1), twt.Cells(rrr + 1, 5)).Value = hirt  'â€»é …ç„¡å¯¾ç­–(rrrâ†’rrr+1)
         Erase hirt
 
-        'ƒm[ƒ}ƒ‹“¯—lAæ‚É1,2,5—ñˆ—‚Ö
+        'ãƒãƒ¼ãƒãƒ«åŒæ§˜ã€å…ˆã«1,2,5åˆ—å‡¦ç†ã¸
         bfshn.Cells(1, 4).Value = Application.WorksheetFunction.Sum(bfshn.Range("A:A")) + 1
     
-        'ˆê—ñ‚Q—ñ‚T—ñV‹K‘•ª•ª‚Ì‚Ü‚Æ‚ß‚Ä–„‚ß‚İ@‚‘¬‚Ì‚İ‚É(’á‘¬‚Íª‚ÅÀ{Ï‚İ)
-        If bfshn.Cells(1, 4).Value - 1 + k - 1 < h Then  'u‚Çvl—¶Œ^
-            '‚Q—ñ–Úi‚ƒj‚±‚¿‚ç‚ªæ
-            If Not StrConv(Left(mr(0, 2, bni), 1), 8) = "*" Then '‚[‚Q‚É‚à2s–ŠT”O”½‰f‚Ö
+        'ä¸€åˆ—ï¼’åˆ—ï¼•åˆ—æ–°è¦å¢—åˆ†åˆ†ã®ã¾ã¨ã‚ã¦åŸ‹ã‚è¾¼ã¿ã€€é«˜é€Ÿæ™‚ã®ã¿ã«(ä½é€Ÿã¯â†‘ã§å®Ÿæ–½æ¸ˆã¿)
+        If bfshn.Cells(1, 4).Value - 1 + k - 1 < h Then  'ã€Œã©ã€è€ƒæ…®å‹
+            'ï¼’åˆ—ç›®ï¼ˆï½ƒï¼‰ã“ã¡ã‚‰ãŒå…ˆ
+            If Not StrConv(Left(mr(0, 2, bni), 1), 8) = "*" Then 'ï½ï¼ãƒ¼ï¼’ã«ã‚‚2è¡Œï¼Šæ¦‚å¿µåæ˜ ã¸
                 Call betat4(bfn, shn, bfshn.Cells(1, 4).Value - 1 + k, 0.4, h, 0.4, bfn, shn, bfshn.Cells(1, 4).Value - 1 + k, 2, "pp", "c")
             End If
-            '5—ñ–Úinowj
-            Call cpp2("", Now(), 0, 0, 0, -1, bfn, shn, bfshn.Cells(1, 4).Value - 1 + k, 5, h, 5, -4163) '5—ñ–Úinowj‚±‚ê‚É‹Ãk@-1¨-2
-            'ˆê—ñ–Úi‚Pj‚ÍÅŒã‚Å
+            '5åˆ—ç›®ï¼ˆnowï¼‰
+            Call cpp2("", Now(), 0, 0, 0, -1, bfn, shn, bfshn.Cells(1, 4).Value - 1 + k, 5, h, 5, -4163) '5åˆ—ç›®ï¼ˆnowï¼‰ã“ã‚Œã«å‡ç¸®ã€€-1â†’-2
+            'ä¸€åˆ—ç›®ï¼ˆï¼‘ï¼‰ã¯æœ€å¾Œã§
             Call betat4(bfn, shn, bfshn.Cells(1, 4).Value - 1 + k, 0.4, h, 0.4, bfn, shn, bfshn.Cells(1, 4).Value - 1 + k, 1, "pp", "1")
             DoEvents
         End If
         
-        If h0 < h Then  'V‹K‚ ‚é‚Æ‚«‚Ì‚İ ©h1¨h0‚ÖB€‚‘¬only‚È‚Ì‚Å@And pap(2,0)“P”p
-            '“Ë‡—ñV‹Kƒxƒ^(’P”—ñ‚Ì‚İ)
+        If h0 < h Then  'æ–°è¦ã‚ã‚‹ã¨ãã®ã¿ â†h1â†’h0ã¸ã€‚æº–é«˜é€Ÿonlyãªã®ã§ã€€And pap(2,0)æ’¤å»ƒ
+            'çªåˆåˆ—æ–°è¦ãƒ™ã‚¿(å˜æ•°åˆ—æ™‚ã®ã¿)
             If pap(2, 0) = 0 Then
-                Call betat4(twn, "‚‘¬ƒV[ƒg_" & syutoku(), 2, 4, h - h0 + 1, 4, bfn, shn, h0 + 1, Abs(er2(0)), "mm", "")
+                Call betat4(twn, "é«˜é€Ÿã‚·ãƒ¼ãƒˆ_" & syutoku(), 2, 4, h - h0 + 1, 4, bfn, shn, h0 + 1, Abs(er2(0)), "mm", "")
             End If
             
-            '“–—ñV‹Kƒxƒ^i‰ÁZ‚Ì‚İj¦“¯—ñ“]Ú‚È‚çÀs‚µ‚È‚¢)
-            '«“Á–½‘Î‰
+            'å½“åˆ—æ–°è¦ãƒ™ã‚¿ï¼ˆåŠ ç®—æ™‚ã®ã¿ï¼‰â€»åŒåˆ—è»¢è¼‰ãªã‚‰å®Ÿè¡Œã—ãªã„)
+            'â†“ç‰¹å‘½å¯¾å¿œ
             If (er(10, bni) = 0 Or er(7, bni) <> 0) And er(6, bni) > 0 Then
-                '“–—ñT‚¦
-                Call betat4(twn, "‚‘¬ƒV[ƒg_" & syutoku(), 2, 5, h - h0 + 1, 5, bfn, shn, h0 + 1, a, "pm", "")
-                '¦‚±‚ÌŒãA‚‘¬ƒV[ƒg‚T—ñ–Ú‚ÍA«‚Ìstrconv24—p“r‚Åg—p
+                'å½“åˆ—æ§ãˆ
+                Call betat4(twn, "é«˜é€Ÿã‚·ãƒ¼ãƒˆ_" & syutoku(), 2, 5, h - h0 + 1, 5, bfn, shn, h0 + 1, a, "pm", "")
+                'â€»ã“ã®å¾Œã€é«˜é€Ÿã‚·ãƒ¼ãƒˆï¼•åˆ—ç›®ã¯ã€â†“ã®strconv24ç”¨é€”ã§ä½¿ç”¨
             End If
             
-            'mghz—ñV‹Kƒxƒ^ 30s86_011
-            Application.Calculation = xlCalculationAutomatic    '”®ŒvZ•û–@©“®‚É@'VŒ`®@85_007
+            'mghzåˆ—æ–°è¦ãƒ™ã‚¿ 30s86_011
+            Application.Calculation = xlCalculationAutomatic    'æ•°å¼è¨ˆç®—æ–¹æ³•è‡ªå‹•ã«ã€€'æ–°å½¢å¼ã€€85_007
             DoEvents '86_019r
 
-            Application.Calculation = xlCalculationManual  'ÄŒvZÄ‚Ñè“®‚Éid‚­‚È‚é‚½‚ßj30s66
+            Application.Calculation = xlCalculationManual  'å†è¨ˆç®—å†ã³æ‰‹å‹•ã«ï¼ˆé‡ããªã‚‹ãŸã‚ï¼‰30s66
             
         End If
     End If
     
     cnt = 0
-    Call hdrst(ii, a)   'exitdo‚ğl—¶‚µA‚±‚±‚É‚à
+    Call hdrst(ii, a)   'exitdoã‚’è€ƒæ…®ã—ã€ã“ã“ã«ã‚‚
     bfshn.Cells(1, a).Value = cted(0)
-    '«•s—v‚©‚à‚¾‚ªA”O‚Ì‚½‚ß
+    'â†“ä¸è¦ã‹ã‚‚ã ãŒã€å¿µã®ãŸã‚
     bfshn.Cells(1, 4).Value = Application.WorksheetFunction.Sum(bfshn.Range("A:A")) + 1
 
-    'ƒTƒ}ƒŠ’lˆ—i“]Ú•ªjp=-2‚ÍA“]Ú‚àÀ{
+    'ã‚µãƒãƒªå€¤å‡¦ç†ï¼ˆè»¢è¼‰åˆ†ï¼‰p=-2ã¯ã€è»¢è¼‰ã‚‚å®Ÿæ–½
     If er(5, bni) >= 0 And er(6, bni) >= 0 And StrConv(Left(bfshn.Cells(sr(1), a).Value, 1), 8) <> "*" Then
-        'ÄŒvZ‚ğˆê’U©“®‚É–ß‚·
+        'å†è¨ˆç®—ã‚’ä¸€æ—¦è‡ªå‹•ã«æˆ»ã™
         Application.Calculation = xlCalculationAutomatic
         Application.StatusBar = False
         If pap(7, 0) > pap(8, 0) Then ii = pap(8, 0) Else ii = pap(7, 0)
-        '‚à‚Æ‚à‚Æp=-2‚Ì“]Úˆ—
-        jj = ii  'jj‚ÍÅIß
+        'ã‚‚ã¨ã‚‚ã¨p=-2ã®è»¢è¼‰å‡¦ç†
+        jj = ii  'jjã¯æœ€çµ‚ç¯€
         
         bfshn.Cells(1, 4).Value = Application.WorksheetFunction.Sum(bfshn.Range("A:A")) + 1
         
-        For ii = 0 To jj 'pap(7,0),pap(8,0)0‚Ì‚Íˆê‰ñƒ|ƒbƒLƒŠÀ{
-            Application.StatusBar = "ƒTƒ}ƒ‹’†A" & Str(ii) & " / " & Str(jj)
-            If er78(0, ii) > 0.2 And er78(0, ii) <> a Then  '86_013f 7s0.4‘Îˆ¨0.1‘Îˆ
-                Call samaru(Int(er78(0, ii)), mr(1, 1, 1)) '•¡”—ñ‚³‚Ü‚é
+        For ii = 0 To jj 'pap(7,0),pap(8,0)ï¼0ã®æ™‚ã¯ä¸€å›ãƒãƒƒã‚­ãƒªå®Ÿæ–½
+            Application.StatusBar = "ã‚µãƒãƒ«ä¸­ã€" & Str(ii) & " / " & Str(jj)
+            If er78(0, ii) > 0.2 And er78(0, ii) <> a Then  '86_013f 7è¡Œ0.4å¯¾å‡¦â†’0.1å¯¾å‡¦
+                Call samaru(Int(er78(0, ii)), mr(1, 1, 1)) 'è¤‡æ•°åˆ—ã•ã¾ã‚‹
             End If
         Next
-        'ÄŒvZ‚ğÄ‚Ñè“®‚É
+        'å†è¨ˆç®—ã‚’å†ã³æ‰‹å‹•ã«
         Application.Calculation = xlCalculationManual
         Application.DisplayStatusBar = True
     End If
     
     Next
-'‚c•¡•¶ß‚Ó‚¢iÀs•Òj‚±‚±‚Ü‚Åª
+'â—‡ï¼¤â—‡è¤‡æ–‡ç¯€ãµã„ï¼ˆå®Ÿè¡Œç·¨ï¼‰ã“ã“ã¾ã§â†‘
 
-'šš”papchk—\’è’n”
+'â˜…â˜…ï¼ƒpapchkäºˆå®šåœ°ï¼ƒ
 Call papchk(pap(), 0, bun)
 
-'Ÿ‚dŸ’P•¶ß‚Ó‚¢i–Œã•Òj‚±‚±‚©‚ç«
-    bni = 1 '1•¶ß–Ú‚Ì’l‚Å”»’fAÀs 86_020p@bun¨1–ß‚·BˆêŠ‡“¥P‚Ì‚Æ‚±‚ë‚ÍAbni¨bun‚Ö’uŠ·
-    mg2 = 0 'mg2‚Ì•Ï”‚Í‚Æ‚è‚ ‚¦‚¸public‚Å“ü‚ê‚Ä‚¢‚éB®—Œã‚Ù‚Ç
+'â—†ï¼¥â—†å˜æ–‡ç¯€ãµã„ï¼ˆäº‹å¾Œç·¨ï¼‰ã“ã“ã‹ã‚‰â†“
+    bni = 1 '1æ–‡ç¯€ç›®ã®å€¤ã§åˆ¤æ–­ã€å®Ÿè¡Œ 86_020pã€€bunâ†’1æˆ»ã™ã€‚ä¸€æ‹¬è¸è¥²ã®ã¨ã“ã‚ã¯ã€bniâ†’bunã¸ç½®æ›
+    mg2 = 0 'mg2ã®å¤‰æ•°ã¯ã¨ã‚Šã‚ãˆãšpublicã§å…¥ã‚Œã¦ã„ã‚‹ã€‚æ•´ç†å¾Œã»ã©
 
-    '‚±‚±‚É -1-2 ‚Ì‹ó”’–„‚ß‚İƒ‹[ƒ`ƒ“@•¡”—ñ‘Î‰30s61_4
+    'ã“ã“ã« -1-2 ã®ç©ºç™½åŸ‹ã‚è¾¼ã¿ãƒ«ãƒ¼ãƒãƒ³ã€€è¤‡æ•°åˆ—å¯¾å¿œ30s61_4
     If er(6, bni) = -1 Or er(6, bni) = -2 Or er(6, bni) <= -3 Then
         If nifuku = 1 Then
-            'MsgBox "2•¶ß–Ú‚Å‚Ì•¡•¶ß‚ ‚èB’ˆÓ‚ğB"  '‰ğ‹Ö‚Ö@86_016v
-            Call oshimai("", bfn, shn, 1, 0, "2•¶ß–Ú•¡•¶ß‚Å‚Ìw’è‚Í‹–—e‚³‚ê‚Ä‚¢‚Ü‚¹‚ñ")
+            'MsgBox "2æ–‡ç¯€ç›®ã§ã®è¤‡æ–‡ç¯€ã‚ã‚Šã€‚æ³¨æ„ã‚’ã€‚"  'è§£ç¦ã¸ã€€86_016v
+            Call oshimai("", bfn, shn, 1, 0, "2æ–‡ç¯€ç›®è¤‡æ–‡ç¯€ã§ã®æŒ‡å®šã¯è¨±å®¹ã•ã‚Œã¦ã„ã¾ã›ã‚“")
         End If
       
-      'c<=-1‚©‚ç•ÏX(C<=-3 ‚Ì‹ó”’–„‚ß‚İ‚Í‹ß—‚‘¬‚Ì‚İ‚â‚é‚É•œŠˆ‚Ö@85_014
+      'c<=-1ã‹ã‚‰å¤‰æ›´(C<=-3 ã®ç©ºç™½åŸ‹ã‚è¾¼ã¿ã¯è¿‘ä¼¼é«˜é€Ÿæ™‚ã®ã¿ã‚„ã‚‹ã«å¾©æ´»ã¸ã€€85_014
         DoEvents
         cnt = 0
-        k0 = k  'k0ˆê’UƒŠƒZƒbƒg(‚‘¬A‚Ü‚½‚±‚±‚©‚ç‘‚¦‚Ä‚¢‚­)
+        k0 = k  'k0ä¸€æ—¦ãƒªã‚»ãƒƒãƒˆ(é«˜é€Ÿæ™‚ã€ã¾ãŸã“ã“ã‹ã‚‰å¢—ãˆã¦ã„ã)
         
-        If mr(1, 11, bni) = "‹ß—‚‘¬" Then  '‹ß—Œ^
-            If er(6, bni) = Round(er(6, bni), 0) Then '-15.1¨•¡Ê‘Î‰‚µ‚È‚¢
+        If mr(1, 11, bni) = "è¿‘ä¼¼é«˜é€Ÿ" Then  'è¿‘ä¼¼å‹
+            If er(6, bni) = Round(er(6, bni), 0) Then '-15.1â†’è¤‡å†™å¯¾å¿œã—ãªã„
                 mg2 = 1
-                For ii = h To k Step -1  'i¨ii
-                    Do Until bfshn.Cells(ii, mghz).Value <> ""  'g‚í‚ê‚Ä‚¢‚È‚¢H
+                For ii = h To k Step -1  'iâ†’ii
+                    Do Until bfshn.Cells(ii, mghz).Value <> ""  'ä½¿ã‚ã‚Œã¦ã„ãªã„ï¼Ÿ
                         ii = ii - 1
                     Loop
-                    'Ÿs(‘Os)ˆê’v•a‚Éî•ñ‚ ‚è@'«‚±‚¿‚ç‚Ö(strconvu2v”í‚¹‚é)
+                    'æ¬¡è¡Œ(å‰è¡Œ)ä¸€è‡´ï¼†aã«æƒ…å ±ã‚ã‚Šã€€'â†“ã“ã¡ã‚‰ã¸(strconvã€Œ2ã€è¢«ã›ã‚‹)
                     If StrConv(bfshn.Cells(ii, mghz).Value, 2) = StrConv(bfshn.Cells(ii + 1, mghz).Value, 2) Then
                         If bfshn.Cells(bfshn.Cells(ii + 1, mghz + 1).Value, a).Value <> "" Then
                             Call tnsai(ct8, tst, ct3, er78(), a, bfshn.Cells(ii, mghz + 1).Value, bni, 1, 0, bfshn.Cells(ii + 1, mghz + 1).Value, mr(), er(), pap(7, 0), mr8())
                         End If
                     End If
-                    Call hdrst(h - ii, a)  '¶‰ºƒXƒe[ƒ^ƒX•\¦•”
+                    Call hdrst(h - ii, a)  'å·¦ä¸‹ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹è¡¨ç¤ºéƒ¨
                 Next
                 cnt = 0
             End If
         ElseIf er(2, bni) < 0 Then
-            Call oshimai("", bfn, shn, sr(2), a, "‹Œ‚‘¬g—pI—¹‚Å‚·B")
-        Else 'ƒm[ƒ}ƒ‹
+            Call oshimai("", bfn, shn, sr(2), a, "æ—§é«˜é€Ÿä½¿ç”¨çµ‚äº†ã§ã™ã€‚")
+        Else 'ãƒãƒ¼ãƒãƒ«
             If er(6, bni) = -1 Or er(6, bni) = -2 Then
-                For ii = k + 1 To h  'i¨ii
+                For ii = k + 1 To h  'iâ†’ii
                     Do Until bfshn.Cells(ii, Abs(a)).Value = NullString
                         ii = ii + 1
                     Loop
-                    If bfshn.Cells(ii, Abs(er(2, bni))).Value = bfshn.Cells(ii - 1, Abs(er(2, bni))).Value Then '‘Os‚Æ“¯‚¶ê‡
-                        If bfshn.Cells(ii - 1, a).Value <> "" Then '-1‘¼—ñ“]ÚA‚±‚ê‚Ü‚Å‚Ì‚æ‚¤‚Ématch‚Ä‚Á‚Ø‚ñ‚É•K‚¸î•ñ‚ª‚ ‚é‚Æ‚ÍŒÀ‚ç‚È‚­‚È‚Á‚½‚Ì‚ÅA‚»‚Ì‘Îˆj
-                            Call tnsai(ct8, tst, ct3, er78(), a, ii, bni, 1, 0, ii - 1, mr(), er(), pap(7, 0), mr8()) '30s81qq–³Œø‰»
+                    If bfshn.Cells(ii, Abs(er(2, bni))).Value = bfshn.Cells(ii - 1, Abs(er(2, bni))).Value Then 'å‰è¡Œã¨åŒã˜å ´åˆ
+                        If bfshn.Cells(ii - 1, a).Value <> "" Then '-1ä»–åˆ—è»¢è¼‰æ™‚ã€ã“ã‚Œã¾ã§ã®ã‚ˆã†ã«matchã¦ã£ãºã‚“ã«å¿…ãšæƒ…å ±ãŒã‚ã‚‹ã¨ã¯é™ã‚‰ãªããªã£ãŸã®ã§ã€ãã®å¯¾å‡¦ï¼‰
+                            Call tnsai(ct8, tst, ct3, er78(), a, ii, bni, 1, 0, ii - 1, mr(), er(), pap(7, 0), mr8()) '30s81qqç„¡åŠ¹åŒ–
                         End If
                     Else
-                        '‚‘¬‚Í«ˆÈ‰º’Ê‚ç‚È‚¢(ƒL[‚ª¸‡‚Ì‘O’ñ‚Å‚ ‚é‚½‚ßB•K‚¸ƒGƒ‰[‚É‚È‚é)B
-                        If Not IsError(Application.Match(bfshn.Cells(ii, Abs(er(2, bni))).Value, Range(bfshn.Cells(k0, Abs(er(2, bni))), bfshn.Cells(ii - 1, Abs(er(2, bni)))), 0)) Then  'matchg—p
-                            m = Application.WorksheetFunction.Match(bfshn.Cells(ii, Abs(er(2, bni))).Value, Range(bfshn.Cells(k0, Abs(er(2, bni))), bfshn.Cells(ii - 1, Abs(er(2, bni)))), 0) 'h¨ii-1‚ÉC³30s24
-                            If bfshn.Cells(k0 + m - 1, a).Value <> "" Then  '-1‘¼—ñ“]ÚA‚±‚ê‚Ü‚Å‚Ì‚æ‚¤‚Ématch‚Ä‚Á‚Ø‚ñ‚É•K‚¸î•ñ‚ª‚ ‚é‚Æ‚ÍŒÀ‚ç‚È‚­‚È‚Á‚½‚Ì‚ÅA‚»‚Ì‘Îˆ
-                                Call tnsai(ct8, tst, ct3, er78(), a, ii, bni, 1, 0, k0 + m - 1, mr(), er(), pap(7, 0), mr8()) '30s63W–ñ‰»
+                        'é«˜é€Ÿæ™‚ã¯â†“ä»¥ä¸‹é€šã‚‰ãªã„(ã‚­ãƒ¼ãŒæ˜‡é †ã®å‰æã§ã‚ã‚‹ãŸã‚ã€‚å¿…ãšã‚¨ãƒ©ãƒ¼ã«ãªã‚‹)ã€‚
+                        If Not IsError(Application.Match(bfshn.Cells(ii, Abs(er(2, bni))).Value, Range(bfshn.Cells(k0, Abs(er(2, bni))), bfshn.Cells(ii - 1, Abs(er(2, bni)))), 0)) Then  'matchä½¿ç”¨
+                            m = Application.WorksheetFunction.Match(bfshn.Cells(ii, Abs(er(2, bni))).Value, Range(bfshn.Cells(k0, Abs(er(2, bni))), bfshn.Cells(ii - 1, Abs(er(2, bni)))), 0) 'hâ†’ii-1ã«ä¿®æ­£30s24
+                            If bfshn.Cells(k0 + m - 1, a).Value <> "" Then  '-1ä»–åˆ—è»¢è¼‰æ™‚ã€ã“ã‚Œã¾ã§ã®ã‚ˆã†ã«matchã¦ã£ãºã‚“ã«å¿…ãšæƒ…å ±ãŒã‚ã‚‹ã¨ã¯é™ã‚‰ãªããªã£ãŸã®ã§ã€ãã®å¯¾å‡¦
+                                Call tnsai(ct8, tst, ct3, er78(), a, ii, bni, 1, 0, k0 + m - 1, mr(), er(), pap(7, 0), mr8()) '30s63é›†ç´„åŒ–
                             End If
                         End If
                     End If
-                    Call hdrst(ii, a)    '¶‰ºƒXƒe[ƒ^ƒX•\¦•”
-                    bfshn.Cells(2, 4).Value = k0 'Cells(13, 3)¨Cells(2, 4)
+                    Call hdrst(ii, a)    'å·¦ä¸‹ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹è¡¨ç¤ºéƒ¨
+                    bfshn.Cells(2, 4).Value = k0 'Cells(13, 3)â†’Cells(2, 4)
                 Next
                 cnt = 0
             End If
@@ -1648,109 +1648,109 @@ Call papchk(pap(), 0, bun)
     End If
     cnt = 0
 
-    '–Êæ‚è
-    '«˜AÚŒ^“Á–½ğŒ‚à’Ç‰Á‚Ö@86_013d
+    'é¢å–ã‚Š
+    'â†“é€£è¼‰å‹ç‰¹å‘½æ¡ä»¶ã‚‚è¿½åŠ ã¸ã€€86_013d
     If ((er(2, bni) < 0 And er(5, bni) >= 0 And er(6, bni) > 0 And (er(7, bni) = 0 Or er(7, bni) = 0.1) And er(8, bni) < 0) Or _
         (er(9, bni) = 0 And er(10, bni) < 0)) And _
-        Not ((er(3, bni) < 0 Or er(3, bni) = 0.1) And (er(4, bni) < 0 Or er(4, bni) = 0.1)) Then '(“–—ñ)ÅŒã‚ÌuAv‚ğæ‚éB
+        Not ((er(3, bni) < 0 Or er(3, bni) = 0.1) And (er(4, bni) < 0 Or er(4, bni) = 0.1)) Then '(å½“åˆ—)æœ€å¾Œã®ã€Œã€ã€ã‚’å–ã‚‹ã€‚
         
         Application.Cursor = xlWait '85_026
       
-        If h >= k Then 'ƒf[ƒ^–³‚Ì‚ÍÀ{‚µ‚È‚¢‚Ö@86_018f
-            hirt = Range(bfshn.Cells(k, a), bfshn.Cells(h + 1, a)).Value 'h¨h+1 variant ‚Å”z—ñA‚½‚¾‚µƒZƒ‹‚ª1x1‚¾‚¯‚ÌA”z—ñ‚Æ‚µ‚Ä”F¯‚µ‚Ä‚­‚ê‚È‚¢‘Îô@30s86_017v
+        If h >= k Then 'ãƒ‡ãƒ¼ã‚¿ç„¡ã®æ™‚ã¯å®Ÿæ–½ã—ãªã„ã¸ã€€86_018f
+            hirt = Range(bfshn.Cells(k, a), bfshn.Cells(h + 1, a)).Value 'hâ†’h+1 variant ã§é…åˆ—ã€ãŸã ã—ã‚»ãƒ«ãŒ1x1ã ã‘ã®æ™‚ã€é…åˆ—ã¨ã—ã¦èªè­˜ã—ã¦ãã‚Œãªã„å¯¾ç­–ã€€30s86_017v
             For ii = k To h
-                'hirt‚Å‚ÍA‚‹¨‚PA‚ˆ¨‚ˆ?‚‹{‚P@Afor‚Ìii‚ÉA-k+1‚ğ‚©‚Ô‚¹‚é@ii¨ii-k+1
-                '«86_017m(˜AÚ•¡”•¶š‘Î‰) «86_017v(C³E‹æØ‚è•¶š‚Í•¡”—ñˆê”Ô‰E¨ˆê”Ô¶‚Éd—l•ÏX‚Öi‚±‚Ì•û‚ª©‘Rj
+                'hirtã§ã¯ã€ï½‹â†’ï¼‘ã€ï½ˆâ†’ï½ˆ?ï½‹ï¼‹ï¼‘ã€€ã€forã®iiã«ã€-k+1ã‚’ã‹ã¶ã›ã‚‹ã€€iiâ†’ii-k+1
+                'â†“86_017m(é€£è¼‰è¤‡æ•°æ–‡å­—å¯¾å¿œ) â†“86_017v(ä¿®æ­£ãƒ»åŒºåˆ‡ã‚Šæ–‡å­—ã¯è¤‡æ•°åˆ—ä¸€ç•ªå³â†’ä¸€ç•ªå·¦ã«ä»•æ§˜å¤‰æ›´ã¸ï¼ˆã“ã®æ–¹ãŒè‡ªç„¶ï¼‰
                 If Right(hirt(ii - k + 1, 1), Len(mr8(0))) = mr8(0) Then hirt(ii - k + 1, 1) = Left(hirt(ii - k + 1, 1), Len(hirt(ii - k + 1, 1)) - Len(mr8(0)))
-                If hirt(ii - k + 1, 1) = "" Then hirt(ii - k + 1, 1) = NullString '@""‚ğ‹ó”’‚ÉiƒJƒEƒ“ƒg‚³‚¹‚È‚¢‚½‚ßj©‚±‚±‚ÍƒPƒK‚ÌŒ÷–¼‚É‚È‚ç‚È‚©‚Á‚½B
-                Call hdrst(ii, a)   '¶‰ºƒXƒe[ƒ^ƒX•\¦•”
+                If hirt(ii - k + 1, 1) = "" Then hirt(ii - k + 1, 1) = NullString 'ã€€""ã‚’ç©ºç™½ã«ï¼ˆã‚«ã‚¦ãƒ³ãƒˆã•ã›ãªã„ãŸã‚ï¼‰â†ã“ã“ã¯ã‚±ã‚¬ã®åŠŸåã«ãªã‚‰ãªã‹ã£ãŸã€‚
+                Call hdrst(ii, a)   'å·¦ä¸‹ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹è¡¨ç¤ºéƒ¨
             Next
-            Range(bfshn.Cells(k, a), bfshn.Cells(h, a)).Value = hirt 'Vƒo
-            Erase hirt 'Vƒo
+            Range(bfshn.Cells(k, a), bfshn.Cells(h, a)).Value = hirt 'æ–°ãƒ
+            Erase hirt 'æ–°ãƒ
         End If
         Application.Cursor = xlDefault
     End If
     cnt = 0
     
-    'Œ‹‡
+    'çµåˆ
     If (er(5, bni) < 0) And er(6, bni) <= 0 And Round(er(6, bni)) <> -2 And er(7, bni) < 0 And Not IsNumeric(bfshn.Cells(sr(7), a).Value) Then  '2s
-        For ii = k To h  'i¨ii
-            bfshn.Cells(ii, a).Value = bfshn.Cells(ii, a).Value & bfshn.Cells(ii, Abs(er(7, bni))).Value '•¶šŒ‹‡
+        For ii = k To h  'iâ†’ii
+            bfshn.Cells(ii, a).Value = bfshn.Cells(ii, a).Value & bfshn.Cells(ii, Abs(er(7, bni))).Value 'æ–‡å­—çµåˆ
         Next
-        Call hdrst(ii, a)    '¶‰ºƒXƒe[ƒ^ƒX•\¦•”
+        Call hdrst(ii, a)    'å·¦ä¸‹ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹è¡¨ç¤ºéƒ¨
     End If
         
-    '·•ªˆ—(er(5,0)<0)
+    'å·®åˆ†å‡¦ç†(er(5,0)<0)
     If (er(5, bni) < 0) Then  '2s
         cnt = 0
         axa = 0
         dif = 1
         If IsNumeric(bfshn.Cells(sr(7), a).Value) Then
-            axa = a + er(7, bni) '”’lFˆÊ’u‚ª‘Š‘Î’l
+            axa = a + er(7, bni) 'æ•°å€¤ï¼šä½ç½®ãŒç›¸å¯¾å€¤
         Else
-            axa = Abs(er(7, bni)) '•¶šFˆÊ’u‚ªâ‘Î’l
-            If er(7, bni) < 0 Then dif = -1 '˜aEŒ‹‡À{ƒtƒ‰ƒO
+            axa = Abs(er(7, bni)) 'æ–‡å­—ï¼šä½ç½®ãŒçµ¶å¯¾å€¤
+            If er(7, bni) < 0 Then dif = -1 'å’Œãƒ»çµåˆå®Ÿæ–½ãƒ•ãƒ©ã‚°
         End If
         bfshn.Cells(sr(0) + 3, 3).Value = ""
 
         Application.Cursor = xlWait
         For ii = k To h
             saemp = 0
-            If pap(7, 0) <> 0 Or (bfshn.Cells(ii, a).Value <> "" Or bfshn.Cells(ii, axa).Value <> "") Then '—¼•û‹ó—“‚È‚çÀ{‚µ‚È‚¢(F’P—ñ‚È‚ÈˆÈŠOÀ{)
+            If pap(7, 0) <> 0 Or (bfshn.Cells(ii, a).Value <> "" Or bfshn.Cells(ii, axa).Value <> "") Then 'ä¸¡æ–¹ç©ºæ¬„ãªã‚‰å®Ÿæ–½ã—ãªã„(ï¼šå˜åˆ—ãªãªä»¥å¤–å®Ÿæ–½)
                 If IsNumeric(bfshn.Cells(ii, axa).Value) Or IsDate(bfshn.Cells(ii, axa).Value) Then
                     saemp = bfshn.Cells(ii, axa).Value
                 End If
-                '•¶š”äŠr(V‘Î‰)¦]—ˆŒ^‚Í‰º•”elseif‚Ö
+                'æ–‡å­—æ¯”è¼ƒ(æ–°å¯¾å¿œ)â€»å¾“æ¥å‹ã¯ä¸‹éƒ¨elseifã¸
                 If er(6, bni) <= 0 And Round(er(6, bni)) <> -2 And dif = 1 Then
-                    zzz = bfshn.Cells(ii, a).Value 'Šù‘¶‚Ìƒf[ƒ^” 
-                    ReDim zxxz(pap(7, 0)) 'pap(7,0)=8‚Ì‘O’ñi•¡”·•ª”äŠrj
-                    ReDim xxxx(pap(7, 0)) 'pap(7,0)=8‚Ì‘O’ñi•¡”·•ª”äŠrj
-                    ReDim zyyz(pap(7, 0)) 'pap(7,0)=8‚Ì‘O’ñi•¡”·•ª”äŠrj20190614A013q
+                    zzz = bfshn.Cells(ii, a).Value 'æ—¢å­˜ã®ãƒ‡ãƒ¼ã‚¿ç®±
+                    ReDim zxxz(pap(7, 0)) 'pap(7,0)=8ã®å‰æï¼ˆè¤‡æ•°å·®åˆ†æ¯”è¼ƒæ™‚ï¼‰
+                    ReDim xxxx(pap(7, 0)) 'pap(7,0)=8ã®å‰æï¼ˆè¤‡æ•°å·®åˆ†æ¯”è¼ƒæ™‚ï¼‰
+                    ReDim zyyz(pap(7, 0)) 'pap(7,0)=8ã®å‰æï¼ˆè¤‡æ•°å·®åˆ†æ¯”è¼ƒæ™‚ï¼‰20190614ã€013q
                     
-                    Range(Cells(ii, a), Cells(ii, a)).ClearContents  'ˆê’U‹ó”’‚É@86_020b‚©‚ç‚±‚Ì‹Lq
+                    Range(Cells(ii, a), Cells(ii, a)).ClearContents  'ä¸€æ—¦ç©ºç™½ã«ã€€86_020bã‹ã‚‰ã“ã®è¨˜è¿°
                         
-                    zyyz() = Split(zzz, mr(2, 4, bni))  'SplitŠÖ”‚Å‘ÎÛƒV[ƒg‘¤ŒÂX—v‘f‚ğˆê‹C‚É“ü‚ê‚é
+                    zyyz() = Split(zzz, mr(2, 4, bni))  'Splité–¢æ•°ã§å¯¾è±¡ã‚·ãƒ¼ãƒˆå´å€‹ã€…è¦ç´ ã‚’ä¸€æ°—ã«å…¥ã‚Œã‚‹
                     
-                    For jj = 0 To pap(7, 0) '”äŠr—ñ‚ğŒÂXŒ©‚Ä‚¢‚­ ii¨jj‚Ö
-                        xxxx(jj) = bfshn.Cells(ii, er78(0, jj)).Value '“–—ñ‘¤”äŠr‘ÎÛ—ñ
-                        'kahi(ŠeX‚ÌƒZƒ‹”äŠrŒ‹‰Ê‚Ìô’è)
+                    For jj = 0 To pap(7, 0) 'æ¯”è¼ƒåˆ—ã‚’å€‹ã€…è¦‹ã¦ã„ã iiâ†’jjã¸
+                        xxxx(jj) = bfshn.Cells(ii, er78(0, jj)).Value 'å½“åˆ—å´æ¯”è¼ƒå¯¾è±¡åˆ—
+                        'kahi(å„ã€…ã®ã‚»ãƒ«æ¯”è¼ƒçµæœã®ç­–å®š)
                         If zzz = "" Then
                             kahi = -1
-                        '«‚±‚±‚ÅƒGƒ‰[
-                        ElseIf zyyz(jj) = "" And xxxx(jj) = "" Then 'zyz¨zyyz(jj)
-                            kahi = 2  '‚È‚µ‚È‚µ
+                        'â†“ã“ã“ã§ã‚¨ãƒ©ãƒ¼
+                        ElseIf zyyz(jj) = "" And xxxx(jj) = "" Then 'zyzâ†’zyyz(jj)
+                            kahi = 2  'ãªã—ãªã—
                         ElseIf zyyz(jj) = xxxx(jj) Then
                             kahi = 0
                         Else
                             kahi = 1
                         End If
                             
-                        If mr(2, 6, bni) = "-1" Then 'op:1@·•ª‚Í‹ï‘Ì“I·•ª•\‹L‚ğ—…—ñƒpƒ^[ƒ“ )1¨-1‚É•ÏX
-                            If kahi <> -1 Then  '-1‚Í—…—ñ‚·‚ç‚µ‚È‚¢
-                                If kahi = 1 Then '·•ªî•ñ•t‹L
-                                    zxxz(jj) = zyyz(jj)  'ƒZƒ‹“]‹L‚ÍÅŒã«AjoinŠÖ”‚É‚Ä
-                                Else  'î•ñŒfÚ‚¹‚¸ikahi=0,2)
+                        If mr(2, 6, bni) = "-1" Then 'op:1ã€€å·®åˆ†ã¯å…·ä½“çš„å·®åˆ†è¡¨è¨˜ã‚’ç¾…åˆ—ãƒ‘ã‚¿ãƒ¼ãƒ³ )1â†’-1ã«å¤‰æ›´
+                            If kahi <> -1 Then  '-1ã¯ç¾…åˆ—ã™ã‚‰ã—ãªã„
+                                If kahi = 1 Then 'å·®åˆ†æƒ…å ±ä»˜è¨˜
+                                    zxxz(jj) = zyyz(jj)  'ã‚»ãƒ«è»¢è¨˜ã¯æœ€å¾Œâ†“ã€joiné–¢æ•°ã«ã¦
+                                Else  'æƒ…å ±æ²è¼‰ã›ãšï¼ˆkahi=0,2)
                                 End If
                             End If
-                        Else 'op:2A–³AcAcci·•ª‚Í”’lƒtƒ‰ƒO•\‹Lƒpƒ^[ƒ“j
-                            If mr(2, 6, bni) = "-2" Then  '”’lƒtƒ‰ƒO‚ğ—…—ñ‚Å•\‹L@¦ƒZƒ‹“]‹L‚ÍÅŒã«AjoinŠÖ”‚É‚Ä@2¨-2‚É•ÏX
-                                '”’lƒtƒ‰ƒOİ’è
+                        Else 'op:2ã€ç„¡ã€cã€ccï¼ˆå·®åˆ†ã¯æ•°å€¤ãƒ•ãƒ©ã‚°è¡¨è¨˜ãƒ‘ã‚¿ãƒ¼ãƒ³ï¼‰
+                            If mr(2, 6, bni) = "-2" Then  'æ•°å€¤ãƒ•ãƒ©ã‚°ã‚’ç¾…åˆ—ã§è¡¨è¨˜ã€€â€»ã‚»ãƒ«è»¢è¨˜ã¯æœ€å¾Œâ†“ã€joiné–¢æ•°ã«ã¦ã€€2â†’-2ã«å¤‰æ›´
+                                'æ•°å€¤ãƒ•ãƒ©ã‚°è¨­å®š
                                 If kahi <> 2 Then
-                                    zxxz(jj) = CStr(kahi) '=LTrim(Str(kahi)) -1,0,1‚ª‚Ü‚ê‚é
-                                    '‘}“ü‰ÓŠ(ƒqƒdƒPƒZƒ‹‚ ‚½‚è‚ÌƒRƒƒ“ƒgj
+                                    zxxz(jj) = CStr(kahi) '=LTrim(Str(kahi)) -1,0,1ãŒåˆ»ã¾ã‚Œã‚‹
+                                    'æŒ¿å…¥ç®‡æ‰€(ãƒ’ãƒ…ã‚±ã‚»ãƒ«ã‚ãŸã‚Šã®ã‚³ãƒ¡ãƒ³ãƒˆï¼‰
                                 End If
-                            Else 'op:–³AcAcc@ '”’lƒtƒ‰ƒO‚ğ‡Z‚Å•\‹L
-                                If kahi <> 2 Then  '”äŠrŒ‹‰Ê‚Q¨‡Z‘€ì©‘Ì‚ğs‚í‚È‚¢
-                                    bfshn.Cells(ii, a).Value = bfshn.Cells(ii, a).Value + kahi  'ƒZƒ‹‚ÉŒ‹‰Ê‹LÚi‡Œv’lj
+                            Else 'op:ç„¡ã€cã€ccã€€ 'æ•°å€¤ãƒ•ãƒ©ã‚°ã‚’åˆç®—ã§è¡¨è¨˜
+                                If kahi <> 2 Then  'æ¯”è¼ƒçµæœï¼’â†’åˆç®—æ“ä½œè‡ªä½“ã‚’è¡Œã‚ãªã„
+                                    bfshn.Cells(ii, a).Value = bfshn.Cells(ii, a).Value + kahi  'ã‚»ãƒ«ã«çµæœè¨˜è¼‰ï¼ˆåˆè¨ˆå€¤ï¼‰
                                         
-                                    'differentƒZƒ‹‚ÌF•t‚¯
-                                    If kahi = 1 And Left(mr(2, 6, bni), 1) = "c" Then 'F•t‚¯(c,cc)
-                                        bfshn.Cells(ii, a).Interior.Color = RGB(254, 254, 238) '© = 15662846@¨@30s86_017p
-                                        bfshn.Cells(ii, er78(0, jj)).Interior.Color = RGB(254, 254, 238) '© = 15662846@30s86_017p
+                                    'differentã‚»ãƒ«ã®è‰²ä»˜ã‘
+                                    If kahi = 1 And Left(mr(2, 6, bni), 1) = "c" Then 'è‰²ä»˜ã‘(c,cc)
+                                        bfshn.Cells(ii, a).Interior.Color = RGB(254, 254, 238) 'â† = 15662846ã€€â†’ã€€30s86_017p
+                                        bfshn.Cells(ii, er78(0, jj)).Interior.Color = RGB(254, 254, 238) 'â† = 15662846ã€€30s86_017p
                                         bfshn.Cells(ii, er78(0, jj)).ClearComments
-                                        If mr(2, 6, bni) = "cc" Then '‚³‚ç‚ÉƒRƒƒ“ƒg•t‰Ái”äŠrŒ³‘¤j(cc)ˆ—d‚¢
+                                        If mr(2, 6, bni) = "cc" Then 'ã•ã‚‰ã«ã‚³ãƒ¡ãƒ³ãƒˆä»˜åŠ ï¼ˆæ¯”è¼ƒå…ƒå´ï¼‰(cc)å‡¦ç†é‡ã„
                                             bfshn.Cells(ii, er78(0, jj)).AddComment
-                                            bfshn.Cells(ii, er78(0, jj)).Comment.Text Text:=zyyz(jj) 'zyz¨zyyz(jj)
+                                            bfshn.Cells(ii, er78(0, jj)).Comment.Text Text:=zyyz(jj) 'zyzâ†’zyyz(jj)
                                             bfshn.Cells(ii, er78(0, jj)).Comment.Shape.TextFrame.AutoSize = True
                                         End If
                                     End If
@@ -1758,135 +1758,135 @@ Call papchk(pap(), 0, bun)
                             End If
                         End If
                     Next
-                    '—…—ñŒ^(‚P‚©‚Q)‚Í‚±‚±‚Å‹LÚ«joinŠÖ”g—p
+                    'ç¾…åˆ—å‹(ï¼‘ã‹ï¼’)ã¯ã“ã“ã§è¨˜è¼‰â†“joiné–¢æ•°ä½¿ç”¨
                     If ((mr(2, 6, bni) = "-1" And zzz <> "") Or mr(2, 6, bni) = "-2") Then
                         bfshn.Cells(ii, a).Value = Join(zxxz, mr(2, 4, bni))
                     End If
-                    '•¶š”äŠr(V‘Î‰)201708’Ç‰Á‚±‚±‚Ü‚Å
+                    'æ–‡å­—æ¯”è¼ƒ(æ–°å¯¾å¿œ)201708è¿½åŠ ã“ã“ã¾ã§
                 ElseIf er(6, bni) <= 0 And Round(er(6, bni)) <> -2 And dif = -1 Then
-                    '•¶šŒ‹‡¨ˆÚs‚É‚æ‚è‚±‚±‚Å‚Í‰½‚à‚µ‚È‚¢‚±‚Æ‚É
-                ElseIf dif = -1 And er(8, bni) >= 0 Then  '1m =0¨>=0 30s69ƒoƒNC³
-                    bfshn.Cells(ii, a).Value = bfshn.Cells(ii, a).Value + saemp '˜a
-                ElseIf dif = -1 And er(8, bni) < 0 Then  '<-0.5¨<0@30s69ƒoƒNC³
-                    bfshn.Cells(ii, a).Value = bfshn.Cells(ii, a).Value * saemp 'Ï
-                ElseIf er(8, bni) >= 0 Then 'e=0¨e>=0C³16‚“
-                    bfshn.Cells(ii, a).Value = bfshn.Cells(ii, a).Value - saemp '·
-                ElseIf er(8, bni) < 0 Then  '1m@<-0.5¨<0@30s69ƒoƒNC³
-                    bfshn.Cells(ii, a).Value = saemp - bfshn.Cells(ii, a).Value '·(”½“])
+                    'æ–‡å­—çµåˆâ†’ç§»è¡Œã«ã‚ˆã‚Šã“ã“ã§ã¯ä½•ã‚‚ã—ãªã„ã“ã¨ã«
+                ElseIf dif = -1 And er(8, bni) >= 0 Then  '1m =0â†’>=0 30s69ãƒã‚¯ä¿®æ­£
+                    bfshn.Cells(ii, a).Value = bfshn.Cells(ii, a).Value + saemp 'å’Œ
+                ElseIf dif = -1 And er(8, bni) < 0 Then  '<-0.5â†’<0ã€€30s69ãƒã‚¯ä¿®æ­£
+                    bfshn.Cells(ii, a).Value = bfshn.Cells(ii, a).Value * saemp 'ç©
+                ElseIf er(8, bni) >= 0 Then 'e=0â†’e>=0ä¿®æ­£16ï½“
+                    bfshn.Cells(ii, a).Value = bfshn.Cells(ii, a).Value - saemp 'å·®
+                ElseIf er(8, bni) < 0 Then  '1mã€€<-0.5â†’<0ã€€30s69ãƒã‚¯ä¿®æ­£
+                    bfshn.Cells(ii, a).Value = saemp - bfshn.Cells(ii, a).Value 'å·®(åè»¢)
                 End If
             End If
-            '”äŠr‚ÌˆÚsæ‚Í‚±‚±©H
-            Call hdrst(ii, a)              '¶‰ºƒXƒe[ƒ^ƒX•\¦•”
-        Next  '·•ª‚Ì‚ ‚éˆêsˆ—ƒ‹[ƒ`ƒ“‚Í‚±‚±‚Ü‚Å
+            'æ¯”è¼ƒã®ç§»è¡Œå…ˆã¯ã“ã“â†ï¼Ÿ
+            Call hdrst(ii, a)              'å·¦ä¸‹ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹è¡¨ç¤ºéƒ¨
+        Next  'å·®åˆ†ã®ã‚ã‚‹ä¸€è¡Œå‡¦ç†ãƒ«ãƒ¼ãƒãƒ³ã¯ã“ã“ã¾ã§
         
         Application.Cursor = xlDefault
         cnt = 0
     End If
-  End If '‚éA@-99or*,**‚Í’Ê‰ßA‚±‚±‚Ü‚Å
+  End If 'ã‚‹Aã€€-99or*,**ã¯é€šéã€ã“ã“ã¾ã§
   
-' 86_020p@–ß‚·BˆêŠ‡“¥P‚Ì‚Æ‚±‚ë‚ÍAbni¨bun‚Ö’uŠ·
-  'I—¹‚Ì•¶š’²®(‹­§or‚¿‚Ü‚¿‚Ü¨•s—vA’Êí‚Ì‰ÁZ‚â“]Úor“Ë‡Œ³î•ñ‚ÌÅIs‚Ì‘®‚É‡‚í‚¹‚é‚Ì‚İ—vA)
-  If er(6, bun) >= 0 Or (er(6, bun) < 0 And tst = 7 And trt <> -9) Then 'c<0‚ÌvlookupŒ^‚àÀ{‚µ‚È‚¢‚É(tst7,-99ˆÈŠO)@86_013d
+' 86_020pã€€æˆ»ã™ã€‚ä¸€æ‹¬è¸è¥²ã®ã¨ã“ã‚ã¯ã€bniâ†’bunã¸ç½®æ›
+  'çµ‚äº†æ™‚ã®æ–‡å­—èª¿æ•´(å¼·åˆ¶orã¡ã¾ã¡ã¾â†’ä¸è¦ã€é€šå¸¸ã®åŠ ç®—ã‚„è»¢è¼‰orçªåˆå…ƒæƒ…å ±ã®æœ€çµ‚è¡Œã®æ›¸å¼ã«åˆã‚ã›ã‚‹æ™‚ã®ã¿è¦ã€)
+  If er(6, bun) >= 0 Or (er(6, bun) < 0 And tst = 7 And trt <> -9) Then 'c<0ã®vlookupå‹ã‚‚å®Ÿæ–½ã—ãªã„ã«(tst7,-99ä»¥å¤–)ã€€86_013d
         If tst = -2 Then
-            Range(bfshn.Cells(k, a), bfshn.Cells(h, a)).NumberFormatLocal = "#,##0;[Ô]-#,##0"
+            Range(bfshn.Cells(k, a), bfshn.Cells(h, a)).NumberFormatLocal = "#,##0;[èµ¤]-#,##0"
         ElseIf tst = 0 Then
-            Range(bfshn.Cells(k, a), bfshn.Cells(h, a)).NumberFormatLocal = "G/•W€"
+            Range(bfshn.Cells(k, a), bfshn.Cells(h, a)).NumberFormatLocal = "G/æ¨™æº–"
         ElseIf tst = 7 Then
-            If trt = -2 Then  '‰ÁZŒ^‚ÌˆêŠ‡“¥P
+            If trt = -2 Then  'åŠ ç®—å‹ã®ä¸€æ‹¬è¸è¥²
                 If Abs(er(9, bun)) = 0.4 Or Abs(er(9, bun)) = 0.1 Then
-                    MsgBox "‰ÁZŒÅ’è’l(0.4A0.1[)‚È‚Ì‚ÅˆêŠ‡“¥P‚Ís‚í‚ê‚Ü‚¹‚ñB"
+                    MsgBox "åŠ ç®—å›ºå®šå€¤(0.4ã€0.1ãƒ¼)ãªã®ã§ä¸€æ‹¬è¸è¥²ã¯è¡Œã‚ã‚Œã¾ã›ã‚“ã€‚"
                 Else
                     If qq > 0 Then
                     Range(bfshn.Cells(k, a), bfshn.Cells(h, a)).NumberFormatLocal = Workbooks(mr(2, 1, bun)).Sheets(mr(1, 1, bun)).Cells(qq, Abs(er(9, bun))).NumberFormatLocal
                     Else
-                    MsgBox "ˆêŠ‡“¥P‚ÍƒXƒ‹[‚µ‚Ü‚·(î•ñ–³‚¢‚Ì‚Å)"  '86_016z
+                    MsgBox "ä¸€æ‹¬è¸è¥²ã¯ã‚¹ãƒ«ãƒ¼ã—ã¾ã™(æƒ…å ±ç„¡ã„ã®ã§)"  '86_016z
                     End If
                 End If
-            ElseIf trt = -1 Then   '“]ÚŒ^‚ÌˆêŠ‡“¥P
+            ElseIf trt = -1 Then   'è»¢è¼‰å‹ã®ä¸€æ‹¬è¸è¥²
                 If er(10, bun) < 0.5 Then
-                    MsgBox "˜AÚA¦¦›(F“]Úî•ñ‘®‚ª‘¶İ‚µ‚È‚¢) ‚Í‘ÎÛŠO"
+                    MsgBox "é€£è¼‰ã€ï½¦ï½¦â—‹(ï¼šè»¢è¼‰æƒ…å ±æ›¸å¼ãŒå­˜åœ¨ã—ãªã„) ã¯å¯¾è±¡å¤–"
                 Else
                     If qq > 0 Then
                     Range(bfshn.Cells(k, a), bfshn.Cells(h, a)).NumberFormatLocal = Workbooks(mr(2, 1, bun)).Sheets(mr(1, 1, bun)).Cells(qq, Abs(er(10, bun))).NumberFormatLocal
                     Else
-                    MsgBox "ˆêŠ‡“¥P‚ÍƒXƒ‹[‚Æ‚È‚è‚Ü‚·(î•ñ–³‚¢‚Ì‚Å)""  '86_016z"
+                    MsgBox "ä¸€æ‹¬è¸è¥²ã¯ã‚¹ãƒ«ãƒ¼ã¨ãªã‚Šã¾ã™(æƒ…å ±ç„¡ã„ã®ã§)""  '86_016z"
                     End If
                 End If
             Else
-                Call oshimai("", bfn, shn, 1, 0, "‚±‚¤‚¢‚¤ƒP[ƒX‚ª‚ ‚é‚Ì‚¾‚ë‚¤‚©H")
+                Call oshimai("", bfn, shn, 1, 0, "ã“ã†ã„ã†ã‚±ãƒ¼ã‚¹ãŒã‚ã‚‹ã®ã ã‚ã†ã‹ï¼Ÿ")
             End If
         End If
 
-        'Ü‚è•Ô‚µ‚Ä‘S‘Ì‚ğ•\¦‚µ‚È‚¢ (LF‘Îˆ)16s@ˆê—¥“K—p‚Ö18s
+        'æŠ˜ã‚Šè¿”ã—ã¦å…¨ä½“ã‚’è¡¨ç¤ºã—ãªã„ (LFå¯¾å‡¦)16sã€€ä¸€å¾‹é©ç”¨ã¸18s
         If trt <> -2 Then Range(bfshn.Cells(k, a), bfshn.Cells(h, a)).WrapText = False
   End If
-'‚d‚±‚±‚Ü‚Å(not98)
+'â—‡ï¼¥â—‡ã“ã“ã¾ã§(not98)
         
-'??-99¤-98—p‚±‚±‚©‚ç??
-  If er(6, bni) <= -90 And StrConv(Left(bfshn.Cells(sr(1), a).Value, 1), 8) <> "*" Then '‚éC@20190214@*‚ ‚è‚ÍÀ{‚µ‚È‚¢‚É
+'??-99ï½¤-98ç”¨ã“ã“ã‹ã‚‰??
+  If er(6, bni) <= -90 And StrConv(Left(bfshn.Cells(sr(1), a).Value, 1), 8) <> "*" Then 'ã‚‹Cã€€20190214ã€€*ã‚ã‚Šã¯å®Ÿæ–½ã—ãªã„ã«
     
-        '“Æ—§WŒv(‚ˆ•ÏX)
-        '‚±‚¿‚ç‚Ìu‚Çv‚Ì‘Î‰‚Í‚Ç‚¤‚·‚é‚©—vŒŸ“¢
-        If InStr(1, mr(0, 2, bni), "¦") > 0 And InStr(1, rvsrz3(mr(0, 2, bni), 1, "¦", 0), "‚Ç") > 0 Then
+        'ç‹¬ç«‹é›†è¨ˆ(ï½ˆå¤‰æ›´)
+        'ã“ã¡ã‚‰ã®ã€Œã©ã€ã®å¯¾å¿œã¯ã©ã†ã™ã‚‹ã‹è¦æ¤œè¨
+        If InStr(1, mr(0, 2, bni), "ï½¦") > 0 And InStr(1, rvsrz3(mr(0, 2, bni), 1, "ï½¦", 0), "ã©") > 0 Then
             ii = h
-            Do Until ii = k - 1  'ƒPƒc‚©‚çã•ûŒü‚ÖƒT[ƒ`
-                If bfshn.Cells(ii, Abs(er(2, 1))) <> "" Then Exit Do  'bfshn.‚ğ”í‚¹‚½
+            Do Until ii = k - 1  'ã‚±ãƒ„ã‹ã‚‰ä¸Šæ–¹å‘ã¸ã‚µãƒ¼ãƒ
+                If bfshn.Cells(ii, Abs(er(2, 1))) <> "" Then Exit Do  'bfshn.ã‚’è¢«ã›ãŸ
                 ii = ii - 1
             Loop
             h = ii
         End If
                     
         DoEvents
-        Application.Calculation = xlCalculationAutomatic    '”®ŒvZ•û–@©“®‚É@'VŒ`®@85_007
+        Application.Calculation = xlCalculationAutomatic    'æ•°å¼è¨ˆç®—æ–¹æ³•è‡ªå‹•ã«ã€€'æ–°å½¢å¼ã€€85_007
 
-        Range(bfshn.Cells(k, a), bfshn.Cells(h, a)).NumberFormatLocal = "G/•W€"    'mghz—ñˆê’U•W€‚Öi”®“ü‚ê‚é‚½‚ßj
+        Range(bfshn.Cells(k, a), bfshn.Cells(h, a)).NumberFormatLocal = "G/æ¨™æº–"    'mghzåˆ—ä¸€æ—¦æ¨™æº–ã¸ï¼ˆæ•°å¼å…¥ã‚Œã‚‹ãŸã‚ï¼‰
     
 
     
     
-        '”®‚ÅƒRƒsƒy
-        If mr(2, 6, bni) = "c" Then '85_024_‚Ü‚¾g—p‚³‚ê‚Ä‚¢‚È‚¢B
-            MsgBox "g‚í‚ê‚Ä‚¢‚éH"
-            bfshn.Cells(sr(8), a).Copy  '‚Ù‚Ú”ğ‚¯‚ç‚ê‚È‚¢
-            Range(bfshn.Cells(k, a), bfshn.Cells(h, a)).PasteSpecial Paste:=xlPasteAll '‚·‚×‚Ä -4104
-        Else ']—ˆŒ^ -4123¨xlPasteFormulas¨.copy.paste
-            Call copipe(bfn, shn, sr(8), a, sr(8), a, bfn, shn, k, a, h, a, 3)  '3¨FormulaR1C1(’E.copy.paste)@86_020d
+        'æ•°å¼ã§ã‚³ãƒ”ãƒš
+        If mr(2, 6, bni) = "c" Then '85_024_ã¾ã ä½¿ç”¨ã•ã‚Œã¦ã„ãªã„ã€‚
+            MsgBox "ä½¿ã‚ã‚Œã¦ã„ã‚‹ï¼Ÿ"
+            bfshn.Cells(sr(8), a).Copy  'ã»ã¼é¿ã‘ã‚‰ã‚Œãªã„
+            Range(bfshn.Cells(k, a), bfshn.Cells(h, a)).PasteSpecial Paste:=xlPasteAll 'ã™ã¹ã¦ -4104
+        Else 'å¾“æ¥å‹ -4123â†’xlPasteFormulasâ†’.copy.paste
+            Call copipe(bfn, shn, sr(8), a, sr(8), a, bfn, shn, k, a, h, a, 3)  '3â†’FormulaR1C1(è„±.copy.paste)ã€€86_020d
         End If
     
-        '30s86_021c‚±‚¿‚ç‚Ö
-        If tst = 1 Then '©“–—ñ“]Ú•¶šŒ^
+        '30s86_021cã“ã¡ã‚‰ã¸
+        If tst = 1 Then 'â†å½“åˆ—è»¢è¼‰æ–‡å­—å‹
             Range(bfshn.Cells(k, a), bfshn.Cells(h, a)).NumberFormatLocal = "@"
-        ElseIf tst = -2 Then  '’Ê‰İŒ^
-            Range(bfshn.Cells(k, a), bfshn.Cells(h, a)).NumberFormatLocal = "#,##0;[Ô]-#,##0"
-        ElseIf tst = 7 Then '‘ÎÛƒV[ƒg–¼‚ğ–Í•í@a11_1—ñ¨‘ÎÛƒV[ƒg‚É•ÏX
-            Range(bfshn.Cells(k, a), bfshn.Cells(h, a)).NumberFormatLocal = bfshn.Cells(sr(1), a).NumberFormatLocal 'sr(4)¨sr(1)‚Ö30s68
-        '«‚±‚±‚ªREM‚È——RF“ú•t‚Æ‚©‚ªAÀ”‚É‚È‚Á‚Ä‚µ‚Ü‚¤
-       'ElseIf tst = 0 Then '•W€Œ^
-       'Range(bfshn.Cells(k, a), bfshn.Cells(h, a)).NumberFormatLocal = "G/•W€"
+        ElseIf tst = -2 Then  'é€šè²¨å‹
+            Range(bfshn.Cells(k, a), bfshn.Cells(h, a)).NumberFormatLocal = "#,##0;[èµ¤]-#,##0"
+        ElseIf tst = 7 Then 'å¯¾è±¡ã‚·ãƒ¼ãƒˆåã‚’æ¨¡å€£ã€€a11_1åˆ—â†’å¯¾è±¡ã‚·ãƒ¼ãƒˆã«å¤‰æ›´
+            Range(bfshn.Cells(k, a), bfshn.Cells(h, a)).NumberFormatLocal = bfshn.Cells(sr(1), a).NumberFormatLocal 'sr(4)â†’sr(1)ã¸30s68
+        'â†“ã“ã“ãŒREMãªç†ç”±ï¼šæ—¥ä»˜ã¨ã‹ãŒã€å®Ÿæ•°ã«ãªã£ã¦ã—ã¾ã†
+       'ElseIf tst = 0 Then 'æ¨™æº–å‹
+       'Range(bfshn.Cells(k, a), bfshn.Cells(h, a)).NumberFormatLocal = "G/æ¨™æº–"
         End If
     
-        If er(6, bni) = -99 Then 'ƒZƒ‹‚ğ’l‚É•ÏŠ·
-            Call cpp2(bfn, shn, k, a, h, a, bfn, shn, k, a, 0, 0, -4163) '‰½‚Æ""¨Nullstring‚³‚ê‚é(ƒPƒK‚ÌŒ÷–¼Aò‰»ì—p)
+        If er(6, bni) = -99 Then 'ã‚»ãƒ«ã‚’å€¤ã«å¤‰æ›
+            Call cpp2(bfn, shn, k, a, h, a, bfn, shn, k, a, 0, 0, -4163) 'ä½•ã¨""â†’Nullstringã•ã‚Œã‚‹(ã‚±ã‚¬ã®åŠŸåã€æµ„åŒ–ä½œç”¨)
         End If
 
 
-        bfshn.Cells(sr(8), 4).Value = "(-99Œn)"  '86_019q
-        bfshn.Cells(sr(8), a).ClearComments   '86_019q@Šù‘¶ƒRƒƒ“ƒg‚ÍÁ‚µ‚Ä‚¢‚­d—l‚Ö
-        bfshn.Cells(1, a).Value = h  'h0¨h 30s64
+        bfshn.Cells(sr(8), 4).Value = "(-99ç³»)"  '86_019q
+        bfshn.Cells(sr(8), a).ClearComments   '86_019qã€€æ—¢å­˜ã‚³ãƒ¡ãƒ³ãƒˆã¯æ¶ˆã—ã¦ã„ãä»•æ§˜ã¸
+        bfshn.Cells(1, a).Value = h  'h0â†’h 30s64
     
         DoEvents
-        Application.Calculation = xlCalculationManual  'ÄŒvZÄ‚Ñè“®‚Éid‚­‚È‚é‚½‚ßj30s66
+        Application.Calculation = xlCalculationManual  'å†è¨ˆç®—å†ã³æ‰‹å‹•ã«ï¼ˆé‡ããªã‚‹ãŸã‚ï¼‰30s66
     
         cnt = 0
-        If er(5, bni) <> 1 Then  'ƒJƒEƒ“ƒgŠî€—ñ‚ª‹ó”’s‚Í‚±‚¿‚ç‚à‹ó”’‚É 30s68
+        If er(5, bni) <> 1 Then  'ã‚«ã‚¦ãƒ³ãƒˆåŸºæº–åˆ—ãŒç©ºç™½è¡Œã¯ã“ã¡ã‚‰ã‚‚ç©ºç™½ã« 30s68
             Application.Cursor = xlWait
             For ii = k To h
-                If kaunta(mr(), ii, pap(5, 0), bni, er5(), mr5()) = 0 Then '30s85_024ŒŸØ6
+                If kaunta(mr(), ii, pap(5, 0), bni, er5(), mr5()) = 0 Then '30s85_024æ¤œè¨¼6
                     'bfshn.Cells(ii, a).Value = bfshn.Cells(sr(0) + 2, 1).Value
-                    '«30s86_020b
+                    'â†“30s86_020b
                     Range(Cells(ii, a), Cells(ii, a)).ClearContents
                 End If
-                Call hdrst(ii, a)            '¶‰ºƒXƒe[ƒ^ƒX•\¦•”
+                Call hdrst(ii, a)            'å·¦ä¸‹ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹è¡¨ç¤ºéƒ¨
             Next
             Application.Cursor = xlDefault
         End If
@@ -1896,79 +1896,81 @@ Call papchk(pap(), 0, bun)
             Application.Cursor = xlWait
             yayuyo = 0
             For ii = k To h  'h
-                If IsError(bfshn.Cells(ii, a)) Then '30s68_2ƒoƒO‰ü—Ç
+                If IsError(bfshn.Cells(ii, a)) Then '30s68_2ãƒã‚°æ”¹è‰¯
                     yayuyo = yayuyo + 1 '85_005
-                    If yayuyo = 10 Then Call oshimai("", bfn, shn, k, a, "‚â‚ä‚æ10‰ñ")
+                    If yayuyo = 10 Then Call oshimai("", bfn, shn, k, a, "ã‚„ã‚†ã‚ˆ10å›")
                 ElseIf bfshn.Cells(ii, a) = "" Then
-                    Range(Cells(ii, a), Cells(ii, a)).ClearContents    '""¨‹ó”’@30s86_020b@NullString‚©‚ç‚±‚¿‚ç‚Ö
+                    Range(Cells(ii, a), Cells(ii, a)).ClearContents    '""â†’ç©ºç™½ã€€30s86_020bã€€NullStringã‹ã‚‰ã“ã¡ã‚‰ã¸
                 End If
-                Call hdrst(ii, a)            '¶‰ºƒXƒe[ƒ^ƒX•\¦•”
+                Call hdrst(ii, a)            'å·¦ä¸‹ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹è¡¨ç¤ºéƒ¨
             Next
         End If
         Application.Cursor = xlDefault
-  '??-99—p‚±‚±‚Ü‚Å??
-  End If  '‚éC
-    Range(bfshn.Cells(k, a), bfshn.Cells(h, a)).WrapText = False  '86_016tiÜ‚è•Ô‚µ‚µ‚È‚¢API‚ÌXML–c’£–h~j‚±‚Á‚¿‚É
+  '??-99ç”¨ã“ã“ã¾ã§??
+  End If  'ã‚‹C
+    Range(bfshn.Cells(k, a), bfshn.Cells(h, a)).WrapText = False  '86_016tï¼ˆæŠ˜ã‚Šè¿”ã—ã—ãªã„APIã®XMLè†¨å¼µé˜²æ­¢ï¼‰ã“ã£ã¡ã«
     
-  '¶‰ºƒXƒe[ƒ^ƒX•\¦•”@‚±‚±‚¾‚¯“Áêƒo[ƒWƒ‡ƒ“
+  'å·¦ä¸‹ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹è¡¨ç¤ºéƒ¨ã€€ã“ã“ã ã‘ç‰¹æ®Šãƒãƒ¼ã‚¸ãƒ§ãƒ³
   DoEvents
-  If flag = True Then Call oshimai("", bfn, shn, k, a, "’†~‚µ‚Ü‚µ‚½")    '’†~ƒ{ƒ^ƒ“ˆ—
-  Application.StatusBar = Str(cnt) & "A" & Str(a - dd1 + 1) & " / " & Str(dd2 - dd1 + 1)
+  If flag = True Then Call oshimai("", bfn, shn, k, a, "ä¸­æ­¢ã—ã¾ã—ãŸ")    'ä¸­æ­¢ãƒœã‚¿ãƒ³å‡¦ç†
+  Application.StatusBar = Str(cnt) & "ã€" & Str(a - dd1 + 1) & " / " & Str(dd2 - dd1 + 1)
   cnt = 0
  
-End If '‚è(not"*")
+End If 'ã‚Š(not"*")
      
-    'ÄŒvZ‚ğ©“®‚É–ß‚·
+    'å†è¨ˆç®—ã‚’è‡ªå‹•ã«æˆ»ã™
     Application.Calculation = xlCalculationAutomatic
     Application.StatusBar = False
      
-    'ƒTƒ}ƒŠ’lˆ—i“]Ú•ªj‚±‚±‚Å‚à(-1,-2‚Ì‚İ)
+    'ã‚µãƒãƒªå€¤å‡¦ç†ï¼ˆè»¢è¼‰åˆ†ï¼‰ã“ã“ã§ã‚‚(-1,-2ã®ã¿)
     If er(5, bni) >= 0 And er(6, bni) > -90 And er(6, bni) < 0 And StrConv(Left(bfshn.Cells(sr(1), a).Value, 1), 8) <> "*" Then
-        If pap(7, 0) > pap(8, 0) Then jj = pap(8, 0) Else jj = pap(7, 0) 'ii¨jj
+        If pap(7, 0) > pap(8, 0) Then jj = pap(8, 0) Else jj = pap(7, 0) 'iiâ†’jj
         
         bfshn.Cells(1, 4).Value = Application.WorksheetFunction.Sum(bfshn.Range("A:A")) + 1
         
         For ii = jj To 0 Step -1
-            If er78(0, ii) > 0.2 And er78(0, ii) <> a Then Call samaru(Int(er78(0, ii)), mr(1, 1, 1))  '•¡”—ñ‚³‚Ü‚é
+            If er78(0, ii) > 0.2 And er78(0, ii) <> a Then Call samaru(Int(er78(0, ii)), mr(1, 1, 1))  'è¤‡æ•°åˆ—ã•ã¾ã‚‹
         Next
     End If
     bfshn.Cells(sr(0) + 4, a).Select
     
-    Call samaru(a, mr(1, 1, 1))  '“–—ñ‚³‚Ü‚é
+    Call samaru(a, mr(1, 1, 1))  'å½“åˆ—ã•ã¾ã‚‹
     
     For ii = 0 To pap(2, 0)  '30s86_022qh
-        Call samaru(Int(Abs(er2(ii))), mr(1, 1, 1))   '“–ƒV[ƒg“Ë‡—ñi‚Qs–Új‚³‚Ü‚é
+        If Int(Abs(er2(ii))) <> 0 Then
+            Call samaru(Int(Abs(er2(ii))), mr(1, 1, 1))   'å½“ã‚·ãƒ¼ãƒˆçªåˆåˆ—ï¼ˆï¼’è¡Œç›®ï¼‰ã•ã¾ã‚‹
+        End If
     Next
     
-    bfshn.Cells(sr(0) + 3, a).Value = Now() 'Šˆ—p—á1ƒ^ƒCƒ€ƒXƒ^ƒ“ƒv“ü‚ê‚é
-    bfshn.Cells(sr(0) + 2, 4).Value = Now() 'Šˆ—p—á1ƒ^ƒCƒ€ƒXƒ^ƒ“ƒv“ü‚ê‚é sr(0) + 3,¨sr(0) + 2@‚R‚O‚“‚V‚S
-    '«ˆês–ˆ‚ÉƒCƒ“ƒNƒŠƒƒ“ƒgiID•Ï‚í‚Á‚½‚Æ‚«‚Ì‚İƒŠƒZƒbƒg‚³‚ê‚éj B¦bfnAshn‘¤‚ÍXV‚³‚ê‚È‚¢i‰‰ñ•¡Ê‚Ì’l‚ªÚ‚Á‚Ä‚é‚¾‚¯jB
-    twbsh.Cells(14, 3).Value = twbsh.Cells(14, 3).Value + 1 '7s (3,3)¨(14,3)25s
-Next '‘I‘ğ”ÍˆÍ—ñ•ª‚ÌŒJ‚è•Ô‚µ@‚ç
-'‚±‚±‚Å‚Ìuav‚ÍAd+1‚Å‚ ‚éB
-Call giktzg(a, rog)  'ƒƒO•”•ÊƒvƒƒV[ƒWƒƒ[‰»_201905
+    bfshn.Cells(sr(0) + 3, a).Value = Now() 'æ´»ç”¨ä¾‹1ã‚¿ã‚¤ãƒ ã‚¹ã‚¿ãƒ³ãƒ—å…¥ã‚Œã‚‹
+    bfshn.Cells(sr(0) + 2, 4).Value = Now() 'æ´»ç”¨ä¾‹1ã‚¿ã‚¤ãƒ ã‚¹ã‚¿ãƒ³ãƒ—å…¥ã‚Œã‚‹ sr(0) + 3,â†’sr(0) + 2ã€€ï¼“ï¼ï½“ï¼—ï¼”
+    'â†“ä¸€è¡Œæ¯ã«ã‚¤ãƒ³ã‚¯ãƒªãƒ¡ãƒ³ãƒˆï¼ˆIDå¤‰ã‚ã£ãŸã¨ãã®ã¿ãƒªã‚»ãƒƒãƒˆã•ã‚Œã‚‹ï¼‰ ã€‚â€»bfnã€shnå´ã¯æ›´æ–°ã•ã‚Œãªã„ï¼ˆåˆå›è¤‡å†™æ™‚ã®å€¤ãŒè¼‰ã£ã¦ã‚‹ã ã‘ï¼‰ã€‚
+    twbsh.Cells(14, 3).Value = twbsh.Cells(14, 3).Value + 1 '7s (3,3)â†’(14,3)25s
+Next 'é¸æŠç¯„å›²åˆ—åˆ†ã®ç¹°ã‚Šè¿”ã—ã€€ã‚‰
+'ã“ã“ã§ã®ã€Œaã€ã¯ã€d+1ã§ã‚ã‚‹ã€‚
+Call giktzg(a, rog)  'ãƒ­ã‚°éƒ¨åˆ¥ãƒ—ãƒ­ã‚·ãƒ¼ã‚¸ãƒ£ãƒ¼åŒ–_201905
    
-End Sub 'ŠO•”Œ‹‡‚±‚±‚Ü‚Å
-'[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[
-Sub kskst(pap7 As Long, h As Long, er78() As Currency, er9() As Currency, mr9() As String, er3() As Currency, mr3() As String, er5() As Long, mr5() As String, c5 As Long, pap3 As Long, pap5 As Long, bni As Long, qq As Long, rrr As Long, mr() As String, er() As Currency, a As Long, cted() As Long) '‚‘¬ƒV[ƒg‚Í™X‚É‚±‚¿‚ç‚Ö
+End Sub 'å¤–éƒ¨çµåˆã“ã“ã¾ã§
+'ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼
+Sub kskst(pap7 As Long, h As Long, er78() As Currency, er9() As Currency, mr9() As String, er3() As Currency, mr3() As String, er5() As Long, mr5() As String, c5 As Long, pap3 As Long, pap5 As Long, bni As Long, qq As Long, rrr As Long, mr() As String, er() As Currency, a As Long, cted() As Long) 'é«˜é€Ÿã‚·ãƒ¼ãƒˆã¯å¾ã€…ã«ã“ã¡ã‚‰ã¸
     Dim hirt As Variant, ii As Long, tempo As String, baba As String
     ThisWorkbook.Activate
-    Sheets("‚‘¬ƒV[ƒg_" & syutoku()).Select
+    Sheets("é«˜é€Ÿã‚·ãƒ¼ãƒˆ_" & syutoku()).Select
     DoEvents
         
     twt.Cells.Clear
     twt.Cells.Delete Shift:=xlUp
     DoEvents
-    twt.Columns("A:A").NumberFormatLocal = "@"  'ˆê—ñ–Ú•¶š—ñ‚É
-    twt.Columns("G:G").NumberFormatLocal = "@"  '7—ñ–Ú(‹Œ4—ñ–Ú)•¶š—ñ‚Éi“]Ú‘OƒL[—ñ—p“rj@30s85_027
-    twt.Columns("F:F").NumberFormatLocal = "@"  '6—ñ–Ú‚à•¶š—ñ‚Éi“]Ú‘OƒL[—ñ—p“rj@30s86_014g
-    twt.Columns("D:D").NumberFormatLocal = "@"  '‚S—ñ–Ú•¶š—ñ‚ÉiV‹K•ªî•ña¦—p“r‚Ì‚İj‚Ö@30s85_027
+    twt.Columns("A:A").NumberFormatLocal = "@"  'ä¸€åˆ—ç›®æ–‡å­—åˆ—ã«
+    twt.Columns("G:G").NumberFormatLocal = "@"  '7åˆ—ç›®(æ—§4åˆ—ç›®)æ–‡å­—åˆ—ã«ï¼ˆè»¢è¼‰å‰ã‚­ãƒ¼åˆ—ç”¨é€”ï¼‰ã€€30s85_027
+    twt.Columns("F:F").NumberFormatLocal = "@"  '6åˆ—ç›®ã‚‚æ–‡å­—åˆ—ã«ï¼ˆè»¢è¼‰å‰ã‚­ãƒ¼åˆ—ç”¨é€”ï¼‰ã€€30s86_014g
+    twt.Columns("D:D").NumberFormatLocal = "@"  'ï¼”åˆ—ç›®æ–‡å­—åˆ—ã«ï¼ˆæ–°è¦åˆ†æƒ…å ±aâ€»ç”¨é€”ã®ã¿ï¼‰ã¸ã€€30s85_027
 '    twt.Columns("K:V").NumberFormatLocal = "@"  '86_020h
         
     rrr = qq
 
-    If Abs(er(4, bni)) >= 1 Then  'ÅIs‚Æ”²‚¯—L–³ƒ`ƒFƒbƒN(’P—ñ‚Ì‚İ)
-        '‚±‚±‚Å‚Ìhirt‚Í‘ÎÛƒV[ƒg‚ÌuALLˆê—ñv‚Ì1—ñEEseek‚ÌÅŒãŒŸ’m—p
+    If Abs(er(4, bni)) >= 1 Then  'æœ€çµ‚è¡Œã¨æŠœã‘æœ‰ç„¡ãƒã‚§ãƒƒã‚¯(å˜åˆ—ã®ã¿)
+        'ã“ã“ã§ã®hirtã¯å¯¾è±¡ã‚·ãƒ¼ãƒˆã®ã€ŒALLä¸€åˆ—ã€ã®1åˆ—ãƒ»ãƒ»seekã®æœ€å¾Œæ¤œçŸ¥ç”¨
         hirt = Range(Workbooks(mr(2, 1, bni)).Sheets(mr(1, 1, bni)).Cells(1, Abs(er(4, bni))), Workbooks(mr(2, 1, bni)).Sheets(mr(1, 1, bni)).Cells(cted(0) + 1, Abs(er(4, bni)))).Value
         Do Until hirt(rrr, 1) = ""
             rrr = rrr + 1
@@ -1976,76 +1978,76 @@ Sub kskst(pap7 As Long, h As Long, er78() As Currency, er9() As Currency, mr9() 
         Loop
         Erase hirt
     Else
-        rrr = cted(0) + 1  '€€‚‚‘Î‰@30d85_018
+        rrr = cted(0) + 1  'é …æº–ï½‚å¯¾å¿œã€€30d85_018
     End If
     DoEvents
-    rrr = rrr - 1 'rrr‚Í‘ÎÛƒV[ƒg‚ÌÅIs@qq‚Í‘ÎÛƒV[ƒg‚Ìƒxƒ^“\‚èŠJnsB ‘ÎÛƒV[ƒg‚Ìƒf[ƒ^•”‚ª‚·‚Á‚©‚ç‚©‚ñ‚Ì‚Æ‚«Arrr<qq‚Æ‚È‚Á‚Ä‚µ‚Ü‚¤
+    rrr = rrr - 1 'rrrã¯å¯¾è±¡ã‚·ãƒ¼ãƒˆã®æœ€çµ‚è¡Œã€€qqã¯å¯¾è±¡ã‚·ãƒ¼ãƒˆã®ãƒ™ã‚¿è²¼ã‚Šé–‹å§‹è¡Œã€‚ å¯¾è±¡ã‚·ãƒ¼ãƒˆã®ãƒ‡ãƒ¼ã‚¿éƒ¨ãŒã™ã£ã‹ã‚‰ã‹ã‚“ã®ã¨ãã€rrr<qqã¨ãªã£ã¦ã—ã¾ã†
     cnt = 0
     
-    If rrr < qq Then  '‘ÎÛƒV[ƒgƒf[ƒ^•”‚ª‚·‚Á‚©‚ç‚©‚ñ‚È
-        MsgBox "‘ÎÛƒV[ƒg‚Ìƒf[ƒ^•”‚ª‚·‚Á‚©‚ç‚©‚ñ‚Å‚·B“®ì‚Í‘±‚«‚Ü‚·"
-    Else '‘ÎÛƒV[ƒgƒf[ƒ^•”‚ª‚·‚Á‚©‚ç‚©‚ñ‚Å‚È‚¢‚Ìˆ—‚±‚±‚©‚ç(’Êí‚Í‚±‚¿‚ç)
-        '2—ñ–Ú(s”Ô†)‚Ìˆ—(ƒtƒBƒ‹Šˆ—p)@ƒxƒ^E‚¿‚Ü‹¤—p
-        Call betat4(twn, "‚‘¬ƒV[ƒg_" & syutoku(), qq, 0.1, rrr, 0.1, twn, "‚‘¬ƒV[ƒg_" & syutoku(), qq, 2, "pp", "000_")
+    If rrr < qq Then  'å¯¾è±¡ã‚·ãƒ¼ãƒˆãƒ‡ãƒ¼ã‚¿éƒ¨ãŒã™ã£ã‹ã‚‰ã‹ã‚“ãªæ™‚
+        MsgBox "å¯¾è±¡ã‚·ãƒ¼ãƒˆã®ãƒ‡ãƒ¼ã‚¿éƒ¨ãŒã™ã£ã‹ã‚‰ã‹ã‚“ã§ã™ã€‚å‹•ä½œã¯ç¶šãã¾ã™"
+    Else 'å¯¾è±¡ã‚·ãƒ¼ãƒˆãƒ‡ãƒ¼ã‚¿éƒ¨ãŒã™ã£ã‹ã‚‰ã‹ã‚“ã§ãªã„æ™‚ã®å‡¦ç†ã“ã“ã‹ã‚‰(é€šå¸¸ã¯ã“ã¡ã‚‰)
+        '2åˆ—ç›®(è¡Œç•ªå·)ã®å‡¦ç†(ãƒ•ã‚£ãƒ«æ´»ç”¨)ã€€ãƒ™ã‚¿ãƒ»ã¡ã¾å…±ç”¨
+        Call betat4(twn, "é«˜é€Ÿã‚·ãƒ¼ãƒˆ_" & syutoku(), qq, 0.1, rrr, 0.1, twn, "é«˜é€Ÿã‚·ãƒ¼ãƒˆ_" & syutoku(), qq, 2, "pp", "000_")
         
-        '3—ñ–Ú(ƒJƒEƒ“ƒg—ñ)‚É“ü‚ê‚Şˆ—Ÿí“ü‚é‚±‚Æ‚É
-        If Abs(er(5, bni)) <> 0 Then  'ƒJƒEƒ“ƒg—ñ‚Ìî•ñ(•¡”‚Íˆê”Ô¶)¨3—ñ–Ú‚Ö
-            '86_012rF20190515š‘å‰ü‘¢
-            If pap5 = 0 And mr(2, 5, bni) = "" Then  'ˆÈ‘O‚Íˆê—¥‚±‚Ìd—l«
-                Call cpp2(mr(2, 1, bni), mr(1, 1, bni), qq, Abs(er(5, bni)), rrr, Abs(er(5, bni)), twn, "‚‘¬ƒV[ƒg_" & syutoku(), qq, 3, 0, 0, -4163) '85_027ŒŸØ3
-            Else '’Ç‰Ád—l‚ª‚±‚¿‚ç@86_012r
+        '3åˆ—ç›®(ã‚«ã‚¦ãƒ³ãƒˆåˆ—)ã«å…¥ã‚Œè¾¼ã‚€å‡¦ç†â—†å¸¸æ™‚å…¥ã‚‹ã“ã¨ã«
+        If Abs(er(5, bni)) <> 0 Then  'ã‚«ã‚¦ãƒ³ãƒˆåˆ—ã®æƒ…å ±(è¤‡æ•°æ™‚ã¯ä¸€ç•ªå·¦)â†’3åˆ—ç›®ã¸
+            '86_012rï¼š20190515â˜…å¤§æ”¹é€ 
+            If pap5 = 0 And mr(2, 5, bni) = "" Then  'ä»¥å‰ã¯ä¸€å¾‹ã“ã®ä»•æ§˜â†“
+                Call cpp2(mr(2, 1, bni), mr(1, 1, bni), qq, Abs(er(5, bni)), rrr, Abs(er(5, bni)), twn, "é«˜é€Ÿã‚·ãƒ¼ãƒˆ_" & syutoku(), qq, 3, 0, 0, -4163) '85_027æ¤œè¨¼3
+            Else 'è¿½åŠ ä»•æ§˜ãŒã“ã¡ã‚‰ã€€86_012r
                 cnt = 0
                 For ii = qq To rrr
                     c5 = kaunta(mr(), ii, pap5, bni, er5(), mr5())
-                    If c5 = 1 Then  'ƒJƒEƒ“ƒg‘ÎÛ‚È‚çÀ{
-                        If pap5 = 0 Then 'ƒJƒEƒ“ƒ^’P”—ñEEƒJƒEƒ“ƒ^ƒZƒ‹‚ğƒRƒsƒy
-                            Workbooks(twn).Sheets("‚‘¬ƒV[ƒg_" & syutoku()).Cells(ii, 3).Value = Workbooks(mr(2, 1, bni)).Sheets(mr(1, 1, bni)).Cells(ii, Abs(er(5, bni)))
-                        Else  'ƒJƒEƒ“ƒ^•¡”—ñEEE1‚ğ“ü‚ê‚éd—l
-                            Workbooks(twn).Sheets("‚‘¬ƒV[ƒg_" & syutoku()).Cells(ii, 3).Value = 1
+                    If c5 = 1 Then  'ã‚«ã‚¦ãƒ³ãƒˆå¯¾è±¡ãªã‚‰å®Ÿæ–½
+                        If pap5 = 0 Then 'ã‚«ã‚¦ãƒ³ã‚¿å˜æ•°åˆ—ãƒ»ãƒ»ã‚«ã‚¦ãƒ³ã‚¿ã‚»ãƒ«ã‚’ã‚³ãƒ”ãƒš
+                            Workbooks(twn).Sheets("é«˜é€Ÿã‚·ãƒ¼ãƒˆ_" & syutoku()).Cells(ii, 3).Value = Workbooks(mr(2, 1, bni)).Sheets(mr(1, 1, bni)).Cells(ii, Abs(er(5, bni)))
+                        Else  'ã‚«ã‚¦ãƒ³ã‚¿è¤‡æ•°åˆ—ãƒ»ãƒ»ãƒ»1ã‚’å…¥ã‚Œã‚‹ä»•æ§˜
+                            Workbooks(twn).Sheets("é«˜é€Ÿã‚·ãƒ¼ãƒˆ_" & syutoku()).Cells(ii, 3).Value = 1
                         End If
                     End If
                     Call hdrst2(ii, a, 1000, 0, 0)
                 Next
             End If
-        Else   'ƒJƒEƒ“ƒg—ñƒ[ƒEEE‚‘¬3—ñ‚É“ü‚ê‚Şd—l‚É(‚±‚ê‚Ü‚Å“ü‚ê‚Ä–³‚©‚Á‚½)
-            '1‚ğ“ü‚ê‚ñ‚Å‚éB
-            Call betat4(twn, "‚‘¬ƒV[ƒg_" & syutoku(), qq, 0.4, rrr, 0.4, twn, "‚‘¬ƒV[ƒg_" & syutoku(), qq, 3, "pp", "1")
+        Else   'ã‚«ã‚¦ãƒ³ãƒˆåˆ—ã‚¼ãƒ­æ™‚ãƒ»ãƒ»ãƒ»é«˜é€Ÿ3åˆ—ã«å…¥ã‚Œè¾¼ã‚€ä»•æ§˜ã«(ã“ã‚Œã¾ã§å…¥ã‚Œã¦ç„¡ã‹ã£ãŸ)
+            '1ã‚’å…¥ã‚Œè¾¼ã‚“ã§ã‚‹ã€‚
+            Call betat4(twn, "é«˜é€Ÿã‚·ãƒ¼ãƒˆ_" & syutoku(), qq, 0.4, rrr, 0.4, twn, "é«˜é€Ÿã‚·ãƒ¼ãƒˆ_" & syutoku(), qq, 3, "pp", "1")
         End If
         
-        'ˆê—ñ–Úì¬(pap3’P”E•¡”ê‡•ª‚¯)
-        If pap3 = 0 Then '’P”—ñi pap3=0 jFƒxƒ^“\‚èd—l
+        'ä¸€åˆ—ç›®ä½œæˆ(pap3å˜æ•°æ™‚ãƒ»è¤‡æ•°æ™‚å ´åˆåˆ†ã‘)
+        If pap3 = 0 Then 'å˜æ•°åˆ—æ™‚ï¼ˆ pap3=0 ï¼‰ï¼šãƒ™ã‚¿è²¼ã‚Šä»•æ§˜
 
-            '‚±‚Á‚¿‚Í‚‘¬ƒV[ƒg‰‰Zg‚Á‚Ä‚È‚¢B hiro¨hirt
+            'ã“ã£ã¡ã¯é«˜é€Ÿã‚·ãƒ¼ãƒˆæ¼”ç®—ä½¿ã£ã¦ãªã„ã€‚ hiroâ†’hirt
             hirt = Range(Workbooks(mr(2, 1, bni)).Sheets(mr(1, 1, bni)).Cells(qq, Abs(er3(0))), Workbooks(mr(2, 1, bni)).Sheets(mr(1, 1, bni)).Cells(rrr + 1, Abs(er3(0))))
             For ii = 1 To 1 + rrr - qq
                 If hirt(ii, 1) = "" Then
-                    hirt(ii, 1) = "[(î•ñ‹ó”’s)[" '013t‚±‚¿‚ç‚Ö
+                    hirt(ii, 1) = "ãƒ¼(æƒ…å ±ç©ºç™½è¡Œ)ãƒ¼" '013tã“ã¡ã‚‰ã¸
                 Else
-                    hirt(ii, 1) = hirt(ii, 1) & ""      '”’l¨•¶š—ñ‚Æ‚³‚¹‚é‹Z@86_012
+                    hirt(ii, 1) = hirt(ii, 1) & ""      'æ•°å€¤â†’æ–‡å­—åˆ—ã¨ã•ã›ã‚‹æŠ€ã€€86_012
                 End If
             Next
-            Range(Workbooks(twn).Sheets("‚‘¬ƒV[ƒg_" & syutoku()).Cells(qq, 1), Workbooks(twn).Sheets("‚‘¬ƒV[ƒg_" & syutoku()).Cells(rrr, 1)).Value = hirt
-            'ªhirt‚Ìˆê”Ô‰º(ƒ_ƒ~[s)‚Í–³‹‚³‚ê‚é‚¾‚¯
+            Range(Workbooks(twn).Sheets("é«˜é€Ÿã‚·ãƒ¼ãƒˆ_" & syutoku()).Cells(qq, 1), Workbooks(twn).Sheets("é«˜é€Ÿã‚·ãƒ¼ãƒˆ_" & syutoku()).Cells(rrr, 1)).Value = hirt
+            'â†‘hirtã®ä¸€ç•ªä¸‹(ãƒ€ãƒŸãƒ¼è¡Œ)ã¯ç„¡è¦–ã•ã‚Œã‚‹ã ã‘
             Erase hirt
             Application.Cursor = xlWait
             Application.Cursor = xlDefault
             
-        Else  '•¡”—ñi pap3>0 j baba‚Ìb’è•Ï”‚ÍŒãXP‹v‘[’uŒŸ“¢(Šù‘¶g‚¢‰ñ‚¹‚È‚¢‚©H)B
-                '‚‚F•¶š—ñŒ^ApmF’Ê‰İŒ^A
+        Else  'è¤‡æ•°åˆ—æ™‚ï¼ˆ pap3>0 ï¼‰ babaã®æš«å®šå¤‰æ•°ã¯å¾Œã€…æ’ä¹…æªç½®æ¤œè¨(æ—¢å­˜ä½¿ã„å›ã›ãªã„ã‹ï¼Ÿ)ã€‚
+                'ï½ï½ï¼šæ–‡å­—åˆ—å‹ã€pmï¼šé€šè²¨å‹ã€
             
             
-            If er3(0) <> 0.1 Then 'i‚U¨11—ñ–Ú‚É“]Új‘æ1—ñ‚Å‚Ì[(Fs”Ô†“]Ú)‚ÍÀ{‚µ‚È‚¢B
-                Call betat4(mr(2, 1, bni), mr(1, 1, bni), qq, Abs(er3(0)), rrr, Abs(er3(0)), twn, "‚‘¬ƒV[ƒg_" & syutoku(), qq, 11, "mm", mr3(0))
+            If er3(0) <> 0.1 Then 'ï¼ˆï¼–â†’11åˆ—ç›®ã«è»¢è¼‰ï¼‰ç¬¬1åˆ—ã§ã®ãƒ¼(ï¼šè¡Œç•ªå·è»¢è¼‰)ã¯å®Ÿæ–½ã—ãªã„ã€‚
+                Call betat4(mr(2, 1, bni), mr(1, 1, bni), qq, Abs(er3(0)), rrr, Abs(er3(0)), twn, "é«˜é€Ÿã‚·ãƒ¼ãƒˆ_" & syutoku(), qq, 11, "mm", mr3(0))
             
-            ElseIf er3(0) = 0.1 And mr3(0) <> "" Then '86_022g ‘æ1—ñ‚Å[(Fs”Ô†“]Ú)‚ÅAŒÅ—L“]Ú‚ ‚è(’è•¶š‘Î‰j ‚Ì‚Æ‚«
-                Call betat4(mr(2, 1, bni), mr(1, 1, bni), qq, Abs(0.4), rrr, Abs(0.4), twn, "‚‘¬ƒV[ƒg_" & syutoku(), qq, 11, "mm", mr3(0))
+            ElseIf er3(0) = 0.1 And mr3(0) <> "" Then '86_022g ç¬¬1åˆ—ã§ãƒ¼(ï¼šè¡Œç•ªå·è»¢è¼‰)ã§ã€å›ºæœ‰è»¢è¼‰ã‚ã‚Š(å®šæ–‡å­—å¯¾å¿œï¼‰ ã®ã¨ã
+                Call betat4(mr(2, 1, bni), mr(1, 1, bni), qq, Abs(0.4), rrr, Abs(0.4), twn, "é«˜é€Ÿã‚·ãƒ¼ãƒˆ_" & syutoku(), qq, 11, "mm", mr3(0))
             
             
             End If
             
-            For ii = 1 To pap3 'i‚V¨‚P‚Q—ñ–ÚˆÈ~‚É“]Új‘æ2—ñ‚©‚ç‚Í‚±‚¿‚ç@s”Ô†“]Ú‚à‚ ‚ê‚Î‚·‚éB
-                If er3(ii) = 0.1 And mr3(ii) <> "" Then MsgBox "betat4‹““®’ˆÓb" '30s86_019m
-                Call betat4(mr(2, 1, bni), mr(1, 1, bni), qq, er3(ii), rrr, er3(ii), twn, "‚‘¬ƒV[ƒg_" & syutoku(), qq, 11 + ii, "mm", mr3(ii))
+            For ii = 1 To pap3 'ï¼ˆï¼—â†’ï¼‘ï¼’åˆ—ç›®ä»¥é™ã«è»¢è¼‰ï¼‰ç¬¬2åˆ—ã‹ã‚‰ã¯ã“ã¡ã‚‰ã€€è¡Œç•ªå·è»¢è¼‰ã‚‚ã‚ã‚Œã°ã™ã‚‹ã€‚
+                If er3(ii) = 0.1 And mr3(ii) <> "" Then MsgBox "betat4æŒ™å‹•æ³¨æ„b" '30s86_019m
+                Call betat4(mr(2, 1, bni), mr(1, 1, bni), qq, er3(ii), rrr, er3(ii), twn, "é«˜é€Ÿã‚·ãƒ¼ãƒˆ_" & syutoku(), qq, 11 + ii, "mm", mr3(ii))
             Next
 
 '            tempo = "R[0]C[1]"
@@ -2053,7 +2055,7 @@ Sub kskst(pap7 As Long, h As Long, er78() As Currency, er9() As Currency, mr9() 
             tempo = "CLEAN(R[0]C[1])"  '30s86_022i
             
             baba = tempo
-            For ii = 1 To pap3 '”®‚Ì‘f¶¬
+            For ii = 1 To pap3 'æ•°å¼ã®ç´ ç”Ÿæˆ
 '                tempo = "&" & """" & mr(2, 4, bni) & """" & "&" & "R[0]C[" & LTrim(Str(ii + 1)) & "]"
                 
                 tempo = "&" & """" & mr(2, 4, bni) & """" & "&" & "CLEAN(R[0]C[" & LTrim(Str(ii + 1)) & "])" '30s86_022i
@@ -2061,22 +2063,22 @@ Sub kskst(pap7 As Long, h As Long, er78() As Currency, er9() As Currency, mr9() 
                 baba = baba & tempo
             Next
                 
-            Application.Calculation = xlCalculationAutomatic   '”®ŒvZ•û–@©“®‚É(Ÿs‰‰Z‚Ìˆ×)
-            twt.Cells(qq, 10).FormulaR1C1 = "=" & baba  '10—ñ–Ú1s–Ú‚É”®‚Ì‘f‚ğ’“ü
+            Application.Calculation = xlCalculationAutomatic   'æ•°å¼è¨ˆç®—æ–¹æ³•è‡ªå‹•ã«(æ¬¡è¡Œæ¼”ç®—ã®ç‚º)
+            twt.Cells(qq, 10).FormulaR1C1 = "=" & baba  '10åˆ—ç›®1è¡Œç›®ã«æ•°å¼ã®ç´ ã‚’æ³¨å…¥
 
-            Call copipe(twn, "‚‘¬ƒV[ƒg_" & syutoku(), qq, 10, qq, 10, twn, "‚‘¬ƒV[ƒg_" & syutoku(), qq + 1, 10, rrr, 10, 3) '3¨FormulaR1C1 '86_019s
+            Call copipe(twn, "é«˜é€Ÿã‚·ãƒ¼ãƒˆ_" & syutoku(), qq, 10, qq, 10, twn, "é«˜é€Ÿã‚·ãƒ¼ãƒˆ_" & syutoku(), qq + 1, 10, rrr, 10, 3) '3â†’FormulaR1C1 '86_019s
         
-            '«‚æ‚¤‚â‚­10—ñ–Ú‚ğ‚P—ñ–Ú‚ÉƒRƒs[i”®¨’l‰»j
-            Call betat4(twn, "‚‘¬ƒV[ƒg_" & syutoku(), qq, 10, rrr, 10, twn, "‚‘¬ƒV[ƒg_" & syutoku(), qq, 1, "mm", "")
+            'â†“ã‚ˆã†ã‚„ã10åˆ—ç›®ã‚’ï¼‘åˆ—ç›®ã«ã‚³ãƒ”ãƒ¼ï¼ˆæ•°å¼â†’å€¤åŒ–ï¼‰
+            Call betat4(twn, "é«˜é€Ÿã‚·ãƒ¼ãƒˆ_" & syutoku(), qq, 10, rrr, 10, twn, "é«˜é€Ÿã‚·ãƒ¼ãƒˆ_" & syutoku(), qq, 1, "mm", "")
             
-            twt.Columns("J:K").ClearContents  '10—ñ11—ñƒNƒŠƒA(12—ñˆÈ~‚Í“Á‚ÉƒNƒŠƒA‚Í‚µ‚Ä‚È‚¢)
-        End If  'ˆê—ñ–Úì¬‚±‚±‚Ü‚Å
+            twt.Columns("J:K").ClearContents  '10åˆ—11åˆ—ã‚¯ãƒªã‚¢(12åˆ—ä»¥é™ã¯ç‰¹ã«ã‚¯ãƒªã‚¢ã¯ã—ã¦ãªã„)
+        End If  'ä¸€åˆ—ç›®ä½œæˆã“ã“ã¾ã§
                    
- '•¡•¶ßH–—\’è‚±‚±‚Ü‚Å@86_018m
+ 'è¤‡æ–‡ç¯€å·¥äº‹äºˆå®šã“ã“ã¾ã§ã€€86_018m
         
-        '1—ñ–Ú¨11—ñ–Ú(ƒJƒ^ƒJƒiA”¼Šp‰»)
+        '1åˆ—ç›®â†’11åˆ—ç›®(ã‚«ã‚¿ã‚«ãƒŠã€åŠè§’åŒ–)
         
-        twt.Columns("K:K").NumberFormatLocal = "G/•W€"
+        twt.Columns("K:K").NumberFormatLocal = "G/æ¨™æº–"
         If hrkt = 16 Then '30s86_020s
 '            baba = "ASC(PHONETIC(R[0]C[-10]))"
             baba = "CLEAN(ASC(PHONETIC(R[0]C[-10])))"   '86_022i
@@ -2085,202 +2087,202 @@ Sub kskst(pap7 As Long, h As Long, er78() As Currency, er9() As Currency, mr9() 
             baba = "CLEAN(ASC(R[0]C[-10]))"    '86_022i
         End If
         
-        twt.Cells(qq, 11).FormulaR1C1 = "=" & baba  '10—ñ–Ú1s–Ú‚É”®‚Ì‘f‚ğ’“ü
-        Call copipe(twn, "‚‘¬ƒV[ƒg_" & syutoku(), qq, 11, qq, 11, twn, "‚‘¬ƒV[ƒg_" & syutoku(), qq + 1, 11, rrr, 11, 3) '3¨FormulaR1C1
+        twt.Cells(qq, 11).FormulaR1C1 = "=" & baba  '10åˆ—ç›®1è¡Œç›®ã«æ•°å¼ã®ç´ ã‚’æ³¨å…¥
+        Call copipe(twn, "é«˜é€Ÿã‚·ãƒ¼ãƒˆ_" & syutoku(), qq, 11, qq, 11, twn, "é«˜é€Ÿã‚·ãƒ¼ãƒˆ_" & syutoku(), qq + 1, 11, rrr, 11, 3) '3â†’FormulaR1C1
         twt.Columns("J:J").NumberFormatLocal = "@"
             
-        '«11—ñ–Ú‚ğ‚P0—ñ–Ú‚ÉƒRƒs[i”®¨’l‰»j
-        Call betat4(twn, "‚‘¬ƒV[ƒg_" & syutoku(), qq, 11, rrr, 11, twn, "‚‘¬ƒV[ƒg_" & syutoku(), qq, 10, "mm", "")
-        twt.Columns("K:K").ClearContents  '11—ñƒNƒŠƒA
+        'â†“11åˆ—ç›®ã‚’ï¼‘0åˆ—ç›®ã«ã‚³ãƒ”ãƒ¼ï¼ˆæ•°å¼â†’å€¤åŒ–ï¼‰
+        Call betat4(twn, "é«˜é€Ÿã‚·ãƒ¼ãƒˆ_" & syutoku(), qq, 11, rrr, 11, twn, "é«˜é€Ÿã‚·ãƒ¼ãƒˆ_" & syutoku(), qq, 10, "mm", "")
+        twt.Columns("K:K").ClearContents  '11åˆ—ã‚¯ãƒªã‚¢
         
-        'ƒ”¨³Ş(EEASC(PHONETIC ‚Åˆ—‚³‚ê‚È‚¢‚Ì‚ÅBstrconv24‚Å‚ÍAƒ”¨³Ş‚³‚ê‚é‚Ì‚ÅA‚±‚±‚Ü‚Å‚â‚Á‚Ä‰‚ß‚ÄASC(PHONETIC‚Æstrconv24‚ª“™‰¿‚É‚È‚éB
-        Range(Workbooks(twn).Sheets("‚‘¬ƒV[ƒg_" & syutoku()).Cells(qq, 10), Workbooks(twn).Sheets("‚‘¬ƒV[ƒg_" & syutoku()).Cells(rrr, 10)).Replace What:="ƒ”", _
-            Replacement:="³Ş", LookAt:=xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
+        'ãƒ´â†’ï½³ï¾(ãƒ»ãƒ»ASC(PHONETIC ã§å‡¦ç†ã•ã‚Œãªã„ã®ã§ã€‚strconv24ã§ã¯ã€ãƒ´â†’ï½³ï¾ã•ã‚Œã‚‹ã®ã§ã€ã“ã“ã¾ã§ã‚„ã£ã¦åˆã‚ã¦ASC(PHONETICã¨strconv24ãŒç­‰ä¾¡ã«ãªã‚‹ã€‚
+        Range(Workbooks(twn).Sheets("é«˜é€Ÿã‚·ãƒ¼ãƒˆ_" & syutoku()).Cells(qq, 10), Workbooks(twn).Sheets("é«˜é€Ÿã‚·ãƒ¼ãƒˆ_" & syutoku()).Cells(rrr, 10)).Replace What:="ãƒ´", _
+            Replacement:="ï½³ï¾", LookAt:=xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
             ReplaceFormat:=False
 
-        Application.Calculation = xlCalculationManual  'ÄŒvZÄ‚Ñè“®‚É
+        Application.Calculation = xlCalculationManual  'å†è¨ˆç®—å†ã³æ‰‹å‹•ã«
         
-        '“Á–½ğŒ«@7—ñ(‹Œ4—ñ)ƒxƒ^E–‘Oƒ\[ƒg“ü‚ê‚éB
+        'ç‰¹å‘½æ¡ä»¶â†“ã€€7åˆ—(æ—§4åˆ—)ãƒ™ã‚¿ãƒ»äº‹å‰ã‚½ãƒ¼ãƒˆå…¥ã‚Œã‚‹ã€‚
         If (er(2, bni) < 0 And er(5, bni) >= 0 And er(6, bni) > 0 And (er(7, bni) = 0 Or er(7, bni) = 0.1) And er(8, bni) <> 0) Then
-            '8s–Ú(“]Ú—ñEÅ‰”—ñ)‚ğ7—ñ–Ú‚Éƒxƒ^‚Á‚Æ“]Ú
-            Call cpp2(mr(2, 1, bni), mr(1, 1, bni), qq, Abs(er(8, bni)), rrr, Abs(er(8, bni)), twn, "‚‘¬ƒV[ƒg_" & syutoku(), qq, 7, 0, 0, -4163)
-            '8s–Ú(“]Ú—ñEÅŒã”—ñ)‚ğ6—ñ–Ú‚Éƒxƒ^‚Á‚Æ“]Ú
-            Call cpp2(mr(2, 1, bni), mr(1, 1, bni), qq, Abs(er78(1, UBound(er78(), 2))), rrr, Abs(er78(1, UBound(er78(), 2))), twn, "‚‘¬ƒV[ƒg_" & syutoku(), qq, 6, 0, 0, -4163)
+            '8è¡Œç›®(è»¢è¼‰åˆ—ãƒ»æœ€åˆæ•°åˆ—)ã‚’7åˆ—ç›®ã«ãƒ™ã‚¿ã£ã¨è»¢è¼‰
+            Call cpp2(mr(2, 1, bni), mr(1, 1, bni), qq, Abs(er(8, bni)), rrr, Abs(er(8, bni)), twn, "é«˜é€Ÿã‚·ãƒ¼ãƒˆ_" & syutoku(), qq, 7, 0, 0, -4163)
+            '8è¡Œç›®(è»¢è¼‰åˆ—ãƒ»æœ€å¾Œæ•°åˆ—)ã‚’6åˆ—ç›®ã«ãƒ™ã‚¿ã£ã¨è»¢è¼‰
+            Call cpp2(mr(2, 1, bni), mr(1, 1, bni), qq, Abs(er78(1, UBound(er78(), 2))), rrr, Abs(er78(1, UBound(er78(), 2))), twn, "é«˜é€Ÿã‚·ãƒ¼ãƒˆ_" & syutoku(), qq, 6, 0, 0, -4163)
             
-            '‰ÁZ—ñ‚Ì“]Ú(9—ñ)@86_013d«
+            'åŠ ç®—åˆ—ã®è»¢è¼‰(9åˆ—)ã€€86_013dâ†“
             If er9(0) <> 0.1 Then
-                Call betat4(mr(2, 1, bni), mr(1, 1, bni), qq, Abs(er9(0)), rrr, Abs(er9(0)), twn, "‚‘¬ƒV[ƒg_" & syutoku(), qq, 9, "pp", mr9(0))
-            Else '‚Us[‚È‚çA‚±‚Á‚¿(30s86_019o@‰^—pI—¹)
-                Call oshimai("", bfn, shn, sr(6), a, "‚Us[‚Ì‰^—p‚ÍI—¹‚µ‚Ü‚µ‚½B")
-                'Call betat4(twn, "‚‘¬ƒV[ƒg_" & syutoku(), qq, 0.4, rrr, 0.4, twn, "‚‘¬ƒV[ƒg_" & syutoku(), qq, 9, "pp", "1")
-                'MsgBox "6s[‚Å‚·B"
+                Call betat4(mr(2, 1, bni), mr(1, 1, bni), qq, Abs(er9(0)), rrr, Abs(er9(0)), twn, "é«˜é€Ÿã‚·ãƒ¼ãƒˆ_" & syutoku(), qq, 9, "pp", mr9(0))
+            Else 'ï¼–è¡Œãƒ¼ãªã‚‰ã€ã“ã£ã¡(30s86_019oã€€é‹ç”¨çµ‚äº†)
+                Call oshimai("", bfn, shn, sr(6), a, "ï¼–è¡Œãƒ¼ã®é‹ç”¨ã¯çµ‚äº†ã—ã¾ã—ãŸã€‚")
+                'Call betat4(twn, "é«˜é€Ÿã‚·ãƒ¼ãƒˆ_" & syutoku(), qq, 0.4, rrr, 0.4, twn, "é«˜é€Ÿã‚·ãƒ¼ãƒˆ_" & syutoku(), qq, 9, "pp", "1")
+                'MsgBox "6è¡Œãƒ¼ã§ã™ã€‚"
             End If
-            Call saato(twn, "‚‘¬ƒV[ƒg_" & syutoku(), 3, qq, 1, rrr, 10, 99) '3—ñ–Ú~ƒ\[ƒg@99‚Í~‡‚ÌˆÓ 1—ñ?10”ÍˆÍ‚Å3—ñ–Ú‚ğA
-            Call saato(twn, "‚‘¬ƒV[ƒg_" & syutoku(), 7, qq, 1, rrr, 10, 1) '7—ñ–Ú(‹Œ4—ñ–Ú)¸ƒ\[ƒg
-            Call saato(twn, "‚‘¬ƒV[ƒg_" & syutoku(), 10, qq, 1, rrr, 10, 1) '¸ƒ\[ƒg 1¨10—ñ–Ú(Excel2019‘ÎôE•½E•Ğ“¯ˆê‹‚³‚ê‚È‚¢)
+            Call saato(twn, "é«˜é€Ÿã‚·ãƒ¼ãƒˆ_" & syutoku(), 3, qq, 1, rrr, 10, 99) '3åˆ—ç›®é™ã‚½ãƒ¼ãƒˆã€€99ã¯é™é †ã®æ„ 1åˆ—?10ç¯„å›²ã§3åˆ—ç›®ã‚’ã€
+            Call saato(twn, "é«˜é€Ÿã‚·ãƒ¼ãƒˆ_" & syutoku(), 7, qq, 1, rrr, 10, 1) '7åˆ—ç›®(æ—§4åˆ—ç›®)æ˜‡ã‚½ãƒ¼ãƒˆ
+            Call saato(twn, "é«˜é€Ÿã‚·ãƒ¼ãƒˆ_" & syutoku(), 10, qq, 1, rrr, 10, 1) 'æ˜‡ã‚½ãƒ¼ãƒˆ 1â†’10åˆ—ç›®(Excel2019å¯¾ç­–ãƒ»å¹³ãƒ»ç‰‡åŒä¸€è¦–ã•ã‚Œãªã„)
             
             ii = rrr
             cnt = 0
             
-            '3—ñ–ÚÁƒvƒƒOƒ‰ƒ€@@@'rrr¨rrr+1(‹ó”’ƒRƒsƒy—p) 86_013v
-            hirt = Range(Workbooks(twn).Sheets("‚‘¬ƒV[ƒg_" & syutoku()).Cells(qq, 1), Workbooks(twn).Sheets("‚‘¬ƒV[ƒg_" & syutoku()).Cells(rrr + 1, 10)).Value
+            '3åˆ—ç›®æ¶ˆè¾¼ãƒ—ãƒ­ã‚°ãƒ©ãƒ ã€€ã€€ã€€'rrrâ†’rrr+1(ç©ºç™½ã‚³ãƒ”ãƒšç”¨) 86_013v
+            hirt = Range(Workbooks(twn).Sheets("é«˜é€Ÿã‚·ãƒ¼ãƒˆ_" & syutoku()).Cells(qq, 1), Workbooks(twn).Sheets("é«˜é€Ÿã‚·ãƒ¼ãƒˆ_" & syutoku()).Cells(rrr + 1, 10)).Value
 
-            Do Until ii = qq  '  30s86_012s@qqs(ƒf[ƒ^ŠJns)‚ÍˆÈ‰º‚Ì‘€ì‚â‚ç‚È‚¢Bqq+1s‚Ü‚Å‚ª‘ÎÛ
-                '1—ñ–Ú‚Íí‚Éî•ñ‚ª‚ ‚éB
-                If hirt(-qq + 1 + ii, 3) <> "" Then '3—ñ–Úî•ñ‚ ‚è‚È‚çAˆÈ‰º hirt ‚Ö
-                    If hirt(-qq + 1 + ii, 7) = "" Then '3—ñî•ñ—L,7—ñ‹ó‚È‚çA3—ñ‹ó”’(E)A8—ñ‰½‚à‚µ‚È‚¢
-                        hirt(-qq + 1 + ii, 3) = hirt(rrr - qq + 2, 3) '©ƒZƒ‹‹ó”’‰»
-                    Else  '3—ñ•4—ñ‹¤‚Éî•ñ‚ ‚è@8A9
+            Do Until ii = qq  '  30s86_012sã€€qqè¡Œ(ãƒ‡ãƒ¼ã‚¿é–‹å§‹è¡Œ)ã¯ä»¥ä¸‹ã®æ“ä½œã‚„ã‚‰ãªã„ã€‚qq+1è¡Œã¾ã§ãŒå¯¾è±¡
+                '1åˆ—ç›®ã¯å¸¸ã«æƒ…å ±ãŒã‚ã‚‹ã€‚
+                If hirt(-qq + 1 + ii, 3) <> "" Then '3åˆ—ç›®æƒ…å ±ã‚ã‚Šãªã‚‰ã€ä»¥ä¸‹ hirt ã¸
+                    If hirt(-qq + 1 + ii, 7) = "" Then '3åˆ—æƒ…å ±æœ‰,7åˆ—ç©ºãªã‚‰ã€3åˆ—ç©ºç™½(ãƒ»)ã€8åˆ—ä½•ã‚‚ã—ãªã„
+                        hirt(-qq + 1 + ii, 3) = hirt(rrr - qq + 2, 3) 'â†ã‚»ãƒ«ç©ºç™½åŒ–
+                    Else  '3åˆ—ï¼†4åˆ—å…±ã«æƒ…å ±ã‚ã‚Šã€€8ã€9
                         If hirt(-qq + 1 + ii, 8) = "" And hirt(-qq + 1 + ii, 9) <> "" Then hirt(-qq + 1 + ii, 8) = hirt(-qq + 1 + ii, 9)
                             
-                            '«ˆ—s‚Æã‚Ìs‚Ì(1¨10—ñ•7—ñ)‚ªˆê’v‚È‚ç‚ÎˆÈ‰ºiŠÌj7
-                        If hirt(-qq + 1 + ii, 10) = hirt(-qq + 1 + ii - 1, 10) And hirt(-qq + 1 + ii, 7) = hirt(-qq + 1 + ii - 1, 7) Then  ',1)¨,10)
-                            hirt(-qq + 1 + ii, 3) = hirt(rrr - qq + 2, 3) '©‹ó”’‰»
-                            hirt(-qq + 1 + ii, 7) = hirt(rrr - qq + 2, 3) '©‹ó”’‰»
-                            hirt(-qq + 1 + ii, 6) = hirt(rrr - qq + 2, 3) '©‹ó”’‰»
+                            'â†“å‡¦ç†è¡Œã¨ä¸Šã®è¡Œã®(1â†’10åˆ—ï¼†7åˆ—)ãŒä¸€è‡´ãªã‚‰ã°ä»¥ä¸‹ï¼ˆè‚ï¼‰7
+                        If hirt(-qq + 1 + ii, 10) = hirt(-qq + 1 + ii - 1, 10) And hirt(-qq + 1 + ii, 7) = hirt(-qq + 1 + ii - 1, 7) Then  ',1)â†’,10)
+                            hirt(-qq + 1 + ii, 3) = hirt(rrr - qq + 2, 3) 'â†ç©ºç™½åŒ–
+                            hirt(-qq + 1 + ii, 7) = hirt(rrr - qq + 2, 3) 'â†ç©ºç™½åŒ–
+                            hirt(-qq + 1 + ii, 6) = hirt(rrr - qq + 2, 3) 'â†ç©ºç™½åŒ–
                             
-                            If hirt(-qq + 1 + ii, 8) <> "" Or hirt(-qq + 1 + ii - 1, 9) <> "" Then '86_014g ifğŒ’Ç‰Á
-                                hirt(-qq + 1 + ii - 1, 8) = hirt(-qq + 1 + ii, 8) + hirt(-qq + 1 + ii - 1, 9) '8—ñãs8—ñ“–s+9—ñãs
-                                hirt(-qq + 1 + ii, 8) = hirt(rrr - qq + 2, 3) 'ˆ—ŒãA8—ñ“–s‚Í‹ó”’‰»
+                            If hirt(-qq + 1 + ii, 8) <> "" Or hirt(-qq + 1 + ii - 1, 9) <> "" Then '86_014g ifæ¡ä»¶è¿½åŠ 
+                                hirt(-qq + 1 + ii - 1, 8) = hirt(-qq + 1 + ii, 8) + hirt(-qq + 1 + ii - 1, 9) '8åˆ—ä¸Šè¡Œï¼8åˆ—å½“è¡Œ+9åˆ—ä¸Šè¡Œ
+                                hirt(-qq + 1 + ii, 8) = hirt(rrr - qq + 2, 3) 'å‡¦ç†å¾Œã€8åˆ—å½“è¡Œã¯ç©ºç™½åŒ–
                             End If
                         End If
                     End If
-                ElseIf hirt(-qq + 1 + ii, 7) <> "" Then '3—ñî•ñƒiƒV‚Å7—ñ‚ ‚è‚È‚ç‚±‚¿‚ç
-                    hirt(-qq + 1 + ii, 7) = hirt(rrr - qq + 2, 3) '7—ñ‹ó”’‰»
-                    hirt(-qq + 1 + ii, 6) = hirt(rrr - qq + 2, 3) '6—ñ‹ó”’‰»
+                ElseIf hirt(-qq + 1 + ii, 7) <> "" Then '3åˆ—æƒ…å ±ãƒŠã‚·ã§7åˆ—ã‚ã‚Šãªã‚‰ã“ã¡ã‚‰
+                    hirt(-qq + 1 + ii, 7) = hirt(rrr - qq + 2, 3) '7åˆ—ç©ºç™½åŒ–
+                    hirt(-qq + 1 + ii, 6) = hirt(rrr - qq + 2, 3) '6åˆ—ç©ºç™½åŒ–
                 End If
                 ii = ii - 1
                 Call hdrst2(rrr - ii, a, 10000, 0, 0)
-            Loop  '3—ñ–ÚÁƒvƒƒOƒ‰ƒ€‚±‚±‚Ü‚Å
-            '¦‚±‚±‚Å‚Ìii‚Íqq(ŠJns)
+            Loop  '3åˆ—ç›®æ¶ˆè¾¼ãƒ—ãƒ­ã‚°ãƒ©ãƒ ã“ã“ã¾ã§
+            'â€»ã“ã“ã§ã®iiã¯qq(é–‹å§‹è¡Œ)
             
-            Range(Workbooks(twn).Sheets("‚‘¬ƒV[ƒg_" & syutoku()).Cells(qq, 1), Workbooks(twn).Sheets("‚‘¬ƒV[ƒg_" & syutoku()).Cells(rrr + 1, 10)).Value = hirt
+            Range(Workbooks(twn).Sheets("é«˜é€Ÿã‚·ãƒ¼ãƒˆ_" & syutoku()).Cells(qq, 1), Workbooks(twn).Sheets("é«˜é€Ÿã‚·ãƒ¼ãƒˆ_" & syutoku()).Cells(rrr + 1, 10)).Value = hirt
             Erase hirt
             
             Application.Cursor = xlWait
             
-            '«ŠJns“Á•Êˆ’uA@8—ñæ“ªs@'«‚X—ñnull‚Å‚W—ñƒ[ƒ“ü‚è‚Ş‘j~—p
+            'â†“é–‹å§‹è¡Œç‰¹åˆ¥å‡¦ç½®Aã€€8åˆ—å…ˆé ­è¡Œã€€'â†“ï¼™åˆ—nullã§ï¼˜åˆ—ã‚¼ãƒ­å…¥ã‚Šè¾¼ã‚€é˜»æ­¢ç”¨
             If twt.Cells(qq, 3).Value <> "" And twt.Cells(qq, 7).Value <> "" And twt.Cells(qq, 8).Value = "" And twt.Cells(qq, 9).Value <> "" Then
-                twt.Cells(qq, 8).Value = twt.Cells(qq, 9).Value  'qq=ii‚Å‚·‚Ë
+                twt.Cells(qq, 8).Value = twt.Cells(qq, 9).Value  'qq=iiã§ã™ã­
             End If
             
-            '«ŠJns“Á•Êˆ’uB@6—ñA7—ñæ“ªs@i–³‚­‚Ä‚àƒoƒO‚ç‚È‚¢‚©‚à‚µ‚ê‚È‚¢‚ªj
+            'â†“é–‹å§‹è¡Œç‰¹åˆ¥å‡¦ç½®Bã€€6åˆ—ã€7åˆ—å…ˆé ­è¡Œã€€ï¼ˆç„¡ãã¦ã‚‚ãƒã‚°ã‚‰ãªã„ã‹ã‚‚ã—ã‚Œãªã„ãŒï¼‰
             If twt.Cells(qq, 3).Value = "" And twt.Cells(qq, 7).Value <> "" Then
-                twt.Cells(qq, 7).Value = twt.Cells(rrr + 10, 3).Value  '©‹ó”’‰»
-                twt.Cells(qq, 6).Value = twt.Cells(rrr + 10, 3).Value  '©‹ó”’‰»
+                twt.Cells(qq, 7).Value = twt.Cells(rrr + 10, 3).Value  'â†ç©ºç™½åŒ–
+                twt.Cells(qq, 6).Value = twt.Cells(rrr + 10, 3).Value  'â†ç©ºç™½åŒ–
             End If
             
-            '«‚W—ñ¨3—ñ–Ú‚ÉƒRƒs[i”®¨’l‰»jƒpƒ^[ƒ“A?C‚Ç‚Ìê‡‚à“r’†’iŠK‚Æ‚µ‚Ä
-            Call betat4(twn, "‚‘¬ƒV[ƒg_" & syutoku(), qq, 8, rrr, 8, twn, "‚‘¬ƒV[ƒg_" & syutoku(), qq, 3, "pp", "")  '8(‹Œ5)
+            'â†“ï¼˜åˆ—â†’3åˆ—ç›®ã«ã‚³ãƒ”ãƒ¼ï¼ˆæ•°å¼â†’å€¤åŒ–ï¼‰ãƒ‘ã‚¿ãƒ¼ãƒ³A?Cã©ã®å ´åˆã‚‚é€”ä¸­æ®µéšã¨ã—ã¦
+            Call betat4(twn, "é«˜é€Ÿã‚·ãƒ¼ãƒˆ_" & syutoku(), qq, 8, rrr, 8, twn, "é«˜é€Ÿã‚·ãƒ¼ãƒˆ_" & syutoku(), qq, 3, "pp", "")  '8(æ—§5)
             Application.Cursor = xlDefault
-        End If '“Á–½ğŒˆ—i‚S—ñƒxƒ^j‚±‚±‚Ü‚Å
+        End If 'ç‰¹å‘½æ¡ä»¶å‡¦ç†ï¼ˆï¼”åˆ—ãƒ™ã‚¿ï¼‰ã“ã“ã¾ã§
         
         cnt = 0
-        rrr = rrr + 1  'rrr‚ÍÅIs‚ÌŸs(all1“I‚É‚Í‹ó”’‚É‚È‚Á‚½s)
+        rrr = rrr + 1  'rrrã¯æœ€çµ‚è¡Œã®æ¬¡è¡Œ(all1çš„ã«ã¯ç©ºç™½ã«ãªã£ãŸè¡Œ)
 
-        'ƒƒbƒN¯•Êq‘}“ü
+        'ãƒ­ãƒƒã‚¯è­˜åˆ¥å­æŒ¿å…¥
         If h >= k Then
-            twt.Cells(rrr, 1).Value = bfshn.Cells(h, Abs(er(2, bni)))  'mghz(strconv24Ï)‚ÌÅ‰ºs
-            twt.Cells(rrr, 10).Value = StrConv(bfshn.Cells(h, Abs(er(2, bni))), 8 + hrkt) 'mghz‚ÌÅ‰ºs@1¨10—ñ–Ú(Excel2019‘Îô
+            twt.Cells(rrr, 1).Value = bfshn.Cells(h, Abs(er(2, bni)))  'mghz(strconv24æ¸ˆ)ã®æœ€ä¸‹è¡Œ
+            twt.Cells(rrr, 10).Value = StrConv(bfshn.Cells(h, Abs(er(2, bni))), 8 + hrkt) 'mghzã®æœ€ä¸‹è¡Œã€€1â†’10åˆ—ç›®(Excel2019å¯¾ç­–
             twt.Cells(rrr, 2).Value = "000_0000000"
             rrr = rrr + 1
         End If
 
         cnt = 0
         rrr = rrr - 1
-        '‚±‚Ì“_‚Ìrrr‚Í‚‘¬ƒV[ƒg‚Ìƒf[ƒ^I—¹s(ŠÜƒƒbƒNˆöq)Aqq‚Í‘Š•Ï‚í‚ç‚¸ƒf[ƒ^ŠJns(‘ÎÛƒV[ƒg‹y‚Ñ‚‘¬ƒV[ƒg)
+        'ã“ã®æ™‚ç‚¹ã®rrrã¯é«˜é€Ÿã‚·ãƒ¼ãƒˆã®ãƒ‡ãƒ¼ã‚¿çµ‚äº†è¡Œ(å«ãƒ­ãƒƒã‚¯å› å­)ã€qqã¯ç›¸å¤‰ã‚ã‚‰ãšãƒ‡ãƒ¼ã‚¿é–‹å§‹è¡Œ(å¯¾è±¡ã‚·ãƒ¼ãƒˆåŠã³é«˜é€Ÿã‚·ãƒ¼ãƒˆ)
         
-        'Œ³—ˆ‚Ì‚‘¬ƒV[ƒg¸‡~‡‚Í‚±‚Á‚¿
-        Call saato(twn, "‚‘¬ƒV[ƒg_" & syutoku(), 3, qq, 1, rrr, 10, 99)  '3—ñ(¶³İÄ—ñ)~‡
-            'ª‚±‚ê‚ª‚È‚¢‚ÆA“Á–½ğŒ‚Ì˜AÚ‚ª”‚Ì‘½‚¢‡‚É‚È‚ç‚È‚¢B“Á–½ğŒ‚Ìƒ‹[ƒ`ƒ“‚¢ˆÚ‚µ‚Ä‚à‚æ‚¢‚ªB@20210309‹L
-        Call saato(twn, "‚‘¬ƒV[ƒg_" & syutoku(), 10, qq, 1, rrr, 10, 1)   '¸ƒ\[ƒg 1¨10—ñ–Ú(Excel2019‘ÎôE•½E•Ğ“¯ˆê‹‚³‚ê‚È‚¢)
-    End If '‘ÎÛƒV[ƒgƒf[ƒ^•”‚ª‚·‚Á‚©‚ç‚©‚ñ‚Å‚È‚¢‚Ìˆ—‚±‚±‚Ü‚Å
+        'å…ƒæ¥ã®é«˜é€Ÿã‚·ãƒ¼ãƒˆæ˜‡é †é™é †ã¯ã“ã£ã¡
+        Call saato(twn, "é«˜é€Ÿã‚·ãƒ¼ãƒˆ_" & syutoku(), 3, qq, 1, rrr, 10, 99)  '3åˆ—(ï½¶ï½³ï¾ï¾„åˆ—)é™é †
+            'â†‘ã“ã‚ŒãŒãªã„ã¨ã€ç‰¹å‘½æ¡ä»¶ã®é€£è¼‰ãŒæ•°ã®å¤šã„é †ã«ãªã‚‰ãªã„ã€‚ç‰¹å‘½æ¡ä»¶ã®ãƒ«ãƒ¼ãƒãƒ³ã„ç§»ã—ã¦ã‚‚ã‚ˆã„ãŒã€‚ã€€20210309è¨˜
+        Call saato(twn, "é«˜é€Ÿã‚·ãƒ¼ãƒˆ_" & syutoku(), 10, qq, 1, rrr, 10, 1)   'æ˜‡ã‚½ãƒ¼ãƒˆ 1â†’10åˆ—ç›®(Excel2019å¯¾ç­–ãƒ»å¹³ãƒ»ç‰‡åŒä¸€è¦–ã•ã‚Œãªã„)
+    End If 'å¯¾è±¡ã‚·ãƒ¼ãƒˆãƒ‡ãƒ¼ã‚¿éƒ¨ãŒã™ã£ã‹ã‚‰ã‹ã‚“ã§ãªã„æ™‚ã®å‡¦ç†ã“ã“ã¾ã§
 
-    Workbooks(bfn).Activate  '86_017h@ã‚©‚ç‚±‚¿‚ç‚Öi³í«Šm”F’†j
+    Workbooks(bfn).Activate  '86_017hã€€ä¸Šã‹ã‚‰ã“ã¡ã‚‰ã¸ï¼ˆæ­£å¸¸æ€§ç¢ºèªä¸­ï¼‰
     Sheets(shn).Select
     DoEvents
 
 End Sub
-'[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[
-Sub giktzg(a As Long, rog As String)     'ŠOŒ‹–Œã
+'ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼
+Sub giktzg(a As Long, rog As String)     'å¤–çµäº‹å¾Œ
     Dim ii As Long, jj As Long
-    '«ˆêƒ{ƒ^ƒ“–ˆ‚ÉƒCƒ“ƒNƒŠƒƒ“ƒgiID•Ï‚í‚Á‚½‚Æ‚«‚Ì‚İƒŠƒZƒbƒg‚³‚ê‚éj B¦bfnAshn‘¤‚ÍXV‚³‚ê‚È‚¢i‰‰ñ•¡Ê‚Ì’l‚ªÚ‚Á‚Ä‚é‚¾‚¯jB
-    twbsh.Cells(13, 3).Value = twbsh.Cells(13, 3).Value + 1 '7s (2,3)¨(13,3)25s
+    'â†“ä¸€ãƒœã‚¿ãƒ³æ¯ã«ã‚¤ãƒ³ã‚¯ãƒªãƒ¡ãƒ³ãƒˆï¼ˆIDå¤‰ã‚ã£ãŸã¨ãã®ã¿ãƒªã‚»ãƒƒãƒˆã•ã‚Œã‚‹ï¼‰ ã€‚â€»bfnã€shnå´ã¯æ›´æ–°ã•ã‚Œãªã„ï¼ˆåˆå›è¤‡å†™æ™‚ã®å€¤ãŒè¼‰ã£ã¦ã‚‹ã ã‘ï¼‰ã€‚
+    twbsh.Cells(13, 3).Value = twbsh.Cells(13, 3).Value + 1 '7s (2,3)â†’(13,3)25s
     
-    'ƒƒO•”‚±‚±‚©‚ç@30s76
-    If rog <> "" Then     'if,rog‚ªnull‚È‚ç(–‚¾‚¯‚Ìj‹LÚ‚µ‚È‚¢
+    'ãƒ­ã‚°éƒ¨ã“ã“ã‹ã‚‰ã€€30s76
+    If rog <> "" Then     'if,rogãŒnullãªã‚‰(ï¼Šã ã‘ã®æ™‚ï¼‰è¨˜è¼‰ã—ãªã„
     'MsgBox rog
         jj = 1
         Do Until Workbooks(twn).Sheets(shog).Cells(jj, 1).Value = ""
             jj = jj + 1
             If jj = 10000 Then
-                MsgBox "‹ó”’s‚ªŒ©‚Â‚©‚ç‚È‚¢‚æ‚¤‚Å‚·"
+                MsgBox "ç©ºç™½è¡ŒãŒè¦‹ã¤ã‹ã‚‰ãªã„ã‚ˆã†ã§ã™"
                 Exit Sub
             End If
         Loop
 
-        Workbooks(twn).Sheets(shog).Cells(jj, 1).Value = 1 '€–Ú–¼
-        Workbooks(twn).Sheets(shog).Cells(jj, 2).Value = jj '€”Ô
+        Workbooks(twn).Sheets(shog).Cells(jj, 1).Value = 1 'é …ç›®å
+        Workbooks(twn).Sheets(shog).Cells(jj, 2).Value = jj 'é …ç•ª
 
         'log
-        Workbooks(twn).Sheets(shog).Cells(jj, 3).Value = "Œ‹.@ŠOŒ‹A" & Mid(twn, 1, Len(twn) - 5) _
-        & "A¦" & shn & "¦" & bfn & "A¦" & shn & "¦" & bfn & "Afrom" & dd1 & "to" & dd2 _
-        & "A€–Ú–¼Ab" & twbsh.Cells(13, 3).Value & "R" & twbsh.Cells(14, 3).Value & "A" & twbsh.Cells(2, 2).Value & "A" _
-        & Format(Now(), "yyyymmdd_hhmmss") & "A" & bfshn.Cells(sr(8), 5).Value & "A" & Application.WorksheetFunction.Sum(bfshn.Range("A:A")) & "A" & dd2 - dd1 + 1
-        '––”õ‚©‚çAŠOŒ‹ˆ——ñ”(min:1)Aall1(s”)©({‚P‚Å‚Í
+        Workbooks(twn).Sheets(shog).Cells(jj, 3).Value = "çµ.ã€€å¤–çµã€" & Mid(twn, 1, Len(twn) - 5) _
+        & "ã€ï½¦" & shn & "ï½¦" & bfn & "ã€ï½¦" & shn & "ï½¦" & bfn & "ã€from" & dd1 & "to" & dd2 _
+        & "ã€é …ç›®åã€b" & twbsh.Cells(13, 3).Value & "R" & twbsh.Cells(14, 3).Value & "ã€" & twbsh.Cells(2, 2).Value & "ã€" _
+        & Format(Now(), "yyyymmdd_hhmmss") & "ã€" & bfshn.Cells(sr(8), 5).Value & "ã€" & Application.WorksheetFunction.Sum(bfshn.Range("A:A")) & "ã€" & dd2 - dd1 + 1
+        'æœ«å‚™ã‹ã‚‰ã€å¤–çµå‡¦ç†åˆ—æ•°(min:1)ã€all1(è¡Œæ•°)â†(ï¼‹ï¼‘ã§ã¯
 
         Workbooks(twn).Sheets(shog).Cells(jj, 4).Value = Format(Now(), "yyyymmdd")  'date
         Workbooks(twn).Sheets(shog).Cells(jj, 5).Value = Format(Now(), "yyyymmdd_hhmmss")  'timestamp
         Workbooks(twn).Sheets(shog).Cells(jj, 7).Value = bfn & "\" & shn  'to
 
-        frmx = 9 'from‚ÌŠJn—ñ
+        frmx = 9 'fromã®é–‹å§‹åˆ—
         ii = 1
-        Do Until rvsrz3(rog, ii, "ƒ‘", 0) = ""
-            Workbooks(twn).Sheets(shog).Cells(jj, ii + frmx - 1).Value = rvsrz3(rog, ii, "ƒ‘", 0) 'from
+        Do Until rvsrz3(rog, ii, "ãƒ±", 0) = ""
+            Workbooks(twn).Sheets(shog).Cells(jj, ii + frmx - 1).Value = rvsrz3(rog, ii, "ãƒ±", 0) 'from
             ii = ii + 1
             If ii = 200 Then
-                Call oshimai("", bfn, shn, k, a, "‚¤‚Ü‚­‚¢‚Á‚Ä‚È‚¢2B")
+                Call oshimai("", bfn, shn, k, a, "ã†ã¾ãã„ã£ã¦ãªã„2ã€‚")
             End If
         Loop
-        Workbooks(twn).Sheets(shog).Cells(jj, 8).Value = ii + frmx - 2 'Å‰E—ñ‚Ì—ñ‚É“ü‚ê‚é’l
-    End If  'ƒƒO•”‚±‚±‚Ü‚Å
+        Workbooks(twn).Sheets(shog).Cells(jj, 8).Value = ii + frmx - 2 'æœ€å³åˆ—ã®åˆ—ã«å…¥ã‚Œã‚‹å€¤
+    End If  'ãƒ­ã‚°éƒ¨ã“ã“ã¾ã§
     
     Application.CutCopyMode = False
     bfshn.Cells(1, 4).Value = Application.WorksheetFunction.Sum(bfshn.Range("A:A")) + 1
     DoEvents
     Call oshimai("", bfn, shn, k, dd2, "")
 End Sub
-'[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[
+'ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼
 Sub papchk(pap() As Long, nmb As Long, bun As Long)
     Dim ii As Long
     For ii = 1 To bun
-    '    If pap(nmb, 0) <> pap(nmb, ii) Then MsgBox "pap(nmb," & ii & ")•sˆê’v"  '“––ÊAnmb‚Í•sŠˆ«‚Å
-        If pap(2, 0) <> pap(2, ii) Then MsgBox "pap(2," & ii & ")•sˆê’v"
+    '    If pap(nmb, 0) <> pap(nmb, ii) Then MsgBox "pap(nmb," & ii & ")ä¸ä¸€è‡´"  'å½“é¢ã€nmbã¯ä¸æ´»æ€§ã§
+        If pap(2, 0) <> pap(2, ii) Then MsgBox "pap(2," & ii & ")ä¸ä¸€è‡´"
     Next
 End Sub
-'[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[
+'ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼
 Sub papzousei(pap() As Long, mr() As String, nmb As Long, bni As Long)
-    If bni = 0 Then Call oshimai("", bfn, shn, 1, 0, "(papzousei)bni:0‚Í‘ÎÛŠO‚Å‚·B")
+    If bni = 0 Then Call oshimai("", bfn, shn, 1, 0, "(papzousei)bni:0ã¯å¯¾è±¡å¤–ã§ã™ã€‚")
 '    pap(2, bni) = kgcnt(mr(1, 2, bni), mr(2, 4, bni))
     pap(nmb, bni) = kgcnt(mr(1, nmb, bni), mr(2, 4, bni))
 End Sub
-'[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[
+'ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼
 Sub saato(fbk As String, fsh As String, sas As Long, fmg1 As Long, fmr1 As Long, fmg2 As Long, fmr2 As Long, sot As Long)
-    'ƒ\[ƒg—ñAfmg1Afmg2@‚Ü‚¸‚Í¸‡A‚P[‚S—ñŒÀ’è‚Å
+    'ã‚½ãƒ¼ãƒˆåˆ—ã€fmg1ã€fmg2ã€€ã¾ãšã¯æ˜‡é †ã€ï¼‘ãƒ¼ï¼”åˆ—é™å®šã§
     'https://excelwork.info/excel/cellsortcollection/
-    If sot = 1 Then '¸‡
+    If sot = 1 Then 'æ˜‡é †
         Workbooks(fbk).Worksheets(fsh).Sort.SortFields.Clear
         Workbooks(fbk).Worksheets(fsh).Sort.SortFields.Add Key:=Range(Workbooks(fbk).Worksheets(fsh).Cells(fmg1, sas), Workbooks(fbk).Worksheets(fsh).Cells(fmg1, sas)), _
             SortOn:=xlSortOnValues, Order:=xlAscending, DataOption:=xlSortNormal
-        With Workbooks(fbk).Worksheets(fsh).Sort 'SortƒIƒuƒWƒFƒNƒg‚É‘Î‚µ‚Ä '•À‚×‘Ö‚¦‚é”ÍˆÍ‚ğw’è‚µ«
+        With Workbooks(fbk).Worksheets(fsh).Sort 'Sortã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã«å¯¾ã—ã¦ 'ä¸¦ã¹æ›¿ãˆã‚‹ç¯„å›²ã‚’æŒ‡å®šã—â†“
             .SetRange Range(Workbooks(fbk).Worksheets(fsh).Cells(fmg1, fmr1), Workbooks(fbk).Worksheets(fsh).Cells(fmg2, fmr2))
-            .Header = xlNo '1s–Ú‚ªƒ^ƒCƒgƒ‹s‚©‚Ç‚¤‚©‚ğw’è‚µi‹K’è’lFxlNoj
-            .MatchCase = False '‘å•¶š‚Æ¬•¶š‚ğ‹æ•Ê‚·‚é‚©‚Ç‚¤‚©‚ğw’è‚µ
-            .Orientation = xlTopToBottom '•À‚×‘Ö‚¦‚Ì•ûŒü(s/—ñ)‚ğw’è‚µ  (‹K’è’lFxlTopToBottom)
-            .SortMethod = xlPinYin '‚Ó‚è‚ª‚È‚ğg‚¤‚©‚Ç‚¤‚©‚ğw’è‚µ  (‹K’è’lFxlPinYin)
-            .Apply '•À‚×‘Ö‚¦‚ğÀs‚µ‚Ü‚· @È—ª‚Í‚µ‚È‚¢•û‚ª–³“ïA‘O‰ñ‚Ì‚ğˆø‚«Œp‚®‚ç‚µ‚¢‚Ì‚Å
+            .Header = xlNo '1è¡Œç›®ãŒã‚¿ã‚¤ãƒˆãƒ«è¡Œã‹ã©ã†ã‹ã‚’æŒ‡å®šã—ï¼ˆè¦å®šå€¤ï¼šxlNoï¼‰
+            .MatchCase = False 'å¤§æ–‡å­—ã¨å°æ–‡å­—ã‚’åŒºåˆ¥ã™ã‚‹ã‹ã©ã†ã‹ã‚’æŒ‡å®šã—
+            .Orientation = xlTopToBottom 'ä¸¦ã¹æ›¿ãˆã®æ–¹å‘(è¡Œ/åˆ—)ã‚’æŒ‡å®šã—  (è¦å®šå€¤ï¼šxlTopToBottom)
+            .SortMethod = xlPinYin 'ãµã‚ŠãŒãªã‚’ä½¿ã†ã‹ã©ã†ã‹ã‚’æŒ‡å®šã—  (è¦å®šå€¤ï¼šxlPinYin)
+            .Apply 'ä¸¦ã¹æ›¿ãˆã‚’å®Ÿè¡Œã—ã¾ã™ ã€€çœç•¥ã¯ã—ãªã„æ–¹ãŒç„¡é›£ã€å‰å›ã®ã‚’å¼•ãç¶™ãã‚‰ã—ã„ã®ã§
         End With
-    ElseIf sot = 99 Then '~‡
+    ElseIf sot = 99 Then 'é™é †
         Workbooks(fbk).Worksheets(fsh).Sort.SortFields.Clear
         Workbooks(fbk).Worksheets(fsh).Sort.SortFields.Add Key:=Range(Workbooks(fbk).Worksheets(fsh).Cells(fmg1, sas), Workbooks(fbk).Worksheets(fsh).Cells(fmg1, sas)), _
             SortOn:=xlSortOnValues, Order:=xlDescending, DataOption:=xlSortNormal
@@ -2293,244 +2295,244 @@ Sub saato(fbk As String, fsh As String, sas As Long, fmg1 As Long, fmr1 As Long,
             .Apply
         End With
     Else
-        Call oshimai("", bfn, shn, 1, 0, "sot‚Ìˆø”‚ª•Ï‚Å‚·")
+        Call oshimai("", bfn, shn, 1, 0, "sotã®å¼•æ•°ãŒå¤‰ã§ã™")
     End If
 End Sub
-'[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[
+'ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼
 Function kaunta(mr() As String, qq As Long, pap5 As Long, bni As Long, er5() As Long, mr5() As String) As Long
-    kaunta = 1 'Œ¸“_•û®
-    For qap = 0 To pap5  '•¡”—ñ‚ÌŒ¸“_•û®
+    kaunta = 1 'æ¸›ç‚¹æ–¹å¼
+    For qap = 0 To pap5  'è¤‡æ•°åˆ—ã®æ¸›ç‚¹æ–¹å¼
         If Abs(er5(qap)) < 1 Then
-            'A,‚O‚â‚OD‚SFƒJƒEƒ“ƒg‘ÎÛ
-        ElseIf mr5(qap) = "ƒ#N/A" Then
+            'A,ï¼ã‚„ï¼ï¼ï¼”ï¼šã‚«ã‚¦ãƒ³ãƒˆå¯¾è±¡
+        ElseIf mr5(qap) = "ãƒ°#N/A" Then
             If WorksheetFunction.IsNA(Workbooks(mr(2, 1, bni)).Sheets(mr(1, 1, bni)).Cells(qq, Abs(er5(qap))).Value) Then
-                '«ƒGƒ‰[‚É‚È‚é‚—‚ˆ‚™H
-                kaunta = 0 'ƒJƒEƒ“ƒg”ñ‘ÎÛ
-                Exit For '©‚±‚¤‚µ‚È‚¢‚Æ•¡”—ñƒGƒ‰[‚É‚È‚éB
+                'â†“ã‚¨ãƒ©ãƒ¼ã«ãªã‚‹ï½—ï½ˆï½™ï¼Ÿ
+                kaunta = 0 'ã‚«ã‚¦ãƒ³ãƒˆéå¯¾è±¡
+                Exit For 'â†ã“ã†ã—ãªã„ã¨è¤‡æ•°åˆ—æ™‚ã‚¨ãƒ©ãƒ¼ã«ãªã‚‹ã€‚
             ElseIf Workbooks(mr(2, 1, bni)).Sheets(mr(1, 1, bni)).Cells(qq, Abs(er5(qap))).Value = "" Then
-                kaunta = 0 'ƒJƒEƒ“ƒg”ñ‘ÎÛ
+                kaunta = 0 'ã‚«ã‚¦ãƒ³ãƒˆéå¯¾è±¡
             End If
-        'ˆÈ‰º‚ÍƒZƒ‹‚ÉN/A‚ ‚é‚ÆƒGƒ‰[‚É‚È‚éB20200207
+        'ä»¥ä¸‹ã¯ã‚»ãƒ«ã«N/Aã‚ã‚‹ã¨ã‚¨ãƒ©ãƒ¼ã«ãªã‚‹ã€‚20200207
         ElseIf Workbooks(mr(2, 1, bni)).Sheets(mr(1, 1, bni)).Cells(qq, Abs(er5(qap))).Value = "" Then
-            'B,ƒZƒ‹‹ó”’‚ÍƒJƒEƒ“ƒg”ñ‘ÎÛ
+            'B,ã‚»ãƒ«ç©ºç™½ã¯ã‚«ã‚¦ãƒ³ãƒˆéå¯¾è±¡
                 kaunta = 0
-        'ˆÈ‰ºƒZƒ‹‚Éî•ñ‚ ‚è
+        'ä»¥ä¸‹ã‚»ãƒ«ã«æƒ…å ±ã‚ã‚Š
         ElseIf mr5(qap) = "" Then
-            'C,ƒJƒEƒ“ƒg‘ÎÛ
-        ElseIf Left(mr5(qap), 1) = "†" Then
+            'C,ã‚«ã‚¦ãƒ³ãƒˆå¯¾è±¡
+        ElseIf Left(mr5(qap), 1) = "â‰§" Then
             'D1
-            If IsDate(Workbooks(mr(2, 1, bni)).Sheets(mr(1, 1, bni)).Cells(qq, Abs(er5(qap))).Value) Then '“ú•t”äŠrVİ 86_018j
+            If IsDate(Workbooks(mr(2, 1, bni)).Sheets(mr(1, 1, bni)).Cells(qq, Abs(er5(qap))).Value) Then 'æ—¥ä»˜æ¯”è¼ƒæ–°è¨­ 86_018j
                 If CDate(Workbooks(mr(2, 1, bni)).Sheets(mr(1, 1, bni)).Cells(qq, Abs(er5(qap))).Value) < CDate(Mid(mr5(qap), 2)) Then
-                    kaunta = 0 'ƒJƒEƒ“ƒg”ñ‘ÎÛ
+                    kaunta = 0 'ã‚«ã‚¦ãƒ³ãƒˆéå¯¾è±¡
                 End If
-            Else '«]—ˆ(isnumeric)
+            Else 'â†“å¾“æ¥(isnumeric)
                 If Val(Workbooks(mr(2, 1, bni)).Sheets(mr(1, 1, bni)).Cells(qq, Abs(er5(qap))).Value) < Val(Mid(mr5(qap), 2)) Then
-                    kaunta = 0 'ƒJƒEƒ“ƒg”ñ‘ÎÛ
+                    kaunta = 0 'ã‚«ã‚¦ãƒ³ãƒˆéå¯¾è±¡
                 End If
             End If
-        ElseIf Left(mr5(qap), 1) = "…" Then
+        ElseIf Left(mr5(qap), 1) = "â‰¦" Then
             'D1
-            If IsDate(Workbooks(mr(2, 1, bni)).Sheets(mr(1, 1, bni)).Cells(qq, Abs(er5(qap))).Value) Then '“ú•t”äŠrVİ 86_018j
+            If IsDate(Workbooks(mr(2, 1, bni)).Sheets(mr(1, 1, bni)).Cells(qq, Abs(er5(qap))).Value) Then 'æ—¥ä»˜æ¯”è¼ƒæ–°è¨­ 86_018j
                 If CDate(Workbooks(mr(2, 1, bni)).Sheets(mr(1, 1, bni)).Cells(qq, Abs(er5(qap))).Value) > Val(Mid(mr5(qap), 2)) Then
-                    kaunta = 0 'ƒJƒEƒ“ƒg”ñ‘ÎÛ
+                    kaunta = 0 'ã‚«ã‚¦ãƒ³ãƒˆéå¯¾è±¡
                 End If
-            Else '«]—ˆ(isnumeric)
+            Else 'â†“å¾“æ¥(isnumeric)
                 If Val(Workbooks(mr(2, 1, bni)).Sheets(mr(1, 1, bni)).Cells(qq, Abs(er5(qap))).Value) > Val(Mid(mr5(qap), 2)) Then
-                    kaunta = 0 'ƒJƒEƒ“ƒg”ñ‘ÎÛ
+                    kaunta = 0 'ã‚«ã‚¦ãƒ³ãƒˆéå¯¾è±¡
                 End If
             End If
-        ElseIf Left(mr5(qap), 1) = "[" Or Left(mr5(qap), 1) = "ƒ" Or mr5(qap) = "n0" Then  'u[v’Ç‰Á86_012y
-            'E@¦D‚Ìn0¨E‚Åˆ—i•¶š—ñ‚Ì0‚É‚à‘Î‰‰Â”\
-            '30s75 strcomp ‰“±“ü(ƒ¢‚Ì¢‚ÆƒZƒ‹‘¤”äŠr‚ª‚¤‚Ü‚­s‚©‚È‚¢‚½‚ß)
+        ElseIf Left(mr5(qap), 1) = "ãƒ¼" Or Left(mr5(qap), 1) = "ãƒ°" Or mr5(qap) = "n0" Then  'ã€Œãƒ¼ã€è¿½åŠ 86_012y
+            'Eã€€â€»Dã®n0â†’Eã§å‡¦ç†ï¼ˆæ–‡å­—åˆ—ã®0ã«ã‚‚å¯¾å¿œå¯èƒ½
+            '30s75 strcomp åˆå°å…¥(ãƒ°â–³ã®â–³ã¨ã‚»ãƒ«å´æ¯”è¼ƒãŒã†ã¾ãè¡Œã‹ãªã„ãŸã‚)
             If StrComp(Mid(mr5(qap), 2), Workbooks(mr(2, 1, bni)).Sheets(mr(1, 1, bni)).Cells(qq, Abs(er5(qap))).Value, vbBinaryCompare) = 0 Then
-                kaunta = 0 'ƒJƒEƒ“ƒg”ñ‘ÎÛ
+                kaunta = 0 'ã‚«ã‚¦ãƒ³ãƒˆéå¯¾è±¡
             End If
         ElseIf mr5(qap) = Workbooks(mr(2, 1, bni)).Sheets(mr(1, 1, bni)).Cells(qq, Abs(er5(qap))).Value Then
-            'F,n0FƒJƒEƒ“ƒg‘ÎÛ
+            'F,n0ï¼šã‚«ã‚¦ãƒ³ãƒˆå¯¾è±¡
         Else
-            'Z,ã‹LˆÈŠOFƒJƒEƒ“ƒg”ñ‘ÎÛ@@¦Z¦ @‚Å•sˆê’v‚ÌƒP[ƒX‚ª‘z’è‚³‚ê‚éB
+            'Z,ä¸Šè¨˜ä»¥å¤–ï¼šã‚«ã‚¦ãƒ³ãƒˆéå¯¾è±¡ã€€ã€€ï½¦ã€‡ï½¦â–¡ã€€ã§ä¸ä¸€è‡´ã®ã‚±ãƒ¼ã‚¹ãŒæƒ³å®šã•ã‚Œã‚‹ã€‚
             kaunta = 0
         End If
     Next
 End Function
-'[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[
-Function tszn(er9() As Currency, bni As Long, mr() As String, qq As Long, pap9 As Long, mr9() As String) As Variant  '‰ÁZ(‘«‚µZ)
-    'ƒ‘‘Î‰6or8sA“–—ña,‘‚«‚İshx,•¶ßbni,P’l(AM—L–³)A“¯—ñ0‘½—ñ1(g—pI—¹)A-1-2•¡Ê,mr,er,6s–Ú‚Ws–Úƒ‘‚Ì”(pap9),mr9
+'ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼
+Function tszn(er9() As Currency, bni As Long, mr() As String, qq As Long, pap9 As Long, mr9() As String) As Variant  'åŠ ç®—(è¶³ã—ç®—)
+    'ãƒ±å¯¾å¿œ6or8è¡Œã€å½“åˆ—a,æ›¸ãè¾¼ã¿è¡Œhx,æ–‡ç¯€bni,På€¤(AMæœ‰ç„¡)ã€åŒåˆ—0å¤šåˆ—1(ä½¿ç”¨çµ‚äº†)ã€-1-2è¤‡å†™,mr,er,6è¡Œç›®ï¼˜è¡Œç›®ãƒ±ã®æ•°(pap9),mr9
     Dim qap(2) As Long
     'Dim nuez As Double
     qap(1) = 0
     qap(2) = pap9
-    For qap(0) = qap(1) To qap(2)  '•¡”—ñæˆµAƒ‹[ƒv‚·‚éB
+    For qap(0) = qap(1) To qap(2)  'è¤‡æ•°åˆ—å–æ‰±æ™‚ã€ãƒ«ãƒ¼ãƒ—ã™ã‚‹ã€‚
         If Abs(er9(qap(0))) = 0.4 Or Abs(er9(qap(0))) = 0.1 Then
             nuex = Val(mr9(qap(0)))
-        Else '’Êí
-            nuex = Workbooks(mr(2, 1, bni)).Sheets(mr(1, 1, bni)).Cells(qq, Abs(er9(qap(0)))).Value 'er(11, bni)¨ee¨qq
+        Else 'é€šå¸¸æ™‚
+            nuex = Workbooks(mr(2, 1, bni)).Sheets(mr(1, 1, bni)).Cells(qq, Abs(er9(qap(0)))).Value 'er(11, bni)â†’eeâ†’qq
         End If
         If qap(0) = 0 Then
-            'ƒ‘‚ª‚OŒÂ‚Ì‚Æ‚«¨‰½‚à‚µ‚È‚¢
+            'ãƒ±ãŒï¼å€‹ã®ã¨ãâ†’ä½•ã‚‚ã—ãªã„
         Else
-            nuex = nuey * nuex '•¡”—ñ‚Ì‚Q‰ñ–ÚˆÈ~¨æZÀ{
+            nuex = nuey * nuex 'è¤‡æ•°åˆ—ã®ï¼’å›ç›®ä»¥é™â†’ä¹—ç®—å®Ÿæ–½
         End If
         nuey = nuex
     Next
     tszn = nuex
 End Function
-'[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[
-Sub samaru(aa As Long, mr101 As String)  'ƒTƒ}ƒŠ’lˆ—30‚“59‚æ‚è
-    '‚³‚Ü‚é—ñAmr(1, 1, 1)©ƒV[ƒg–¼
+'ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼
+Sub samaru(aa As Long, mr101 As String)  'ã‚µãƒãƒªå€¤å‡¦ç†30ï½“59ã‚ˆã‚Š
+    'ã•ã¾ã‚‹åˆ—ã€mr(1, 1, 1)â†ã‚·ãƒ¼ãƒˆå
     Dim gx As Long, gy As Long, ii As Long
 
     For ii = sr(0) + 4 To sr(0) + 5
         uu = 0
         gx = 0
         gy = 0
-        If IsError(bfshn.Cells(ii, aa)) Then '30s66_2ƒoƒO‰ü—Ç
-            uu = 1  'ƒZƒ‹‚ªƒGƒ‰[¨’l‚ª“ü‚Á‚Ä‚¢‚éB
+        If IsError(bfshn.Cells(ii, aa)) Then '30s66_2ãƒã‚°æ”¹è‰¯
+            uu = 1  'ã‚»ãƒ«ãŒã‚¨ãƒ©ãƒ¼â†’å€¤ãŒå…¥ã£ã¦ã„ã‚‹ã€‚
         ElseIf bfshn.Cells(ii, aa) <> "" Then
             uu = 1
         End If
         
-        If uu = 1 Then '‚ñ
-            '30s71_3êŠáŠ±•ÏXA‚R‚O‚“‚V‚S‚³‚ç‚É•ÏX
-            If bfshn.Cells(ii, aa).Font.Color = RGB(38, 37, 38) Or bfshn.Cells(ii, aa).Font.Color = RGB(255, 0, 0) Then '•[Ô]sum
+        If uu = 1 Then 'ã‚“
+            '30s71_3å ´æ‰€è‹¥å¹²å¤‰æ›´ã€ï¼“ï¼ï½“ï¼—ï¼”ã•ã‚‰ã«å¤‰æ›´
+            If bfshn.Cells(ii, aa).Font.Color = RGB(38, 37, 38) Or bfshn.Cells(ii, aa).Font.Color = RGB(255, 0, 0) Then 'é»’[èµ¤]sum
                 gy = sr(8) + 5
                 gx = 4
-            ElseIf bfshn.Cells(ii, aa).Font.Color = RGB(1, 102, 255) Then 'Â”’l„‚O
+            ElseIf bfshn.Cells(ii, aa).Font.Color = RGB(1, 102, 255) Then 'é’æ•°å€¤ï¼ï¼
             
-                gy = sr(8) + 5 'sr(8)‚Í‘Î:“]Ú—ñ‚Ìs
+                gy = sr(8) + 5 'sr(8)ã¯å¯¾:è»¢è¼‰åˆ—ã®è¡Œ
                 gx = 2  '4
-            ElseIf bfshn.Cells(ii, aa).Font.Color = RGB(198, 90, 17) Then '’ƒ•¶š—ñ
+            ElseIf bfshn.Cells(ii, aa).Font.Color = RGB(198, 90, 17) Then 'èŒ¶æ–‡å­—åˆ—
                 gy = sr(8) + 6 '17
                 gx = 4 '2
-            ElseIf bfshn.Cells(ii, aa).Font.Color = RGB(1, 176, 80) Then '—Înonzero
+            ElseIf bfshn.Cells(ii, aa).Font.Color = RGB(1, 176, 80) Then 'ç·‘nonzero
                 gy = sr(8) + 6 '16
                 gx = 2
             End If
-        End If  '‚ñ
+        End If  'ã‚“
              
-        If gx > 0 Then  'ƒRƒsƒy•”
-             Call copipe(bfn, shn, gy, gx, gy, gx, bfn, shn, ii, aa, ii, aa, 3)  '3¨FormulaR1C1(-4123Œü‚¯) (’E.copy.paste)@86_020d
+        If gx > 0 Then  'ã‚³ãƒ”ãƒšéƒ¨
+             Call copipe(bfn, shn, gy, gx, gy, gx, bfn, shn, ii, aa, ii, aa, 3)  '3â†’FormulaR1C1(-4123å‘ã‘) (è„±.copy.paste)ã€€86_020d
             
-            'ƒRƒsƒy‚µ‚½ƒZƒ‹‚ğ’l‚É•ÏŠ·
+            'ã‚³ãƒ”ãƒšã—ãŸã‚»ãƒ«ã‚’å€¤ã«å¤‰æ›
             If StrConv(Left(mr101, 1), 8) <> "*" Then
-                Call cpp2(bfn, shn, ii, aa, ii, aa, bfn, shn, ii, aa, 0, 0, -4163) '-4163‚Í’l‚ğƒRƒs[@‘¬
+                Call cpp2(bfn, shn, ii, aa, ii, aa, bfn, shn, ii, aa, 0, 0, -4163) '-4163ã¯å€¤ã‚’ã‚³ãƒ”ãƒ¼ã€€é€Ÿ
             Else
-                '‚Ps–Ú‚ªu–v‚¾‚¯‚ÌA‚±‚±’Ê‰ß‚µ‚Ä‚éB
-                'MsgBox "‚±‚±‚ğ’Ê‚éƒP[ƒX‚Í‚Ps–Ú‚ªu–v‚¾‚¯‚Ì"
+                'ï¼‘è¡Œç›®ãŒã€Œï¼Šã€ã ã‘ã®æ™‚ã€ã“ã“é€šéã—ã¦ã‚‹ã€‚
+                'MsgBox "ã“ã“ã‚’é€šã‚‹ã‚±ãƒ¼ã‚¹ã¯ï¼‘è¡Œç›®ãŒã€Œï¼Šã€ã ã‘ã®æ™‚"
             End If
-            bfshn.Cells(sr(0) + 3, aa).Value = Now() 'Šˆ—p—á1ƒ^ƒCƒ€ƒXƒ^ƒ“ƒv“ü‚ê‚é
+            bfshn.Cells(sr(0) + 3, aa).Value = Now() 'æ´»ç”¨ä¾‹1ã‚¿ã‚¤ãƒ ã‚¹ã‚¿ãƒ³ãƒ—å…¥ã‚Œã‚‹
         End If
     Next
 End Sub
-'[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[
-Function tnele(ct8 As String, ax As Long, qap0 As Long, ct3 As String, er78() As Currency, a As Long, hx As Long, bni As Long, qq As Long, fuk12 As Long, mr() As String, er() As Currency, mr8() As String) As String '“]ÚƒGƒŒƒƒ“ƒgŒˆ’è@86_013j
-    '“]ÚƒGƒŒƒƒ“ƒgŒˆ’è@30s86_013j function‰»
-    If fuk12 > 0 Then '30s62 ‚ƒF-1-2•¡Ê
+'ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼
+Function tnele(ct8 As String, ax As Long, qap0 As Long, ct3 As String, er78() As Currency, a As Long, hx As Long, bni As Long, qq As Long, fuk12 As Long, mr() As String, er() As Currency, mr8() As String) As String 'è»¢è¼‰ã‚¨ãƒ¬ãƒ¡ãƒ³ãƒˆæ±ºå®šã€€86_013j
+    'è»¢è¼‰ã‚¨ãƒ¬ãƒ¡ãƒ³ãƒˆæ±ºå®šã€€30s86_013j functionåŒ–
+    If fuk12 > 0 Then '30s62 ï½ƒï¼š-1-2è¤‡å†™æ™‚
         tnele = bfshn.Cells(fuk12, ax).Value
-    ElseIf fuk12 = -7 Then '‚±‚±‚©‚çˆÈ‰ºAfuk12‚ª0ˆÈ‰º
-        If er78(0, qap0) = 0 Then   'bx¨0‚Ö
+    ElseIf fuk12 = -7 Then 'ã“ã“ã‹ã‚‰ä»¥ä¸‹ã€fuk12ãŒ0ä»¥ä¸‹
+        If er78(0, qap0) = 0 Then   'bxâ†’0ã¸
             tnele = Trim$(CStr(Workbooks(mr(2, 0, bni)).Sheets(mr(1, 0, bni)).Cells(qq, Abs(a)).Value))
         Else
             tnele = Trim$(CStr(Workbooks(mr(2, 0, bni)).Sheets(mr(1, 0, bni)).Cells(qq, Abs(er78(0, qap0))).Value))
         End If
-    'ˆÈ~Abx:1
-    ElseIf er78(1, qap0) = 0.4 Then 'ƒ}ƒjƒ…ƒAƒ‹’l(mr8)‚ÍAer8‚È‚¢‚Æ‚«‚¾‚¯g‚í‚ê‚éB
-        tnele = Trim$(mr8(qap0))     '30s75•¡”—ñ‘Î‰‰»
-    ElseIf Round(er(6, bni), 0) = -15 Then    '-15 ‚ ‚é•¶ßƒGƒŒƒƒ“ƒg’Šo
+    'ä»¥é™ã€bx:1
+    ElseIf er78(1, qap0) = 0.4 Then 'ãƒãƒ‹ãƒ¥ã‚¢ãƒ«å€¤(mr8)ã¯ã€er8ãªã„ã¨ãã ã‘ä½¿ã‚ã‚Œã‚‹ã€‚
+        tnele = Trim$(mr8(qap0))     '30s75è¤‡æ•°åˆ—å¯¾å¿œåŒ–
+    ElseIf Round(er(6, bni), 0) = -15 Then    '-15 ã‚ã‚‹æ–‡ç¯€ã‚¨ãƒ¬ãƒ¡ãƒ³ãƒˆæŠ½å‡º
         tnele = rvsrz3(Workbooks(mr(2, 1, bni)).Sheets(mr(1, 1, bni)).Cells(qq, Abs(er78(1, qap0))), Val(mr(2, 6, bni)), mr8(0), 0)
-    ElseIf Round(er(6, bni), 0) = -14 Then '‹æØ‚è”@30s86_016m
+    ElseIf Round(er(6, bni), 0) = -14 Then 'åŒºåˆ‡ã‚Šæ•°ã€€30s86_016m
         tnele = kgcnt(Workbooks(mr(2, 1, bni)).Sheets(mr(1, 1, bni)).Cells(qq, Abs(er78(1, qap0))), mr8(0)) + Val(mr(2, 6, bni))
     ElseIf Round(er(6, bni), 0) = -10 Then 'naka2
         tnele = Mid(Workbooks(mr(2, 1, bni)).Sheets(mr(1, 1, bni)).Cells(qq, Abs(er78(1, qap0))), Val(mr(2, 6, bni)))
     ElseIf Round(er(6, bni), 0) = -9 Then 'hiduke -9
         tnele = Format(Workbooks(mr(2, 1, bni)).Sheets(mr(1, 1, bni)).Cells(qq, Abs(er78(1, qap0))), mr(2, 6, bni))
-    ElseIf Round(er(6, bni), 0) = -8 Then 'mojihen    -13¨-8
-        'MsgBox "g‚í‚ê‚Ä‚Ü‚·‚ËB6s‚ª-8"
+    ElseIf Round(er(6, bni), 0) = -8 Then 'mojihen    -13â†’-8
+        'MsgBox "ä½¿ã‚ã‚Œã¦ã¾ã™ã­ã€‚6è¡ŒãŒ-8"
         tnele = StrConv(Workbooks(mr(2, 1, bni)).Sheets(mr(1, 1, bni)).Cells(qq, Abs(er78(1, qap0))), mr(2, 6, bni))
     ElseIf Abs(er78(1, qap0)) = 0.1 Then
-        tnele = Format(qq, "0000000")  '30s85_014 s”Ô†“]Ú‘Î‰‚ÌC³
+        tnele = Format(qq, "0000000")  '30s85_014 è¡Œç•ªå·è»¢è¼‰å¯¾å¿œã®ä¿®æ­£
     ElseIf er78(1, qap0) > 0.2 And mr8(qap0) <> "" And bfshn.Cells(hx, a).Value <> "" And UBound(er78(), 2) = 0 Then
-        '20180813Vˆä‘Î‰¨202102•¡”—ñ‚Å‚ÍÀ{‚¹‚¸‚Ìd—l‚É(“®ì‚¨‚©‚µ‚­‚È‚é‚Ì‚Å) 86_020j
-        '‰½‚à‚µ‚È‚¢itnele=""‚Ì‚Ü‚Üj‘æ“ñˆöq‚ª‚–—p@ "6448"
-    Else '’Êí@fuk12=-8‚Í‚±‚±’Ê‚éB
+        '20180813æ–°äº•å¯¾å¿œâ†’202102è¤‡æ•°åˆ—ã§ã¯å®Ÿæ–½ã›ãšã®ä»•æ§˜ã«(å‹•ä½œãŠã‹ã—ããªã‚‹ã®ã§) 86_020j
+        'ä½•ã‚‚ã—ãªã„ï¼ˆtnele=""ã®ã¾ã¾ï¼‰ç¬¬äºŒå› å­ãŒï½–ç”¨ã€€ "6448"
+    Else 'é€šå¸¸æ™‚ã€€fuk12=-8ã¯ã“ã“é€šã‚‹ã€‚
         If (er(2, bni) < 0 And er(5, bni) >= 0 And er(6, bni) > 0 And (er(7, bni) = 0 Or er(7, bni) = 0.1) And er(8, bni) < 0) Then
             If qap0 = 0 Then
-                tnele = ct8  '“Á–½ğŒ(˜AÚŒ^g—pA‚W—ñ‰ÁZ’lA86_019o‚±‚¿‚ç‚Ö)
+                tnele = ct8  'ç‰¹å‘½æ¡ä»¶(é€£è¼‰å‹ä½¿ç”¨æ™‚ã€ï¼˜åˆ—åŠ ç®—å€¤ã€86_019oã“ã¡ã‚‰ã¸)
             Else
-                tnele = ct3  '“Á–½ğŒ(˜AÚŒ^g—pA‚U—ñ’li]—ˆj)
+                tnele = ct3  'ç‰¹å‘½æ¡ä»¶(é€£è¼‰å‹ä½¿ç”¨æ™‚ã€ï¼–åˆ—å€¤ï¼ˆå¾“æ¥ï¼‰)
             End If
-        Else ']—ˆ‚Ì’Êíƒpƒ^[ƒ“
+        Else 'å¾“æ¥ã®é€šå¸¸ãƒ‘ã‚¿ãƒ¼ãƒ³
             tnele = Trim$(CStr(Workbooks(mr(2, 1, bni)).Sheets(mr(1, 1, bni)).Cells(qq, Abs(er78(1, qap0))).Value))
         End If
     End If
 End Function
-'[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[
+'ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼
 Sub tnsai(ct8 As String, tst As Long, ct3 As String, er78() As Currency, a As Long, hx As Long, bni As Long, p As Long, qq As Long, fuk12 As Long, mr() As String, er() As Currency, pap7 As Long, mr8() As String)
 
-    'ƒ‘‘Î‰7s8sA“–—ña,‘shx(0‚ÍƒRƒƒ“ƒg—p),•¶ßbni,P’l(AM—L–³)AQÆs(ƒRƒƒ“ƒg‚ÌƒP[ƒX(€–Ús‚ªQÆs)‚à‚ ‚è)A-1-2•¡Ê,mr,er,7s–Úƒ‘‚Ì”(pap7)
-    Dim ax As Long '‘—ñiˆê•ûAa‚Í“–—ñj
+    'ãƒ±å¯¾å¿œ7è¡Œ8è¡Œã€å½“åˆ—a,æ›¸è¾¼è¡Œhx(0ã¯ã‚³ãƒ¡ãƒ³ãƒˆç”¨),æ–‡ç¯€bni,På€¤(AMæœ‰ç„¡)ã€å‚ç…§è¡Œ(ã‚³ãƒ¡ãƒ³ãƒˆæ™‚ã®ã‚±ãƒ¼ã‚¹(é …ç›®è¡ŒãŒå‚ç…§è¡Œ)ã‚‚ã‚ã‚Š)ã€-1-2è¤‡å†™,mr,er,7è¡Œç›®ãƒ±ã®æ•°(pap7)
+    Dim ax As Long 'æ›¸è¾¼åˆ—ï¼ˆä¸€æ–¹ã€aã¯å½“åˆ—ï¼‰
     Dim tenx As String, teny As String, tenz As String
-    Dim qap(3) As Long, apa7 As Long    'qap3‚Í«—ˆ—p
+    Dim qap(3) As Long, apa7 As Long    'qap3ã¯å°†æ¥ç”¨
     Dim bx As Long, mm As Long
-    'bxô’è
+    'bxç­–å®š
     
-    If fuk12 = -7 Then bx = 0 Else bx = 1  '-7‚Í‚VsƒRƒƒ“ƒg—p,fuk12:-1-2•¡Êƒtƒ‰ƒO‚Ì‚±‚Æ ’Êí‚Íbx:1
+    If fuk12 = -7 Then bx = 0 Else bx = 1  '-7ã¯ï¼—è¡Œã‚³ãƒ¡ãƒ³ãƒˆç”¨,fuk12:-1-2è¤‡å†™ãƒ•ãƒ©ã‚°ã®ã“ã¨ é€šå¸¸ã¯bx:1
     
     If er(5, bni) < 0 Or fuk12 = -7 Then apa7 = 0 Else apa7 = pap7
-    '·•ª‚ ‚é‚¢‚Í7s‚ÌƒRƒƒ“ƒg‚Ípap7¬•ª–³Œø‰»(ˆÈ~“–ƒ‹[ƒ`ƒ“apa7g—pApap7•sg—p(-7ˆÈŠO))
+    'å·®åˆ†æ™‚ã‚ã‚‹ã„ã¯7è¡Œã®ã‚³ãƒ¡ãƒ³ãƒˆæ™‚ã¯pap7æˆåˆ†ç„¡åŠ¹åŒ–(ä»¥é™å½“ãƒ«ãƒ¼ãƒãƒ³apa7ä½¿ç”¨ã€pap7ä¸ä½¿ç”¨(-7ä»¥å¤–))
     
-    If fuk12 > 0 Then '-1-2•¡Ê fuk12 ‚Í“]ÚŒ³‚Ìs
+    If fuk12 > 0 Then '-1-2è¤‡å†™æ™‚ fuk12 ã¯è»¢è¼‰å…ƒã®è¡Œ
         qap(1) = -1
         qap(2) = apa7
     Else
         qap(1) = 0
-        If fuk12 = -7 Then  '7s‚ÌƒRƒƒ“ƒg‚Ì“Áê
-            If pap7 <= UBound(er78(), 2) Then '•’Ê‚È
-                qap(2) = 0    'pap7¨0‚Ö
-            Else '•’Ê‚Å‚È‚¢‚Æ‚«@30s85_021Vİ
-                'MsgBox "‚±‚±‚Í‚à‚¤—ˆ‚È‚¢‚Ì‚Å‚Í"    '‚Vsƒ‘‚Ì”„8sƒ‘‚Ì”@‚Í‚Ç‚±‚©‚Åoshimaiˆ—‚¾‚Á‚½‚æ‚¤‚ÈBB
-                Call oshimai("", bfn, shn, sr(7), a, "‚±‚±‚Í‚à‚¤—ˆ‚È‚¢‚Ì‚Å‚Í")
+        If fuk12 = -7 Then  '7è¡Œã®ã‚³ãƒ¡ãƒ³ãƒˆã®ç‰¹æ®Šæ™‚
+            If pap7 <= UBound(er78(), 2) Then 'æ™®é€šãªæ™‚
+                qap(2) = 0    'pap7â†’0ã¸
+            Else 'æ™®é€šã§ãªã„ã¨ãã€€30s85_021æ–°è¨­
+                'MsgBox "ã“ã“ã¯ã‚‚ã†æ¥ãªã„ã®ã§ã¯"    'ï¼—è¡Œãƒ±ã®æ•°ï¼8è¡Œãƒ±ã®æ•°ã€€ã¯ã©ã“ã‹ã§oshimaiå‡¦ç†ã ã£ãŸã‚ˆã†ãªã€‚ã€‚
+                Call oshimai("", bfn, shn, sr(7), a, "ã“ã“ã¯ã‚‚ã†æ¥ãªã„ã®ã§ã¯")
                 qap(2) = UBound(er78(), 2)
             End If
         ElseIf fuk12 = -8 Then
-            qap(2) = 0    'UBound(er78(), 2)¨0‚Ö
-        Else '’Êí
-            qap(2) = apa7  'i’ÊíjUBound(er78(), 2)[‚Ws–Ú‚Ìƒ‘‚Ì”]¨apa7[7s–Ú‚Ìƒ‘‚Ì”]‚Ö
+            qap(2) = 0    'UBound(er78(), 2)â†’0ã¸
+        Else 'é€šå¸¸æ™‚
+            qap(2) = apa7  'ï¼ˆé€šå¸¸ï¼‰UBound(er78(), 2)[ï¼˜è¡Œç›®ã®ãƒ±ã®æ•°]â†’apa7[7è¡Œç›®ã®ãƒ±ã®æ•°]ã¸
         End If
     End If
 
-    For qap(0) = qap(1) To qap(2)  '•¡”—ñ“]Úƒ‹[ƒv(’ÊíF7s–Ú‚Ì•¡”—ñŒÂ•ª)‚·‚éB’P”—ñ‚Íƒ‹[ƒv‚¹‚¸1‰ñ‚Ì‚İB-1-2•¡ÊA-1‚©‚çƒ‹[ƒv‚·‚éBqap(2)‚Ü‚Åƒ‹[ƒv‚·‚éB
-                             'qap(2)‚Í’Êí‚Í8s–Úƒ‘‚Ì”B7sƒRƒƒ“ƒg‚¾‚¯7sƒ‘‚Ì”B8sƒ‘”‚7sƒ‘”‚ÌˆÓ¯‚¹‚æB
-        'š‚Vs[‚Ì‚ÍƒXƒ‹[‚Ö@86_013
+    For qap(0) = qap(1) To qap(2)  'è¤‡æ•°åˆ—è»¢è¼‰æ™‚ãƒ«ãƒ¼ãƒ—(é€šå¸¸ï¼š7è¡Œç›®ã®è¤‡æ•°åˆ—å€‹åˆ†)ã™ã‚‹ã€‚å˜æ•°åˆ—ã¯ãƒ«ãƒ¼ãƒ—ã›ãš1å›ã®ã¿ã€‚-1-2è¤‡å†™æ™‚ã€-1ã‹ã‚‰ãƒ«ãƒ¼ãƒ—ã™ã‚‹ã€‚qap(2)ã¾ã§ãƒ«ãƒ¼ãƒ—ã™ã‚‹ã€‚
+                             'qap(2)ã¯é€šå¸¸ã¯8è¡Œç›®ãƒ±ã®æ•°ã€‚7è¡Œã‚³ãƒ¡ãƒ³ãƒˆã ã‘7è¡Œãƒ±ã®æ•°ã€‚8è¡Œãƒ±æ•°â‰ 7è¡Œãƒ±æ•°ã®æ™‚æ„è­˜ã›ã‚ˆã€‚
+        'â˜…ï¼—è¡Œãƒ¼ã®æ™‚ã¯ã‚¹ãƒ«ãƒ¼ã¸ã€€86_013
         If er78(0, qap(0)) = 0.1 Then
-            'MsgBox "7s0.1([)AÈ—ª”–Ú‚ ‚è"
+            'MsgBox "7è¡Œ0.1(ãƒ¼)ã€çœç•¥æ•°ç›®ã‚ã‚Š"
         ElseIf er78(0, qap(0)) = 0.4 Then
-            Call oshimai("", bfn, shn, sr(7), a, "7s–Ú0.4‚Í¡‚ÌŠ‚ ‚è“¾‚È‚¢‚©‚ÆB")
+            Call oshimai("", bfn, shn, sr(7), a, "7è¡Œç›®0.4ã¯ä»Šã®æ‰€ã‚ã‚Šå¾—ãªã„ã‹ã¨ã€‚")
         Else
-            '“¯—ñ‚©‘¼—ñ‚©Hiaxô’èj“]ÚŒ³E“]Úæ‚Åg—p
-            If qap(0) <= apa7 Then '’P”—ñ••¡”—ñ@apa7Å¬’lƒ[ƒiF7sƒ‘–³‚µj
-                'axXV(ƒ‘‚ÌA‚Í‚İo‚µ•ª‚ÍXV‚µ‚È‚¢)
-                If er78(0, qap(0)) > 0 And er(5, bni) >= 0 Then '·•ª‚Å‚È‚­A7s³’l‚Ì‚Ì‚İ‘¼—ñ‹–—eA(•’Ê‚Ì“]Ú)
-                    ax = er78(0, qap(0))  '‘¼—ñ
+            'åŒåˆ—ã‹ä»–åˆ—ã‹ï¼Ÿï¼ˆaxç­–å®šï¼‰è»¢è¼‰å…ƒãƒ»è»¢è¼‰å…ˆã§ä½¿ç”¨
+            If qap(0) <= apa7 Then 'å˜æ•°åˆ—ï¼†è¤‡æ•°åˆ—ã€€apa7æœ€å°å€¤ã‚¼ãƒ­ï¼ˆï¼š7è¡Œãƒ±ç„¡ã—ï¼‰
+                'axæ›´æ–°(ãƒ±ã®ã€ã¯ã¿å‡ºã—åˆ†ã¯æ›´æ–°ã—ãªã„)
+                If er78(0, qap(0)) > 0 And er(5, bni) >= 0 Then 'å·®åˆ†æ™‚ã§ãªãã€7è¡Œæ­£å€¤ã®æ™‚ã®ã¿ä»–åˆ—è¨±å®¹ã€(æ™®é€šã®è»¢è¼‰)
+                    ax = er78(0, qap(0))  'ä»–åˆ—
                 Else
-                    '«30s86_012w “Á–½ğŒ‘Î‰”Å
+                    'â†“30s86_012w ç‰¹å‘½æ¡ä»¶å¯¾å¿œç‰ˆ
                     If er(9, bni) > 0 And er(10, bni) > 0 And er(5, bni) >= 0 And Not (er(2, bni) < 0 And er(5, bni) >= 0 And er(6, bni) > 0 And Int(er(7, bni)) = 0 And er(8, bni) <> 0) Then
                     If er(20, bni) = 1 Then MsgBox "yaa"
-                        Call oshimai("", bfn, shn, 1, 0, "b‰ÁZ‚ ‚è‚Å“¯—ñ“]Ú‚µ‚æ‚¤‚Æ‚µ‚Ä‚¢‚Ü‚·BŠm”F‚ğB")
+                        Call oshimai("", bfn, shn, 1, 0, "båŠ ç®—ã‚ã‚Šã§åŒåˆ—è»¢è¼‰ã—ã‚ˆã†ã¨ã—ã¦ã„ã¾ã™ã€‚ç¢ºèªã‚’ã€‚")
                     Else
-                        ax = a  '·•ª‚Å‚àˆê”­–Ú‚¾‚¯‚Í—LŒø@-1‚Ì
+                        ax = a  'å·®åˆ†æ™‚ã§ã‚‚ä¸€ç™ºç›®ã ã‘ã¯æœ‰åŠ¹ã€€-1ã®æ™‚
                     End If
                 End If
             End If
     
-            tenx = ""   '•s—v(tnele‚ÅƒŠƒZƒbƒg‚³‚ê‚é)‚¾‚ªAˆê‰”O‚Ì‚½‚ß
+            tenx = ""   'ä¸è¦(tneleã§ãƒªã‚»ãƒƒãƒˆã•ã‚Œã‚‹)ã ãŒã€ä¸€å¿œå¿µã®ãŸã‚
             tenx = tnele(ct8, ax, qap(0), ct3, er78(), a, hx, bni, qq, fuk12, mr(), er(), mr8())
-            'ª30s86_013j function‰»
+            'â†‘30s86_013j functionåŒ–
             
-            '˜AÚˆ—k‚alEEk‚`l‚æ‚è‚±‚¿‚ç‚ªæ‚É
-            If fuk12 <= 0 Then  '‚ƒ‚ª-1A-2ˆÈŠO 30s82=¨<= ‚É(ƒRƒƒ“ƒg-7-8‘Î‰)
-                If qap(0) = qap(2) Then 'ÅI”‚Ì‚İˆÈ‰º
-                    If UBound(er78(), 2) > qap(2) Then '‚Í‚İo‚Ä‚¢‚éê‡‚Ì‚İAˆÈ‰º‚Í‚İo‚µ•ª˜AŒ‹ˆ—k‚al
+            'é€£è¼‰å‡¦ç†ã€”ï¼¢ã€•ãƒ»ãƒ»ã€”ï¼¡ã€•ã‚ˆã‚Šã“ã¡ã‚‰ãŒå…ˆã«
+            If fuk12 <= 0 Then  'ï½ƒãŒ-1ã€-2ä»¥å¤– 30s82=â†’<= ã«(ã‚³ãƒ¡ãƒ³ãƒˆ-7-8å¯¾å¿œ)
+                If qap(0) = qap(2) Then 'æœ€çµ‚æ•°ã®ã¿ä»¥ä¸‹
+                    If UBound(er78(), 2) > qap(2) Then 'ã¯ã¿å‡ºã¦ã„ã‚‹å ´åˆã®ã¿ã€ä»¥ä¸‹ã¯ã¿å‡ºã—åˆ†é€£çµå‡¦ç†ã€”ï¼¢ã€•
                         For mm = qap(2) + 1 To UBound(er78(), 2)
                             If er78(0, mm) <> 0.1 Then
                                 tenx = tenx & mr(2, 4, bni) & tnele(ct8, ax, mm, ct3, er78(), a, hx, bni, qq, fuk12, mr(), er(), mr8())
@@ -2540,202 +2542,202 @@ Sub tnsai(ct8 As String, tst As Long, ct3 As String, er78() As Currency, a As Lo
                 End If
             End If
        
-            '˜AÚˆ—k‚`l(tenxXV)k‚`l‚¢‚Â‚à‚Ì“–‰‚©‚ç‚Ì˜AÚˆ—(Œê”ö•t‰Á)
-            If fuk12 <= 0 Then  '‚ƒ‚ª-1A-2ˆÈŠO
-                    'ƒ‘‚È‚µA“¯—ñA‚Usƒ[ƒor-1‘äA‚Wsƒ}ƒCƒiƒX‚ªğŒA•¡”—ñ‹–—e‚Ö
-                            '«ƒm[ƒ}ƒ‹˜AÚ‚Í-2ˆÈ‰º‚Í‹–—e‚µ‚Ä‚È‚¢B‚ ‚é‚¢‚ÍA
+            'é€£è¼‰å‡¦ç†ã€”ï¼¡ã€•(tenxæ›´æ–°)ã€”ï¼¡ã€•ã„ã¤ã‚‚ã®å½“åˆã‹ã‚‰ã®é€£è¼‰å‡¦ç†(èªå°¾ä»˜åŠ )
+            If fuk12 <= 0 Then  'ï½ƒãŒ-1ã€-2ä»¥å¤–
+                    'ãƒ±ãªã—ã€åŒåˆ—ã€ï¼–è¡Œã‚¼ãƒ­or-1å°ã€ï¼˜è¡Œãƒã‚¤ãƒŠã‚¹ãŒæ¡ä»¶ã€è¤‡æ•°åˆ—è¨±å®¹ã¸
+                            'â†“ãƒãƒ¼ãƒãƒ«é€£è¼‰ã¯-2ä»¥ä¸‹ã¯è¨±å®¹ã—ã¦ãªã„ã€‚ã‚ã‚‹ã„ã¯ã€
                     If (er(6, bni) = 0 Or Round(er(6, bni)) = -1) Or _
-                        (er(2, bni) < 0 And er(5, bni) >= 0 And er(6, bni) > 0 And (er(7, bni) = 0 Or er(7, bni) = 0.1) And er(8, bni) < 0) Then '<0¨<0.3 85s023
-                        'ª“Á–½ğŒ˜AÚŒ^‚ğor‚Å’Ç‰Á
-                        '«86_018d@•¡”—ñ‰—ñ‚Å”»’f‚Ö
-                        If mr8(0) <> "" And (er78(bx, 0) < 0) Then  'Or er78(bx, qap(0)) = 0.1‚Í•s—v‚¾‚Á‚½(s”Ô†‚Í˜AÚŒ^‹–—e‚µ‚Ä‚È‚¢)
-                            tenx = bfshn.Cells(hx, ax).Value & tenx & mr8(0) '‚  “Á–½ğŒ‚à‚±‚Á‚¿ mr(2,8,bni)¨mr8(qap(0))¨mr8(0)
-                        ElseIf er78(bx, 0) < -0.5 Then    '(bx, qap(0))¨(bx, 0)
-                            Call oshimai("", bfn, shn, sr(8), a, "‚à‚¤’Ê‚é‚±‚Æ‚Í‚È‚¢‚Æv‚í‚ê‚é(¦‚Ws–Ú‚ÍVd—l‚ÉC³‚µ‚Ä‰º‚³‚¢)")
-                            tenx = bfshn.Cells(hx, ax).Value & tenx & "A"  '‚¢
+                        (er(2, bni) < 0 And er(5, bni) >= 0 And er(6, bni) > 0 And (er(7, bni) = 0 Or er(7, bni) = 0.1) And er(8, bni) < 0) Then '<0â†’<0.3 85s023
+                        'â†‘ç‰¹å‘½æ¡ä»¶é€£è¼‰å‹ã‚’orã§è¿½åŠ 
+                        'â†“86_018dã€€è¤‡æ•°åˆ—åˆåˆ—ã§åˆ¤æ–­ã¸
+                        If mr8(0) <> "" And (er78(bx, 0) < 0) Then  'Or er78(bx, qap(0)) = 0.1ã¯ä¸è¦ã ã£ãŸ(è¡Œç•ªå·ã¯é€£è¼‰å‹è¨±å®¹ã—ã¦ãªã„)
+                            tenx = bfshn.Cells(hx, ax).Value & tenx & mr8(0) 'ã‚ ç‰¹å‘½æ¡ä»¶ã‚‚ã“ã£ã¡ mr(2,8,bni)â†’mr8(qap(0))â†’mr8(0)
+                        ElseIf er78(bx, 0) < -0.5 Then    '(bx, qap(0))â†’(bx, 0)
+                            Call oshimai("", bfn, shn, sr(8), a, "ã‚‚ã†é€šã‚‹ã“ã¨ã¯ãªã„ã¨æ€ã‚ã‚Œã‚‹(â€»ï¼˜è¡Œç›®ã¯æ–°ä»•æ§˜ã«ä¿®æ­£ã—ã¦ä¸‹ã•ã„)")
+                            tenx = bfshn.Cells(hx, ax).Value & tenx & "ã€"  'ã„
                         Else
-                            's”Ô†ã‘‚«Œ^(0.1A‚±‚±‚Å‚Í‰½‚à‚µ‚È‚¢)
+                            'è¡Œç•ªå·ä¸Šæ›¸ãå‹(0.1ã€ã“ã“ã§ã¯ä½•ã‚‚ã—ãªã„)
                         End If
-                        'ª“Á–½ğŒˆÈŠO‚Å‚Ì‘¼—ñ•¡”—ñ˜AÚŒ^‚Íª‚±‚Ì•Ï“®“®ì‚ª®—‚³‚ê‚Ä‚¢‚È‚¢ó‹µ‚Å‚ ‚éB202005
+                        'â†‘ç‰¹å‘½æ¡ä»¶ä»¥å¤–ã§ã®ä»–åˆ—è¤‡æ•°åˆ—é€£è¼‰å‹ã¯â†‘ã“ã®å¤‰å‹•å‹•ä½œãŒæ•´ç†ã•ã‚Œã¦ã„ãªã„çŠ¶æ³ã§ã‚ã‚‹ã€‚202005
                     End If
             End If
             
-            '•¡”—ñ‚ÌÅI”–ÚˆÈŠO‚ğ‚±‚±‚Å‘‚«‚İA-7-8ƒRƒƒ“ƒg‚Í‚±‚±‚ÅÀ{‚µ‚È‚¢(ÅŒã‚Å)B°1°2•¡Êˆ—‚Í‚±‚±‚Å‚Ís‚í‚ê‚È‚¢B
-            '•¡”—ñ“]Úsˆ×‚ÌÅI”–Ú(’P”—ñ‚Í‚»‚Ìˆê‰ñ)‚ÍA‚±‚±‚Å‚ÍÀ{‚¹‚¸fornext‚ÌŒã‚ë‚ÅÀ{(ÅI‚Ü‚Æ‚ß•ª‚Ìtenx‚ª‚Ü‚Æ‚Ü‚Á‚Ä‚È‚¢‚½‚ßB)
-            If tenx <> "" And hx <> 0 And fuk12 >= 0 Then  'And qap(0) < apa7 ‚ÌğŒ“P”p@86_013q
-                'tstAtrt«g‚¦‚»‚¤B-7-8ƒRƒƒ“ƒg‚Í‚±‚±g‚í‚ê‚Ä‚¢‚È‚¢‚µB
+            'è¤‡æ•°åˆ—ã®æœ€çµ‚æ•°ç›®ä»¥å¤–ã‚’ã“ã“ã§æ›¸ãè¾¼ã¿ã€-7-8ã‚³ãƒ¡ãƒ³ãƒˆæ™‚ã¯ã“ã“ã§å®Ÿæ–½ã—ãªã„(æœ€å¾Œã§)ã€‚ï½°1ï½°2è¤‡å†™å‡¦ç†ã¯ã“ã“ã§ã¯è¡Œã‚ã‚Œãªã„ã€‚
+            'è¤‡æ•°åˆ—è»¢è¼‰è¡Œç‚ºã®æœ€çµ‚æ•°ç›®(å˜æ•°åˆ—ã¯ãã®ä¸€å›)ã¯ã€ã“ã“ã§ã¯å®Ÿæ–½ã›ãšfornextã®å¾Œã‚ã§å®Ÿæ–½(æœ€çµ‚ã¾ã¨ã‚åˆ†ã®tenxãŒã¾ã¨ã¾ã£ã¦ãªã„ãŸã‚ã€‚)
+            If tenx <> "" And hx <> 0 And fuk12 >= 0 Then  'And qap(0) < apa7 ã®æ¡ä»¶æ’¤å»ƒã€€86_013q
+                'tstã€trtâ†“ä½¿ãˆãã†ã€‚-7-8ã‚³ãƒ¡ãƒ³ãƒˆã¯ã“ã“ä½¿ã‚ã‚Œã¦ã„ãªã„ã—ã€‚
                 If p = 2 And tst = 1 Then
-                    With bfshn.Cells(hx, ax)  '•¶š—ñV‹K‚¿‚Ü‚¿‚Ü(-3<0&-4<0@‚©˜AÚV‹K),¦fuk12‚Í‚±‚±’e‚©‚ê‚éB
+                    With bfshn.Cells(hx, ax)  'æ–‡å­—åˆ—æ–°è¦ã¡ã¾ã¡ã¾(-3<0&-4<0ã€€ã‹é€£è¼‰æ–°è¦),â€»fuk12ã¯ã“ã“å¼¾ã‹ã‚Œã‚‹ã€‚
                         .NumberFormatLocal = "@"
                         .Value = tenx
                     End With
-                ElseIf tst = 8 And fuk12 = 0 Then  'Œ³ƒV[ƒgƒZƒ‹‚¿‚Ü‚¿‚Ü
-                    If Abs(er78(1, qap(0))) = 0.4 Or Abs(er78(1, qap(0))) = 0.1 Then Call oshimai("", bfn, shn, sr(8), a, "‚±‚ÌŒ`®‚Å‚Í“¥PŒ^‚¿‚Ü‚¿‚Ü‚Åw’è‚Å‚«‚Ü‚¹‚ña")
+                ElseIf tst = 8 And fuk12 = 0 Then  'å…ƒã‚·ãƒ¼ãƒˆã‚»ãƒ«ã¡ã¾ã¡ã¾
+                    If Abs(er78(1, qap(0))) = 0.4 Or Abs(er78(1, qap(0))) = 0.1 Then Call oshimai("", bfn, shn, sr(8), a, "ã“ã®å½¢å¼ã§ã¯è¸è¥²å‹ã¡ã¾ã¡ã¾ã§æŒ‡å®šã§ãã¾ã›ã‚“a")
                     With bfshn.Cells(hx, ax)
                         .NumberFormatLocal = Workbooks(mr(2, 1, bni)).Sheets(mr(1, 1, bni)).Cells(qq, Abs(er78(1, qap(0)))).NumberFormatLocal
                         .Value = tenx
                     End With
-                ElseIf tst = 8 And er(6, bni) <> -2 And fuk12 > 0 Then   'ƒZƒ‹•¡Ê‚¿‚Ü‚¿‚Ü(fuk12)86_012k
+                ElseIf tst = 8 And er(6, bni) <> -2 And fuk12 > 0 Then   'ã‚»ãƒ«è¤‡å†™ã¡ã¾ã¡ã¾(fuk12)86_012k
                     With bfshn.Cells(hx, ax)
                         .NumberFormatLocal = bfshn.Cells(fuk12, ax).NumberFormatLocal
                         .Value = tenx
                     End With
-                Else 'normal(Š´’m‚µ‚È‚¢A‚»‚Ì‚Ü‚Ü’l‚Å“\‚è•t‚¯A•W€‚Å‚à‚È‚¢iŒã‚Å•W€‚È‚è’Ê‰İ‚È‚èˆ—j)
+                Else 'normal(æ„ŸçŸ¥ã—ãªã„ã€ãã®ã¾ã¾å€¤ã§è²¼ã‚Šä»˜ã‘ã€æ¨™æº–ã§ã‚‚ãªã„ï¼ˆå¾Œã§æ¨™æº–ãªã‚Šé€šè²¨ãªã‚Šå‡¦ç†ï¼‰)
                     bfshn.Cells(hx, ax).Value = tenx
                 End If
             End If
-        End If '‚Vs[‚Å‚È‚¢‚Ìˆ—‚Í‚±‚±‚Ü‚Å
-    Next '•¡”—ñ“]ÚAƒ‹[ƒv‚·‚éB-1-2•¡ÊA-1‚©‚çƒ‹[ƒv‚·‚éB‚ÍA‚±‚±‚Ü‚Å
+        End If 'ï¼—è¡Œãƒ¼ã§ãªã„æ™‚ã®å‡¦ç†ã¯ã“ã“ã¾ã§
+    Next 'è¤‡æ•°åˆ—è»¢è¼‰æ™‚ã€ãƒ«ãƒ¼ãƒ—ã™ã‚‹ã€‚-1-2è¤‡å†™æ™‚ã€-1ã‹ã‚‰ãƒ«ãƒ¼ãƒ—ã™ã‚‹ã€‚ã¯ã€ã“ã“ã¾ã§
     
-    qap(0) = qap(0) - 1 '1–ß‚·(NextŒã‚ÌƒCƒ“ƒNƒŠ–ß‚·)
-    '‚±‚±‚Å‚Ìtenx‚ÍAÅI‚Ü‚Æ‚ß•ª‚Ìtenx‚ª‚Ü‚Æ‚Ü‚Á‚Ä‚¢‚éó‘Ô
-    '’P”—ñ“]Ú‚Í•K‚¸‚±‚±‚Ås‚í‚ê‚éBfor‘¤‚Å‚Ís‚í‚ê‚È‚¢B°1°2•¡Ê‚Í‚±‚±‚Ås‚í‚ê‚éB
-    If hx = 0 Then MsgBox "hx=0‚Æ‚¢‚¤‚±‚Æ‚ª‚ ‚è“¾‚é‚¾‚ë‚¤‚©H"
+    qap(0) = qap(0) - 1 '1æˆ»ã™(Nextå¾Œã®ã‚¤ãƒ³ã‚¯ãƒªæˆ»ã™)
+    'ã“ã“ã§ã®tenxã¯ã€æœ€çµ‚ã¾ã¨ã‚åˆ†ã®tenxãŒã¾ã¨ã¾ã£ã¦ã„ã‚‹çŠ¶æ…‹
+    'å˜æ•°åˆ—è»¢è¼‰ã¯å¿…ãšã“ã“ã§è¡Œã‚ã‚Œã‚‹ã€‚forå´ã§ã¯è¡Œã‚ã‚Œãªã„ã€‚ï½°1ï½°2è¤‡å†™ã¯ã“ã“ã§è¡Œã‚ã‚Œã‚‹ã€‚
+    If hx = 0 Then MsgBox "hx=0ã¨ã„ã†ã“ã¨ãŒã‚ã‚Šå¾—ã‚‹ã ã‚ã†ã‹ï¼Ÿ"
 
-    If (fuk12 = -8 Or fuk12 = -7) And tenx <> "" Then '30s79 8sƒRƒƒ“ƒg—p
+    If (fuk12 = -8 Or fuk12 = -7) And tenx <> "" Then '30s79 8è¡Œã‚³ãƒ¡ãƒ³ãƒˆç”¨
         bfshn.Cells(hx, a).ClearComments
         bfshn.Cells(hx, a).AddComment
         bfshn.Cells(hx, a).Comment.Text Text:=tenx
         'bfshn.Cells(hx, a).Comment.Shape.TextFrame.AutoSize = True    '86_022b not use for mac
     End If
 End Sub
-'[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[
+'ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼
 Function wetaiou(fn As String, f As String, ii As Long, erx() As Currency, kg2 As String, spd As String, mrx() As String, gyu As Long) As String
-    'ƒtƒ@ƒCƒ‹–¼AƒV[ƒg–¼As”A—ñ”(•¡”)A‹æØ‚è•¶šA‚‘¬‰Â”ÛA—ñ‘æ“ñˆöq(•¡”)A‚Qs–Ú‚©‚Rs–Ú‚©
+    'ãƒ•ã‚¡ã‚¤ãƒ«åã€ã‚·ãƒ¼ãƒˆåã€è¡Œæ•°ã€åˆ—æ•°(è¤‡æ•°)ã€åŒºåˆ‡ã‚Šæ–‡å­—ã€é«˜é€Ÿå¯å¦ã€åˆ—ç¬¬äºŒå› å­(è¤‡æ•°)ã€ï¼’è¡Œç›®ã‹ï¼“è¡Œç›®ã‹
     Dim am2 As String, am3 As String, qap As Long, jj As Long
     If fn = "" Then '30s86_020a
-        If UBound(erx()) > 0 Then 'ƒ‘‚ª‚ ‚é‚Æ‚«‚Ì‚İi“ñ”­–ÚˆÈ~jB’P•¶ß‚Í’Ê‚ç‚È‚¢B
-            jj = UBound(erx())   '2.11(]—ˆ’Ê‚èj@‚R‚à‚ ‚éH
+        If UBound(erx()) > 0 Then 'ãƒ±ãŒã‚ã‚‹ã¨ãã®ã¿ï¼ˆäºŒç™ºç›®ä»¥é™ï¼‰ã€‚å˜æ–‡ç¯€ã¯é€šã‚‰ãªã„ã€‚
+            jj = UBound(erx())   '2.11(å¾“æ¥é€šã‚Šï¼‰ã€€ï¼“ã‚‚ã‚ã‚‹ï¼Ÿ
             For qap = 1 To jj
                 am2 = am2 & kg2 & am3
             Next
         End If
-    Else 'Šù‘¶ver
-        'ƒ‘•¡”—ñ‚Ì•Ô‚è’l‚ğ•Ô‚·(›ƒ‘¤ƒ‘Œ`®)B•¡”—ñ‚Å–³‚­‚Ä‚àíg‚í‚ê‚é(am2)
+    Else 'æ—¢å­˜ver
+        'ãƒ±è¤‡æ•°åˆ—ã®è¿”ã‚Šå€¤ã‚’è¿”ã™(â—‹ãƒ±â–½ãƒ±â—‡å½¢å¼)ã€‚è¤‡æ•°åˆ—ã§ç„¡ãã¦ã‚‚å¸¸æ™‚ä½¿ã‚ã‚Œã‚‹(am2)
         If Abs(erx(0)) < 1 Then
 '            If erx(0) > 0.3 Then
             If erx(0) >= 0.1 Then   '86_022f
-                If mrx(0) = "" Then '‘æ“ñˆöq‚ ‚ê‚Î‚»‚¿‚ç‚Ì‹LÚ—Dæ‚Å@85_027ŒŸØ8
-'                    am2 = "" '’P”—ñ‚Í‚±‚±‚Í‚ ‚è“¾‚È‚¢B•¡•¶ß‚Å‚©‚Â—ñw’è–³‚¢(0.4)‚ªŠY“–B
-                                                                                '«ƒRƒƒ“ƒgC³ '86_022f
-                     am2 = "" '’P”—ñ‚Í‚±‚±‚Í‚ ‚è“¾‚È‚¢B•¡•¶ß‚Å‚©‚Â—ñw’è–³‚¢(0.4@‚ ‚é‚¢‚Í0.1)‚ªŠY“–B
+                If mrx(0) = "" Then 'ç¬¬äºŒå› å­ã‚ã‚Œã°ãã¡ã‚‰ã®è¨˜è¼‰å„ªå…ˆã§ã€€85_027æ¤œè¨¼8
+'                    am2 = "" 'å˜æ•°åˆ—ã¯ã“ã“ã¯ã‚ã‚Šå¾—ãªã„ã€‚è¤‡æ–‡ç¯€ã§ã‹ã¤åˆ—æŒ‡å®šç„¡ã„æ™‚(0.4)ãŒè©²å½“ã€‚
+                                                                                'â†“ã‚³ãƒ¡ãƒ³ãƒˆä¿®æ­£ '86_022f
+                     am2 = "" 'å˜æ•°åˆ—ã¯ã“ã“ã¯ã‚ã‚Šå¾—ãªã„ã€‚è¤‡æ–‡ç¯€ã§ã‹ã¤åˆ—æŒ‡å®šç„¡ã„æ™‚(0.4ã€€ã‚ã‚‹ã„ã¯0.1)ãŒè©²å½“ã€‚
                 Else
-                    am2 = mrx(0)  '85_027ŒŸØ8@‚Rs–Ú‘æ“ñˆöq
+                    am2 = mrx(0)  '85_027æ¤œè¨¼8ã€€ï¼“è¡Œç›®ç¬¬äºŒå› å­
                 End If
             End If
-        ElseIf spd = "ƒ‚‘¬" Or spd = "‹ß—‚‘¬" Then  '’P•¶ßor•¡”—ñˆê”­–Ú(0”Ô–Ú)‚‘¬
-'            am2 = CStr(Workbooks(fn).Sheets(f).Cells(ii, Abs(erx(0))).Value)  '‚‘¬‚ÍtrimÀ{‚µ‚È‚¢‚Å‘µ‚¦‚é‚Ö@85Q027ŒŸØ6
+        ElseIf spd = "ç´”é«˜é€Ÿ" Or spd = "è¿‘ä¼¼é«˜é€Ÿ" Then  'å˜æ–‡ç¯€æ™‚orè¤‡æ•°åˆ—ä¸€ç™ºç›®(0ç•ªç›®)é«˜é€Ÿ
+'            am2 = CStr(Workbooks(fn).Sheets(f).Cells(ii, Abs(erx(0))).Value)  'é«˜é€Ÿæ™‚ã¯trimå®Ÿæ–½ã—ãªã„ã§æƒãˆã‚‹ã¸ã€€85ï¼¿027æ¤œè¨¼6
             
-            am2 = WorksheetFunction.Clean(Trim$(CStr(Workbooks(fn).Sheets(f).Cells(ii, Abs(erx(0))).Value)))  '‚‘¬‚ÍtrimÄŠJ•CLEANŠÖ”@86_022i
-        Else '’P•¶ßor•¡”—ñˆê”­–Ú(0”Ô–Ú)’á‘¬ ¦•Ô‚è’lnull(ƒZƒ‹‚ª‹ó”’•Ô‚è’l)‚Ìê‡‚à‚ ‚éB
+            am2 = WorksheetFunction.Clean(Trim$(CStr(Workbooks(fn).Sheets(f).Cells(ii, Abs(erx(0))).Value)))  'é«˜é€Ÿæ™‚ã¯trimå†é–‹ï¼†CLEANé–¢æ•°ã€€86_022i
+        Else 'å˜æ–‡ç¯€æ™‚orè¤‡æ•°åˆ—ä¸€ç™ºç›®(0ç•ªç›®)ä½é€Ÿ â€»è¿”ã‚Šå€¤null(ã‚»ãƒ«ãŒç©ºç™½è¿”ã‚Šå€¤)ã®å ´åˆã‚‚ã‚ã‚‹ã€‚
 '            am2 = Trim$(CStr(Workbooks(fn).Sheets(f).Cells(ii, Abs(erx(0))).Value))
-            am2 = WorksheetFunction.Clean(Trim$(CStr(Workbooks(fn).Sheets(f).Cells(ii, Abs(erx(0))).Value))) 'CLEANŠÖ”“K—p‚Ö@86_022i
+            am2 = WorksheetFunction.Clean(Trim$(CStr(Workbooks(fn).Sheets(f).Cells(ii, Abs(erx(0))).Value))) 'CLEANé–¢æ•°é©ç”¨ã¸ã€€86_022i
         End If
     
-        If UBound(erx()) > 0 Then 'ƒ‘‚ª‚ ‚é‚Æ‚«‚Ì‚İi“ñ”­–ÚˆÈ~jB’P•¶ß‚Í’Ê‚ç‚È‚¢B
-            jj = UBound(erx())   '2.11(]—ˆ’Ê‚èj@‚R‚à‚ ‚éH
+        If UBound(erx()) > 0 Then 'ãƒ±ãŒã‚ã‚‹ã¨ãã®ã¿ï¼ˆäºŒç™ºç›®ä»¥é™ï¼‰ã€‚å˜æ–‡ç¯€ã¯é€šã‚‰ãªã„ã€‚
+            jj = UBound(erx())   '2.11(å¾“æ¥é€šã‚Šï¼‰ã€€ï¼“ã‚‚ã‚ã‚‹ï¼Ÿ
             For qap = 1 To jj
                 If Abs(erx(qap)) < 1 Then
                     If erx(qap) < 0.3 Then
-                        am3 = Format(ii, "0000000") 'u[v‚Ì(0.1)As”Ô†‚ğƒL[‚Æ‚·‚éB
-                    ElseIf mrx(qap) = "" Then '(0.4)@New“Š“ü@85_027ŒŸØ8
-                        am3 = "" ']—ˆ(0.4)¦‚Rs–Ú‘æ“ñˆöq‚È‚µ@¦]—ˆŒ^
+                        am3 = Format(ii, "0000000") 'ã€Œãƒ¼ã€ã®æ™‚(0.1)ã€è¡Œç•ªå·ã‚’ã‚­ãƒ¼ã¨ã™ã‚‹ã€‚
+                    ElseIf mrx(qap) = "" Then '(0.4)ã€€NewæŠ•å…¥ã€€85_027æ¤œè¨¼8
+                        am3 = "" 'å¾“æ¥(0.4)â€»ï¼“è¡Œç›®ç¬¬äºŒå› å­ãªã—ã€€â€»å¾“æ¥å‹
                     Else
-                        am3 = mrx(qap)  '¦‚Rs–Ú‘æ“ñˆöq‚ ‚è@¦New@85_027ŒŸØ8
+                        am3 = mrx(qap)  'â€»ï¼“è¡Œç›®ç¬¬äºŒå› å­ã‚ã‚Šã€€â€»Newã€€85_027æ¤œè¨¼8
                     End If
-                ElseIf spd = "ƒ‚‘¬" Or spd = "‹ß—‚‘¬" Then    '‚‘¬‚ÍtrimÀ{‚µ‚È‚¢‚Å‘µ‚¦‚é‚Ö@85Q027ŒŸØ6
+                ElseIf spd = "ç´”é«˜é€Ÿ" Or spd = "è¿‘ä¼¼é«˜é€Ÿ" Then    'é«˜é€Ÿæ™‚ã¯trimå®Ÿæ–½ã—ãªã„ã§æƒãˆã‚‹ã¸ã€€85ï¼¿027æ¤œè¨¼6
 '                    am3 = CStr(Workbooks(fn).Sheets(f).Cells(ii, Abs(erx(qap))).Value)
-                    am3 = WorksheetFunction.Clean(Trim$(CStr(Workbooks(fn).Sheets(f).Cells(ii, Abs(erx(qap))).Value)))  '‚‘¬‚ÍtrimÄŠJ•CLEANŠÖ”@86_022i
+                    am3 = WorksheetFunction.Clean(Trim$(CStr(Workbooks(fn).Sheets(f).Cells(ii, Abs(erx(qap))).Value)))  'é«˜é€Ÿæ™‚ã¯trimå†é–‹ï¼†CLEANé–¢æ•°ã€€86_022i
                 
-                Else  '’á‘¬‚Í]—ˆ’Ê‚è
+                Else  'ä½é€Ÿã¯å¾“æ¥é€šã‚Š
 '                    am3 = Trim$(CStr(Workbooks(fn).Sheets(f).Cells(ii, Abs(erx(qap))).Value))
-                    am3 = WorksheetFunction.Clean(Trim$(CStr(Workbooks(fn).Sheets(f).Cells(ii, Abs(erx(qap))).Value))) 'CLEANŠÖ”“K—p‚Ö@86_022i
+                    am3 = WorksheetFunction.Clean(Trim$(CStr(Workbooks(fn).Sheets(f).Cells(ii, Abs(erx(qap))).Value))) 'CLEANé–¢æ•°é©ç”¨ã¸ã€€86_022i
                 End If
                 am2 = am2 & kg2 & am3
             Next
         End If
     End If
     
-    '‚±‚±‚Åam3‚Íˆê’U—pÏ‚İ‚È‚Ì‚ÅA‚±‚±‚©‚çA•Ê‚Ì—p“r‚Å 30s86_021g
+    'ã“ã“ã§am3ã¯ä¸€æ—¦ç”¨æ¸ˆã¿ãªã®ã§ã€ã“ã“ã‹ã‚‰ã€åˆ¥ã®ç”¨é€”ã§ 30s86_021g
     am3 = am2
     am2 = WorksheetFunction.Clean(am3)
     
-'    If am2 <> am3 Then MsgBox "CleanŠÖ””­“®(" & am2 & ")"  '©•K—v‚É‰‚¶‚Ä•\¦‚·‚é
+'    If am2 <> am3 Then MsgBox "Cleané–¢æ•°ç™ºå‹•(" & am2 & ")"  'â†å¿…è¦ã«å¿œã˜ã¦è¡¨ç¤ºã™ã‚‹
     
     wetaiou = am2
 End Function
-'[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[
-Sub hdrst(ii As Long, a As Long)  '21‚“ŠÈ‘f‰»
-    '¶‰ºƒXƒe[ƒ^ƒX•\¦•”  100¨1000‚Ö201904
-    If cnt < Int(ii / 1000) * 1000 Then  'cnt ‚ÍƒpƒuƒŠƒbƒN•Ï”
+'ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼
+Sub hdrst(ii As Long, a As Long)  '21ï½“ç°¡ç´ åŒ–
+    'å·¦ä¸‹ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹è¡¨ç¤ºéƒ¨  100â†’1000ã¸201904
+    If cnt < Int(ii / 1000) * 1000 Then  'cnt ã¯ãƒ‘ãƒ–ãƒªãƒƒã‚¯å¤‰æ•°
         cnt = Int(ii / 1000) * 1000
         DoEvents
-        If flag = True Then Call oshimai("", bfn, shn, 1, 0, "’†~‚µ‚Ü‚µ‚½‚Å‚·") '’†~ƒ{ƒ^ƒ“ˆ—
-        Application.StatusBar = Str(cnt) & "A" & Str(a - dd1 + 1) & " / " & Str(dd2 - dd1 + 1)
+        If flag = True Then Call oshimai("", bfn, shn, 1, 0, "ä¸­æ­¢ã—ã¾ã—ãŸã§ã™") 'ä¸­æ­¢ãƒœã‚¿ãƒ³å‡¦ç†
+        Application.StatusBar = Str(cnt) & "ã€" & Str(a - dd1 + 1) & " / " & Str(dd2 - dd1 + 1)
     End If
 End Sub
-'[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[
+'ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼
 Sub hdrst2(ii As Long, a As Long, ak As Long, kkk As Long, hhh As Long)
-    '¶‰ºƒXƒe[ƒ^ƒX•\¦•”
-    If ak <= 0 Then ak = 100 'ˆÙí’l‚Ì‚Æ‚«‚Í100‚ÌƒfƒtƒH’l(]—ˆ•Ï‚í‚ç‚¸)‚Å
-    If cnt < Int(ii / ak) * ak Then  'cnt ‚ÍƒpƒuƒŠƒbƒN•Ï”
+    'å·¦ä¸‹ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹è¡¨ç¤ºéƒ¨
+    If ak <= 0 Then ak = 100 'ç•°å¸¸å€¤ã®ã¨ãã¯100ã®ãƒ‡ãƒ•ã‚©å€¤(å¾“æ¥å¤‰ã‚ã‚‰ãš)ã§
+    If cnt < Int(ii / ak) * ak Then  'cnt ã¯ãƒ‘ãƒ–ãƒªãƒƒã‚¯å¤‰æ•°
         If kkk <> 0 Then
             bfshn.Cells(2, 4).Value = kkk
             bfshn.Cells(3, 4).Value = hhh
         End If
         cnt = Int(ii / ak) * ak
         DoEvents
-        If flag = True Then Call oshimai("", bfn, shn, 1, 0, "’†~‚µ‚Ü‚µ‚½‚æ") '’†~ƒ{ƒ^ƒ“ˆ—
-        Application.StatusBar = Str(cnt) & "A" & Str(a - dd1 + 1) & " / " & Str(dd2 - dd1 + 1)
+        If flag = True Then Call oshimai("", bfn, shn, 1, 0, "ä¸­æ­¢ã—ã¾ã—ãŸã‚ˆ") 'ä¸­æ­¢ãƒœã‚¿ãƒ³å‡¦ç†
+        Application.StatusBar = Str(cnt) & "ã€" & Str(a - dd1 + 1) & " / " & Str(dd2 - dd1 + 1)
     End If
 End Sub
-'[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[
+'ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼
 Function hunpan(fn As String, f As String, ii As Long, g As Currency, e7 As Currency, e5 As Currency, c As Currency, e As Currency, mc As String, hk1 As String) As String
     Dim et5 As String, et As String
-    'ˆÃ†Œ®‚Ì•¶š—ñ
-    If mc = "1" Then 'mcEE‚UsopAŒ®‚Ìí—Ş
+    'æš—å·éµã®æ–‡å­—åˆ—
+    If mc = "1" Then 'mcãƒ»ãƒ»ï¼–è¡Œopã€éµã®ç¨®é¡
         et5 = "1"
-    ElseIf mc = "e5" Then  'g‚í‚ê‚Ä‚¢‚é@5s–ÚƒJƒEƒ“ƒgŠî€—ñ‚É‚ ‚é•¶š—ñ‚ªŒ®(a234567@‚Æ‚©)
+    ElseIf mc = "e5" Then  'ä½¿ã‚ã‚Œã¦ã„ã‚‹ã€€5è¡Œç›®ã‚«ã‚¦ãƒ³ãƒˆåŸºæº–åˆ—ã«ã‚ã‚‹æ–‡å­—åˆ—ãŒéµ(a234567ã€€ã¨ã‹)
         et5 = Trim$(CStr(Workbooks(fn).Sheets(f).Cells(ii, Abs(e5))))
-    ElseIf mc = "e" Then  '8s–Ú“]Ú—ñ‚É‚ ‚é•¶š—ñ‚ªŒ®(a234567@‚Æ‚©)@g‚í‚ê‚Ä‚¢‚È‚¢
+    ElseIf mc = "e" Then  '8è¡Œç›®è»¢è¼‰åˆ—ã«ã‚ã‚‹æ–‡å­—åˆ—ãŒéµ(a234567ã€€ã¨ã‹)ã€€ä½¿ã‚ã‚Œã¦ã„ãªã„
         et5 = Trim$(CStr(Workbooks(fn).Sheets(f).Cells(ii, Abs(e))))
-    Else     '3s–Ú“]Ú—ñ‚É‚ ‚é•¶š—ñ‚ªŒ®(a234567@‚Æ‚©)@g‚í‚ê‚Ä‚¢‚È‚¢
+    Else     '3è¡Œç›®è»¢è¼‰åˆ—ã«ã‚ã‚‹æ–‡å­—åˆ—ãŒéµ(a234567ã€€ã¨ã‹)ã€€ä½¿ã‚ã‚Œã¦ã„ãªã„
         et5 = Trim$(CStr(Workbooks(fn).Sheets(f).Cells(ii, Abs(g))))  '
     End If
-    et = Trim$(CStr(Workbooks(fn).Sheets(f).Cells(ii, Abs(e))))  'ˆÃ†Œ®Šm’è
-    hunpan = hunk2(c, et, et5, hk1)    'ˆÃ†Œ®
+    et = Trim$(CStr(Workbooks(fn).Sheets(f).Cells(ii, Abs(e))))  'æš—å·éµç¢ºå®š
+    hunpan = hunk2(c, et, et5, hk1)    'æš—å·éµ
 End Function
-'[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[
+'ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼
 Function hunk2(cc As Currency, et As String, et5 As String, hk1 As String) As String
-    'ˆÃ†•œ†A‘ÎÛ•¶šAŒ®AƒGƒ‰[ƒrƒbƒg •Ï”“ñ•¶š‰»@86_014k
-    Dim mjs As Long '“]Ú•¶š‚Ì•¶š”
-    Dim gjs As Long '“Ë‡•¶š‚Ì•¶š”
+    'æš—å·å¾©å·ã€å¯¾è±¡æ–‡å­—ã€éµã€ã‚¨ãƒ©ãƒ¼ãƒ“ãƒƒãƒˆ å¤‰æ•°äºŒæ–‡å­—åŒ–ã€€86_014k
+    Dim mjs As Long 'è»¢è¼‰æ–‡å­—ã®æ–‡å­—æ•°
+    Dim gjs As Long 'çªåˆæ–‡å­—ã®æ–‡å­—æ•°
     Dim pp As Long, vv As Long
-    Dim hh As String '•ÏŠ·—pˆê•¶š
-    Dim uu As String '•ÏŠ·Œã•¶š
-    Dim tt As Long '•ÏŠ·unicodeƒVƒtƒg’è”
-    Dim jj As Long '”ÍˆÍƒ`ƒFƒbƒN
-    Dim qq As Long '—]‚è
-    Dim mb As Long '‚Ü‚Ô‚µŒW”
+    Dim hh As String 'å¤‰æ›ç”¨ä¸€æ–‡å­—
+    Dim uu As String 'å¤‰æ›å¾Œæ–‡å­—
+    Dim tt As Long 'å¤‰æ›unicodeã‚·ãƒ•ãƒˆå®šæ•°
+    Dim jj As Long 'ç¯„å›²ãƒã‚§ãƒƒã‚¯
+    Dim qq As Long 'ä½™ã‚Š
+    Dim mb As Long 'ã¾ã¶ã—ä¿‚æ•°
     Dim ww As Long, tn As Long, ss As Long
 
     uu = ""
     tn = 0
-    gjs = Len(et5) 'ˆÃ†Œ®‚Ì•¶š”
-    mjs = Len(et) 'ˆÃ†‘ÎÛ•¶š‚Ì•¶š”
+    gjs = Len(et5) 'æš—å·éµã®æ–‡å­—æ•°
+    mjs = Len(et) 'æš—å·å¯¾è±¡æ–‡å­—ã®æ–‡å­—æ•°
     vv = 0
     For pp = 1 To gjs
         ss = AscW(Mid(et5, pp, 1))
         vv = vv + ss
     Next
-    ww = vv Mod 10  'ˆÃ†Œ®‚Ì‚Ü‚Ô‚µƒoƒCƒAƒX’l
+    ww = vv Mod 10  'æš—å·éµã®ã¾ã¶ã—ãƒã‚¤ã‚¢ã‚¹å€¤
     vv = 0
     
-    For pp = 1 To mjs 'pp‚Í“]Ú•¶š‚ÌA‚ ‚é•¶š–Ú
-        qq = (pp - tn) Mod gjs + 1  'ˆÃ†Œ®‚Ì•¶š”zŠÂ
+    For pp = 1 To mjs 'ppã¯è»¢è¼‰æ–‡å­—ã®ã€ã‚ã‚‹æ–‡å­—ç›®
+        qq = (pp - tn) Mod gjs + 1  'æš—å·éµã®æ–‡å­—æ•°å¾ªç’°
         ss = AscW(Mid(et5, qq, 1))
-        mb = (ss + pp - tn + ww) Mod 50 '‚Ü‚Ô‚µŒW”(‚O?{?‚S‚X)
-        tt = 25000 - 30 + 99 * mb '‰¼‚Ìtt
+        mb = (ss + pp - tn + ww) Mod 50 'ã¾ã¶ã—ä¿‚æ•°(ï¼?ï¼‹?ï¼”ï¼™)
+        tt = 25000 - 30 + 99 * mb 'ä»®ã®tt
         If cc = -5 Then
             jj = 0
             tt = tt
@@ -2743,8 +2745,8 @@ Function hunk2(cc As Currency, et As String, et5 As String, hk1 As String) As St
             jj = tt
             tt = (-1) * tt
         End If
-        If Mid(et, pp, 1) = "A" Then
-            hh = "A"
+        If Mid(et, pp, 1) = "ã€" Then
+            hh = "ã€"
             tn = pp
         ElseIf (AscW(Mid(et, pp, 1)) >= jj + 32 And AscW(Mid(et, pp, 1)) <= jj + 126) Then
             hh = ChrW(AscW(Mid(et, pp, 1)) + (tt))
@@ -2757,175 +2759,175 @@ Function hunk2(cc As Currency, et As String, et5 As String, hk1 As String) As St
     If vv = 0 Then
         hunk2 = uu
     Else
-        hunk2 = "‹K’èŠO•¶š‚ ‚èF" & et
+        hunk2 = "è¦å®šå¤–æ–‡å­—ã‚ã‚Šï¼š" & et
         hk1 = "1"
     End If
 End Function
-'[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[
+'ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼
 Function yhwat1(fn As String, f As String, ee As Currency, yhs As Long, a As Long, bni As Long, kg1 As String, nkg As Long, kg2 As String, bugyo As String) As String
-    '‘Î_ƒtƒ@ƒCƒ‹–¼A‘Î_ƒV[ƒg–¼A‘Î_€–ÚsA“–_s”Ô†A“–_—ñ”Ô†A•¶ß”A‹æØ‚è•¶š(‚î)A–³‚µ‹æØ‚èƒrƒbƒgA‹æØ‚è•¶š(ƒ‘)A‚»‚Ì•¶ß‚ÌŒ´–{î•ñi–‚àŠÜ‚Şj
-    '‰¼‘zƒL[@ƒ‘ƒ‘ƒ‘‘Î‰30s43(doloop¨fornext‚Éj
-    Dim ymj1 As String, ymj2 As String, mh As Long, yap As Long '©ƒ‘‚ÌŒÂ”
-    Dim pm As Long, ii As Long, wenk As Long  '[–³—L@Aƒ‘‚Ì‡”Ô–Ú(kgwe¨ii)@Aƒ‘‚Ì‹æØ‚è‰Â”Û
-    Dim chwat1 As String, chwat2 As String '•Ô‚è’l‚Ì‹æØ‚è–ˆ¶¬•¨@A•Ô‚è’l‚Ì‘fi’~ÏŒ^j
+    'å¯¾_ãƒ•ã‚¡ã‚¤ãƒ«åã€å¯¾_ã‚·ãƒ¼ãƒˆåã€å¯¾_é …ç›®è¡Œã€å½“_è¡Œç•ªå·ã€å½“_åˆ—ç•ªå·ã€æ–‡ç¯€æ•°ã€åŒºåˆ‡ã‚Šæ–‡å­—(ã‚)ã€ç„¡ã—åŒºåˆ‡ã‚Šãƒ“ãƒƒãƒˆã€åŒºåˆ‡ã‚Šæ–‡å­—(ãƒ±)ã€ãã®æ–‡ç¯€ã®åŸæœ¬æƒ…å ±ï¼ˆï¼Šã‚‚å«ã‚€ï¼‰
+    'ä»®æƒ³ã‚­ãƒ¼ã€€â—‡ãƒ±â—‡ãƒ±ãƒ±â—‡å¯¾å¿œ30s43(doloopâ†’fornextã«ï¼‰
+    Dim ymj1 As String, ymj2 As String, mh As Long, yap As Long 'â†ãƒ±ã®å€‹æ•°
+    Dim pm As Long, ii As Long, wenk As Long  'ãƒ¼ç„¡æœ‰ã€€ã€ãƒ±ã®é †ç•ªç›®(kgweâ†’ii)ã€€ã€ãƒ±ã®åŒºåˆ‡ã‚Šå¯å¦
+    Dim chwat1 As String, chwat2 As String 'è¿”ã‚Šå€¤ã®åŒºåˆ‡ã‚Šæ¯ç”Ÿæˆç‰©ã€€ã€è¿”ã‚Šå€¤ã®ç´ ï¼ˆè“„ç©å‹ï¼‰
     
-    If kg2 = "" Then wenk = 1 'wenk=1Fƒ‘‹æØ‚è–³‚µAwenk=0 Fƒ‘‹æØ‚è—L‚è
+    If kg2 = "" Then wenk = 1 'wenk=1ï¼šãƒ±åŒºåˆ‡ã‚Šç„¡ã—ã€wenk=0 ï¼šãƒ±åŒºåˆ‡ã‚Šæœ‰ã‚Š
     pm = 1
-    If Right(fn, 4) = ".xls" Then mh = 256 Else mh = 2000 '85_009@.xls‚É‚à‘Î‰
-    ymj1 = rvsrz3(bugyo, 2, "¦", 2) 'nkgF‚QAF‚ñ‚Ès‚Å–‚ ƒ‘‚¢@Œ`®i–‚ ‚èƒ’•sg—pj‚ğ‹–—ei30s73‹Lj
-    If bni >= 2 And bugyo = "" Then  '30s75 ymj1¨bugyo ‚É(‘æ“ñ•¶ßˆÈ~‚ª¦¦‚ÌA‘Oßî•ñ“¥P‚É‚È‚éƒoƒO‘Îˆ)
-        yhwat1 = ""   '©yhwat1‚ª•¶šŠÖ”‚É‚È‚ç‚´‚é‚ğ“¾‚È‚¢ªŒ¹
-    Else 'bni=1 ‚Ì‚Æ‚«Aá‚µ‚­‚ÍAymj1î•ñ‚ ‚è‚Ì‚Æ‚«
-        yap = kgcnt(ymj1, kg2)  '©ƒ‘‚ÌŒÂ”
+    If Right(fn, 4) = ".xls" Then mh = 256 Else mh = 2000 '85_009ã€€.xlsã«ã‚‚å¯¾å¿œ
+    ymj1 = rvsrz3(bugyo, 2, "ï½¦", 2) 'nkgï¼šï¼’ã€è‰²ã‚“ãªè¡Œã§ï¼Šã‚ãƒ±ã„ã€€å½¢å¼ï¼ˆï¼Šã‚ã‚Šãƒ²ä¸ä½¿ç”¨ï¼‰ã‚’è¨±å®¹ï¼ˆ30s73è¨˜ï¼‰
+    If bni >= 2 And bugyo = "" Then  '30s75 ymj1â†’bugyo ã«(ç¬¬äºŒæ–‡ç¯€ä»¥é™ãŒï½¦ï½¦ã®æ™‚ã€å‰ç¯€æƒ…å ±è¸è¥²ã«ãªã‚‹ãƒã‚°å¯¾å‡¦)
+        yhwat1 = ""   'â†yhwat1ãŒæ–‡å­—é–¢æ•°ã«ãªã‚‰ã–ã‚‹ã‚’å¾—ãªã„æ ¹æº
+    Else 'bni=1 ã®ã¨ãã€è‹¥ã—ãã¯ã€ymj1æƒ…å ±ã‚ã‚Šã®ã¨ã
+        yap = kgcnt(ymj1, kg2)  'â†ãƒ±ã®å€‹æ•°
         For ii = 1 To yap + 1
-            pm = 1  '30s81_7’Ç‰ÁiƒoƒOApm‚Ífor–ˆ‚ÉƒŠƒZƒbƒg‚µ‚È‚¯‚ê‚Î‚È‚ç‚È‚¢j
+            pm = 1  '30s81_7è¿½åŠ ï¼ˆãƒã‚°ã€pmã¯foræ¯ã«ãƒªã‚»ãƒƒãƒˆã—ãªã‘ã‚Œã°ãªã‚‰ãªã„ï¼‰
             ymj2 = rvsrz3(ymj1, ii, kg2, wenk)
-            If Mid(ymj2, 1, 1) = "[" Then
+            If Mid(ymj2, 1, 1) = "ãƒ¼" Then
                 pm = -1
-                If ymj2 = "[" Then ymj2 = "" Else ymj2 = Mid(ymj2, 2)
+                If ymj2 = "ãƒ¼" Then ymj2 = "" Else ymj2 = Mid(ymj2, 2)
             End If
             chwat1 = ""
             If IsNumeric(ymj2) Or IsDate(ymj2) Then
                 chwat1 = ymj2
             ElseIf ymj2 = "" Then
-                chwat1 = pm * 0.4  '¦¦¨–ß‚è’l0.4A¦[¦¨–ß‚è’l-0.4‚ª“ü‚é
-                If chwat1 = -0.4 Then chwat1 = 0.1 '85_024 -0.4¨0.1
+                chwat1 = pm * 0.4  'ï½¦ï½¦â†’æˆ»ã‚Šå€¤0.4ã€ï½¦ãƒ¼ï½¦â†’æˆ»ã‚Šå€¤-0.4ãŒå…¥ã‚‹
+                If chwat1 = -0.4 Then chwat1 = 0.1 '85_024 -0.4â†’0.1
             ElseIf ee > 0 Then
                 If IsError(Application.Match(ymj2, Range(Workbooks(fn).Sheets(f).Cells(ee, 1), Workbooks(fn).Sheets(f).Cells(ee, mh)), 0)) Then
-                    Call oshimai("", bfn, shn, yhs, a, "iˆ—’†~j" & vbCrLf & "ƒV[ƒg–¼F" & f & " ã‚Ì" & vbCrLf & "€–Ú–¼u" & ymj2 & "v‚ªŒ©‚Â‚©‚è‚Ü‚¹‚ñ")
+                    Call oshimai("", bfn, shn, yhs, a, "ï¼ˆå‡¦ç†ä¸­æ­¢ï¼‰" & vbCrLf & "ã‚·ãƒ¼ãƒˆåï¼š" & f & " ä¸Šã®" & vbCrLf & "é …ç›®åã€Œ" & ymj2 & "ã€ãŒè¦‹ã¤ã‹ã‚Šã¾ã›ã‚“")
                 Else
                     chwat1 = pm * Application.WorksheetFunction.Match(ymj2, Range(Workbooks(fn).Sheets(f).Cells(ee, 1), Workbooks(fn).Sheets(f).Cells(ee, mh)), 0)
                 End If
             Else
-                Call oshimai("", bfn, shn, 1, 0, "u€–Ú–¼v‚ªu‚È‚µv‚Å•¶šŒŸõ‚µ‚Ä‚¢‚Ü‚·")
+                Call oshimai("", bfn, shn, 1, 0, "ã€Œé …ç›®åã€ãŒã€Œãªã—ã€ã§æ–‡å­—æ¤œç´¢ã—ã¦ã„ã¾ã™")
             End If
             If ii = 1 Then chwat2 = chwat1 Else chwat2 = chwat2 & kg2 & chwat1
         Next
         yhwat1 = chwat2
     End If
 End Function
-'[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[
+'ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼
 Function zhwat1(fn As String, f As String, ee As Currency, yhs As Long, a As Long, bni As Long, kg1 As String, nkg As Long, kg2 As String, bugyo As String) As String
-    '‘Î_ƒtƒ@ƒCƒ‹–¼A‘Î_ƒV[ƒg–¼A‘Î_€–ÚsA“–_s”Ô†A“–_—ñ”Ô†A•¶ß”A‹æØ‚è•¶š(‚î)A–³‚µ‹æØ‚èƒrƒbƒgA‹æØ‚è•¶š(ƒ‘)A‚»‚Ì•¶ß‚ÌŒ´–{î•ñi–‚àŠÜ‚Şj
-    '‰¼‘zƒL[@ƒ‘ƒ‘ƒ‘‘Î‰30s43(doloop¨fornext‚Éj
-    Dim ymj1 As String, ymj2 As String, mh As Long, yap As Long '©ƒ‘‚ÌŒÂ”
-    Dim pm As Long, ii As Long, wenk As Long  '[–³—L@Aƒ‘‚Ì‡”Ô–Ú(kgwe¨ii)@Aƒ‘‚Ì‹æØ‚è‰Â”Û
-    Dim chwat1 As String, chwat2 As String '•Ô‚è’l‚Ì‹æØ‚è–ˆ¶¬•¨@A•Ô‚è’l‚Ì‘fi’~ÏŒ^j
+    'å¯¾_ãƒ•ã‚¡ã‚¤ãƒ«åã€å¯¾_ã‚·ãƒ¼ãƒˆåã€å¯¾_é …ç›®è¡Œã€å½“_è¡Œç•ªå·ã€å½“_åˆ—ç•ªå·ã€æ–‡ç¯€æ•°ã€åŒºåˆ‡ã‚Šæ–‡å­—(ã‚)ã€ç„¡ã—åŒºåˆ‡ã‚Šãƒ“ãƒƒãƒˆã€åŒºåˆ‡ã‚Šæ–‡å­—(ãƒ±)ã€ãã®æ–‡ç¯€ã®åŸæœ¬æƒ…å ±ï¼ˆï¼Šã‚‚å«ã‚€ï¼‰
+    'ä»®æƒ³ã‚­ãƒ¼ã€€â—‡ãƒ±â—‡ãƒ±ãƒ±â—‡å¯¾å¿œ30s43(doloopâ†’fornextã«ï¼‰
+    Dim ymj1 As String, ymj2 As String, mh As Long, yap As Long 'â†ãƒ±ã®å€‹æ•°
+    Dim pm As Long, ii As Long, wenk As Long  'ãƒ¼ç„¡æœ‰ã€€ã€ãƒ±ã®é †ç•ªç›®(kgweâ†’ii)ã€€ã€ãƒ±ã®åŒºåˆ‡ã‚Šå¯å¦
+    Dim chwat1 As String, chwat2 As String 'è¿”ã‚Šå€¤ã®åŒºåˆ‡ã‚Šæ¯ç”Ÿæˆç‰©ã€€ã€è¿”ã‚Šå€¤ã®ç´ ï¼ˆè“„ç©å‹ï¼‰
     
-    If kg2 = "" Then wenk = 1 'wenk=1Fƒ‘‹æØ‚è–³‚µAwenk=0 Fƒ‘‹æØ‚è—L‚è
+    If kg2 = "" Then wenk = 1 'wenk=1ï¼šãƒ±åŒºåˆ‡ã‚Šç„¡ã—ã€wenk=0 ï¼šãƒ±åŒºåˆ‡ã‚Šæœ‰ã‚Š
     pm = 1
-    If Right(fn, 4) = ".xls" Then mh = 256 Else mh = 2000 '85_009@.xls‚É‚à‘Î‰
-    ymj1 = rvsrz3(bugyo, 2, "¦", 2) 'nkgF‚QAF‚ñ‚Ès‚Å–‚ ƒ‘‚¢@Œ`®i–‚ ‚èƒ’•sg—pj‚ğ‹–—ei30s73‹Lj
-    If bni >= 2 And bugyo = "" Then  '30s75 ymj1¨bugyo ‚É(‘æ“ñ•¶ßˆÈ~‚ª¦¦‚ÌA‘Oßî•ñ“¥P‚É‚È‚éƒoƒO‘Îˆ)
-        zhwat1 = ""   '©zhwat1‚ª•¶šŠÖ”‚É‚È‚ç‚´‚é‚ğ“¾‚È‚¢ªŒ¹
-    Else 'bni=1 ‚Ì‚Æ‚«Aá‚µ‚­‚ÍAymj1î•ñ‚ ‚è‚Ì‚Æ‚«
-        yap = kgcnt(ymj1, kg2)  '©ƒ‘‚ÌŒÂ”
+    If Right(fn, 4) = ".xls" Then mh = 256 Else mh = 2000 '85_009ã€€.xlsã«ã‚‚å¯¾å¿œ
+    ymj1 = rvsrz3(bugyo, 2, "ï½¦", 2) 'nkgï¼šï¼’ã€è‰²ã‚“ãªè¡Œã§ï¼Šã‚ãƒ±ã„ã€€å½¢å¼ï¼ˆï¼Šã‚ã‚Šãƒ²ä¸ä½¿ç”¨ï¼‰ã‚’è¨±å®¹ï¼ˆ30s73è¨˜ï¼‰
+    If bni >= 2 And bugyo = "" Then  '30s75 ymj1â†’bugyo ã«(ç¬¬äºŒæ–‡ç¯€ä»¥é™ãŒï½¦ï½¦ã®æ™‚ã€å‰ç¯€æƒ…å ±è¸è¥²ã«ãªã‚‹ãƒã‚°å¯¾å‡¦)
+        zhwat1 = ""   'â†zhwat1ãŒæ–‡å­—é–¢æ•°ã«ãªã‚‰ã–ã‚‹ã‚’å¾—ãªã„æ ¹æº
+    Else 'bni=1 ã®ã¨ãã€è‹¥ã—ãã¯ã€ymj1æƒ…å ±ã‚ã‚Šã®ã¨ã
+        yap = kgcnt(ymj1, kg2)  'â†ãƒ±ã®å€‹æ•°
         For ii = 1 To yap + 1
-            pm = 1  '30s81_7’Ç‰ÁiƒoƒOApm‚Ífor–ˆ‚ÉƒŠƒZƒbƒg‚µ‚È‚¯‚ê‚Î‚È‚ç‚È‚¢j
+            pm = 1  '30s81_7è¿½åŠ ï¼ˆãƒã‚°ã€pmã¯foræ¯ã«ãƒªã‚»ãƒƒãƒˆã—ãªã‘ã‚Œã°ãªã‚‰ãªã„ï¼‰
             ymj2 = rvsrz3(ymj1, ii, kg2, wenk)
-            If Mid(ymj2, 1, 1) = "[" Then
+            If Mid(ymj2, 1, 1) = "ãƒ¼" Then
                 pm = -1
-                If ymj2 = "[" Then ymj2 = "" Else ymj2 = Mid(ymj2, 2)
+                If ymj2 = "ãƒ¼" Then ymj2 = "" Else ymj2 = Mid(ymj2, 2)
             End If
             chwat1 = ""
             If IsNumeric(ymj2) Or IsDate(ymj2) Then
                 chwat1 = ymj2
             ElseIf ymj2 = "" Then
-                chwat1 = pm * 0.4  '¦¦¨–ß‚è’l0.4A¦[¦¨–ß‚è’l-0.4‚ª“ü‚é
-                If chwat1 = -0.4 Then chwat1 = 0.1 '85_024 -0.4¨0.1
+                chwat1 = pm * 0.4  'ï½¦ï½¦â†’æˆ»ã‚Šå€¤0.4ã€ï½¦ãƒ¼ï½¦â†’æˆ»ã‚Šå€¤-0.4ãŒå…¥ã‚‹
+                If chwat1 = -0.4 Then chwat1 = 0.1 '85_024 -0.4â†’0.1
             ElseIf ee > 0 Then
                 If IsError(Application.Match(ymj2, Range(Workbooks(fn).Sheets(f).Cells(ee, 1), Workbooks(fn).Sheets(f).Cells(ee, mh)), 0)) Then
-                    Call oshimai("", bfn, shn, yhs, a, "iˆ—’†~j" & vbCrLf & "ƒV[ƒg–¼F" & f & " ã‚Ì" & vbCrLf & "€–Ú–¼u" & ymj2 & "v‚ªŒ©‚Â‚©‚è‚Ü‚¹‚ñ")
+                    Call oshimai("", bfn, shn, yhs, a, "ï¼ˆå‡¦ç†ä¸­æ­¢ï¼‰" & vbCrLf & "ã‚·ãƒ¼ãƒˆåï¼š" & f & " ä¸Šã®" & vbCrLf & "é …ç›®åã€Œ" & ymj2 & "ã€ãŒè¦‹ã¤ã‹ã‚Šã¾ã›ã‚“")
                 Else
                     chwat1 = pm * Application.WorksheetFunction.Match(ymj2, Range(Workbooks(fn).Sheets(f).Cells(ee, 1), Workbooks(fn).Sheets(f).Cells(ee, mh)), 0)
                 End If
                     If Val(chwat1) > 0 Then
                         chwat1 = rvsrz3(Workbooks(fn).Sheets(f).Cells(1, Abs(Val(chwat1))).Address(RowAbsolute:=True, ColumnAbsolute:=False), 1, "$", 0)
                     Else
-                        chwat1 = "°" & rvsrz3(Workbooks(fn).Sheets(f).Cells(1, Abs(Val(chwat1))).Address(RowAbsolute:=True, ColumnAbsolute:=False), 1, "$", 0)
+                        chwat1 = "ï½°" & rvsrz3(Workbooks(fn).Sheets(f).Cells(1, Abs(Val(chwat1))).Address(RowAbsolute:=True, ColumnAbsolute:=False), 1, "$", 0)
                     End If
             Else
-                Call oshimai("", bfn, shn, 1, 0, "u€–Ú–¼v‚ªu‚È‚µv‚Å•¶šŒŸõ‚µ‚Ä‚¢‚Ü‚·")
+                Call oshimai("", bfn, shn, 1, 0, "ã€Œé …ç›®åã€ãŒã€Œãªã—ã€ã§æ–‡å­—æ¤œç´¢ã—ã¦ã„ã¾ã™")
             End If
             If ii = 1 Then chwat2 = chwat1 Else chwat2 = chwat2 & kg2 & chwat1
         Next
         zhwat1 = chwat2
     End If
 End Function
-'[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[
+'ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼
 Function rvsrz3(cef As String, bni As Long, kgr As String, nkg As Long) As String '30s03
-    '‘ÎÛ•¶š—ñ(A:*¦‚ ¦‚¢)A•¶ß”A‹æØ‚è•¶šA‹æØ‚è‚µ‚È‚¢ƒtƒ‰ƒO •Ï”“ñ•¶š‰»@86_014k
-    'bni=0 (•¶ßƒ[ƒ)¨‚»‚Ì‚Ü‚Üƒtƒ‹‚Å•Ô‚·
+    'å¯¾è±¡æ–‡å­—åˆ—(A:*ï½¦ã‚ï½¦ã„)ã€æ–‡ç¯€æ•°ã€åŒºåˆ‡ã‚Šæ–‡å­—ã€åŒºåˆ‡ã‚Šã—ãªã„ãƒ•ãƒ©ã‚° å¤‰æ•°äºŒæ–‡å­—åŒ–ã€€86_014k
+    'bni=0 (æ–‡ç¯€ã‚¼ãƒ­)â†’ãã®ã¾ã¾ãƒ•ãƒ«ã§è¿”ã™
     Dim ipc As Long, bb As Long, cc As Long, prd As String
     If kgr = "" Then
-        'Call oshimai("", bfn, shn, 1, 0, "‚±‚ÌƒP[ƒXA‚ ‚é‚Ì‚©‚ÈH")@'¨‚ ‚è‚Ü‚µ‚½
-        prd = "A"
+        'Call oshimai("", bfn, shn, 1, 0, "ã“ã®ã‚±ãƒ¼ã‚¹ã€ã‚ã‚‹ã®ã‹ãªï¼Ÿ")ã€€'â†’ã‚ã‚Šã¾ã—ãŸ
+        prd = "ã€"
     Else
         prd = kgr
     End If
     If nkg = 1 Then
-        rvsrz3 = cef  '‹æØ‚è‚È‚µƒtƒ‰ƒO—LŒø¨‚»‚Ì‚Ü‚Ü•Ô‚·
-    'nkg=2¨¦‚È‚µ‚Ì(bni)2•¶ß(¦¦)‘Îˆƒ‹[ƒ`ƒ“B¦¦‚Ì‰ğÍ‚Ì(sr)‚µ‚©g‚í‚ê‚È‚¢B
-    ElseIf bni = 2 And nkg = 2 And StrConv(Left(cef, 1), 8) <> "*" And InStr(1, cef, "¦") = 0 Then 'nkg:2¨¦‘Î‰@‚ iƒ’–³‚µj@bni2ŒÀ’è‚É,F‚ñ‚Ès‚Åg—p 30s81Ú“ª‚Ç‘Î‰
-        rvsrz3 = cef 'bni=1¨2@30‚“61
-    ElseIf bni = 2 And nkg = 2 And StrConv(Left(cef, 1), 8) = "*" And InStr(1, cef, "¦") = 0 Then  '–‚ iƒ’–³‚µjA–@bni2ŒÀ’è‚É,F‚ñ‚Ès‚Åg—p 30s81 Ú“ª‚Ç‘Î‰
+        rvsrz3 = cef  'åŒºåˆ‡ã‚Šãªã—ãƒ•ãƒ©ã‚°æœ‰åŠ¹â†’ãã®ã¾ã¾è¿”ã™
+    'nkg=2â†’ï½¦ãªã—æ™‚ã®(bni)2æ–‡ç¯€(ï½¦â—‡ï½¦)å¯¾å‡¦ãƒ«ãƒ¼ãƒãƒ³ã€‚â€»ï½¦ã®è§£æã®æ™‚(sr)ã—ã‹ä½¿ã‚ã‚Œãªã„ã€‚
+    ElseIf bni = 2 And nkg = 2 And StrConv(Left(cef, 1), 8) <> "*" And InStr(1, cef, "ï½¦") = 0 Then 'nkg:2â†’ï½¦å¯¾å¿œã€€ã‚ï¼ˆãƒ²ç„¡ã—ï¼‰ã€€bni2é™å®šã«,è‰²ã‚“ãªè¡Œã§ä½¿ç”¨ 30s81æ¥é ­ã©å¯¾å¿œ
+        rvsrz3 = cef 'bni=1â†’2ã€€30ï½“61
+    ElseIf bni = 2 And nkg = 2 And StrConv(Left(cef, 1), 8) = "*" And InStr(1, cef, "ï½¦") = 0 Then  'ï¼Šã‚ï¼ˆãƒ²ç„¡ã—ï¼‰ã€ï¼Šã€€bni2é™å®šã«,è‰²ã‚“ãªè¡Œã§ä½¿ç”¨ 30s81 æ¥é ­ã©å¯¾å¿œ
         If Len(cef) > 1 Then
             If StrConv(Mid(cef, 2, 1), 8) = "*" Then '**
                 If Len(cef) = 2 Then
-                    Call oshimai("", bfn, shn, 1, 0, "u**v‚Íg—p‚³‚ê‚È‚¢‚Å‚·B" & vbCrLf & "u**‚ vŒ`®‚Å‚æ‚ë‚µ‚­")
-                Else 'New Œšİ’†@––‚ 
-                    rvsrz3 = Mid(cef, 3) '––‚ @¨‚ v‚ğ•Ô‚·
+                    Call oshimai("", bfn, shn, 1, 0, "ã€Œ**ã€ã¯ä½¿ç”¨ã•ã‚Œãªã„ã§ã™ã€‚" & vbCrLf & "ã€Œ**ã‚ã€å½¢å¼ã§ã‚ˆã‚ã—ã")
+                Else 'New å»ºè¨­ä¸­ã€€ï¼Šï¼Šã‚
+                    rvsrz3 = Mid(cef, 3) 'ï¼Šï¼Šã‚ã€€â†’ã‚ã€ã‚’è¿”ã™
                 End If
-            Else ']—ˆŒ^
-                rvsrz3 = Mid(cef, 2) '–‚ @¨‚ v‚ğ•Ô‚·
+            Else 'å¾“æ¥å‹
+                rvsrz3 = Mid(cef, 2) 'ï¼Šã‚ã€€â†’ã‚ã€ã‚’è¿”ã™
             End If
         Else
-            rvsrz3 = cef '–
+            rvsrz3 = cef 'ï¼Š
         End If
-    Else 'nkg=0, nkg=2Fƒ’—L‚èiæ“ª–ŠÜ‚Şj
+    Else 'nkg=0, nkg=2ï¼šãƒ²æœ‰ã‚Šï¼ˆå…ˆé ­ï¼Šå«ã‚€ï¼‰
         If bni > 0 Then
             Do
                 ipc = ipc + 1
                 bb = cc
                 cc = InStr(bb + 1, cef, prd)
-            Loop Until cc = 0 Or ipc = bni '‚»‚êˆÈ~ŠY“–‚È‚µor‹K’è•¶ß“’B‚Å”²‚¯‚éB
+            Loop Until cc = 0 Or ipc = bni 'ãã‚Œä»¥é™è©²å½“ãªã—orè¦å®šæ–‡ç¯€åˆ°é”ã§æŠœã‘ã‚‹ã€‚
         End If
-        If cc = 0 And ipc = bni Then  'ƒWƒƒƒXƒg‹K’è•¶ß‚Å‹æØ–³‚µ‚É@‚O•¶ß‚à‚±‚¿‚ç‚É“ü‚éB
+        If cc = 0 And ipc = bni Then  'ã‚¸ãƒ£ã‚¹ãƒˆè¦å®šæ–‡ç¯€ã§åŒºåˆ‡ç„¡ã—ã«ã€€ï¼æ–‡ç¯€ã‚‚ã“ã¡ã‚‰ã«å…¥ã‚‹ã€‚
             rvsrz3 = Mid(cef, bb + 1)
-        ElseIf cc = 0 And ipc < bni Then  '‹K’è•¶ß–¢“’B(‚æ‚Á‚ÄŠY“–•¶ß‚Í"")
+        ElseIf cc = 0 And ipc < bni Then  'è¦å®šæ–‡ç¯€æœªåˆ°é”(ã‚ˆã£ã¦è©²å½“æ–‡ç¯€ã¯"")
             rvsrz3 = ""
-        Else '‹K’è•¶ß‚Å‹æØ‚è•¶š‚à‚Ü‚¾‚ ‚éB
+        Else 'è¦å®šæ–‡ç¯€ã§åŒºåˆ‡ã‚Šæ–‡å­—ã‚‚ã¾ã ã‚ã‚‹ã€‚
             rvsrz3 = Mid(cef, bb + 1, cc - bb - 1)
         End If
     End If
 End Function
-'[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[
-Function ctdg(rtyu As String, tyui As String, qwer As Currency, wert As Long) As Long '@ÅIs‚ğ•Ô‚·B'‚±‚¿‚ç‚Ís‚Ì•û
-    'ƒuƒbƒN–¼AƒV[ƒg–¼Aer4ŒnA“–—ñ
-    ctdg = ctreg(rtyu, tyui)    '©‚±‚¿‚ç‚É‹ÃkApubikou‚Ö
-    '€€b(€—ë)‚Å‚Ì§ŒÀ–€«
-    If ctdg > 200000 And Abs(qwer) < 1 Then  '1000¨10000@86_014r@10000¨200000@86_022j
-        Call oshimai("", bfn, shn, sr(1), wert, "‘ÎÛƒV[ƒg‚ª20–œs’´‚¦(" & ctdg & ")‚Å‚·")
+'ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼
+Function ctdg(rtyu As String, tyui As String, qwer As Currency, wert As Long) As Long 'ã€€æœ€çµ‚è¡Œã‚’è¿”ã™ã€‚'ã“ã¡ã‚‰ã¯è¡Œã®æ–¹
+    'ãƒ–ãƒƒã‚¯åã€ã‚·ãƒ¼ãƒˆåã€er4ç³»ã€å½“åˆ—
+    ctdg = ctreg(rtyu, tyui)    'â†ã“ã¡ã‚‰ã«å‡ç¸®ã€pubikouã¸
+    'é …æº–b(é …é›¶)ã§ã®åˆ¶é™äº‹é …â†“
+    If ctdg > 200000 And Abs(qwer) < 1 Then  '1000â†’10000ã€€86_014rã€€10000â†’200000ã€€86_022j
+        Call oshimai("", bfn, shn, sr(1), wert, "å¯¾è±¡ã‚·ãƒ¼ãƒˆãŒ20ä¸‡è¡Œè¶…ãˆ(" & ctdg & ")ã§ã™")
     End If
 End Function
-'[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[
-Function ctdr(rtyu As String, tyui As String, qwer As Currency, wert As Long) As Long '@Å‰E—ñ‚ğ•Ô‚·B'‚±‚¿‚ç‚Í—ñ‚Ì•û
-    'ƒuƒbƒN–¼AƒV[ƒg–¼Aer4ŒnA“–—ñ
-    '‰Šú‰» «‘ÎÛƒV[ƒg‚ÌÅ‰E—ñ@628
+'ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼
+Function ctdr(rtyu As String, tyui As String, qwer As Currency, wert As Long) As Long 'ã€€æœ€å³åˆ—ã‚’è¿”ã™ã€‚'ã“ã¡ã‚‰ã¯åˆ—ã®æ–¹
+    'ãƒ–ãƒƒã‚¯åã€ã‚·ãƒ¼ãƒˆåã€er4ç³»ã€å½“åˆ—
+    'åˆæœŸåŒ– â†“å¯¾è±¡ã‚·ãƒ¼ãƒˆã®æœ€å³åˆ—ã€€628
     ctdr = Workbooks(rtyu).Sheets(tyui).Range("A1").SpecialCells(xlLastCell).Column()
     If ctdr > 300 And Abs(qwer) < 1 Then
-        Call oshimai("", bfn, shn, sr(1), wert, "‘ÎÛƒV[ƒg‚ª300—ñ’´‚¦(" & ctdr & ")‚Å‚·")
+        Call oshimai("", bfn, shn, sr(1), wert, "å¯¾è±¡ã‚·ãƒ¼ãƒˆãŒ300åˆ—è¶…ãˆ(" & ctdr & ")ã§ã™")
     End If
     ctdr = ctdr + 1
     Do Until Workbooks(rtyu).Sheets(tyui).Cells(1, ctdr).EntireColumn.Hidden = False
         ctdr = ctdr + 1
-    Loop  'ctrl+end‚ÌŸ—ñ‚ªhidden‚¾‚Á‚½ê‡‚Ì‘Îˆi85_020)
+    Loop  'ctrl+endã®æ¬¡åˆ—ãŒhiddenã ã£ãŸå ´åˆã®å¯¾å‡¦ï¼ˆ85_020)
     ctdr = ctdr - 1
 End Function
-'[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[
-Function pasuwardo(knt As Integer) As String  '‹ŒpasswordGet
+'ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼
+Function pasuwardo(knt As Integer) As String  'æ—§passwordGet
     Dim ii As Integer, aa As Integer, bb As String
-    'PW•¶š”‚Í‚Q•¶šˆÈã‚È‚¢‚ÆƒGƒ‰[‚É‚È‚éB •Ï”“ñ•¶š‰»@86_014k
+    'PWæ–‡å­—æ•°ã¯ï¼’æ–‡å­—ä»¥ä¸Šãªã„ã¨ã‚¨ãƒ©ãƒ¼ã«ãªã‚‹ã€‚ å¤‰æ•°äºŒæ–‡å­—åŒ–ã€€86_014k
     For ii = 4 To knt
         aa = 0
         Do Until aa = 1 'Randomize
@@ -2935,61 +2937,61 @@ Function pasuwardo(knt As Integer) As String  '‹ŒpasswordGet
         pasuwardo = pasuwardo & bb
     Next ii
 End Function
-'[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[
+'ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼
 Function rndchr(suei As String) As String
     Dim aa As Long, bb As Integer, san As Integer
-    '—”(”š‰pš)æ“¾
+    'ä¹±æ•°(æ•°å­—è‹±å­—)å–å¾—
     Randomize
-    san = Int(4 * Rnd + 1)  '1~4‚ªæ“¾”ÍˆÍ
-    If suei = "suu" Then  '”šw–¼
-        rndchr = LTrim(Str(Int(7 * Rnd + 3)))  '0+3~6+3¨3~9‚ªæ“¾”ÍˆÍ(0~2‚Íæ“¾œŠO)
-    ElseIf suei = "syou" Then '‰p¬•¶šw–¼
+    san = Int(4 * Rnd + 1)  '1~4ãŒå–å¾—ç¯„å›²
+    If suei = "suu" Then  'æ•°å­—æŒ‡å
+        rndchr = LTrim(Str(Int(7 * Rnd + 3)))  '0+3~6+3â†’3~9ãŒå–å¾—ç¯„å›²(0~2ã¯å–å¾—é™¤å¤–)
+    ElseIf suei = "syou" Then 'è‹±å°æ–‡å­—æŒ‡å
         aa = 0
         Do Until aa = 1
             bb = Int((26 - 1 + 1) * Rnd + 1)
-            If InStr(1, "aeiucklosvwxz", Chr(bb + 97 - 1)) = 0 Then aa = 1 'æ“¾œŠOƒŠƒXƒg
+            If InStr(1, "aeiucklosvwxz", Chr(bb + 97 - 1)) = 0 Then aa = 1 'å–å¾—é™¤å¤–ãƒªã‚¹ãƒˆ
         Loop
         rndchr = Chr(bb + 97 - 1)
-    ElseIf suei = "dai" Then '‰p‘å•¶šw–¼
+    ElseIf suei = "dai" Then 'è‹±å¤§æ–‡å­—æŒ‡å
         aa = 0
         Do Until aa = 1
             bb = Int((26 - 1 + 1) * Rnd + 1)
-            If InStr(1, "ABCEIKOSUVWXZ", Chr(bb + 65 - 1)) = 0 Then aa = 1 'æ“¾œŠOƒŠƒXƒg
+            If InStr(1, "ABCEIKOSUVWXZ", Chr(bb + 65 - 1)) = 0 Then aa = 1 'å–å¾—é™¤å¤–ãƒªã‚¹ãƒˆ
         Loop
         rndchr = Chr(bb + 65 - 1)
-    '‚±‚±‚©‚ç–³w–¼
-    ElseIf san = 1 Then '”š
-        rndchr = LTrim(Str(Int(7 * Rnd + 3)))  '0+3~6+3¨3~9‚ªæ“¾”ÍˆÍ(0~2‚Íæ“¾œŠO)
-    ElseIf san >= 2 And san <= 3 Then '‰p¬•¶š
+    'ã“ã“ã‹ã‚‰ç„¡æŒ‡å
+    ElseIf san = 1 Then 'æ•°å­—
+        rndchr = LTrim(Str(Int(7 * Rnd + 3)))  '0+3~6+3â†’3~9ãŒå–å¾—ç¯„å›²(0~2ã¯å–å¾—é™¤å¤–)
+    ElseIf san >= 2 And san <= 3 Then 'è‹±å°æ–‡å­—
         aa = 0
         Do Until aa = 1
             bb = Int((26 - 1 + 1) * Rnd + 1)
-            If InStr(1, "aeiucklosvwxz", Chr(bb + 97 - 1)) = 0 Then aa = 1 'æ“¾œŠOƒŠƒXƒg
+            If InStr(1, "aeiucklosvwxz", Chr(bb + 97 - 1)) = 0 Then aa = 1 'å–å¾—é™¤å¤–ãƒªã‚¹ãƒˆ
         Loop
         rndchr = Chr(bb + 97 - 1)
-    Else  '‰p‘å•¶š
+    Else  'è‹±å¤§æ–‡å­—
         aa = 0
         Do Until aa = 1
             bb = Int((26 - 1 + 1) * Rnd + 1)
-            If InStr(1, "ABCEIKOSUVWXZ", Chr(bb + 65 - 1)) = 0 Then aa = 1 'æ“¾œŠOƒŠƒXƒg
+            If InStr(1, "ABCEIKOSUVWXZ", Chr(bb + 65 - 1)) = 0 Then aa = 1 'å–å¾—é™¤å¤–ãƒªã‚¹ãƒˆ
         Loop
         rndchr = Chr(bb + 65 - 1)
     End If
 End Function
-'[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[
+'ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼
 Sub oshimai(msx As String, fn As String, ff As String, ii As Long, aa As Long, msbv As String)
-         'ªmsx‚Íg‚í‚ê‚Ä‚È‚¢‚Å‚·‚Ë¨Äg—p‚Ö@201912
+         'â†‘msxã¯ä½¿ã‚ã‚Œã¦ãªã„ã§ã™ã­â†’å†ä½¿ç”¨ã¸ã€€201912
     Unload UserForm1
     Unload UserForm3
-    Workbooks(fn).Activate '30s76’Ç‰ÁiŠOŒ‹ƒƒO‘Îôj
+    Workbooks(fn).Activate '30s76è¿½åŠ ï¼ˆå¤–çµãƒ­ã‚°å¯¾ç­–ï¼‰
     DoEvents
-    Worksheets(ff).Select  '30s76’Ç‰ÁiŠOŒ‹ƒƒO‘Îôj
+    Worksheets(ff).Select  '30s76è¿½åŠ ï¼ˆå¤–çµãƒ­ã‚°å¯¾ç­–ï¼‰
     If aa > 0 And ii > 0 Then
         Workbooks(fn).Sheets(ff).Cells(ii, aa).Select
         If msx = "" Then
-            If msbv <> "" Then MsgBox msbv & vbCrLf & "(‘I‘ğƒZƒ‹)"
+            If msbv <> "" Then MsgBox msbv & vbCrLf & "(é¸æŠã‚»ãƒ«)"
         Else
-            If msbv <> "" Then MsgBox msbv & vbCrLf & "(‘I‘ğƒZƒ‹)", 289, msx
+            If msbv <> "" Then MsgBox msbv & vbCrLf & "(é¸æŠã‚»ãƒ«)", 289, msx
         End If
     Else
         If msx = "" Then
@@ -2998,65 +3000,65 @@ Sub oshimai(msx As String, fn As String, ff As String, ii As Long, aa As Long, m
             If msbv <> "" Then MsgBox msbv, 289, msx
         End If
     End If
-    '–¼‘O‚Ì’è‹`‚Ìíœ
+    'åå‰ã®å®šç¾©ã®å‰Šé™¤
     Dim nmn As Name
     For Each nmn In ActiveWorkbook.Names
-        On Error Resume Next  ' ƒGƒ‰[‚ğ–³‹B
+        On Error Resume Next  ' ã‚¨ãƒ©ãƒ¼ã‚’ç„¡è¦–ã€‚
         nmn.Delete
     Next
-    'ƒtƒBƒ‹ƒ^Ä
-    If k > 1 Then bfshn.Rows(k - 1).AutoFilter         'ˆê“x‚Â‚¯‚ÄA
+    'ãƒ•ã‚£ãƒ«ã‚¿å†
+    If k > 1 Then bfshn.Rows(k - 1).AutoFilter         'ä¸€åº¦ã¤ã‘ã¦ã€
     
-    Application.Calculation = xlCalculationAutomatic  'ÄŒvZ©“®‚É–ß‚·
+    Application.Calculation = xlCalculationAutomatic  'å†è¨ˆç®—è‡ªå‹•ã«æˆ»ã™
     Application.StatusBar = False
     If aa > 0 And ii > 0 Then Workbooks(fn).Sheets(ff).Cells(ii, aa).Select
     Application.Cursor = xlDefault
     End
 End Sub
-'[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[
-Sub fukusya()  ' ‘I‘ğ”ÍˆÍ‚ğ•ÊƒV[ƒg‚ÉƒRƒs[@@‹Œu•¡Êv
-    Dim a, j, x As Integer   'g1¨gg1,g¨gg2(ƒ[ƒJƒ‹“P”p,ƒOƒ[ƒoƒ‹‰»)@30s74
+'ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼
+Sub fukusya()  ' é¸æŠç¯„å›²ã‚’åˆ¥ã‚·ãƒ¼ãƒˆã«ã‚³ãƒ”ãƒ¼ã€€ã€€æ—§ã€Œè¤‡å†™ã€
+    Dim a, j, x As Integer   'g1â†’gg1,gâ†’gg2(ãƒ­ãƒ¼ã‚«ãƒ«æ’¤å»ƒ,ã‚°ãƒ­ãƒ¼ãƒãƒ«åŒ–)ã€€30s74
     Dim i As Long, jj(2) As Long, kk
     Dim shemei, wd, dg1, dg2 As String, hk1 As String, pasu As String
     Dim se_name As String, fimei As String, c99 As String
     
-    '‚¨‚Ü‚¶‚È‚¢(uƒR[ƒh‚ÌÀs‚ª’†’f‚³‚ê‚Ü‚µ‚½v‘Îˆ)
+    'ãŠã¾ã˜ãªã„(ã€Œã‚³ãƒ¼ãƒ‰ã®å®Ÿè¡ŒãŒä¸­æ–­ã•ã‚Œã¾ã—ãŸã€å¯¾å‡¦)
     Application.EnableCancelKey = xlDisabled
     pasu = ActiveWorkbook.Path
     
     kyosydou
-    If dd1 = 0 Then Call oshimai("", bfn, shn, 1, 0, "dd1‚ªƒ[ƒ‚Å‚·")
+    If dd1 = 0 Then Call oshimai("", bfn, shn, 1, 0, "dd1ãŒã‚¼ãƒ­ã§ã™")
     
-    '‚»‚Ì“ú‚Ì‰‰ñƒ`ƒFƒbƒN
+    'ãã®æ—¥ã®åˆå›ãƒã‚§ãƒƒã‚¯
     j = 1
     Do Until Workbooks(twn).Sheets(shog).Cells(j, 1).Value = ""
         j = j + 1
         If j = 50000 Then
-            MsgBox "‹ó”’s‚ªŒ©‚Â‚©‚ç‚È‚¢‚æ‚¤‚Å‚·"
+            MsgBox "ç©ºç™½è¡ŒãŒè¦‹ã¤ã‹ã‚‰ãªã„ã‚ˆã†ã§ã™"
             Exit Sub
         End If
     Loop
     If Workbooks(twn).Sheets(shog).Cells(j - 1, 4).Value <> Val(Format(Now(), "yyyymmdd")) Then
-        Call oshimai("", bfn, shn, 1, 0, "‚»‚Ì“ú‚Ì‰‰ñ‚ÍAÅ‰‚É[‰‰ñ]ƒ{ƒ^ƒ“‚ğ‰Ÿ‚µ‚Ä‰º‚³‚¢B")
+        Call oshimai("", bfn, shn, 1, 0, "ãã®æ—¥ã®åˆå›ã¯ã€æœ€åˆã«[åˆå›]ãƒœã‚¿ãƒ³ã‚’æŠ¼ã—ã¦ä¸‹ã•ã„ã€‚")
     End If
     
     If bfshn.Cells(sr(0) - 1, 5) = "" Then
-        Call oshimai("", bfn, shn, sr(0) - 1, 5, "WŒv–¼‚ğ“ü—Í‚µ‚Ä‰º‚³‚¢(—ÎFƒZƒ‹)")
+        Call oshimai("", bfn, shn, sr(0) - 1, 5, "é›†è¨ˆåã‚’å…¥åŠ›ã—ã¦ä¸‹ã•ã„(ç·‘è‰²ã‚»ãƒ«)")
     End If
 
-    Call iechc(hk1)  '‹Œigchc(hk1)
+    Call iechc(hk1)  'æ—§igchc(hk1)
     
     a = Len(bfn)
     zikan = Format(Now(), "yymmdd_hhmmss")
     shemei = bfshn.Cells(1, 3).Value & "_" & zikan
     se_name = bfshn.Cells(1, 3).Value
-    If bfshn.Cells(1, 5).Value = "©" Then '30s81
+    If bfshn.Cells(1, 5).Value = "â†" Then '30s81
         fimei = shemei
     ElseIf bfshn.Cells(1, 5).Value <> "" Then
         fimei = bfshn.Cells(1, 5).Value & "_" & zikan
     End If
     
-    'ÄŒvZ‚ğ©“®‚É
+    'å†è¨ˆç®—ã‚’è‡ªå‹•ã«
     Application.Calculation = xlCalculationAutomatic
     j = 6
     i = 19967
@@ -3064,22 +3066,22 @@ Sub fukusya()  ' ‘I‘ğ”ÍˆÍ‚ğ•ÊƒV[ƒg‚ÉƒRƒs[@@‹Œu•¡Êv
         If bfshn.Cells(2, j).Value <> "" Then
             If Not IsError(Application.Match(bfshn.Cells(2, j).Value, Range(bfshn.Cells(2, j + 1), bfshn.Cells(2, mghz)), 0)) Then
                 Range(bfshn.Cells(2, Application.Match(bfshn.Cells(2, j).Value, Range(bfshn.Cells(2, j + 1), bfshn.Cells(2, mghz)), 0) + j), bfshn.Cells(2, Application.Match(bfshn.Cells(2, j).Value, Range(bfshn.Cells(2, j + 1), bfshn.Cells(2, mghz)), 0) + j)).Select
-                Call oshimai("", bfn, shn, 2, Int(j), "•¶šd•¡ƒZƒ‹‚ ‚èi" & ActiveCell.Address(RowAbsolute:=False, ColumnAbsolute:=False) & "ƒZƒ‹j")
+                Call oshimai("", bfn, shn, 2, Int(j), "æ–‡å­—é‡è¤‡ã‚»ãƒ«ã‚ã‚Šï¼ˆ" & ActiveCell.Address(RowAbsolute:=False, ColumnAbsolute:=False) & "ã‚»ãƒ«ï¼‰")
             End If
         End If
-        If bfshn.Cells(2, j).Value <> "" And IsNumeric(bfshn.Cells(3, j).Value) Then '30s76 áŠ±‰ü—Ç(‚Rs–Ú•¶š‚Ì‚Í–³‹)
+        If bfshn.Cells(2, j).Value <> "" And IsNumeric(bfshn.Cells(3, j).Value) Then '30s76 è‹¥å¹²æ”¹è‰¯(ï¼“è¡Œç›®æ–‡å­—ã®æ™‚ã¯ç„¡è¦–)
             If bfshn.Cells(3, j).Value > i Then i = bfshn.Cells(3, j).Value
         End If
         j = j + 1
-        Application.StatusBar = "d•¡Šm”FA" & Str(j) & " / " & Str(mghz) '9s
+        Application.StatusBar = "é‡è¤‡ç¢ºèªã€" & Str(j) & " / " & Str(mghz) '9s
     Loop
     i = i + 1
     Application.StatusBar = False
     If gg2 <= 3 Then
-      '---Unicode•”‚±‚±‚©‚ç---   'ÄŒvZ‚ğè“®‚É
+      '---Unicodeéƒ¨ã“ã“ã‹ã‚‰---   'å†è¨ˆç®—ã‚’æ‰‹å‹•ã«
         Application.Calculation = xlCalculationManual
         For j = dd1 To dd2
-            Application.StatusBar = "–„‚ß‚İ’†A" & Str(j - dd1 + 1) & " / " & Str(dd2 - dd1 + 1) '9s
+            Application.StatusBar = "åŸ‹ã‚è¾¼ã¿ä¸­ã€" & Str(j - dd1 + 1) & " / " & Str(dd2 - dd1 + 1) '9s
             If gg2 = 3 And bfshn.Cells(2, j).Value = "" And bfshn.Cells(3, j).Value = "" Then '30s76
                 bfshn.Cells(3, j).Value = i
                 i = i + 1
@@ -3089,210 +3091,210 @@ Sub fukusya()  ' ‘I‘ğ”ÍˆÍ‚ğ•ÊƒV[ƒg‚ÉƒRƒs[@@‹Œu•¡Êv
                     bfshn.Cells(2, j).Value = ChrW(bfshn.Cells(3, j).Value)
                 Else
                     Range(bfshn.Cells(2, Application.Match(ChrW(bfshn.Cells(3, j).Value), Range(bfshn.Cells(2, 6), bfshn.Cells(2, mghz)), 0) + 5), bfshn.Cells(2, Application.Match(ChrW(bfshn.Cells(3, j).Value), Range(bfshn.Cells(2, 6), bfshn.Cells(2, mghz)), 0) + 5)).Select
-                    Call oshimai("", bfn, shn, 2, Int(j), "‘}“ü—\’è•¶šu" & ChrW(bfshn.Cells(3, j).Value) & "vF" & ActiveCell.Address(RowAbsolute:=False, ColumnAbsolute:=False) & "ƒZƒ‹‚Æd•¡")
+                    Call oshimai("", bfn, shn, 2, Int(j), "æŒ¿å…¥äºˆå®šæ–‡å­—ã€Œ" & ChrW(bfshn.Cells(3, j).Value) & "ã€ï¼š" & ActiveCell.Address(RowAbsolute:=False, ColumnAbsolute:=False) & "ã‚»ãƒ«ã¨é‡è¤‡")
                 End If
             ElseIf gg1 = 3 And bfshn.Cells(2, j).Value <> "" And bfshn.Cells(3, j).Value = "" Then
                 bfshn.Cells(3, j).Value = AscW(bfshn.Cells(2, j).Value)
                 If bfshn.Cells(3, j).Value < 0 Then bfshn.Cells(3, j).Value = bfshn.Cells(3, j).Value + 65536
-                bfshn.Cells(3, j).Value = "è" & bfshn.Cells(3, j).Value
+                bfshn.Cells(3, j).Value = "æ‰‹" & bfshn.Cells(3, j).Value
             End If
         Next
-        'ÄŒvZ‚ğ©“®‚É
+        'å†è¨ˆç®—ã‚’è‡ªå‹•ã«
         Application.Calculation = xlCalculationAutomatic
         bfshn.Cells(3, 3).Value = i
         Application.StatusBar = False
-      '---Unicode•”‚±‚±‚Ü‚Å---
+      '---Unicodeéƒ¨ã“ã“ã¾ã§---
     ElseIf gg2 = sr(8) And gg1 = sr(8) Then
-       '8sƒRƒƒ“ƒgƒRƒs[ 30s86_012_a
+       '8è¡Œã‚³ãƒ¡ãƒ³ãƒˆã‚³ãƒ”ãƒ¼ 30s86_012_a
         If dd1 = dd2 And bfshn.Cells(sr(6), dd1).Value = -99 Then
-            If TypeName(ActiveCell.Comment) = "Comment" Then 'ƒRƒƒ“ƒg—L‚è‚Ìê‡
-                c99 = ActiveCell.Comment.Text  'ƒRƒƒ“ƒg“à—e
+            If TypeName(ActiveCell.Comment) = "Comment" Then 'ã‚³ãƒ¡ãƒ³ãƒˆæœ‰ã‚Šã®å ´åˆ
+                c99 = ActiveCell.Comment.Text  'ã‚³ãƒ¡ãƒ³ãƒˆå†…å®¹
                 If Left(c99, 1) = "=" Then
-                    If MsgBox("ƒZƒ‹‚ğƒRƒƒ“ƒg‚ÉŒfÚ‚Ì®:" & vbCrLf & c99 & vbCrLf & "‚ÉA’u‚«Š·‚¦‚Ä‚¢‚¢‚Å‚·‚©H", 289, "–‘O‚©‚­‚É‚ñ") = vbOK Then 'ok
-                        c99 = Replace(c99, "¦¦", "=")
+                    If MsgBox("ã‚»ãƒ«ã‚’ã‚³ãƒ¡ãƒ³ãƒˆã«æ²è¼‰ã®å¼:" & vbCrLf & c99 & vbCrLf & "ã«ã€ç½®ãæ›ãˆã¦ã„ã„ã§ã™ã‹ï¼Ÿ", 289, "äº‹å‰ã‹ãã«ã‚“") = vbOK Then 'okæ™‚
+                        c99 = Replace(c99, "ï½¦ï½¦", "=")
                         ActiveCell.Value = c99
-                        ActiveCell.Replace What:="¦¦", Replacement:="=", LookAt:=xlPart, _
+                        ActiveCell.Replace What:="ï½¦ï½¦", Replacement:="=", LookAt:=xlPart, _
                             SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
                             ReplaceFormat:=False
                     End If
                 Else
-                    MsgBox "À{‘ÎÛŠO"
+                    MsgBox "å®Ÿæ–½å¯¾è±¡å¤–"
                 End If
             End If
         End If
-    Else  '–{—ˆ
-        'ã‘¤‚©‚ç‚±‚¿‚ç‚Éˆø‚Á‰z‚µ@86_014e
+    Else  'æœ¬æ¥
+        'ä¸Šå´ã‹ã‚‰ã“ã¡ã‚‰ã«å¼•ã£è¶Šã—ã€€86_014e
         If bfshn.Cells(1, 3) = "" Then
-            Call oshimai("", bfn, shn, 1, 3, "•¡Ê–¼‚ğ“ü—Í‚µ‚Ä‰º‚³‚¢(‡FƒZƒ‹)")
+            Call oshimai("", bfn, shn, 1, 3, "è¤‡å†™åã‚’å…¥åŠ›ã—ã¦ä¸‹ã•ã„(ç´«è‰²ã‚»ãƒ«)")
         ElseIf Len(bfshn.Cells(1, 3)) > 14 Then
-            Call oshimai("", bfn, shn, 1, 3, "•¡Ê–¼‚Í14•¶šˆÈ“à‚Éû‚ß‚Ä‰º‚³‚¢(" & Len(bfshn.Cells(1, 3)) & ")")
+            Call oshimai("", bfn, shn, 1, 3, "è¤‡å†™åã¯14æ–‡å­—ä»¥å†…ã«åã‚ã¦ä¸‹ã•ã„(" & Len(bfshn.Cells(1, 3)) & ")")
         End If
                 
-        'AaF“–ƒV[ƒgA‚±‚±‚©‚çiƒƒCƒ“•”j
+        'Aaï¼šå½“ã‚·ãƒ¼ãƒˆã€ã“ã“ã‹ã‚‰ï¼ˆãƒ¡ã‚¤ãƒ³éƒ¨ï¼‰
         Selection.Copy
-        'AaFƒf[ƒ^ŠJnsÌæiŒã‚ÌƒtƒBƒ‹ƒ^ƒŠƒ“ƒOAƒEƒBƒ“ƒhƒE‚ÌŒÅ’è‚Ì‚½‚ßj
+        'Aaï¼šãƒ‡ãƒ¼ã‚¿é–‹å§‹è¡Œæ¡å–ï¼ˆå¾Œã®ãƒ•ã‚£ãƒ«ã‚¿ãƒªãƒ³ã‚°ã€ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®å›ºå®šã®ãŸã‚ï¼‰
         j = 1
         Do Until bfshn.Cells(j, 1).Value = 1 Or bfshn.Cells(j, 1).Value = "all1"
             j = j + 1
             If j = 200 Then
-                MsgBox "u1v‚ªŒ©‚Â‚©‚ç‚È‚¢‚æ‚¤‚Å‚·"
+                MsgBox "ã€Œ1ã€ãŒè¦‹ã¤ã‹ã‚‰ãªã„ã‚ˆã†ã§ã™"
                 Exit Sub
             End If
         Loop
-        If bfshn.Cells(j, 1).Value = 1 Then k = j Else k = j + 1 'k‚Íƒf[ƒ^ŠJns(ƒTƒ“ƒvƒ‹s‚Å‚Í‚È‚­‚È‚Á‚½)
-        'AaF“–ƒV[ƒgA‚±‚±‚Ü‚Å
-        'AbFVƒV[ƒgA‚±‚±‚©‚ç
-        Worksheets.Add  'VƒV[ƒg¶¬
+        If bfshn.Cells(j, 1).Value = 1 Then k = j Else k = j + 1 'kã¯ãƒ‡ãƒ¼ã‚¿é–‹å§‹è¡Œ(ã‚µãƒ³ãƒ—ãƒ«è¡Œã§ã¯ãªããªã£ãŸ)
+        'Aaï¼šå½“ã‚·ãƒ¼ãƒˆã€ã“ã“ã¾ã§
+        'Abï¼šæ–°ã‚·ãƒ¼ãƒˆã€ã“ã“ã‹ã‚‰
+        Worksheets.Add  'æ–°ã‚·ãƒ¼ãƒˆç”Ÿæˆ
         ActiveSheet.Name = shemei
     
         Range(Cells(2, 3), Cells(2, 3)).Select
-        'AbF“\‚è•t‚¯i’l‚Æ”’l‚Ì‘®‚Å“\•tj
-        Selection.PasteSpecial Paste:=xlPasteFormulasAndNumberFormats '85_24ŒŸØ3‚©‚ç12¨”®‚Æ”’l‚Ì‘®‚Å“\•t ‚Ö
+        'Abï¼šè²¼ã‚Šä»˜ã‘ï¼ˆå€¤ã¨æ•°å€¤ã®æ›¸å¼ã§è²¼ä»˜ï¼‰
+        Selection.PasteSpecial Paste:=xlPasteFormulasAndNumberFormats '85_24æ¤œè¨¼3ã‹ã‚‰12â†’æ•°å¼ã¨æ•°å€¤ã®æ›¸å¼ã§è²¼ä»˜ ã¸
         
-        'AbF“\‚è•t‚¯iƒRƒƒ“ƒg‚ğ“\•tj30s79
+        'Abï¼šè²¼ã‚Šä»˜ã‘ï¼ˆã‚³ãƒ¡ãƒ³ãƒˆã‚’è²¼ä»˜ï¼‰30s79
         Selection.PasteSpecial Paste:=xlPasteComments  '-4144
-        'AbF‘®‚ğ“\‚è•t‚¯
+        'Abï¼šæ›¸å¼ã‚’è²¼ã‚Šä»˜ã‘
         Selection.PasteSpecial Paste:=xlPasteFormats '-4122
         
-        'AbFŒrü•ÒW
-        Selection.Borders.Color = RGB(191, 191, 191) '©= -4210753 @@30s86_017p
+        'Abï¼šç½«ç·šç·¨é›†
+        Selection.Borders.Color = RGB(191, 191, 191) 'â†= -4210753 ã€€ã€€30s86_017p
             
-        '85_024ŒŸ‚S“–ƒV[ƒg
+        '85_024æ¤œï¼”å½“ã‚·ãƒ¼ãƒˆ
         If gg1 < k Then
-            If gg1 > sr(8) Then x = gg1 Else x = sr(8) + 1 '‚Ü‚¸‚±‚±‚Åxg—p(’l‚ÌƒRƒs[ŠJns)
+            If gg1 > sr(8) Then x = gg1 Else x = sr(8) + 1 'ã¾ãšã“ã“ã§xä½¿ç”¨(å€¤ã®ã‚³ãƒ”ãƒ¼é–‹å§‹è¡Œ)
             bfshn.Select
             Range(Cells(x, dd1), Cells(k - 1, dd2)).Copy
             
-            'BbopFVƒV[ƒg
+            'Bbopï¼šæ–°ã‚·ãƒ¼ãƒˆ
             Workbooks(bfn).Sheets(shemei).Select
-            Range(Cells(x - gg1 + 2, 3), Cells(x - gg1 + 2, 3)).PasteSpecial Paste:=xlPasteValuesAndNumberFormats  '12 'Bb1opF“\‚è•t‚¯i’l‚Æ”’l‚Ì‘®‚Å“\•tj
+            Range(Cells(x - gg1 + 2, 3), Cells(x - gg1 + 2, 3)).PasteSpecial Paste:=xlPasteValuesAndNumberFormats  '12 'Bb1opï¼šè²¼ã‚Šä»˜ã‘ï¼ˆå€¤ã¨æ•°å€¤ã®æ›¸å¼ã§è²¼ä»˜ï¼‰
         End If
             
-        Range(Cells(1, 1), Cells(1, dd2 - dd1 + 3)).Select  'ˆês–ÚƒZƒ‹‚¤‚·—Î‚É
+        Range(Cells(1, 1), Cells(1, dd2 - dd1 + 3)).Select  'ä¸€è¡Œç›®ã‚»ãƒ«ã†ã™ç·‘ã«
         With Selection.Interior
             .Pattern = xlSolid
             .PatternColorIndex = xlAutomatic
-            .Color = RGB(179, 255, 231) '‚¤‚·—Î@Œ³15204275@30s86_017p
+            .Color = RGB(179, 255, 231) 'ã†ã™ç·‘ã€€å…ƒ15204275ã€€30s86_017p
             .TintAndShade = 0
             .PatternTintAndShade = 0
         End With
     
-        Range(Cells(1, 2), Cells(1, dd2 - dd1 + 3)).Select  'ˆês–Úunicode•¶šF‚Ù‚Ú“§–¾‚É
+        Range(Cells(1, 2), Cells(1, dd2 - dd1 + 3)).Select  'ä¸€è¡Œç›®unicodeæ–‡å­—è‰²ã»ã¼é€æ˜ã«
         With Selection.Font
-            .Color = RGB(226, 239, 218)  'Œ³-2428958 30s86_017p
+            .Color = RGB(226, 239, 218)  'å…ƒ-2428958 30s86_017p
             .TintAndShade = 0
         End With
     
-        Cells.FormatConditions.Delete      'ğŒ•t‚«‘®‰ğœ
+        Cells.FormatConditions.Delete      'æ¡ä»¶ä»˜ãæ›¸å¼è§£é™¤
     
-        x = k - gg1 + 1 'AbFxF“]ÚƒV[ƒg‚ÌƒtƒBƒ‹ƒ^ƒŠƒ“ƒOŠî€s
+        x = k - gg1 + 1 'Abï¼šxï¼šè»¢è¼‰ã‚·ãƒ¼ãƒˆã®ãƒ•ã‚£ãƒ«ã‚¿ãƒªãƒ³ã‚°åŸºæº–è¡Œ
 
-        If gg2 < k - 1 Then x = gg2 - gg1 + 1 + 1 '“Á—áƒpƒ^[ƒ“
+        If gg2 < k - 1 Then x = gg2 - gg1 + 1 + 1 'ç‰¹ä¾‹ãƒ‘ã‚¿ãƒ¼ãƒ³
         
-        If x > 0 Then  'x>0‚Å‚È‚¢ƒpƒ^[ƒ“‚Í‚È‚¢‚©‚ÆB‚˜‚Í‚QˆÈã
-            Range(Cells(2, 1), Cells(x, 2)).Select  'AbF1—ñ2—ñƒ^ƒeã•”‚ğ‚¤‚·—Î‚É
+        If x > 0 Then  'x>0ã§ãªã„ãƒ‘ã‚¿ãƒ¼ãƒ³ã¯ãªã„ã‹ã¨ã€‚ï½˜ã¯ï¼’ä»¥ä¸Š
+            Range(Cells(2, 1), Cells(x, 2)).Select  'Abï¼š1åˆ—2åˆ—ã‚¿ãƒ†ä¸Šéƒ¨ã‚’ã†ã™ç·‘ã«
             With Selection.Interior
                 .Pattern = xlSolid
                 .PatternColorIndex = xlAutomatic
-                .Color = RGB(179, 255, 231) '‚¤‚·—Î@'Œ³15204275@ 30s86_017p
+                .Color = RGB(179, 255, 231) 'ã†ã™ç·‘ã€€'å…ƒ15204275ã€€ 30s86_017p
                 .TintAndShade = 0
                 .PatternTintAndShade = 0
             End With
         End If
         
-        Selection.ColumnWidth = 2  'AbF1—ñ2—ñ•’²®
+        Selection.ColumnWidth = 2  'Abï¼š1åˆ—2åˆ—å¹…èª¿æ•´
         Range(Cells(1, 2), Cells(1, 2)).Select
-        Cells(1, 2).Value = "."   'if•¶“P”pA30s74
+        Cells(1, 2).Value = "."   'ifæ–‡æ’¤å»ƒã€30s74
     
-        x = k - gg1 + 1 'AbFxF“]ÚƒV[ƒg‚ÌƒtƒBƒ‹ƒ^ƒŠƒ“ƒOŠî€s(Ä)
+        x = k - gg1 + 1 'Abï¼šxï¼šè»¢è¼‰ã‚·ãƒ¼ãƒˆã®ãƒ•ã‚£ãƒ«ã‚¿ãƒªãƒ³ã‚°åŸºæº–è¡Œ(å†)
     
-        'AbFVƒV[ƒgA‚±‚±‚Ü‚Å
-        If bfshn.Cells(1, 5).Value <> "" Then '•s—v‚©‚Æ625
-            'dw = ""  '625ˆÈ~Vƒo[ƒWƒ‡ƒ“
-            '«30s86_019jA30s86_019m
+        'Abï¼šæ–°ã‚·ãƒ¼ãƒˆã€ã“ã“ã¾ã§
+        If bfshn.Cells(1, 5).Value <> "" Then 'ä¸è¦ã‹ã¨625
+            'dw = ""  '625ä»¥é™æ–°ãƒãƒ¼ã‚¸ãƒ§ãƒ³
+            'â†“30s86_019jã€30s86_019m
             If bfshn.Cells(2, 3).Value <> Left(twn, 7) And bfshn.Cells(2, 3).Value <> syutoku() & "r" And bfshn.Cells(2, 3).Value <> "" Then
-                dw = bfshn.Cells(2, 3).Value  '625ˆÈ~Vƒo[ƒWƒ‡ƒ“
-            Else '‚±‚ê‚Ü‚Å‚Ìƒpƒ^[ƒ“
+                dw = bfshn.Cells(2, 3).Value  '625ä»¥é™æ–°ãƒãƒ¼ã‚¸ãƒ§ãƒ³
+            Else 'ã“ã‚Œã¾ã§ã®ãƒ‘ã‚¿ãƒ¼ãƒ³
                 dw = pasuwardo(10)
             End If
             
-            UserForm2.Show vbModal 'PW‚ ‚èƒ{ƒ^ƒ“‰Ÿ‚µ‚½ê‡Adw‚ÉPW‚ªŠi”[‚³‚ê‚éB
+            UserForm2.Show vbModal 'PWã‚ã‚Šãƒœã‚¿ãƒ³æŠ¼ã—ãŸå ´åˆã€dwã«PWãŒæ ¼ç´ã•ã‚Œã‚‹ã€‚
             wd = dw
             If Application.Version < 16 And fmt = "csv" Then
-                Call oshimai("", bfn, shn, 1, 0, "excel2013ˆÈ‘O‚Ícsv(utf-8)‚Å•Û‘¶‚Í‚Å‚«‚Ü‚¹‚ñ)")
+                Call oshimai("", bfn, shn, 1, 0, "excel2013ä»¥å‰ã¯csv(utf-8)ã§ä¿å­˜ã¯ã§ãã¾ã›ã‚“)")
             End If
         End If
-        'BaF“–ƒV[ƒgA¶’[ƒ^ƒeŒn•”
+        'Baï¼šå½“ã‚·ãƒ¼ãƒˆã€å·¦ç«¯ã‚¿ãƒ†ç³»éƒ¨
         bfshn.Select
     
-        If x > 1 And k - gg2 < 1 Then  'k - gg2 < 2¨1 (€–Ús‰º’[‚Í‘ÎÛŠO‚É)
+        If x > 1 And k - gg2 < 1 Then  'k - gg2 < 2â†’1 (é …ç›®è¡Œä¸‹ç«¯ã¯å¯¾è±¡å¤–ã«)
     
-            Range(Cells(gg1, 1), Cells(gg2, 2)).Copy     '1—ñ2—ñƒ^ƒe‘åG”cƒRƒs[(all1‚ÆƒJƒEƒ“ƒ^c‚ÌŠ)
+            Range(Cells(gg1, 1), Cells(gg2, 2)).Copy     '1åˆ—2åˆ—ã‚¿ãƒ†å¤§é›‘æŠŠã‚³ãƒ”ãƒ¼(all1ã¨ã‚«ã‚¦ãƒ³ã‚¿cã®æ‰€)
     
-            'BbopFVƒV[ƒg
-            Workbooks(bfn).Sheets(shemei).Select '‚P—ñ‚Q—ñ‘åG”c“\‚è•t‚¯(‘•üŒn‚ ‚Æ‚Å)
+            'Bbopï¼šæ–°ã‚·ãƒ¼ãƒˆ
+            Workbooks(bfn).Sheets(shemei).Select 'ï¼‘åˆ—ï¼’åˆ—å¤§é›‘æŠŠè²¼ã‚Šä»˜ã‘(è£…é£¾ç³»ã‚ã¨ã§)
             Range(Cells(2, 1), Cells(2, 1)).Select
-            'Bb1opF“\‚è•t‚¯i’l‚Æ”’l‚Ì‘®‚Å“\•tj
+            'Bb1opï¼šè²¼ã‚Šä»˜ã‘ï¼ˆå€¤ã¨æ•°å€¤ã®æ›¸å¼ã§è²¼ä»˜ï¼‰
             Selection.PasteSpecial Paste:=xlPasteValuesAndNumberFormats  '12
             With Selection.Font
-                .Color = RGB(128, 128, 128) '30s86_017p ‚Ë‚¸‚İF‚É(=8421504)
+                .Color = RGB(128, 128, 128) '30s86_017p ã­ãšã¿è‰²ã«(=8421504)
                 .TintAndShade = 0
             End With
     
-            'Bb2opFƒI[ƒgƒtƒBƒ‹ƒ^İ’è
+            'Bb2opï¼šã‚ªãƒ¼ãƒˆãƒ•ã‚£ãƒ«ã‚¿è¨­å®š
             Rows(x).AutoFilter
             
-            'Bb2opFƒEƒBƒ“ƒhƒE˜g‚ÌŒÅ’è
+            'Bb2opï¼šã‚¦ã‚£ãƒ³ãƒ‰ã‚¦æ ã®å›ºå®š
             Range(Cells(x + 1, 3), Cells(x + 1, 3)).Select
             ActiveWindow.FreezePanes = True
         
-            Range(Cells(2, 1), Cells(x, 2)).ClearContents   '30s74@Bb2opF1—ñ2—ñƒ^ƒeã•”‚ğ‚¤‚·—Î‚É
+            Range(Cells(2, 1), Cells(x, 2)).ClearContents   '30s74ã€€Bb2opï¼š1åˆ—2åˆ—ã‚¿ãƒ†ä¸Šéƒ¨ã‚’ã†ã™ç·‘ã«
             
-            Cells(x, 1).Value = "€–Ú"
-            Cells(x, 2).Value = "‚ƒFWŒv‘ÎÛ@@"
+            Cells(x, 1).Value = "é …ç›®"
+            Cells(x, 2).Value = "ï½ƒï¼šé›†è¨ˆå¯¾è±¡ã€€ã€€"
         
             Range(Cells(x, 1), Cells(x, 2)).Select
-            With Selection 'Bb2opF1—ñ2—ñ‚Ì€–Ús‚ÍãŠñ‚¹
+            With Selection 'Bb2opï¼š1åˆ—2åˆ—ã®é …ç›®è¡Œã¯ä¸Šå¯„ã›
                 .VerticalAlignment = xlTop
                 .Orientation = -90
             End With
-            Selection.Font.Size = 9 'Bb2opF1—ñ2—ñ‚Ì€–ÚsƒtƒHƒ“ƒg’²®
+            Selection.Font.Size = 9 'Bb2opï¼š1åˆ—2åˆ—ã®é …ç›®è¡Œãƒ•ã‚©ãƒ³ãƒˆèª¿æ•´
        
             If x > 3 Then
-                Range(Cells(2, 1), Cells(x - 1, 1)).Select 'Bb2opF1—ñ2—ñ‚Ìã•”ƒtƒHƒ“ƒg‚Ù‚Ú“§–¾‰»
+                Range(Cells(2, 1), Cells(x - 1, 1)).Select 'Bb2opï¼š1åˆ—2åˆ—ã®ä¸Šéƒ¨ãƒ•ã‚©ãƒ³ãƒˆã»ã¼é€æ˜åŒ–
                 With Selection.Font
-                    .Color = RGB(179, 255, 231) '©@= -1572941@30s86_017p
+                    .Color = RGB(179, 255, 231) 'â†ã€€= -1572941ã€€30s86_017p
                     .TintAndShade = 0
                 End With
             End If
     
-            If gg1 < sr(0) + 6 Then  'subtotalƒRƒsƒy@N/A‘Î‰‚àƒRƒsƒy‚Ö
+            If gg1 < sr(0) + 6 Then  'subtotalã‚³ãƒ”ãƒšã€€N/Aå¯¾å¿œã‚‚ã‚³ãƒ”ãƒšã¸
                 
-                'subtotal–‘O
-                'i(mghzƒRƒsƒyŠJn—p)’è‹`(gg1F‘I‘ğ”ÍˆÍŠJns‚É¶‰E‚³‚ê‚é)
+                'subtotaläº‹å‰
+                'i(mghzã‚³ãƒ”ãƒšé–‹å§‹ç”¨)å®šç¾©(gg1ï¼šé¸æŠç¯„å›²é–‹å§‹è¡Œã«å·¦å³ã•ã‚Œã‚‹)
                 
-                If gg1 = sr(0) + 5 Then 'Bb2op 30s77‰ü—Ç
-                    i = sr(0) + 4 '3s“Áê
+                If gg1 = sr(0) + 5 Then 'Bb2op 30s77æ”¹è‰¯
+                    i = sr(0) + 4 '3è¡Œç‰¹æ®Š
                     jj(1) = 1
                 ElseIf gg1 < sr(0) + 5 Then
-                    i = sr(0) + 3  '‚Ss•W€
+                    i = sr(0) + 3  'ï¼”è¡Œæ¨™æº–
                     jj(1) = i - gg1 + 2 + 1
                 End If
         
-                'subtotal–{”ÔABb2op_opC
+                'subtotalæœ¬ç•ªã€Bb2op_opC
                 
-                For j = mghz + 1 To mghz Step -1  '85_024ŒŸØ9
-                    'Bb2op_opCaF‚±‚±‚©‚çA“–ƒV[ƒg(subtotalƒRƒsƒy)
-                    bfshn.Select     'BF‰E’[subtotalƒRƒs[
+                For j = mghz + 1 To mghz Step -1  '85_024æ¤œè¨¼9
+                    'Bb2op_opCaï¼šã“ã“ã‹ã‚‰ã€å½“ã‚·ãƒ¼ãƒˆ(subtotalã‚³ãƒ”ãƒš)
+                    bfshn.Select     'Bï¼šå³ç«¯subtotalã‚³ãƒ”ãƒ¼
                     Range(bfshn.Cells(i, j), bfshn.Cells(sr(0) + 6, j)).Copy
                 
-                    'Bb2op_opCbF‚±‚±‚©‚çAVƒV[ƒgisubtotalƒRƒsƒyj
+                    'Bb2op_opCbï¼šã“ã“ã‹ã‚‰ã€æ–°ã‚·ãƒ¼ãƒˆï¼ˆsubtotalã‚³ãƒ”ãƒšï¼‰
                     Workbooks(bfn).Sheets(shemei).Select
 
                     If gg1 > sr(0) + 3 Then
-                        Range(Cells(1, 2), Cells(1, 2)).Select '‚Í‚İo‚µƒy[ƒXƒg
+                        Range(Cells(1, 2), Cells(1, 2)).Select 'ã¯ã¿å‡ºã—ãƒšãƒ¼ã‚¹ãƒˆ
                     Else
-                        Range(Cells(i - gg1 + 2, 2), Cells(i - gg1 + 2, 2)).Select '•W€ƒy[ƒXƒg
+                        Range(Cells(i - gg1 + 2, 2), Cells(i - gg1 + 2, 2)).Select 'æ¨™æº–ãƒšãƒ¼ã‚¹ãƒˆ
                     End If
                     ActiveSheet.Paste
                 
@@ -3305,12 +3307,12 @@ Sub fukusya()  ' ‘I‘ğ”ÍˆÍ‚ğ•ÊƒV[ƒg‚ÉƒRƒs[@@‹Œu•¡Êv
                                                                 
                         For ii = jj(1) To jj(1) + 1
                             For kk = 3 To dd2 - dd1 + 3
-                                If WorksheetFunction.IsErr(Cells(ii, kk).Value) Then 'N/AğŒ’Ç‰Á,DIV/0ğŒ’Ç‰ÁiIsNA¨IsErrj30s86_020x
+                                If WorksheetFunction.IsErr(Cells(ii, kk).Value) Then 'N/Aæ¡ä»¶è¿½åŠ ,DIV/0æ¡ä»¶è¿½åŠ ï¼ˆIsNAâ†’IsErrï¼‰30s86_020x
                                     If Cells(ii, kk).Font.Color = jj(2) Then
                                         Range(Cells(ii, kk), Cells(ii, kk)).Select
                                         ActiveSheet.Paste
                                     End If
-                                ElseIf Cells(ii, kk).Font.Color = jj(2) And Cells(ii, kk) <> "" Then '30s77nullğŒ’Ç‰Á(]—ˆ)
+                                ElseIf Cells(ii, kk).Font.Color = jj(2) And Cells(ii, kk) <> "" Then '30s77nullæ¡ä»¶è¿½åŠ (å¾“æ¥)
                                         Range(Cells(ii, kk), Cells(ii, kk)).Select
                                         ActiveSheet.Paste
                                 End If
@@ -3318,92 +3320,92 @@ Sub fukusya()  ' ‘I‘ğ”ÍˆÍ‚ğ•ÊƒV[ƒg‚ÉƒRƒs[@@‹Œu•¡Êv
                         Next
                     Next
                 Next
-            'Bb2op_opC‚±‚±‚Ü‚Å
+            'Bb2op_opCã“ã“ã¾ã§
             End If
-        'Bb2op‚±‚±‚Ü‚Å
+        'Bb2opã“ã“ã¾ã§
         End If
         
         Range(Cells(2, 1), Cells(2, 1)).Select
-        'BbFVƒV[ƒgA‚±‚±‚Ü‚Å
+        'Bbï¼šæ–°ã‚·ãƒ¼ãƒˆã€ã“ã“ã¾ã§
     
-        'DF‚±‚±‚©‚çA“–ƒV[ƒg(‘ÌÙ’²®)
+        'Dï¼šã“ã“ã‹ã‚‰ã€å½“ã‚·ãƒ¼ãƒˆ(ä½“è£èª¿æ•´)
         'Da
         bfshn.Select
     
-        Range(Cells(1, 1), Cells(sr(0) + 5, mghz - 1)).Select  'Da1F1-18s(•W€)‚ğ’²®
-        With Selection.Font  'DaFƒtƒHƒ“ƒg’²®
-            .Name = "‚l‚r ‚oƒSƒVƒbƒN"  'DaF©‚±‚ê‚ÅWin10‰e‹¿(ƒƒCƒŠƒI‚È‚Ç)‰e‹¿ó‚¯‚È‚­‚È‚éB
+        Range(Cells(1, 1), Cells(sr(0) + 5, mghz - 1)).Select  'Da1ï¼š1-18è¡Œ(æ¨™æº–)ã‚’èª¿æ•´
+        With Selection.Font  'Daï¼šãƒ•ã‚©ãƒ³ãƒˆèª¿æ•´
+            .Name = "ï¼­ï¼³ ï¼°ã‚´ã‚·ãƒƒã‚¯"  'Daï¼šâ†ã“ã‚Œã§Win10å½±éŸ¿(ãƒ¡ã‚¤ãƒªã‚ªãªã©)å½±éŸ¿å—ã‘ãªããªã‚‹ã€‚
             .Size = 9
         End With
     
-        Range(Cells(sr(0) + 3, 5), Cells(sr(0) + 3, mghz - 1)).Select 'Da1F•W15s’²®
-        With Selection.Font  'DaFƒtƒHƒ“ƒgAF’²®
+        Range(Cells(sr(0) + 3, 5), Cells(sr(0) + 3, mghz - 1)).Select 'Da1ï¼šæ¨™15è¡Œèª¿æ•´
+        With Selection.Font  'Daï¼šãƒ•ã‚©ãƒ³ãƒˆã€è‰²èª¿æ•´
             .Name = "Haettenschweiler"
             .Size = 10
         End With
         Selection.NumberFormatLocal = "m/d h:mm"
     
-        Range(Cells(sr(0), 5), Cells(sr(0), mghz - 1)).Select  'Da1F•W12s’²®
-        With Selection.Font  'ƒtƒHƒ“ƒgAF’²®
+        Range(Cells(sr(0), 5), Cells(sr(0), mghz - 1)).Select  'Da1ï¼šæ¨™12è¡Œèª¿æ•´
+        With Selection.Font  'ãƒ•ã‚©ãƒ³ãƒˆã€è‰²èª¿æ•´
             .Name = "Haettenschweiler"
             .Size = 10
         End With
         Selection.NumberFormatLocal = "m/d h:mm"
         
-        'Da1F‘O—ğWŒv’l’²                                              'Ô‚ªo‚é–‚ ‚è’ˆÓ«
-        Range(Cells(sr(0) + 1, 5), Cells(sr(0) + 2, mghz - 1)).NumberFormatLocal = "#,##0;[Ô]-#,##0"
-        'Da1F‘O—ğWŒv’l’²                                              'Ô‚ªo‚é–‚ ‚è’ˆÓ«
-        Range(Cells(sr(0) + 4, 5), Cells(sr(0) + 5, mghz - 1)).NumberFormatLocal = "#,##0;[Ô]-#,##0"
+        'Da1ï¼šå‰æ­´é›†è¨ˆå€¤èª¿                                              'èµ¤ãŒå‡ºã‚‹äº‹ã‚ã‚Šæ³¨æ„â†“
+        Range(Cells(sr(0) + 1, 5), Cells(sr(0) + 2, mghz - 1)).NumberFormatLocal = "#,##0;[èµ¤]-#,##0"
+        'Da1ï¼šå‰æ­´é›†è¨ˆå€¤èª¿                                              'èµ¤ãŒå‡ºã‚‹äº‹ã‚ã‚Šæ³¨æ„â†“
+        Range(Cells(sr(0) + 4, 5), Cells(sr(0) + 5, mghz - 1)).NumberFormatLocal = "#,##0;[èµ¤]-#,##0"
     
-        '«86_014m
-        Range(Cells(sr(0), 3), Cells(sr(0) + 1, 5)).Select 'Da1FÔƒZƒ‹•”ƒtƒHƒ“ƒgÄ’²®1•2
+        'â†“86_014m
+        Range(Cells(sr(0), 3), Cells(sr(0) + 1, 5)).Select 'Da1ï¼šèµ¤ã‚»ãƒ«éƒ¨ãƒ•ã‚©ãƒ³ãƒˆå†èª¿æ•´1ï¼†2
         With Selection.Font
-            .Name = "‚l‚r ‚oƒSƒVƒbƒN"
+            .Name = "ï¼­ï¼³ ï¼°ã‚´ã‚·ãƒƒã‚¯"
             .Size = 9
         End With
-        Selection.NumberFormatLocal = "G/•W€" '©with‚É“ü‚ê‚é‚ÆƒGƒ‰[‚É‚È‚éB
+        Selection.NumberFormatLocal = "G/æ¨™æº–" 'â†withã«å…¥ã‚Œã‚‹ã¨ã‚¨ãƒ©ãƒ¼ã«ãªã‚‹ã€‚
     
-        'Da2F“–ƒV[ƒg—ñ•‚ğƒRƒs[
-        Range(Cells(2, dd1), Cells(2, dd2)).Copy '—ñ•ƒRƒs‚éi2s–Ú‚É‚Äj
+        'Da2ï¼šå½“ã‚·ãƒ¼ãƒˆåˆ—å¹…ã‚’ã‚³ãƒ”ãƒ¼
+        Range(Cells(2, dd1), Cells(2, dd2)).Copy 'åˆ—å¹…ã‚³ãƒ”ã‚‹ï¼ˆ2è¡Œç›®ã«ã¦ï¼‰
         
-        Range(Cells(gg1, dd1), Cells(gg1, dd1)).Select  'ŠJnƒZƒ‹iF¶ãj
-        dg1 = ActiveCell.Address(RowAbsolute:=False, ColumnAbsolute:=False) 'ŠJnƒZƒ‹“]‹L
-        Range(Cells(gg2, dd2), Cells(gg2, dd2)).Select  'I—¹ƒZƒ‹iF‰E‰ºj
-        dg2 = ActiveCell.Address(RowAbsolute:=False, ColumnAbsolute:=False) 'I—¹ƒZƒ‹“]‹L
-        Range(Cells(gg1, dd1), Cells(gg2, dd2)).Select '‘I‘ğ”ÍˆÍ‚Í–ß‚·
-        'DaF“–ƒV[ƒgA‚±‚±‚Ü‚Å
+        Range(Cells(gg1, dd1), Cells(gg1, dd1)).Select  'é–‹å§‹ã‚»ãƒ«ï¼ˆï¼šå·¦ä¸Šï¼‰
+        dg1 = ActiveCell.Address(RowAbsolute:=False, ColumnAbsolute:=False) 'é–‹å§‹ã‚»ãƒ«è»¢è¨˜
+        Range(Cells(gg2, dd2), Cells(gg2, dd2)).Select  'çµ‚äº†ã‚»ãƒ«ï¼ˆï¼šå³ä¸‹ï¼‰
+        dg2 = ActiveCell.Address(RowAbsolute:=False, ColumnAbsolute:=False) 'çµ‚äº†ã‚»ãƒ«è»¢è¨˜
+        Range(Cells(gg1, dd1), Cells(gg2, dd2)).Select 'é¸æŠç¯„å›²ã¯æˆ»ã™
+        'Daï¼šå½“ã‚·ãƒ¼ãƒˆã€ã“ã“ã¾ã§
         
-        'DbF‚±‚±‚©‚çAVƒV[ƒgi—ñ•‚Ì‚İƒRƒsƒyj
+        'Dbï¼šã“ã“ã‹ã‚‰ã€æ–°ã‚·ãƒ¼ãƒˆï¼ˆåˆ—å¹…ã®ã¿ã‚³ãƒ”ãƒšï¼‰
         Workbooks(bfn).Sheets(shemei).Select
         
-        Range(Cells(1, 3), Cells(1, 3)).PasteSpecial Paste:=xlPasteColumnWidths '8'—ñ•‚ğ“\‚è•t‚¯
+        Range(Cells(1, 3), Cells(1, 3)).PasteSpecial Paste:=xlPasteColumnWidths '8'åˆ—å¹…ã‚’è²¼ã‚Šä»˜ã‘
     
-        If x > 1 And k - gg2 < 2 Then  'Dbop_Unicode‚Ì“\‚è•t‚¯(€–Ús(k-1)‚ªŠÜ‚Ü‚ê‚Ä‚¢‚é‚±‚Æ‚ª“\‚è•t‚¯‚ÌğŒ)
-        'DbopFxFƒtƒBƒ‹ƒ^ƒŠƒ“ƒOŠî€s
+        If x > 1 And k - gg2 < 2 Then  'Dbop_Unicodeã®è²¼ã‚Šä»˜ã‘(é …ç›®è¡Œ(k-1)ãŒå«ã¾ã‚Œã¦ã„ã‚‹ã“ã¨ãŒè²¼ã‚Šä»˜ã‘ã®æ¡ä»¶)
+        'Dbopï¼šxï¼šãƒ•ã‚£ãƒ«ã‚¿ãƒªãƒ³ã‚°åŸºæº–è¡Œ
             Range(Cells(1, 3), Cells(1, 3)).PasteSpecial Paste:=xlPasteValues '-4163
         End If
         
         'Db
-        Cells(1, 1).Value = "•¡.@•¡ÊA" & twn & "A" & shemei & "A¦" & shn _
-        & "¦" & bfn & "A" & dg1 & dg2 & "A—ñŒÅ—L–¼"
+        Cells(1, 1).Value = "è¤‡.ã€€è¤‡å†™ã€" & twn & "ã€" & shemei & "ã€ï½¦" & shn _
+        & "ï½¦" & bfn & "ã€" & dg1 & dg2 & "ã€åˆ—å›ºæœ‰å"
         Range(Cells(2, 2), Cells(2, 2)).Select
     
-        'ƒƒO•”‚±‚±‚©‚ç¨kyosydou‚ÖˆÚİ(Activateˆ—“P”p)
+        'ãƒ­ã‚°éƒ¨ã“ã“ã‹ã‚‰â†’kyosydouã¸ç§»è¨­(Activateå‡¦ç†æ’¤å»ƒ)
         j = 1
         Do Until Workbooks(twn).Sheets(shog).Cells(j, 1).Value = ""
             j = j + 1
             If j = 10000 Then
-                MsgBox "‹ó”’s‚ªŒ©‚Â‚©‚ç‚È‚¢‚æ‚¤‚Å‚·"
+                MsgBox "ç©ºç™½è¡ŒãŒè¦‹ã¤ã‹ã‚‰ãªã„ã‚ˆã†ã§ã™"
                 Exit Sub
             End If
         Loop
 
-        Workbooks(twn).Sheets(shog).Cells(j, 1).Value = 1 '€–Ú–¼
-        Workbooks(twn).Sheets(shog).Cells(j, 2).Value = j  '€”Ô
+        Workbooks(twn).Sheets(shog).Cells(j, 1).Value = 1 'é …ç›®å
+        Workbooks(twn).Sheets(shog).Cells(j, 2).Value = j  'é …ç•ª
         
-        Workbooks(twn).Sheets(shog).Cells(j, 3).Value = Workbooks(bfn).Sheets(shemei).Cells(1, 1).Value & "Az" & wd & "z" & "b" _
-        & twbsh.Cells(13, 3).Value & "R" & twbsh.Cells(14, 3).Value & "A" & twbsh.Cells(2, 2).Value & "A" & _
-        Format(Now(), "yyyymmdd_hhmmss") & "A" & bfshn.Cells(sr(8), 5).Value & "A" & gg2 - gg1 + 1 & "A" & dd2 - dd1 + 1
+        Workbooks(twn).Sheets(shog).Cells(j, 3).Value = Workbooks(bfn).Sheets(shemei).Cells(1, 1).Value & "ã€z" & wd & "z" & "b" _
+        & twbsh.Cells(13, 3).Value & "R" & twbsh.Cells(14, 3).Value & "ã€" & twbsh.Cells(2, 2).Value & "ã€" & _
+        Format(Now(), "yyyymmdd_hhmmss") & "ã€" & bfshn.Cells(sr(8), 5).Value & "ã€" & gg2 - gg1 + 1 & "ã€" & dd2 - dd1 + 1
         
         Workbooks(twn).Sheets(shog).Cells(j, 4).Value = Format(Now(), "yyyymmdd") 'date
         Workbooks(twn).Sheets(shog).Cells(j, 5).Value = Format(Now(), "yyyymmdd_hhmmss") 'timestamp
@@ -3412,118 +3414,118 @@ Sub fukusya()  ' ‘I‘ğ”ÍˆÍ‚ğ•ÊƒV[ƒg‚ÉƒRƒs[@@‹Œu•¡Êv
         Else
             Workbooks(twn).Sheets(shog).Cells(j, 7).Value = fimei & "." & fmt & "\" & shemei 'to
         End If
-        Workbooks(twn).Sheets(shog).Cells(j, 8).Value = 9  'Å‰E—ñ(•¡Ê‚ÍŒÅ’è’l)
+        Workbooks(twn).Sheets(shog).Cells(j, 8).Value = 9  'æœ€å³åˆ—(è¤‡å†™ã¯å›ºå®šå€¤)
         Workbooks(twn).Sheets(shog).Cells(j, 9).Value = bfn & "\" & shn  'from
         
-        'ƒƒO•”‚±‚±‚Ü‚Å
+        'ãƒ­ã‚°éƒ¨ã“ã“ã¾ã§
  
-        'ƒV[ƒg‚ğ•Êƒtƒ@ƒCƒ‹‚Æ‚µ‚Ä‚à•¡»(E1ƒZƒ‹î•ñ—L‚Ì)30s81
-        If bfshn.Cells(1, 5).Value <> "" Then  '”²–{‰ü—Ç@30s86_017x~z
-            '627ƒƒ‚’ ‚ÌPW¨ExcelVƒV[ƒg‚Ö
-            If Left(fmt, 3) <> "csv" Then 'csvŒn‚ÍPWƒV[ƒgì‚ç‚È‚¢ xlsxPW‚È‚µ‚àˆê’UPWƒV[ƒg‚Íì‚é(office2007‚Éƒtƒ@ƒCƒ‹‚Ìƒe[ƒ}•Ï‚¦‚é‚½‚ß)
+        'ã‚·ãƒ¼ãƒˆã‚’åˆ¥ãƒ•ã‚¡ã‚¤ãƒ«ã¨ã—ã¦ã‚‚è¤‡è£½(E1ã‚»ãƒ«æƒ…å ±æœ‰ã®æ™‚)30s81
+        If bfshn.Cells(1, 5).Value <> "" Then  'æŠœæœ¬æ”¹è‰¯ã€€30s86_017x~z
+            '627ãƒ¡ãƒ¢å¸³ã®PWâ†’Excelæ–°ã‚·ãƒ¼ãƒˆã¸
+            If Left(fmt, 3) <> "csv" Then 'csvç³»ã¯PWã‚·ãƒ¼ãƒˆä½œã‚‰ãªã„ xlsxPWãªã—ã‚‚ä¸€æ—¦PWã‚·ãƒ¼ãƒˆã¯ä½œã‚‹(office2007ã«ãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒ†ãƒ¼ãƒå¤‰ãˆã‚‹ãŸã‚)
                 
                 ThisWorkbook.Activate
-                Sheets("‚‘¬ƒV[ƒg_" & syutoku()).Select
-                Sheets("‚‘¬ƒV[ƒg_" & syutoku()).Copy
+                Sheets("é«˜é€Ÿã‚·ãƒ¼ãƒˆ_" & syutoku()).Select
+                Sheets("é«˜é€Ÿã‚·ãƒ¼ãƒˆ_" & syutoku()).Copy
 
-'                Sheets("‚‘¬ƒV[ƒg_" & syutoku()).Name = shemei & "‚ÌPW"
-                Sheets("‚‘¬ƒV[ƒg_" & syutoku()).Name = "‰¼‚Å‚·aaa"    '30s86_021b
+'                Sheets("é«˜é€Ÿã‚·ãƒ¼ãƒˆ_" & syutoku()).Name = shemei & "ã®PW"
+                Sheets("é«˜é€Ÿã‚·ãƒ¼ãƒˆ_" & syutoku()).Name = "ä»®ã§ã™aaa"    '30s86_021b
                 Worksheets.Add
-                ActiveSheet.Name = shemei & "‚ÌPW"
+                ActiveSheet.Name = shemei & "ã®PW"
                 
                 Application.DisplayAlerts = False
-                Worksheets("‰¼‚Å‚·aaa").Delete
+                Worksheets("ä»®ã§ã™aaa").Delete
                 Application.DisplayAlerts = True
 
-                '86_020v@‰ü—Ç
+                '86_020vã€€æ”¹è‰¯
                 Cells(5, 1).Value = "-------------------------------------------------------------------------------"
                 
-                Cells(7, 1).Value = "ƒtƒ@ƒCƒ‹–¼F " & fimei & "." & fmt
-                Cells(8, 1).Value = "ƒtƒ@ƒCƒ‹‚Ì‚o‚vF" & wd
-                Cells(9, 1).Value = "ƒV[ƒg–¼F" & shemei
+                Cells(7, 1).Value = "ãƒ•ã‚¡ã‚¤ãƒ«åï¼š " & fimei & "." & fmt
+                Cells(8, 1).Value = "ãƒ•ã‚¡ã‚¤ãƒ«ã®ï¼°ï¼·ï¼š" & wd
+                Cells(9, 1).Value = "ã‚·ãƒ¼ãƒˆåï¼š" & shemei
                 
                 Cells(11, 1).Value = "-------------------------------------------------------------------------------"
                 
                 Range(Cells(2, 1), Cells(19, 1)).Select
 
-'                If wd <> "" Then Shell "c:\windows\system32\notepad.exe", vbNormalFocus 'PW—pƒƒ‚’ —§‚¿ã‚° 86_020z@”p~‚Ö
-                '30s79’Ç‰ÁAVƒtƒ@ƒCƒ‹‚ÌƒtƒHƒ“ƒg‚ğŸàƒSƒVƒbƒN‚Å‚Í‚È‚­AMSPƒSƒVƒbƒNd—l‚É
+'                If wd <> "" Then Shell "c:\windows\system32\notepad.exe", vbNormalFocus 'PWç”¨ãƒ¡ãƒ¢å¸³ç«‹ã¡ä¸Šã’ 86_020zã€€å»ƒæ­¢ã¸
+                '30s79è¿½åŠ ã€æ–°ãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒ•ã‚©ãƒ³ãƒˆã‚’æ¸¸ã‚´ã‚·ãƒƒã‚¯ã§ã¯ãªãã€MSPã‚´ã‚·ãƒƒã‚¯ä»•æ§˜ã«
                 If Application.Version < 16 Then
-                    'MsgBox "excel2013ˆÈ‘O‚Å‚·"
-                Else                  'MsgBox "excel2016ˆÈ~‚Å‚·"
+                    'MsgBox "excel2013ä»¥å‰ã§ã™"
+                Else                  'MsgBox "excel2016ä»¥é™ã§ã™"
                     If IsNumeric(syutoku()) Then
-                        '«ƒŒƒmƒ{‚ÌPC
+                        'â†“ãƒ¬ãƒãƒœã®PC
                         ActiveWorkbook.Theme.ThemeFontScheme.Load ( _
                         "C:\Program Files (x86)\Microsoft Office\Root\Document Themes 16\Theme Fonts\Office 2007 - 2010.xml")
                     Else
-                        '«fmv‚ÌPC
+                        'â†“fmvã®PC
                         'ActiveWorkbook.Theme.ThemeFontScheme.Load ( _
-                            "C:\Program Files\WindowsApps\Microsoft.Office.Desktop_16051.12228.20364.0_x86__‚ ‚ ‚ ‚ \Document Themes 16\Theme Fonts\Office 2007 - 2010.xml" _
+                            "C:\Program Files\WindowsApps\Microsoft.Office.Desktop_16051.12228.20364.0_x86__ã‚ã‚ã‚ã‚\Document Themes 16\Theme Fonts\Office 2007 - 2010.xml" _
                             )
-                        '20200115‚ÉRevã‚ª‚Á‚½‚©‚ÆB‚Ü‚¾‚±‚Ì ‚ÍAstore”Å
+                        '20200115ã«Revä¸ŠãŒã£ãŸã‹ã¨ã€‚ã¾ã ã“ã®é ƒã¯ã€storeç‰ˆ
                         'ActiveWorkbook.Theme.ThemeFontScheme.Load ( _
-                            "C:\Program Files\WindowsApps\Microsoft.Office.Desktop_16051.12325.20288.0_x86__‚ ‚ ‚ ‚ \Document Themes 16\Theme Fonts\Office 2007 - 2010.xml" _
+                            "C:\Program Files\WindowsApps\Microsoft.Office.Desktop_16051.12325.20288.0_x86__ã‚ã‚ã‚ã‚\Document Themes 16\Theme Fonts\Office 2007 - 2010.xml" _
                             )
-                        '202004‚ÌRev@(store”Å‚©‚çDL”Å‚Ö)
+                        '202004ã®Revã€€(storeç‰ˆã‹ã‚‰DLç‰ˆã¸)
                         ActiveWorkbook.Theme.ThemeFontScheme.Load ( _
                             "C:\Program Files (x86)\Microsoft Office\Root\Document Themes 16\Theme Fonts\Office 2007 - 2010.xml" _
                             )
                     End If
                 End If
-            Else 'csvŒn
+            Else 'csvç³»
                 Workbooks(bfn).Activate
                 Sheets(shemei).Select
                 Sheets(shemei).Copy
             End If
             
-            'ƒtƒ@ƒCƒ‹‚ğŠ’è‚Ì—l®EŠ’è‚Ìƒtƒ@ƒCƒ‹–¼‚Å•Û‘¶
+            'ãƒ•ã‚¡ã‚¤ãƒ«ã‚’æ‰€å®šã®æ§˜å¼ãƒ»æ‰€å®šã®ãƒ•ã‚¡ã‚¤ãƒ«åã§ä¿å­˜
             If fmt = "xlsx" Then
                 ActiveWorkbook.SaveAs Filename:=pasu & "\" & fimei, _
-                FileFormat:=xlOpenXMLWorkbook, Password:=wd, CreateBackup:=False    'xlsxƒtƒH[ƒ}ƒbƒg
+                FileFormat:=xlOpenXMLWorkbook, Password:=wd, CreateBackup:=False    'xlsxãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆ
             ElseIf fmt = "csv" Then
                 Rows("1:1").Select
                 Selection.Delete Shift:=xlUp
                 ActiveWorkbook.SaveAs Filename:=pasu & "\" & fimei, _
-                FileFormat:=xlCSVUTF8, CreateBackup:=False                          'csv(utf-8)ƒtƒH[ƒ}ƒbƒg
+                FileFormat:=xlCSVUTF8, CreateBackup:=False                          'csv(utf-8)ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆ
             ElseIf fmt = "csvsjis" Then
                 ActiveWorkbook.SaveAs Filename:=pasu & "\" & fimei, _
-                FileFormat:=xlCSV, CreateBackup:=False                              'csvƒtƒH[ƒ}ƒbƒg
+                FileFormat:=xlCSV, CreateBackup:=False                              'csvãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆ
             Else
                 ActiveWorkbook.SaveAs Filename:=pasu & "\" & fimei, _
-                FileFormat:=xlExcel12, Password:=wd, CreateBackup:=False            'xlsbƒtƒH[ƒ}ƒbƒg
+                FileFormat:=xlExcel12, Password:=wd, CreateBackup:=False            'xlsbãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆ
             End If
             
             If Left(fmt, 3) <> "csv" Then
             
-                'Eb@i]—ˆF‘ÎÛ‚ÌƒV[ƒg‚ğV‹Kƒtƒ@ƒCƒ‹‚Æ‚µ‚ÄƒRƒs[‚µ‚Ä‚¢‚½j
+                'Ebã€€ï¼ˆå¾“æ¥ï¼šå¯¾è±¡ã®ã‚·ãƒ¼ãƒˆã‚’æ–°è¦ãƒ•ã‚¡ã‚¤ãƒ«ã¨ã—ã¦ã‚³ãƒ”ãƒ¼ã—ã¦ã„ãŸï¼‰
                 Workbooks(bfn).Activate
                 Sheets(shemei).Select
-                Sheets(shemei).Copy Before:=Workbooks(fimei & "." & fmt).Sheets(shemei & "‚ÌPW")
+                Sheets(shemei).Copy Before:=Workbooks(fimei & "." & fmt).Sheets(shemei & "ã®PW")
             
                 Workbooks(fimei & "." & fmt).Activate
-                Sheets(shemei & "‚ÌPW").Select
-                Sheets(shemei & "‚ÌPW").Move 'PWƒV[ƒg‚ÍVƒtƒ@ƒCƒ‹‚Æ‚µ‚ÄˆÚ‚·
+                Sheets(shemei & "ã®PW").Select
+                Sheets(shemei & "ã®PW").Move 'PWã‚·ãƒ¼ãƒˆã¯æ–°ãƒ•ã‚¡ã‚¤ãƒ«ã¨ã—ã¦ç§»ã™
             
                 If wd = "" Then
-                    Sheets(shemei & "‚ÌPW").Name = "•s—v"  '¦PW‚È‚µxlsx¨Ì‚Äƒtƒ@ƒCƒ‹
-                Else '30s86_020a PWƒV[ƒg‚ğUTF-8‚ÌƒeƒLƒXƒg‚Æ‚µ‚Ä•Û‘¶‚ğ’Ç‰Á(ƒƒ‚’ —§‚¿ã‚°‚Í”p~)
-                    ActiveWorkbook.SaveAs Filename:=pasu & "\" & fimei & "‚ÌPW.txt", _
+                    Sheets(shemei & "ã®PW").Name = "ä¸è¦"  'â€»PWãªã—xlsxâ†’æ¨ã¦ãƒ•ã‚¡ã‚¤ãƒ«
+                Else '30s86_020a PWã‚·ãƒ¼ãƒˆã‚’UTF-8ã®ãƒ†ã‚­ã‚¹ãƒˆã¨ã—ã¦ä¿å­˜ã‚’è¿½åŠ (ãƒ¡ãƒ¢å¸³ç«‹ã¡ä¸Šã’ã¯å»ƒæ­¢)
+                    ActiveWorkbook.SaveAs Filename:=pasu & "\" & fimei & "ã®PW.txt", _
                     FileFormat:=xlUnicodeText, CreateBackup:=False
                 End If
             
                 Workbooks(fimei & "." & fmt).Activate
-                ActiveWorkbook.Save      'ã‘•Û‘¶
+                ActiveWorkbook.Save      'ä¸Šæ›¸ä¿å­˜
             
             End If
         End If
     End If
     Application.CutCopyMode = False
-End Sub  '•¡Ê‚±‚±‚Ü‚Å
-'[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[
+End Sub  'è¤‡å†™ã“ã“ã¾ã§
+'ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼
 Function chekku() As String
-    'Excelƒo[ƒWƒ‡ƒ“ƒ`ƒFƒbƒN,@86_020s‘}“ü•”‚±‚±‚©‚ç@020u‰ü—Ç
-    twt.Cells(1, 1).Value = "‚ "  'Ú×‹Lq‚Í‰‰ñ‚Ì‚İij‚Ì•û‚ÅÀ{
-    twt.Cells(2, 1).Value = "ƒA"
+    'Excelãƒãƒ¼ã‚¸ãƒ§ãƒ³ãƒã‚§ãƒƒã‚¯,ã€€86_020sæŒ¿å…¥éƒ¨ã“ã“ã‹ã‚‰ã€€020uæ”¹è‰¯
+    twt.Cells(1, 1).Value = "ã‚"  'è©³ç´°è¨˜è¿°ã¯åˆå›ã®ã¿ï¼ˆï¼‰ã®æ–¹ã§å®Ÿæ–½
+    twt.Cells(2, 1).Value = "ã‚¢"
     
     twt.Sort.SortFields.Clear
     twt.Sort.SortFields.Add Key:=Range(twt.Cells(1, 1), twt.Cells(1, 1)), _
@@ -3537,73 +3539,73 @@ Function chekku() As String
         .Apply
     End With
 
-    If twt.Cells(1, 1).Value = "ƒA" Then
-        chekku = "V¿°Ä" '(excel2019‚Ì‚ ‚éverˆÈ~)"
+    If twt.Cells(1, 1).Value = "ã‚¢" Then
+        chekku = "æ–°ï½¿ï½°ï¾„" '(excel2019ã®ã‚ã‚‹verä»¥é™)"
     Else
-        chekku = "‹Œ¿°Ä" '‡˜‚»‚Ì‚Ü‚Ü(excel2016ˆÈ‘OAexcel2007)"
+        chekku = "æ—§ï½¿ï½°ï¾„" 'é †åºãã®ã¾ã¾(excel2016ä»¥å‰ã€excel2007)"
     End If
 End Function
-'[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[
-Sub syokainomi()  '‹Œu‰‰ñ‚Ì‚İv
+'ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼
+Sub syokainomi()  'æ—§ã€Œåˆå›ã®ã¿ã€
     Dim hk1 As String, mghx As Long, xlvrn As String
     
-    kyosydou  '‹¤’Ê‰“®
+    kyosydou  'å…±é€šåˆå‹•
  
-    xlvrn = chekku 'Excelƒo[ƒWƒ‡ƒ“ƒ`ƒFƒbƒN
-    twt.Cells(3, 1).Value = "¿°ÄŒã"
-    twt.Cells(1, 2).Value = "‚ "
-    twt.Cells(2, 2).Value = "ƒA"
-    twt.Cells(3, 2).Value = "¿°Ä‘O"
-    twt.Cells(1, 3).Value = "ƒA"
-    twt.Cells(2, 3).Value = "‚ "
-    twt.Cells(3, 3).Value = "Vd—l(•Ğ‰¼–¼‚ªã‚Ö)"
-    twt.Cells(1, 4).Value = "‚ "
-    twt.Cells(2, 4).Value = "ƒA"
-    twt.Cells(3, 4).Value = "‹Œd—l(•ĞE•½“¯ˆê‹)"
-    twt.Cells(1, 6).Value = "«textjoinŒ‹‰Ê"  '30s86_021e
-    twt.Cells(2, 6).Value = "¦¦TEXTJOIN(""A"",TRUE,A2,B2)"
-    twt.Cells(3, 6).Value = "ªu‚ AƒAv‚È‚ç³í"
-    twt.Cells(4, 6).Value = "@u#NAME?v‚È‚ç‚±‚ÌOffice‚Å‚ÍƒTƒ|[ƒg‚³‚ê‚Ä‚¢‚È‚¢(ExcelÄ‹N“®‚ÅƒTƒ|[ƒg‚³‚ê‚é‚±‚Æ‚à‚ ‚é)"
-    '¦¦¨=
-    Range(twt.Cells(2, 6), twt.Cells(2, 6)).Replace What:="¦¦", _
+    xlvrn = chekku 'Excelãƒãƒ¼ã‚¸ãƒ§ãƒ³ãƒã‚§ãƒƒã‚¯
+    twt.Cells(3, 1).Value = "ï½¿ï½°ï¾„å¾Œ"
+    twt.Cells(1, 2).Value = "ã‚"
+    twt.Cells(2, 2).Value = "ã‚¢"
+    twt.Cells(3, 2).Value = "ï½¿ï½°ï¾„å‰"
+    twt.Cells(1, 3).Value = "ã‚¢"
+    twt.Cells(2, 3).Value = "ã‚"
+    twt.Cells(3, 3).Value = "æ–°ä»•æ§˜(ç‰‡ä»®åãŒä¸Šã¸)"
+    twt.Cells(1, 4).Value = "ã‚"
+    twt.Cells(2, 4).Value = "ã‚¢"
+    twt.Cells(3, 4).Value = "æ—§ä»•æ§˜(ç‰‡ãƒ»å¹³åŒä¸€è¦–)"
+    twt.Cells(1, 6).Value = "â†“textjoinçµæœ"  '30s86_021e
+    twt.Cells(2, 6).Value = "ï½¦ï½¦TEXTJOIN(""ã€"",TRUE,A2,B2)"
+    twt.Cells(3, 6).Value = "â†‘ã€Œã‚ã€ã‚¢ã€ãªã‚‰æ­£å¸¸"
+    twt.Cells(4, 6).Value = "ã€€ã€Œ#NAME?ã€ãªã‚‰ã“ã®Officeã§ã¯ã‚µãƒãƒ¼ãƒˆã•ã‚Œã¦ã„ãªã„(Excelå†èµ·å‹•ã§ã‚µãƒãƒ¼ãƒˆã•ã‚Œã‚‹ã“ã¨ã‚‚ã‚ã‚‹)"
+    'ï½¦ï½¦â†’=
+    Range(twt.Cells(2, 6), twt.Cells(2, 6)).Replace What:="ï½¦ï½¦", _
         Replacement:="=", LookAt:=xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
         ReplaceFormat:=False
     
-    If hrkt = 16 Then MsgBox "hrkt=16(phoneticg—p[]—ˆŒ^])‚Å‚·BƒL[‚Éuƒ–v‚ª‚ ‚é‚Æd‚­‚È‚èAŒëì“®‚Ì‰Â”\«‚ ‚èB2013‚Å‚à2019‚Å‚à"
-    If xlvrn = "‹Œ¿°Ä" And hrkt = 0 Then MsgBox "‹Œ¿°Ä(2013)‚Åhrkt=0(phonetic•sg—p)‚Å‚·BƒL[‚É“¯‚¶‚Ğ‚ç‚ª‚ÈƒJƒ^ƒJƒi‚ ‚é(u‚ vuƒAv‚È‚Ç)Œëì“®‚ÌŠëŒ¯‚ ‚è’ˆÓB"
+    If hrkt = 16 Then MsgBox "hrkt=16(phoneticä½¿ç”¨[å¾“æ¥å‹])ã§ã™ã€‚ã‚­ãƒ¼ã«ã€Œãƒ¶ã€ãŒã‚ã‚‹ã¨é‡ããªã‚Šã€èª¤ä½œå‹•ã®å¯èƒ½æ€§ã‚ã‚Šã€‚2013ã§ã‚‚2019ã§ã‚‚"
+    If xlvrn = "æ—§ï½¿ï½°ï¾„" And hrkt = 0 Then MsgBox "æ—§ï½¿ï½°ï¾„(2013)ã§hrkt=0(phoneticä¸ä½¿ç”¨)ã§ã™ã€‚ã‚­ãƒ¼ã«åŒã˜ã²ã‚‰ãŒãªã‚«ã‚¿ã‚«ãƒŠã‚ã‚‹æ™‚(ã€Œã‚ã€ã€Œã‚¢ã€ãªã©)èª¤ä½œå‹•ã®å±é™ºã‚ã‚Šæ³¨æ„ã€‚"
     
-    If Not (shn = "£WŒv_—Œ`" And bfn = twn) Then
-        bfshn.Cells(sr(0) + 1, 3).Value = ""    '13¨sr(0)+1
-        bfshn.Cells(sr(0) + 2, 3).Value = ""     '14¨sr(0)+2
+    If Not (shn = "â–²é›†è¨ˆ_é››å½¢" And bfn = twn) Then
+        bfshn.Cells(sr(0) + 1, 3).Value = ""    '13â†’sr(0)+1
+        bfshn.Cells(sr(0) + 2, 3).Value = ""     '14â†’sr(0)+2
     End If
 
     Call iechc(hk1)
 
-    mghx = Application.Match("B", Range(twbsh.Cells(1, 1), twbsh.Cells(1, 5000)), 0) 'mghx‚Íƒ}ƒNƒƒtƒ@ƒCƒ‹‚ÌuBv‚Ì—ñ,mghz‚Í“–ƒV[ƒg‚ÌA
+    mghx = Application.Match("ã€‚", Range(twbsh.Cells(1, 1), twbsh.Cells(1, 5000)), 0) 'mghxã¯ãƒã‚¯ãƒ­ãƒ•ã‚¡ã‚¤ãƒ«ã®ã€Œã€‚ã€ã®åˆ—,mghzã¯å½“ã‚·ãƒ¼ãƒˆã®ã€
     
-    jj = 6 'j¨jj 30s82
-    ii = 19967 'i¨ii 30s82
+    jj = 6 'jâ†’jj 30s82
+    ii = 19967 'iâ†’ii 30s82
     Do Until jj >= mghz
         If bfshn.Cells(2, jj).Value <> "" Then
             If Not IsError(Application.Match(bfshn.Cells(2, jj).Value, Range(bfshn.Cells(2, jj + 1), bfshn.Cells(2, mghz)), 0)) Then
                 Range(bfshn.Cells(2, Application.Match(bfshn.Cells(2, jj).Value, Range(bfshn.Cells(2, jj + 1), bfshn.Cells(2, mghz)), 0) + jj), bfshn.Cells(2, Application.Match(bfshn.Cells(2, jj).Value, Range(bfshn.Cells(2, jj + 1), bfshn.Cells(2, mghz)), 0) + jj)).Select
-                Call oshimai("", bfn, shn, 2, Int(jj), "•¶šd•¡ƒZƒ‹‚ ‚èi" & ActiveCell.Address(RowAbsolute:=False, ColumnAbsolute:=False) & "ƒZƒ‹j")
+                Call oshimai("", bfn, shn, 2, Int(jj), "æ–‡å­—é‡è¤‡ã‚»ãƒ«ã‚ã‚Šï¼ˆ" & ActiveCell.Address(RowAbsolute:=False, ColumnAbsolute:=False) & "ã‚»ãƒ«ï¼‰")
             End If
         End If
         If bfshn.Cells(2, jj).Value <> "" Then '17s
             If bfshn.Cells(3, jj).Value > ii Then ii = bfshn.Cells(3, jj).Value
         End If
         jj = jj + 1
-        Application.StatusBar = "d•¡Šm”FA" & Str(jj) & " / " & Str(mghz) '9s
+        Application.StatusBar = "é‡è¤‡ç¢ºèªã€" & Str(jj) & " / " & Str(mghz) '9s
     Loop
 
-    'ÄŒvZ‚ğˆê’U©“®‚É
+    'å†è¨ˆç®—ã‚’ä¸€æ—¦è‡ªå‹•ã«
     Application.Calculation = xlCalculationAutomatic
-    Application.ExtendList = False 'ƒf[ƒ^”ÍˆÍŠg’£:ƒIƒtiF‰E—×ƒZƒ‹‚ªŸè‚É‘®•Ï‚í‚ç‚ê‚é‚Ì‚ğ‘j~j"
+    Application.ExtendList = False 'ãƒ‡ãƒ¼ã‚¿ç¯„å›²æ‹¡å¼µ:ã‚ªãƒ•ï¼ˆï¼šå³éš£ã‚»ãƒ«ãŒå‹æ‰‹ã«æ›¸å¼å¤‰ã‚ã‚‰ã‚Œã‚‹ã®ã‚’é˜»æ­¢ï¼‰"
     
-    'ƒI[ƒgƒtƒBƒ‹ƒ^‚ªİ’è‚³‚ê‚Ä‚¢‚é‚©‚Ç‚¤‚©”»’f•‰ğœ
+    'ã‚ªãƒ¼ãƒˆãƒ•ã‚£ãƒ«ã‚¿ãŒè¨­å®šã•ã‚Œã¦ã„ã‚‹ã‹ã©ã†ã‹åˆ¤æ–­ï¼†è§£é™¤
     If ActiveSheet.AutoFilterMode Then Selection.AutoFilter
-    Application.EnableAutoComplete = False  'ƒI[ƒgƒRƒ“ƒvƒŠ[ƒg
+    Application.EnableAutoComplete = False  'ã‚ªãƒ¼ãƒˆã‚³ãƒ³ãƒ—ãƒªãƒ¼ãƒˆ
        
     ThisWorkbook.Activate
     
@@ -3611,42 +3613,42 @@ Sub syokainomi()  '‹Œu‰‰ñ‚Ì‚İv
     Do Until Workbooks(twn).Sheets(shog).Cells(jj, 1).Value = ""
         jj = jj + 1
         If jj = 10000 Then
-            MsgBox "‹ó”’s‚ªŒ©‚Â‚©‚ç‚È‚¢‚æ‚¤‚Å‚·"
+            MsgBox "ç©ºç™½è¡ŒãŒè¦‹ã¤ã‹ã‚‰ãªã„ã‚ˆã†ã§ã™"
             Exit Sub
         End If
     Loop
     
-    Workbooks(twn).Sheets(shog).Cells(jj, 1).Value = 1 '€–Ú–¼
-    Workbooks(twn).Sheets(shog).Cells(jj, 2).Value = jj  '€”Ô
+    Workbooks(twn).Sheets(shog).Cells(jj, 1).Value = 1 'é …ç›®å
+    Workbooks(twn).Sheets(shog).Cells(jj, 2).Value = jj  'é …ç•ª
     
     Workbooks(twn).Sheets(shog).Cells(jj, 3).Value = _
-    "‰.@‰‰ñA" & _
+    "åˆ.ã€€åˆå›ã€" & _
     twn _
-    & "A¦" & shn & "¦" & bfn _
-    & "A¦£WŒv_—Œ`" & "¦" & twn _
-    & "Afrom" & dd1 & "to" & dd2 _
-    & "A€–Ú–¼Ab" & twbsh.Cells(13, 3).Value & "R" & twbsh.Cells(14, 3).Value & "A" & twbsh.Cells(2, 2).Value & "A" _
-    & Format(Now(), "yyyymmdd_hhmmss") & "A" & bfshn.Cells(sr(8), 5).Value & "A0A0"
+    & "ã€ï½¦" & shn & "ï½¦" & bfn _
+    & "ã€ï½¦â–²é›†è¨ˆ_é››å½¢" & "ï½¦" & twn _
+    & "ã€from" & dd1 & "to" & dd2 _
+    & "ã€é …ç›®åã€b" & twbsh.Cells(13, 3).Value & "R" & twbsh.Cells(14, 3).Value & "ã€" & twbsh.Cells(2, 2).Value & "ã€" _
+    & Format(Now(), "yyyymmdd_hhmmss") & "ã€" & bfshn.Cells(sr(8), 5).Value & "ã€0ã€0"
     Workbooks(twn).Sheets(shog).Cells(jj, 4).Value = Format(Now(), "yyyymmdd") 'date
     Workbooks(twn).Sheets(shog).Cells(jj, 5).Value = Format(Now(), "yyyymmdd_hhmmss") 'timestamp
     Workbooks(twn).Sheets(shog).Cells(jj, 7).Value = bfn & "\" & shn 'to
-    Workbooks(twn).Sheets(shog).Cells(jj, 8).Value = 9  'Å‰E—ñ(•¡Ê‚ÍŒÅ’è’l)
-    Workbooks(twn).Sheets(shog).Cells(jj, 9).Value = twn & "\£WŒv_—Œ`"   'from
-    'ƒƒO•”‚±‚±‚Ü‚Å
+    Workbooks(twn).Sheets(shog).Cells(jj, 8).Value = 9  'æœ€å³åˆ—(è¤‡å†™ã¯å›ºå®šå€¤)
+    Workbooks(twn).Sheets(shog).Cells(jj, 9).Value = twn & "\â–²é›†è¨ˆ_é››å½¢"   'from
+    'ãƒ­ã‚°éƒ¨ã“ã“ã¾ã§
     
-    Call cpp2(twn, "£WŒv_—Œ`", 14, 1, 18, 5, bfn, shn, sr(0) - 1 + 5 - 2, 1, 0, 0, -4104) 'ƒTƒ}ƒŠŠÖ”ü•ÓŠÛ‚²‚ÆƒRƒsƒy‚È‚Ì‚Å‚S‚P‚O‚S
-    Call cpp2(twn, "£WŒv_—Œ`", 15, mghx, 18, mghx + 2, bfn, shn, sr(0) - 1 + 5 - 1, mghz, 0, 0, -4104) '“¯AƒTƒ}ƒŠŠÖ”ü•ÓŠÛ‚²‚ÆƒRƒsƒy(mghz‘¤)
-    Call cpp2(twn, "£WŒv_—Œ`", 11, 5, 15, 6, bfn, shn, sr(0) - 1, 5, 0, 0, -4122)  '“¯AƒTƒ}ƒŠŠÖ”ü•ÓŠÛ‚²‚ÆƒRƒsƒy(mghz‘¤)
+    Call cpp2(twn, "â–²é›†è¨ˆ_é››å½¢", 14, 1, 18, 5, bfn, shn, sr(0) - 1 + 5 - 2, 1, 0, 0, -4104) 'ã‚µãƒãƒªé–¢æ•°å‘¨è¾ºä¸¸ã”ã¨ã‚³ãƒ”ãƒšãªã®ã§ï¼”ï¼‘ï¼ï¼”
+    Call cpp2(twn, "â–²é›†è¨ˆ_é››å½¢", 15, mghx, 18, mghx + 2, bfn, shn, sr(0) - 1 + 5 - 1, mghz, 0, 0, -4104) 'åŒã€ã‚µãƒãƒªé–¢æ•°å‘¨è¾ºä¸¸ã”ã¨ã‚³ãƒ”ãƒš(mghzå´)
+    Call cpp2(twn, "â–²é›†è¨ˆ_é››å½¢", 11, 5, 15, 6, bfn, shn, sr(0) - 1, 5, 0, 0, -4122)  'åŒã€ã‚µãƒãƒªé–¢æ•°å‘¨è¾ºä¸¸ã”ã¨ã‚³ãƒ”ãƒš(mghzå´)
     
-    Workbooks(bfn).Activate 'ª‚Ì.copyŒãA‚±‚ê‚ğ‚±‚±‚É“ü‚ê‚é‚ÆAƒZƒ‹‚ª•¡”ŒÂŠ‘I‘ğ‚³‚ê‚Ä‚¢‚é–­‚È‰f‚è‚Í‰ğÁ‚³‚ê‚é‚Á‚Û‚¢
+    Workbooks(bfn).Activate 'â†‘ã®.copyå¾Œã€ã“ã‚Œã‚’ã“ã“ã«å…¥ã‚Œã‚‹ã¨ã€ã‚»ãƒ«ãŒè¤‡æ•°å€‹æ‰€é¸æŠã•ã‚Œã¦ã„ã‚‹å¦™ãªæ˜ ã‚Šã¯è§£æ¶ˆã•ã‚Œã‚‹ã£ã½ã„
     Sheets(shn).Select
     
-    Range(bfshn.Cells(2, mghz - 2), bfshn.Cells(21, mghz)).Borders.Color = RGB(191, 191, 191)  '©@=-4210753@ 30s86_017p@'30s86_012i
+    Range(bfshn.Cells(2, mghz - 2), bfshn.Cells(21, mghz)).Borders.Color = RGB(191, 191, 191)  'â†ã€€=-4210753ã€€ 30s86_017pã€€'30s86_012i
     
-    'ÄŒvZ‚ğè“®‚É
+    'å†è¨ˆç®—ã‚’æ‰‹å‹•ã«
     Application.Calculation = xlCalculationManual
 
-    With Application.AutoCorrect      'ƒI[ƒgƒRƒŒƒNƒg‚³‚¹‚È‚¢@‚R‚O‚“‚T‚Q
+    With Application.AutoCorrect      'ã‚ªãƒ¼ãƒˆã‚³ãƒ¬ã‚¯ãƒˆã•ã›ãªã„ã€€ï¼“ï¼ï½“ï¼•ï¼’
         .TwoInitialCapitals = False
         .CorrectSentenceCap = False
         .CapitalizeNamesOfDays = False
@@ -3655,103 +3657,103 @@ Sub syokainomi()  '‹Œu‰‰ñ‚Ì‚İv
         .DisplayAutoCorrectOptions = True
     End With
 
-    bfshn.Cells(sr(0) - 1, 5).Select   '—ÎFƒZƒ‹
-    Range(bfshn.Cells(gg1, dd1), bfshn.Cells(gg2, dd2)).Select '‘I‘ğ”ÍˆÍ‚Í–ß‚· bfshn”í‚¹‚½
-    Call oshimai(syutoku(), bfn, shn, 1, 0, "‰‰ñˆ—Š®—¹")
+    bfshn.Cells(sr(0) - 1, 5).Select   'ç·‘è‰²ã‚»ãƒ«
+    Range(bfshn.Cells(gg1, dd1), bfshn.Cells(gg2, dd2)).Select 'é¸æŠç¯„å›²ã¯æˆ»ã™ bfshnè¢«ã›ãŸ
+    Call oshimai(syutoku(), bfn, shn, 1, 0, "åˆå›å‡¦ç†å®Œäº†")
 End Sub
-'[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[
+'ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼
 Sub betat4(fbk As String, fsh As String, fmg1 As Long, fmr1 As Currency, fmg2 As Long, fmr2 As Currency, tbk As String, tsh As String, tog As Long, tor As Long, er34 As String, mr_8 As String)
     'e ver
-    Range(Workbooks(tbk).Sheets(tsh).Cells(tog, tor), Workbooks(tbk).Sheets(tsh).Cells(tog + fmg2 - fmg1, tor + Int(fmr2) - Int(fmr1))).ClearContents  'betatn‚Ícpp‚ÆˆÙ‚È‚èAd—l‚Æ‚µ‚ÄAƒNƒŠƒA‚·‚é‚±‚Æ‚Æ‚·‚éB
-    If er34 = "pp" Then '•W€Œ^’²®
-        Range(Workbooks(tbk).Sheets(tsh).Cells(tog, tor), Workbooks(tbk).Sheets(tsh).Cells(tog + fmg2 - fmg1, tor + Int(fmr2) - Int(fmr1))).NumberFormatLocal = "G/•W€"
-    ElseIf er34 = "mm" Then '•¶š—ñŒ^’²®
+    Range(Workbooks(tbk).Sheets(tsh).Cells(tog, tor), Workbooks(tbk).Sheets(tsh).Cells(tog + fmg2 - fmg1, tor + Int(fmr2) - Int(fmr1))).ClearContents  'betatnã¯cppã¨ç•°ãªã‚Šã€ä»•æ§˜ã¨ã—ã¦ã€ã‚¯ãƒªã‚¢ã™ã‚‹ã“ã¨ã¨ã™ã‚‹ã€‚
+    If er34 = "pp" Then 'æ¨™æº–å‹èª¿æ•´
+        Range(Workbooks(tbk).Sheets(tsh).Cells(tog, tor), Workbooks(tbk).Sheets(tsh).Cells(tog + fmg2 - fmg1, tor + Int(fmr2) - Int(fmr1))).NumberFormatLocal = "G/æ¨™æº–"
+    ElseIf er34 = "mm" Then 'æ–‡å­—åˆ—å‹èª¿æ•´
         Range(Workbooks(tbk).Sheets(tsh).Cells(tog, tor), Workbooks(tbk).Sheets(tsh).Cells(tog + fmg2 - fmg1, tor + Int(fmr2) - Int(fmr1))).NumberFormatLocal = "@"
-    ElseIf er34 = "pm" Then '’Ê‰İŒ^’²®
-        Range(Workbooks(tbk).Sheets(tsh).Cells(tog, tor), Workbooks(tbk).Sheets(tsh).Cells(tog + fmg2 - fmg1, tor + Int(fmr2) - Int(fmr1))).NumberFormatLocal = "#,##0;[Ô]-#,##0"
+    ElseIf er34 = "pm" Then 'é€šè²¨å‹èª¿æ•´
+        Range(Workbooks(tbk).Sheets(tsh).Cells(tog, tor), Workbooks(tbk).Sheets(tsh).Cells(tog + fmg2 - fmg1, tor + Int(fmr2) - Int(fmr1))).NumberFormatLocal = "#,##0;[èµ¤]-#,##0"
     Else
         'mp
     End If
     
-    If Abs(fmr1) = 0.4 Or Abs(fmr1) = 0.1 Then '¦¦’è•¶š‘Î‰A¦[¦s”Ô†‘Î‰@iƒtƒBƒ‹Œ^j
-        '‚±‚¿‚ç‚É‚à(¦¦A0.4Œü‚¯)
-        If Abs(fmr1) = 0.1 Then '¦[¦s”Ô†‘Î‰@¦b’è‰^—p
+    If Abs(fmr1) = 0.4 Or Abs(fmr1) = 0.1 Then 'ï½¦ï½¦å®šæ–‡å­—å¯¾å¿œã€ï½¦ãƒ¼ï½¦è¡Œç•ªå·å¯¾å¿œã€€ï¼ˆãƒ•ã‚£ãƒ«å‹ï¼‰
+        'ã“ã¡ã‚‰ã«ã‚‚(ï½¦ï½¦ã€0.4å‘ã‘)
+        If Abs(fmr1) = 0.1 Then 'ï½¦ãƒ¼ï½¦è¡Œç•ªå·å¯¾å¿œã€€â€»æš«å®šé‹ç”¨
             Workbooks(tbk).Sheets(tsh).Cells(tog, tor).Value = Trim$(mr_8) & Format(fmg1, "0000000") '86_019a
-            If fmg2 > fmg1 Then '”ÍˆÍ‚ª1s‚©2s‚µ‚©–³‚¢ê‡‚Ì‘Îˆ(ˆÈ‰º“¯•¶)
-                If mr_8 <> "" And mr_8 <> "000_" Then MsgBox "betat4‹““®’ˆÓbb " & mr_8 '30s86_019a
+            If fmg2 > fmg1 Then 'ç¯„å›²ãŒ1è¡Œã‹2è¡Œã—ã‹ç„¡ã„å ´åˆã®å¯¾å‡¦(ä»¥ä¸‹åŒæ–‡)
+                If mr_8 <> "" And mr_8 <> "000_" Then MsgBox "betat4æŒ™å‹•æ³¨æ„bb " & mr_8 '30s86_019a
                 Workbooks(tbk).Sheets(tsh).Cells(tog + 1, tor).Value = Trim$(mr_8) & Format(fmg1 + 1, "0000000")
-            '‚±‚±A‚‘¬ƒV[ƒg‚Ì2—ñ–Ú‚ğƒRƒs[‚·‚é‚±‚Æ‚àŒŸ“¢‚µ“¾‚éB
+            'ã“ã“ã€é«˜é€Ÿã‚·ãƒ¼ãƒˆã®2åˆ—ç›®ã‚’ã‚³ãƒ”ãƒ¼ã™ã‚‹ã“ã¨ã‚‚æ¤œè¨ã—å¾—ã‚‹ã€‚
             End If
-            If fmg2 > fmg1 + 1 Then  'ƒtƒBƒ‹‚Í‚RsˆÈã‚ ‚éê‡‚Ì‚İÀ{
+            If fmg2 > fmg1 + 1 Then  'ãƒ•ã‚£ãƒ«ã¯ï¼“è¡Œä»¥ä¸Šã‚ã‚‹å ´åˆã®ã¿å®Ÿæ–½
                 Range(Workbooks(tbk).Sheets(tsh).Cells(tog, tor), Workbooks(tbk).Sheets(tsh).Cells(tog + 1, tor)).AutoFill Destination:=Range(Workbooks(tbk).Sheets(tsh).Cells(tog, tor), Workbooks(tbk).Sheets(tsh).Cells(tog + fmg2 - fmg1, tor))
             End If
-        Else '¦¦’è•¶š‘Î‰(’Êí) (0.4)
+        Else 'ï½¦ï½¦å®šæ–‡å­—å¯¾å¿œ(é€šå¸¸) (0.4)
             Workbooks(tbk).Sheets(tsh).Cells(tog, tor).Value = Trim$(mr_8)
             If fmg2 > fmg1 Then
                 Workbooks(tbk).Sheets(tsh).Cells(tog + 1, tor).Value = Trim$(mr_8)
             End If
-            If fmg2 > fmg1 + 1 Then  'ƒtƒBƒ‹‚Í‚RsˆÈã‚ ‚éê‡‚Ì‚İÀ{
+            If fmg2 > fmg1 + 1 Then  'ãƒ•ã‚£ãƒ«ã¯ï¼“è¡Œä»¥ä¸Šã‚ã‚‹å ´åˆã®ã¿å®Ÿæ–½
                 Range(Workbooks(tbk).Sheets(tsh).Cells(tog, tor), Workbooks(tbk).Sheets(tsh).Cells(tog + 1, tor)).AutoFill Destination:=Range(Workbooks(tbk).Sheets(tsh).Cells(tog, tor), Workbooks(tbk).Sheets(tsh).Cells(tog + fmg2 - fmg1, tor))
             End If
         End If
-    Else 'ˆê”Ê‘Î‰AŠÜ•¡”—ñƒxƒ^Œ^
-        If er34 = "mp" Then  'ƒZƒ‹“¥P
-            Call cpp2(fbk, fsh, fmg1, Int(fmr1), fmg2, Int(fmr2), tbk, tsh, tog, tor, 0, 0, 12) '12:’l‚Æ”’l‚Ì‘® '’xEƒRƒsƒyƒpƒ^[ƒ“
+    Else 'ä¸€èˆ¬å¯¾å¿œæ™‚ã€å«è¤‡æ•°åˆ—ãƒ™ã‚¿å‹
+        If er34 = "mp" Then  'ã‚»ãƒ«è¸è¥²
+            Call cpp2(fbk, fsh, fmg1, Int(fmr1), fmg2, Int(fmr2), tbk, tsh, tog, tor, 0, 0, 12) '12:å€¤ã¨æ•°å€¤ã®æ›¸å¼ 'é…ãƒ»ã‚³ãƒ”ãƒšãƒ‘ã‚¿ãƒ¼ãƒ³
         Else 'mm,pp,pm
-            Call cpp2(fbk, fsh, fmg1, Int(fmr1), fmg2, Int(fmr2), tbk, tsh, tog, tor, 0, 0, -4163) '-4163:’l
+            Call cpp2(fbk, fsh, fmg1, Int(fmr1), fmg2, Int(fmr2), tbk, tsh, tog, tor, 0, 0, -4163) '-4163:å€¤
         End If
     End If
 End Sub
-'[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[
+'ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼
 Sub copipe(fbk As String, fsh As String, fmg1 As Long, fmr1 As Long, fmg2 As Long, fmr2 As Long, tbk As String, tsh As String, tog1 As Long, tor1 As Long, tog2 As Long, tor2 As Long, mdo As Long)
-    'mdo: 1:value A2:formulaA3:formulaR1C1
-    'ƒNƒŠƒbƒvƒ{[ƒh‚ğg—p‚µ‚È‚¢ƒRƒsƒy‚ÌÀŒ»
+    'mdo: 1:value ã€2:formulaã€3:formulaR1C1
+    'ã‚¯ãƒªãƒƒãƒ—ãƒœãƒ¼ãƒ‰ã‚’ä½¿ç”¨ã—ãªã„ã‚³ãƒ”ãƒšã®å®Ÿç¾
     If mdo = 1 Then  'Value
         Range(Workbooks(tbk).Sheets(tsh).Cells(tog1, tor1), Workbooks(tbk).Sheets(tsh).Cells(tog2, tor2)) = _
           Range(Workbooks(fbk).Sheets(fsh).Cells(fmg1, fmr1), Workbooks(fbk).Sheets(fsh).Cells(fmg2, fmr2)).Value
     ElseIf mdo = 2 Then
         Range(Workbooks(tbk).Sheets(tsh).Cells(tog1, tor1), Workbooks(tbk).Sheets(tsh).Cells(tog2, tor2)) = _
           Range(Workbooks(fbk).Sheets(fsh).Cells(fmg1, fmr1), Workbooks(fbk).Sheets(fsh).Cells(fmg2, fmr2)).Formula
-    ElseIf mdo = 3 Then '-4123Œü‚¯
+    ElseIf mdo = 3 Then '-4123å‘ã‘
         Range(Workbooks(tbk).Sheets(tsh).Cells(tog1, tor1), Workbooks(tbk).Sheets(tsh).Cells(tog2, tor2)).FormulaR1C1 = _
-          Range(Workbooks(fbk).Sheets(fsh).Cells(fmg1, fmr1), Workbooks(fbk).Sheets(fsh).Cells(fmg2, fmr2)).FormulaR1C1 '-4123Œü‚¯
+          Range(Workbooks(fbk).Sheets(fsh).Cells(fmg1, fmr1), Workbooks(fbk).Sheets(fsh).Cells(fmg2, fmr2)).FormulaR1C1 '-4123å‘ã‘
     Else
-        Call oshimai("", bfn, shn, 1, 0, "‚Ü‚¾‘¢¬’†d")
+        Call oshimai("", bfn, shn, 1, 0, "ã¾ã é€ æˆä¸­d")
     End If
 End Sub
-'[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[
+'ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼
 Sub cpp2(fbk As String, fsh As String, fmg1 As Long, fmr1 As Long, fmg2 As Long, fmr2 As Long, tbk As String, tsh As String, tog1 As Long, tor1 As Long, tog2 As Long, tor2 As Long, mdo As Long)
         
-    'mdo:12@EEE’l‚Æ”’l‚Ì‘®@(2002ˆÈ~)@@xlPasteValuesAndNumberFormats@.copy.paste
-    '@@@@-4123 (-99,samaru)@”®@xlPasteFormulas@@@.copy.paste
-    '@@@@-4104 (ƒƒO•”)@‚·‚×‚Ä@xlPasteAll@@.copy.paste@EEEƒNƒŠƒbƒvƒ{[ƒh‚Éî•ñ•Û‚³‚ê‚é(ŒJ•Ô‚µ‰Â”\)
-    '@@@@-4163 (’l)@@xlPasteValues@@@@@.copy.paste‚µ‚È‚¢¨‚¾‚©‚ç‘‚¢
-    '[4163ˆÈŠO‚Í‘¬“x’x‚¢.Copy.Paste ‚È‚Ì‚Å
+    'mdo:12ã€€ãƒ»ãƒ»ãƒ»å€¤ã¨æ•°å€¤ã®æ›¸å¼ã€€(2002ä»¥é™)ã€€ã€€xlPasteValuesAndNumberFormatsã€€.copy.paste
+    'ã€€ã€€ã€€ã€€-4123 (-99,samaru)ã€€æ•°å¼ã€€xlPasteFormulasã€€ã€€ã€€.copy.paste
+    'ã€€ã€€ã€€ã€€-4104 (ãƒ­ã‚°éƒ¨)ã€€ã™ã¹ã¦ã€€xlPasteAllã€€ã€€.copy.pasteã€€ãƒ»ãƒ»ãƒ»ã‚¯ãƒªãƒƒãƒ—ãƒœãƒ¼ãƒ‰ã«æƒ…å ±ä¿æŒã•ã‚Œã‚‹(ç¹°è¿”ã—å¯èƒ½)
+    'ã€€ã€€ã€€ã€€-4163 (å€¤)ã€€ã€€xlPasteValuesã€€ã€€ã€€ã€€ã€€.copy.pasteã—ãªã„â†’ã ã‹ã‚‰æ—©ã„
+    'ãƒ¼4163ä»¥å¤–ã¯é€Ÿåº¦é…ã„.Copy.Paste ãªã®ã§
     
-    If tog2 = 0 And tor2 = 0 Then ']—ˆƒpƒ^[ƒ“
-        'ƒRƒsƒyƒ‹[ƒ`ƒ“@30s85_004
-        If mdo = -4163 Then  'VŒ^‘¬“x‘‚¢B
+    If tog2 = 0 And tor2 = 0 Then 'å¾“æ¥ãƒ‘ã‚¿ãƒ¼ãƒ³
+        'ã‚³ãƒ”ãƒšãƒ«ãƒ¼ãƒãƒ³ã€€30s85_004
+        If mdo = -4163 Then  'æ–°å‹é€Ÿåº¦æ—©ã„ã€‚
             Range(Workbooks(tbk).Sheets(tsh).Cells(tog1, tor1), Workbooks(tbk).Sheets(tsh).Cells(tog1 + fmg2 - fmg1, tor1 + fmr2 - fmr1)) = _
               Range(Workbooks(fbk).Sheets(fsh).Cells(fmg1, fmr1), Workbooks(fbk).Sheets(fsh).Cells(fmg2, fmr2)).Value
     
-        Else ']—ˆŒ^(‚à‰ü—Ç‚Ö) ƒRƒsƒy‚È‚Ì‚Å’x‚¢(”®ƒRƒsƒy‚Í‚±‚êA”ğ‚¯‚ç‚ê‚È‚¢)B
-            UserForm3.StartUpPosition = 3 '1@ƒGƒNƒZƒ‹‚Ì’†‰›A@2@‰æ–Ê‚Ì’†‰›A@3@‰æ–Ê‚Ì¶ã
+        Else 'å¾“æ¥å‹(ã‚‚æ”¹è‰¯ã¸) ã‚³ãƒ”ãƒšãªã®ã§é…ã„(æ•°å¼ã‚³ãƒ”ãƒšã¯ã“ã‚Œã€é¿ã‘ã‚‰ã‚Œãªã„)ã€‚
+            UserForm3.StartUpPosition = 3 '1ã€€ã‚¨ã‚¯ã‚»ãƒ«ã®ä¸­å¤®ã€ã€€2ã€€ç”»é¢ã®ä¸­å¤®ã€ã€€3ã€€ç”»é¢ã®å·¦ä¸Š
             UserForm3.Show vbModeless
             UserForm3.Repaint
             Range(Workbooks(fbk).Sheets(fsh).Cells(fmg1, fmr1), Workbooks(fbk).Sheets(fsh).Cells(fmg2, fmr2)).Copy
             Workbooks(tbk).Sheets(tsh).Cells(tog1, tor1).PasteSpecial Paste:=mdo
-            '(Ql)ª.copy‚ÌƒRƒs[ƒƒ\ƒbƒh‚ÍAselectƒ`ƒbƒN‚É”ÍˆÍ‚Íw’è‚³‚ê‚é‹““®‚Å‚ ‚éB
+            '(å‚è€ƒ)â†‘.copyã®ã‚³ãƒ”ãƒ¼ãƒ¡ã‚½ãƒƒãƒ‰ã¯ã€selectãƒãƒƒã‚¯ã«ç¯„å›²ã¯æŒ‡å®šã•ã‚Œã‚‹æŒ™å‹•ã§ã‚ã‚‹ã€‚
             Unload UserForm3
             UserForm1.Repaint
         End If
-    ElseIf fmr2 <= 0 Then  'Vƒpƒ^[ƒ“iˆês‚ğ•¡”s‚ÉƒRƒsƒyj-99‚â‹ß—‚‘¬‚Ì¦¦ASC(PHONETIC())‚Æ‚©‚Åg‚í‚ê‚éB
+    ElseIf fmr2 <= 0 Then  'æ–°ãƒ‘ã‚¿ãƒ¼ãƒ³ï¼ˆä¸€è¡Œã‚’è¤‡æ•°è¡Œã«ã‚³ãƒ”ãƒšï¼‰-99ã‚„è¿‘ä¼¼é«˜é€Ÿã®ï½¦ï½¦ASC(PHONETIC())ã¨ã‹ã§ä½¿ã‚ã‚Œã‚‹ã€‚
         If fmr2 = 0 Then
-            If mdo = -4163 Then  'VŒ^‘¬“x‘‚¢B
-                Call oshimai("", bfn, shn, 1, 0, "‚Ü‚¾‘¢¬’†a")
+            If mdo = -4163 Then  'æ–°å‹é€Ÿåº¦æ—©ã„ã€‚
+                Call oshimai("", bfn, shn, 1, 0, "ã¾ã é€ æˆä¸­a")
                 Range(Workbooks(tbk).Sheets(tsh).Cells(tog1, tor1), Workbooks(tbk).Sheets(tsh).Cells(tog2, tor2)) = _
                 Range(Workbooks(fbk).Sheets(fsh).Cells(fmg1, fmr1), Workbooks(fbk).Sheets(fsh).Cells(fmg2, fmr2)).Value
-            Else ']—ˆŒ^(‚à‰ü—Ç‚Ö) ƒRƒsƒy‚È‚Ì‚Å’x‚¢(”®ƒRƒsƒy‚Í‚±‚êA”ğ‚¯‚ç‚ê‚È‚¢)B
-                UserForm3.StartUpPosition = 3 '1@ƒGƒNƒZƒ‹‚Ì’†‰›A@2@‰æ–Ê‚Ì’†‰›A@3@‰æ–Ê‚Ì¶ã
+            Else 'å¾“æ¥å‹(ã‚‚æ”¹è‰¯ã¸) ã‚³ãƒ”ãƒšãªã®ã§é…ã„(æ•°å¼ã‚³ãƒ”ãƒšã¯ã“ã‚Œã€é¿ã‘ã‚‰ã‚Œãªã„)ã€‚
+                UserForm3.StartUpPosition = 3 '1ã€€ã‚¨ã‚¯ã‚»ãƒ«ã®ä¸­å¤®ã€ã€€2ã€€ç”»é¢ã®ä¸­å¤®ã€ã€€3ã€€ç”»é¢ã®å·¦ä¸Š
                 UserForm3.Show vbModeless
                 UserForm3.Repaint
                 Range(Workbooks(fbk).Sheets(fsh).Cells(fmg1, fmr1), Workbooks(fbk).Sheets(fsh).Cells(fmg1, fmr1)).Copy
@@ -3760,285 +3762,285 @@ Sub cpp2(fbk As String, fsh As String, fmg1 As Long, fmr1 As Long, fmg2 As Long,
                 UserForm1.Repaint
             End If
         ElseIf fmr2 = -1 Then
-            If tog1 > tog2 Then Call oshimai("", bfn, shn, 1, 0, "tog1‚ªtog2‚æ‚è‚Å‚©‚¢a")
-            UserForm3.StartUpPosition = 3 '1@ƒGƒNƒZƒ‹‚Ì’†‰›A@2@‰æ–Ê‚Ì’†‰›A@3@‰æ–Ê‚Ì¶ã
+            If tog1 > tog2 Then Call oshimai("", bfn, shn, 1, 0, "tog1ãŒtog2ã‚ˆã‚Šã§ã‹ã„a")
+            UserForm3.StartUpPosition = 3 '1ã€€ã‚¨ã‚¯ã‚»ãƒ«ã®ä¸­å¤®ã€ã€€2ã€€ç”»é¢ã®ä¸­å¤®ã€ã€€3ã€€ç”»é¢ã®å·¦ä¸Š
             UserForm3.Show vbModeless
             UserForm3.Repaint
             Range(Workbooks(tbk).Sheets(tsh).Cells(tog1, tor1), Workbooks(tbk).Sheets(tsh).Cells(tog1, tor1)) = fsh
             If tog2 > tog1 Then
                 Range(Workbooks(tbk).Sheets(tsh).Cells(tog1, tor1), Workbooks(tbk).Sheets(tsh).Cells(tog1, tor1)).Copy
-                Range(Workbooks(tbk).Sheets(tsh).Cells(tog1, tor1), Workbooks(tbk).Sheets(tsh).Cells(tog2, tor1)).PasteSpecial Paste:=mdo 'tor2‚Íg‚Á‚Ä‚È‚¢
+                Range(Workbooks(tbk).Sheets(tsh).Cells(tog1, tor1), Workbooks(tbk).Sheets(tsh).Cells(tog2, tor1)).PasteSpecial Paste:=mdo 'tor2ã¯ä½¿ã£ã¦ãªã„
             End If
             Unload UserForm3
             UserForm1.Repaint
-        '4163•ªŠò‚È‚µ
-        ElseIf fmr2 = -2 Then  'ƒtƒBƒ‹(˜A”Ô‚Ì‚İAŒÅ’èƒtƒBƒ‹‚Í‚â‚ç‚È‚¢‚Éj
-          '4163•ªŠò‚È‚µ
-            If tog1 > tog2 Then Call oshimai("", bfn, shn, 1, 0, "tog1‚ªtog2‚æ‚è‚Å‚©‚¢b")
+        '4163åˆ†å²ãªã—
+        ElseIf fmr2 = -2 Then  'ãƒ•ã‚£ãƒ«(é€£ç•ªã®ã¿ã€å›ºå®šãƒ•ã‚£ãƒ«ã¯ã‚„ã‚‰ãªã„ã«ï¼‰
+          '4163åˆ†å²ãªã—
+            If tog1 > tog2 Then Call oshimai("", bfn, shn, 1, 0, "tog1ãŒtog2ã‚ˆã‚Šã§ã‹ã„b")
                 Range(Workbooks(tbk).Sheets(tsh).Cells(tog1, tor1), Workbooks(tbk).Sheets(tsh).Cells(tog1, tor1)) = fmg2
                 If tog2 > tog1 Then
                     Range(Workbooks(tbk).Sheets(tsh).Cells(tog1 + 1, tor1), Workbooks(tbk).Sheets(tsh).Cells(tog1 + 1, tor1)) = fmg2 + 1
-                    If tog2 > tog1 + 1 Then  'ƒtƒBƒ‹
-                        Range(bfshn.Cells(tog1, tor1), bfshn.Cells(tog1 + 1, tor1)).AutoFill Destination:=Range(bfshn.Cells(tog1, tor1), bfshn.Cells(tog2, tor1))   'tor2‚Íg‚Á‚Ä‚È‚¢
+                    If tog2 > tog1 + 1 Then  'ãƒ•ã‚£ãƒ«
+                        Range(bfshn.Cells(tog1, tor1), bfshn.Cells(tog1 + 1, tor1)).AutoFill Destination:=Range(bfshn.Cells(tog1, tor1), bfshn.Cells(tog2, tor1))   'tor2ã¯ä½¿ã£ã¦ãªã„
                     End If
                 End If
             Else
-                Call oshimai("", bfn, shn, 1, 0, "‚Ç‚¤‚È‚é‚©–¢’è")
+                Call oshimai("", bfn, shn, 1, 0, "ã©ã†ãªã‚‹ã‹æœªå®š")
             End If
         Else
-        Call oshimai("", bfn, shn, 1, 0, "‚Ü‚¾‘¢¬’†b")
+        Call oshimai("", bfn, shn, 1, 0, "ã¾ã é€ æˆä¸­b")
     End If
-    '«86_014c’Ç‰Áiexcel2019 ‘ÎôŒü‚¯testj
+    'â†“86_014cè¿½åŠ ï¼ˆexcel2019 å¯¾ç­–å‘ã‘testï¼‰
     Application.CutCopyMode = False
 End Sub
-'[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[
-Function kskup(am1 As String, am2 As String, n1 As Long, n2 As Long, h As Long, b As Currency, c As Currency, k0 As Long, h0 As Long, pap2 As Long, er2() As Currency, spd As String, pqp As Long, e5 As Long, er3() As Currency, hiru As Variant) As Long  '‚¶‚ 
-    'p(kskup)”»’èVd—lAn3‚Í‹ß——p@,(ˆø”)m2¨n1‚Ö ƒŠƒtƒ@ƒ‰Fn3An2,h0,k0, pqp’Ç‰Á624,e5&er3()’Ç‰Á629
+'ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼
+Function kskup(am1 As String, am2 As String, n1 As Long, n2 As Long, h As Long, b As Currency, c As Currency, k0 As Long, h0 As Long, pap2 As Long, er2() As Currency, spd As String, pqp As Long, e5 As Long, er3() As Currency, hiru As Variant) As Long  'ã˜ã‚
+    'p(kskup)åˆ¤å®šæ–°ä»•æ§˜ã€n3ã¯è¿‘ä¼¼ç”¨ã€€,(å¼•æ•°)m2â†’n1ã¸ ãƒªãƒ•ã‚¡ãƒ©ï¼šn3ã€n2,h0,k0, pqpè¿½åŠ 624,e5&er3()è¿½åŠ 629
     Dim m As Long, n3 As Long
-    Dim tskosk As Long 'strconv—p(’è‘¬F2(]—ˆ’Ê‚è)A‚‘¬F26(New85_006))
+    Dim tskosk As Long 'strconvç”¨(å®šé€Ÿï¼š2(å¾“æ¥é€šã‚Š)ã€é«˜é€Ÿï¼š26(New85_006))
     Dim n3a As Long
-    'Ÿ‚‘¬‘¤(ƒE‹ß—)ê—pB’á‘¬‘¤‚Ítskup‚Ö
+    'â—†é«˜é€Ÿå´(ç´”ãƒ»è¿‘ä¼¼)å°‚ç”¨ã€‚ä½é€Ÿå´ã¯tskupã¸
     tskosk = 10 + hrkt '30s86_020s
-    kskup = 0 'ƒŠƒZƒbƒg(•s—v‚¾‚ª)
-    n3 = 0 'ƒ[ƒƒXƒ^[ƒg
-    krpm2 = 0 '‚‘¬ƒƒbƒN•p=-2”»’èƒtƒ‰ƒO
+    kskup = 0 'ãƒªã‚»ãƒƒãƒˆ(ä¸è¦ã ãŒ)
+    n3 = 0 'ã‚¼ãƒ­ã‚¹ã‚¿ãƒ¼ãƒˆ
+    krpm2 = 0 'é«˜é€Ÿãƒ­ãƒƒã‚¯ï¼†p=-2åˆ¤å®šãƒ•ãƒ©ã‚°
 
-    If h < k Then '“–ƒV[ƒg‚É‰½‚à–³‚¢ê‡(‰‰ñ‚Ì‚İ’Ê‰ßƒ][ƒ“) k‚ 
+    If h < k Then 'å½“ã‚·ãƒ¼ãƒˆã«ä½•ã‚‚ç„¡ã„å ´åˆ(åˆå›ã®ã¿é€šéã‚¾ãƒ¼ãƒ³) kã‚
         If c < 0 Then
-            kskup = -1    '-1-2‚±‚Ì“_‚Åexitdo(p:-1‚Æ‚·‚éB)
-            MsgBox "•\‹ó”’‚Ì-1-2‚Å‚·(p=-1,exitdoA‚±‚Ì‚Ü‚ÜI—¹‚³‚ê‚Ü‚·)B"
-        Else  '¦c>=0‚ª‘O’ñ‚Æ‚È‚éB
+            kskup = -1    '-1-2ã“ã®æ™‚ç‚¹ã§exitdo(p:-1ã¨ã™ã‚‹ã€‚)
+            MsgBox "è¡¨ç©ºç™½ã®-1-2ã§ã™(p=-1,exitdoã€ã“ã®ã¾ã¾çµ‚äº†ã•ã‚Œã¾ã™)ã€‚"
+        Else  'â€»c>=0ãŒå‰æã¨ãªã‚‹ã€‚
             kskup = 2
             n2 = h + 1
             
-            If er2(0) < 0 Then  '‚‘¬ƒƒbƒNƒIƒ“(•\‹ó”’)‚Å‚·B"
-                UserForm4.StartUpPosition = 2 '1@ƒGƒNƒZƒ‹‚Ì’†‰›A@2@‰æ–Ê‚Ì’†‰›A@3@‰æ–Ê‚Ì¶ã
+            If er2(0) < 0 Then  'é«˜é€Ÿãƒ­ãƒƒã‚¯ã‚ªãƒ³(è¡¨ç©ºç™½)ã§ã™ã€‚"
+                UserForm4.StartUpPosition = 2 '1ã€€ã‚¨ã‚¯ã‚»ãƒ«ã®ä¸­å¤®ã€ã€€2ã€€ç”»é¢ã®ä¸­å¤®ã€ã€€3ã€€ç”»é¢ã®å·¦ä¸Š
                 UserForm4.Show vbModeless
                 UserForm4.Repaint
-                bfshn.Cells(sr(2), 5).Value = "ƒ‚Û¯¸(•\‹ó”’)" '‚»‚Ì‚¤‚¿
-                If pap2 = 0 And Abs(e5) < 1 And UBound(er3()) > 0 Then 'p=-2‚Ì”»’è@‚U‚Q‚X
+                bfshn.Cells(sr(2), 5).Value = "ç´”é«˜ï¾›ï½¯ï½¸(è¡¨ç©ºç™½)" 'ãã®ã†ã¡
+                If pap2 = 0 And Abs(e5) < 1 And UBound(er3()) > 0 Then 'p=-2ã®åˆ¤å®šã€€ï¼–ï¼’ï¼™
                     For jj = 1 To UBound(er3())
-                        If er3(jj) = 0.1 Then krpm2 = 1  'er3(jj)<0¨=0.1 ‚Ö
+                        If er3(jj) = 0.1 Then krpm2 = 1  'er3(jj)<0â†’=0.1 ã¸
                     Next
-                    If krpm2 = 1 Then kskup = -2 'p=-2‚ÌŠm’è@‚U‚Q‚X
+                    If krpm2 = 1 Then kskup = -2 'p=-2ã®ç¢ºå®šã€€ï¼–ï¼’ï¼™
                 End If
                 Unload UserForm4
                 UserForm1.Repaint
             End If
         End If
-    ElseIf StrConv(am2, tskosk) = StrConv(am1, tskosk) Then '(ƒAƒhƒoƒ‰ƒsƒh)‘O‰ñˆê’v
+    ElseIf StrConv(am2, tskosk) = StrConv(am1, tskosk) Then '(ã‚¢ãƒ‰ãƒãƒ©ãƒ”ãƒ‰)å‰å›ä¸€è‡´
         kskup = 1
         n2 = n1
-    ElseIf spd = "ƒ‚‘¬" And (k0 > h0 Or pqp = 1) Then  '(ƒAƒhƒoƒ‰ƒsƒh)‚‘¬ƒƒbƒNƒIƒ“ó‘Ô@pqp’Ç‰Á624
+    ElseIf spd = "ç´”é«˜é€Ÿ" And (k0 > h0 Or pqp = 1) Then  '(ã‚¢ãƒ‰ãƒãƒ©ãƒ”ãƒ‰)é«˜é€Ÿãƒ­ãƒƒã‚¯ã‚ªãƒ³çŠ¶æ…‹ã€€pqpè¿½åŠ 624
         If c < 0 Then
-            kskup = -1    '-1-2‚±‚Ì“_‚Åexitdo(p:-1‚Æ‚·‚éB)
-            MsgBox "‚±‚±‚Í‚à‚¤’Ê‚ç‚È‚¢‚Í‚¸(-1-2)ˆÈŒã“–ƒV[ƒg‘¤î•ñ‚È‚¢‚Å‚·(p=-1)B"
+            kskup = -1    '-1-2ã“ã®æ™‚ç‚¹ã§exitdo(p:-1ã¨ã™ã‚‹ã€‚)
+            MsgBox "ã“ã“ã¯ã‚‚ã†é€šã‚‰ãªã„ã¯ãš(-1-2)ä»¥å¾Œå½“ã‚·ãƒ¼ãƒˆå´æƒ…å ±ãªã„ã§ã™(p=-1)ã€‚"
         Else
             kskup = 2
             n2 = h + 1
         End If
-    '(ƒAƒhƒoƒ‰ƒsƒh)Ÿsˆê’v c = Round(c, 0)’Ç‰Á85Q026iF-15.‚PÀ{‚µ‚È‚¢A-15À{‚·‚éj
-    ElseIf Round(c) <> -1 And Round(c) <> -2 And c = Round(c, 0) And (spd = "ƒ‚‘¬" Or spd = "ƒm[ƒ}ƒ‹") And n1 < h0 And _
+    '(ã‚¢ãƒ‰ãƒãƒ©ãƒ”ãƒ‰)æ¬¡è¡Œä¸€è‡´ c = Round(c, 0)è¿½åŠ 85ï¼¿026ï¼ˆï¼š-15.ï¼‘å®Ÿæ–½ã—ãªã„ã€-15å®Ÿæ–½ã™ã‚‹ï¼‰
+    ElseIf Round(c) <> -1 And Round(c) <> -2 And c = Round(c, 0) And (spd = "ç´”é«˜é€Ÿ" Or spd = "ãƒãƒ¼ãƒãƒ«") And n1 < h0 And _
             StrConv(am2, tskosk) = StrConv(bfshn.Cells(n1 + 1, Abs(b)).Value, tskosk) Then
         kskup = 1
-        If b < 0 Then 'ƒ‚‘¬
-            n3 = n1 + 1 'n2‚Í¡‰ñ“Ë‡ˆ—‘ÎÛs(‰¼)
-            n2 = hiru(n3, 2) '‹ß—‚Ì“Ç‚İ‘Ö‚¦ ‚W‚TQ027ŒŸØ‚ƒ
+        If b < 0 Then 'ç´”é«˜é€Ÿæ™‚
+            n3 = n1 + 1 'n2ã¯ä»Šå›çªåˆå‡¦ç†å¯¾è±¡è¡Œ(ä»®)
+            n2 = hiru(n3, 2) 'è¿‘ä¼¼ã®èª­ã¿æ›¿ãˆ ï¼˜ï¼•ï¼¿027æ¤œè¨¼ï½ƒ
             k0 = n3
-        Else 'ƒm[ƒ}ƒ‹
+        Else 'ãƒãƒ¼ãƒãƒ«
             n2 = n1 + 1
         End If
     Else
         'p=0
     End If
     
-    If kskup = 0 Then '‚Ü‚¾Œˆ‚Ü‚ç‚¸(p=0)¨ƒ}ƒbƒ`ƒ“ƒOÀ{
-        If k0 > h0 Then Call oshimai("", bfn, shn, 1, 0, "k0>h0‚Åmatch‚É‚¢‚­‚æ‚¤‚È‚±‚Æ‚Í‚ ‚Á‚Ä‚Í‚È‚ç‚È‚¢B")
-        If IsError(Application.Match(StrConv(am2, tskosk), Range(bfshn.Cells(k0, Abs(b)), bfshn.Cells(h0, Abs(b))), 1)) Then '‹ß—‚Å‚àƒGƒ‰[‚Í”­¶‚·‚éB
+    If kskup = 0 Then 'ã¾ã æ±ºã¾ã‚‰ãš(p=0)â†’ãƒãƒƒãƒãƒ³ã‚°å®Ÿæ–½
+        If k0 > h0 Then Call oshimai("", bfn, shn, 1, 0, "k0>h0ã§matchã«ã„ãã‚ˆã†ãªã“ã¨ã¯ã‚ã£ã¦ã¯ãªã‚‰ãªã„ã€‚")
+        If IsError(Application.Match(StrConv(am2, tskosk), Range(bfshn.Cells(k0, Abs(b)), bfshn.Cells(h0, Abs(b))), 1)) Then 'è¿‘ä¼¼ã§ã‚‚ã‚¨ãƒ©ãƒ¼ã¯ç™ºç”Ÿã™ã‚‹ã€‚
             m = 0
         Else
-            m = Application.WorksheetFunction.Match(StrConv(am2, tskosk), Range(bfshn.Cells(k0, Abs(b)), bfshn.Cells(h0, Abs(b))), 1) '‰¼ô’è
-            If StrConv(am2, tskosk) <> StrConv(bfshn.Cells(k0 + m - 1, Abs(b)), tskosk) Then 'ˆê’v‚µ‚Ä‚È‚¯‚ê‚Î“ñ’iŠK‚Ö
+            m = Application.WorksheetFunction.Match(StrConv(am2, tskosk), Range(bfshn.Cells(k0, Abs(b)), bfshn.Cells(h0, Abs(b))), 1) 'ä»®ç­–å®š
+            If StrConv(am2, tskosk) <> StrConv(bfshn.Cells(k0 + m - 1, Abs(b)), tskosk) Then 'ä¸€è‡´ã—ã¦ãªã‘ã‚Œã°äºŒæ®µéšã¸
                 m = 0
-            Else 'ok‹ß—À{
+            Else 'okè¿‘ä¼¼å®Ÿæ–½
                 kskup = 1
-                n3 = k0 + m - 1 'n2‚Í¡‰ñ“Ë‡ˆ—‘ÎÛs(‰¼)
-                n2 = hiru(n3, 2) '‹ß—‚Ì“Ç‚İ‘Ö‚¦ ‚W‚TQ027ŒŸØ‚ƒ
-                If spd = "ƒ‚‘¬" Then k0 = n3
+                n3 = k0 + m - 1 'n2ã¯ä»Šå›çªåˆå‡¦ç†å¯¾è±¡è¡Œ(ä»®)
+                n2 = hiru(n3, 2) 'è¿‘ä¼¼ã®èª­ã¿æ›¿ãˆ ï¼˜ï¼•ï¼¿027æ¤œè¨¼ï½ƒ
+                If spd = "ç´”é«˜é€Ÿ" Then k0 = n3
             End If
         End If
-        If spd = "ƒ‚‘¬" And m = 0 Then 'V‹K‚Åƒ‚‘¬‚Í“–ˆ—s‚¤
+        If spd = "ç´”é«˜é€Ÿ" And m = 0 Then 'æ–°è¦ã§ç´”é«˜é€Ÿã¯å½“å‡¦ç†è¡Œã†
             kskup = 2
             n2 = h + 1
         End If
     End If
 End Function
-'[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[
-Function tskup(am1 As String, am2 As String, n1 As Long, n2 As Long, h As Long, b As Currency, c As Currency, k0 As Long, h0 As Long, pap2 As Long, er2() As Currency, spd As String, pqp As Long, e5 As Long, er3() As Currency) As Long  '‚¶‚ 
-    'p(tskup)”»’èVd—lAn3‚Í‹ß——p@,(ˆø”)m2¨n1‚Ö ƒŠƒtƒ@ƒ‰Fn3An2,h0,k0, pqp’Ç‰Á624,e5&er3()’Ç‰Á629
+'ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼
+Function tskup(am1 As String, am2 As String, n1 As Long, n2 As Long, h As Long, b As Currency, c As Currency, k0 As Long, h0 As Long, pap2 As Long, er2() As Currency, spd As String, pqp As Long, e5 As Long, er3() As Currency) As Long  'ã˜ã‚
+    'p(tskup)åˆ¤å®šæ–°ä»•æ§˜ã€n3ã¯è¿‘ä¼¼ç”¨ã€€,(å¼•æ•°)m2â†’n1ã¸ ãƒªãƒ•ã‚¡ãƒ©ï¼šn3ã€n2,h0,k0, pqpè¿½åŠ 624,e5&er3()è¿½åŠ 629
     Dim m As Long, n3 As Long
-    Dim tskosk As Long 'strconv—p(’è‘¬F2(]—ˆ’Ê‚è)A‚‘¬F26(New85_006))
-    '’á‘¬‘¤ê—p
-    tskosk = 2  '‘å•¶š¨¬•¶š‰»
-    tskup = 0 'ƒŠƒZƒbƒg(•s—v‚¾‚ª)
-    n3 = 0 'ƒ[ƒƒXƒ^[ƒg
-    krpm2 = 0 '‚‘¬ƒƒbƒN•p=-2”»’èƒtƒ‰ƒO
-    If h < k Then  '“–ƒV[ƒg‚É‰½‚à–³‚¢ê‡(‰‰ñ‚Ì‚İ’Ê‰ßƒ][ƒ“) k‚ 
+    Dim tskosk As Long 'strconvç”¨(å®šé€Ÿï¼š2(å¾“æ¥é€šã‚Š)ã€é«˜é€Ÿï¼š26(New85_006))
+    'â—‡ä½é€Ÿå´å°‚ç”¨
+    tskosk = 2  'å¤§æ–‡å­—â†’å°æ–‡å­—åŒ–
+    tskup = 0 'ãƒªã‚»ãƒƒãƒˆ(ä¸è¦ã ãŒ)
+    n3 = 0 'ã‚¼ãƒ­ã‚¹ã‚¿ãƒ¼ãƒˆ
+    krpm2 = 0 'é«˜é€Ÿãƒ­ãƒƒã‚¯ï¼†p=-2åˆ¤å®šãƒ•ãƒ©ã‚°
+    If h < k Then  'å½“ã‚·ãƒ¼ãƒˆã«ä½•ã‚‚ç„¡ã„å ´åˆ(åˆå›ã®ã¿é€šéã‚¾ãƒ¼ãƒ³) kã‚
         If c < 0 Then
-            tskup = -1    '-1-2‚±‚Ì“_‚Åexitdo(p:-1‚Æ‚·‚éB)
-            MsgBox "•\‹ó”’‚Ì-1-2‚Å‚·(p=-1,exitdoA‚±‚Ì‚Ü‚ÜI—¹‚³‚ê‚Ü‚·)B"
-        Else  '¦c>=0‚ª‘O’ñ‚Æ‚È‚éB
+            tskup = -1    '-1-2ã“ã®æ™‚ç‚¹ã§exitdo(p:-1ã¨ã™ã‚‹ã€‚)
+            MsgBox "è¡¨ç©ºç™½ã®-1-2ã§ã™(p=-1,exitdoã€ã“ã®ã¾ã¾çµ‚äº†ã•ã‚Œã¾ã™)ã€‚"
+        Else  'â€»c>=0ãŒå‰æã¨ãªã‚‹ã€‚
             tskup = 2
             n2 = h + 1
-            h0 = n2 '(=k0,‚‘¬ƒƒbƒNƒIƒ“) h0ˆ—‚ÍŠî–{tskup‚æ‚èŒãA‚±‚±‚¾‚¯“Á—á(hk‹t“]ƒCƒŒƒMƒ…ƒ‰[‰ğÁ‘[’u
+            h0 = n2 '(=k0,é«˜é€Ÿæ™‚ãƒ­ãƒƒã‚¯ã‚ªãƒ³) h0å‡¦ç†ã¯åŸºæœ¬tskupã‚ˆã‚Šå¾Œã€ã“ã“ã ã‘ç‰¹ä¾‹(hké€†è»¢ã‚¤ãƒ¬ã‚®ãƒ¥ãƒ©ãƒ¼è§£æ¶ˆæªç½®
             If er2(0) < 0 Then
-                MsgBox "‚±‚¿‚ç‚Í’á‘¬ê—p‚É‚È‚è‚Ü‚µ‚½B‚‘¬‚Å‚±‚¿‚ç’Ê‚é‚Ì‚Í‚¨‚©‚µ‚¢B"
+                MsgBox "ã“ã¡ã‚‰ã¯ä½é€Ÿå°‚ç”¨ã«ãªã‚Šã¾ã—ãŸã€‚é«˜é€Ÿã§ã“ã¡ã‚‰é€šã‚‹ã®ã¯ãŠã‹ã—ã„ã€‚"
             End If
         End If
-    ElseIf LCase(am2) = LCase(am1) Then '(ƒAƒhƒoƒ‰ƒsƒh)‘O‰ñˆê’v@'©86_016q(uni‘Îô)@StrConv(am2¨LCase(am2)
+    ElseIf LCase(am2) = LCase(am1) Then '(ã‚¢ãƒ‰ãƒãƒ©ãƒ”ãƒ‰)å‰å›ä¸€è‡´ã€€'â†86_016q(uniå¯¾ç­–)ã€€StrConv(am2â†’LCase(am2)
         tskup = 1
         n2 = n1
-    ElseIf spd = "ƒ‚‘¬" And k0 = h0 And b < 0 And pqp = 1 Then '(ƒAƒhƒoƒ‰ƒsƒh)‚‘¬ƒƒbƒNƒIƒ“ó‘Ô@pqp’Ç‰Á624
-        MsgBox "‚±‚¿‚ç‚Í’á‘¬ê—p‚É‚È‚è‚Ü‚µ‚½Bƒ‚‘¬‚Å‚±‚¿‚ç’Ê‚é‚Ì‚Í‚¨‚©‚µ‚¢B"
+    ElseIf spd = "ç´”é«˜é€Ÿ" And k0 = h0 And b < 0 And pqp = 1 Then '(ã‚¢ãƒ‰ãƒãƒ©ãƒ”ãƒ‰)é«˜é€Ÿãƒ­ãƒƒã‚¯ã‚ªãƒ³çŠ¶æ…‹ã€€pqpè¿½åŠ 624
+        MsgBox "ã“ã¡ã‚‰ã¯ä½é€Ÿå°‚ç”¨ã«ãªã‚Šã¾ã—ãŸã€‚ç´”é«˜é€Ÿã§ã“ã¡ã‚‰é€šã‚‹ã®ã¯ãŠã‹ã—ã„ã€‚"
     
-    '(ƒAƒhƒoƒ‰ƒsƒh)Ÿsˆê’v c = Round(c, 0)’Ç‰Á85Q026iF-15.‚PÀ{‚µ‚È‚¢A-15À{‚·‚éj
-    ElseIf Round(c) <> -1 And Round(c) <> -2 And c = Round(c, 0) And (spd = "ƒ‚‘¬" Or spd = "ƒm[ƒ}ƒ‹") And n1 < h0 And _
-            LCase(am2) = LCase(bfshn.Cells(n1 + 1, Abs(b)).Value) Then    '©86_016q(uni‘Îô)@StrConv(am2¨LCase(am2)
+    '(ã‚¢ãƒ‰ãƒãƒ©ãƒ”ãƒ‰)æ¬¡è¡Œä¸€è‡´ c = Round(c, 0)è¿½åŠ 85ï¼¿026ï¼ˆï¼š-15.ï¼‘å®Ÿæ–½ã—ãªã„ã€-15å®Ÿæ–½ã™ã‚‹ï¼‰
+    ElseIf Round(c) <> -1 And Round(c) <> -2 And c = Round(c, 0) And (spd = "ç´”é«˜é€Ÿ" Or spd = "ãƒãƒ¼ãƒãƒ«") And n1 < h0 And _
+            LCase(am2) = LCase(bfshn.Cells(n1 + 1, Abs(b)).Value) Then    'â†86_016q(uniå¯¾ç­–)ã€€StrConv(am2â†’LCase(am2)
         tskup = 1
-        If b < 0 Then 'ƒ‚‘¬
-            MsgBox "‚±‚¿‚ç‚Í’á‘¬ê—p‚É‚È‚è‚Ü‚µ‚½B‚‘¬‚Å‚±‚¿‚ç’Ê‚é‚Ì‚Í‚¨‚©‚µ‚¢B"
-        Else 'ƒm[ƒ}ƒ‹
+        If b < 0 Then 'ç´”é«˜é€Ÿæ™‚
+            MsgBox "ã“ã¡ã‚‰ã¯ä½é€Ÿå°‚ç”¨ã«ãªã‚Šã¾ã—ãŸã€‚é«˜é€Ÿã§ã“ã¡ã‚‰é€šã‚‹ã®ã¯ãŠã‹ã—ã„ã€‚"
+        Else 'ãƒãƒ¼ãƒãƒ«
             n2 = n1 + 1
         End If
     Else
         'p=0
     End If
-    If tskup = 0 Then '‚Ü‚¾Œˆ‚Ü‚ç‚¸(p=0)¨ƒ}ƒbƒ`ƒ“ƒOÀ{
-        If c < 0 And (spd = "‹ß—‚‘¬") Then  'spd = "‹Œ‹ß—‚‘¬" Or spd = "‹Œ‹ß—ƒm[ƒ}ƒ‹" Or@‚ÍœŠO 85_006
-            MsgBox "‚±‚¿‚ç‚Í’á‘¬ê—p‚É‚È‚è‚Ü‚µ‚½B‹ß—‚‘¬‚Å‚±‚¿‚ç’Ê‚é‚Ì‚Í‚¨‚©‚µ‚¢B"
-        Else 'ƒm[ƒ}ƒ‹orƒ@ am2¨strcnv‰»@85_008
-            If IsError(Application.Match(LCase(am2), Range(bfshn.Cells(k0, Abs(b)), bfshn.Cells(h0, Abs(b))), 0)) Then  'V‹K2
-                If c >= 0 Then '-1-2‚Í‚â‚ç‚È‚¢‚Éip=0‚Ì‚Ü‚ÜI—¹‚Ö@'©86_016q(uni‘Îô)@StrConv(am2¨LCase(am2)
+    If tskup = 0 Then 'ã¾ã æ±ºã¾ã‚‰ãš(p=0)â†’ãƒãƒƒãƒãƒ³ã‚°å®Ÿæ–½
+        If c < 0 And (spd = "è¿‘ä¼¼é«˜é€Ÿ") Then  'spd = "æ—§è¿‘ä¼¼é«˜é€Ÿ" Or spd = "æ—§è¿‘ä¼¼ãƒãƒ¼ãƒãƒ«" Orã€€ã¯é™¤å¤– 85_006
+            MsgBox "ã“ã¡ã‚‰ã¯ä½é€Ÿå°‚ç”¨ã«ãªã‚Šã¾ã—ãŸã€‚è¿‘ä¼¼é«˜é€Ÿã§ã“ã¡ã‚‰é€šã‚‹ã®ã¯ãŠã‹ã—ã„ã€‚"
+        Else 'ãƒãƒ¼ãƒãƒ«orç´”ã€€ am2â†’strcnvåŒ–ã€€85_008
+            If IsError(Application.Match(LCase(am2), Range(bfshn.Cells(k0, Abs(b)), bfshn.Cells(h0, Abs(b))), 0)) Then  'æ–°è¦2
+                If c >= 0 Then '-1-2ã¯ã‚„ã‚‰ãªã„ã«ï¼ˆp=0ã®ã¾ã¾çµ‚äº†ã¸ã€€'â†86_016q(uniå¯¾ç­–)ã€€StrConv(am2â†’LCase(am2)
                     tskup = 2
                     n2 = h + 1
                 End If
             Else
                 tskup = 1
-                m = Application.WorksheetFunction.Match(LCase(am2), Range(bfshn.Cells(k0, Abs(b)), bfshn.Cells(h0, Abs(b))), 0)  'Š®‘Sˆê’v
-                If spd = "ƒ‚‘¬" Then '‚‘¬
-                    MsgBox "‚±‚¿‚ç‚Í’á‘¬ê—p‚É‚È‚è‚Ü‚µ‚½Bƒ‚‘¬‚Å‚±‚¿‚ç’Ê‚é‚Ì‚Í‚¨‚©‚µ‚¢B"
-                Else 'not‚‘¬
+                m = Application.WorksheetFunction.Match(LCase(am2), Range(bfshn.Cells(k0, Abs(b)), bfshn.Cells(h0, Abs(b))), 0)  'å®Œå…¨ä¸€è‡´
+                If spd = "ç´”é«˜é€Ÿ" Then 'é«˜é€Ÿæ™‚
+                    MsgBox "ã“ã¡ã‚‰ã¯ä½é€Ÿå°‚ç”¨ã«ãªã‚Šã¾ã—ãŸã€‚ç´”é«˜é€Ÿã§ã“ã¡ã‚‰é€šã‚‹ã®ã¯ãŠã‹ã—ã„ã€‚"
+                Else 'noté«˜é€Ÿæ™‚
                     n2 = k0 + m - 1
                 End If
             End If
         End If
     End If
 End Function
-'[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[
+'ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼
 Function iptfg(jmj As String, czc As Long, ww As String) As String
-    Do Until jj >= czc '©>‚ğ“ü‚ê‚Ä‚é‚Ì‚Í–³ŒÀƒ‹[ƒv–h~
+    Do Until jj >= czc 'â†>ã‚’å…¥ã‚Œã¦ã‚‹ã®ã¯ç„¡é™ãƒ«ãƒ¼ãƒ—é˜²æ­¢
         fzf = tzt
         tzt = InStr(fzf + 1, jmj, ww)
         jj = jj + 1
     Loop
-    If tzt = 0 Then tzt = Len(jmj) + 1 '4ƒIƒN‘Î‰
+    If tzt = 0 Then tzt = Len(jmj) + 1 '4ã‚ªã‚¯å¯¾å¿œ
     iptfg = Mid(jmj, fzf + 1, tzt - fzf - 1)
 End Function
-'[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[
+'ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼
 Function koudicd(fn As String, ff As String, er0 As Currency, mr04 As String) As String
-    'er0•Ô‚è’l‚Í€–Ús‚Ìs”i•Ô‚è’l0‚à—LF€–³‚Ìê‡j
-    'E‘ÎÛƒV[ƒg‚Ìu€–Ú–¼v’T‚µ
+    'er0è¿”ã‚Šå€¤ã¯é …ç›®è¡Œã®è¡Œæ•°ï¼ˆè¿”ã‚Šå€¤0ã‚‚æœ‰ï¼šé …ç„¡ã®å ´åˆï¼‰
+    'ãƒ»å¯¾è±¡ã‚·ãƒ¼ãƒˆã®ã€Œé …ç›®åã€æ¢ã—
     Dim ywe As String
-    For er0 = 1 To 2000  'E
-        If Workbooks(fn).Sheets(ff).Cells(er0, 1).Value = "€–Ú–¼" Then
-            koudicd = "€—L"
+    For er0 = 1 To 2000  'ãƒ»
+        If Workbooks(fn).Sheets(ff).Cells(er0, 1).Value = "é …ç›®å" Then
+            koudicd = "é …æœ‰"
             Exit For
         End If
-        If Right(Workbooks(fn).Sheets(ff).Cells(er0, 1).Value, 4) = "—ñŒÅ—L–¼" Then  '30s82‚æ‚è
-            koudicd = "€ŒÅ"
+        If Right(Workbooks(fn).Sheets(ff).Cells(er0, 1).Value, 4) = "åˆ—å›ºæœ‰å" Then  '30s82ã‚ˆã‚Š
+            koudicd = "é …å›º"
             Exit For
         End If
     Next
     
-    If koudicd = "" Then koudicd = "€–³"  '©‰¼
-        If InStr(1, mr04, "¦") > 0 Then '¦‚ ‚è[‚ ]
-            'ywe‚Í•¶š
-            ywe = iptfg(mr04, 3, "¦") 'æ‚Éuƒ‘v”cˆ¬ iptfgEENewVersion[‚¢]
-            If ywe <> "" And InStr(1, iptfg(mr04, 2, "¦"), ywe) > 0 Then '¦¢ƒ‘£¦ƒ‘
-                ywmoji = iptfg(iptfg(mr04, 2, "¦"), 1, ywe) '[‚¤]
-                yw10 = iptfg(iptfg(mr04, 2, "¦"), 2, ywe)  '[‚¦]
-            Else 'ƒ‘‚È‚µ
-                ywmoji = iptfg(mr04, 2, "¦") 'yw10‚Ínull[‚¨]
+    If koudicd = "" Then koudicd = "é …ç„¡"  'â†ä»®
+        If InStr(1, mr04, "ï½¦") > 0 Then 'ï½¦ã‚ã‚Š[ã‚]
+            'yweã¯æ–‡å­—
+            ywe = iptfg(mr04, 3, "ï½¦") 'å…ˆã«ã€Œãƒ±ã€æŠŠæ¡ iptfgãƒ»ãƒ»NewVersion[ã„]
+            If ywe <> "" And InStr(1, iptfg(mr04, 2, "ï½¦"), ywe) > 0 Then 'ï½¦â–³ãƒ±â–²ï½¦ãƒ±
+                ywmoji = iptfg(iptfg(mr04, 2, "ï½¦"), 1, ywe) '[ã†]
+                yw10 = iptfg(iptfg(mr04, 2, "ï½¦"), 2, ywe)  '[ãˆ]
+            Else 'ãƒ±ãªã—
+                ywmoji = iptfg(mr04, 2, "ï½¦") 'yw10ã¯null[ãŠ]
             End If
-        Else  '¦‚È‚µ
-            ywmoji = mr04  'yw10‚Ínull
+        Else  'ï½¦ãªã—
+            ywmoji = mr04  'yw10ã¯null
         End If
-        If Mid(ywmoji, 1, 1) = "[" Then ywmoji = Mid(ywmoji, 2)
+        If Mid(ywmoji, 1, 1) = "ãƒ¼" Then ywmoji = Mid(ywmoji, 2)
         
-        'EE‘ÎÛƒV[ƒg‚Ìu€–Ú–¼v€w€—L£(¦¢ƒ‘£¦ƒ‘)or€—ë
-        If ywmoji = "" Or ywmoji = "0" Then  '€—ë628
+        'ãƒ»ãƒ»å¯¾è±¡ã‚·ãƒ¼ãƒˆã®ã€Œé …ç›®åã€é …æŒ‡é …æœ‰â–²(ï½¦â–³ãƒ±â–²ï½¦ãƒ±)oré …é›¶
+        If ywmoji = "" Or ywmoji = "0" Then  'é …é›¶628
             If yw10 = "" Then
                 er0 = 0
             ElseIf IsNumeric(yw10) Then
                 er0 = Val(yw10) - 1
             Else
-                Call oshimai("", bfn, shn, 1, 0, "€€b‚ªÀ{‚Å‚«‚È‚¢‚æ‚¤‚Å‚·B")
+                Call oshimai("", bfn, shn, 1, 0, "é …æº–bãŒå®Ÿæ–½ã§ããªã„ã‚ˆã†ã§ã™ã€‚")
             End If
-            koudicd = "€€b"  'ŒãX€—ë‚É•Ï‚¦‚½‚¢B
-            'MsgBox "€€bi€—ëj"
-        ElseIf yw10 <> "" Then   '£(¦¢ƒ‘£¦ƒ‘)
+            koudicd = "é …æº–b"  'å¾Œã€…é …é›¶ã«å¤‰ãˆãŸã„ã€‚
+            'MsgBox "é …æº–bï¼ˆé …é›¶ï¼‰"
+        ElseIf yw10 <> "" Then   'â–²(ï½¦â–³ãƒ±â–²ï½¦ãƒ±)
             er0 = 1
-            If Not IsNumeric(ywmoji) Then 'ê‡•ª‚¯622
-                ']—ˆƒpƒ^[ƒ“
+            If Not IsNumeric(ywmoji) Then 'å ´åˆåˆ†ã‘622
+                'å¾“æ¥ãƒ‘ã‚¿ãƒ¼ãƒ³
                 Do Until Workbooks(fn).Sheets(ff).Cells(er0, 1).Value = yw10
-                    If er0 = 20000 Then '2000¨20000
-                        Call oshimai("", bfn, shn, 1, 0, "€w‚Ì€–Ús‚ªŒ©‚Â‚©‚ç‚È‚¢‚æ‚¤‚Å‚·")
+                    If er0 = 20000 Then '2000â†’20000
+                        Call oshimai("", bfn, shn, 1, 0, "é …æŒ‡ã®é …ç›®è¡ŒãŒè¦‹ã¤ã‹ã‚‰ãªã„ã‚ˆã†ã§ã™")
                     End If
-                    er0 = er0 + 1  'E
+                    er0 = er0 + 1  'ãƒ»
                 Loop
-                koudicd = "€€2"  'E@30s64@€w¨€€2(‹Œ€w)‚É•ÏX
-            Else        'Newƒpƒ^[ƒ“@€€a ‚±‚±‚Ìyw10‚Íall1‚Ì‘ã‘Ö
+                koudicd = "é …æº–2"  'ãƒ»ã€€30s64ã€€é …æŒ‡â†’é …æº–2(æ—§é …æŒ‡)ã«å¤‰æ›´
+            Else        'Newãƒ‘ã‚¿ãƒ¼ãƒ³ã€€é …æº–a ã“ã“ã®yw10ã¯all1ã®ä»£æ›¿
                 Do Until Workbooks(fn).Sheets(ff).Cells(er0, Abs(Val(ywmoji))).Value = yw10
-                    If er0 = 20000 Then '2000¨20000
-                        Call oshimai("", bfn, shn, 1, 0, "€w‚Ì€–Ús‚ªŒ©‚Â‚©‚ç‚È‚¢‚æ‚¤‚Å‚·")
+                    If er0 = 20000 Then '2000â†’20000
+                        Call oshimai("", bfn, shn, 1, 0, "é …æŒ‡ã®é …ç›®è¡ŒãŒè¦‹ã¤ã‹ã‚‰ãªã„ã‚ˆã†ã§ã™")
                     End If
-                    er0 = er0 + 1  'E
+                    er0 = er0 + 1  'ãƒ»
                 Loop
-                koudicd = "€€a"  'E@30s64@€w¨€€2‚É•ÏX
+                koudicd = "é …æº–a"  'ãƒ»ã€€30s64ã€€é …æŒ‡â†’é …æº–2ã«å¤‰æ›´
             End If
         End If
         
-        'EE‘ÎÛƒV[ƒg‚Ìu€–Ú–¼v‹y‚Ñ€w‚à‚È‚¢‚ªAall1‚ª”’l‹LÚ‚Å‚È‚¢ê‡(€€–Ú–¼) I—¹‘[’u628
-        If koudicd = "€–³" And Not IsNumeric(ywmoji) Then
+        'ãƒ»ãƒ»å¯¾è±¡ã‚·ãƒ¼ãƒˆã®ã€Œé …ç›®åã€åŠã³é …æŒ‡ã‚‚ãªã„ãŒã€all1ãŒæ•°å€¤è¨˜è¼‰ã§ãªã„å ´åˆ(æº–é …ç›®å) çµ‚äº†æªç½®628
+        If koudicd = "é …ç„¡" And Not IsNumeric(ywmoji) Then
             er0 = 1
             Do Until Workbooks(fn).Sheets(ff).Cells(er0, 1).Value = ywmoji
-                If er0 = 20000 Then '2000¨20000
-                    Call oshimai("", bfn, shn, 1, 0, "€€‚Ì€–Ús‚ªŒ©‚Â‚©‚ç‚È‚¢‚æ‚¤‚Å‚·")
+                If er0 = 20000 Then '2000â†’20000
+                    Call oshimai("", bfn, shn, 1, 0, "é …æº–ã®é …ç›®è¡ŒãŒè¦‹ã¤ã‹ã‚‰ãªã„ã‚ˆã†ã§ã™")
                 End If
-                er0 = er0 + 1  'E
+                er0 = er0 + 1  'ãƒ»
             Loop
-            koudicd = "€€" 'yw10‚Í""@E
-            Call oshimai("", bfn, shn, 1, 0, "€€‚ÍI—¹‚µ‚Ü‚µ‚½B€€a‚ÉˆÚs‚µ‚Ä‰º‚³‚¢B") 'I—¹‘[’u628
+            koudicd = "é …æº–" 'yw10ã¯""ã€€ãƒ»
+            Call oshimai("", bfn, shn, 1, 0, "é …æº–ã¯çµ‚äº†ã—ã¾ã—ãŸã€‚é …æº–aã«ç§»è¡Œã—ã¦ä¸‹ã•ã„ã€‚") 'çµ‚äº†æªç½®628
         End If
-    If koudicd = "€–³" Then er0 = 0
+    If koudicd = "é …ç„¡" Then er0 = 0
 End Function
-'[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[Ÿ[
-Sub iechc(hk1 As String)  'ˆÈ‘O‚Íigchc
-    If twbsh.Cells(3, 2).Value = "" Then  '86_017g ‰‰ñ’N‚Å‚àg‚¦‚é‚æ‚¤‚ÉB
+'ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼â—†ãƒ¼
+Sub iechc(hk1 As String)  'ä»¥å‰ã¯igchc
+    If twbsh.Cells(3, 2).Value = "" Then  '86_017g åˆå›èª°ã§ã‚‚ä½¿ãˆã‚‹ã‚ˆã†ã«ã€‚
         twbsh.Cells(3, 2).Value = hunk2(-5, syutoku(), "1", hk1)
         If hk1 = "1" Then
-            Call oshimai("", twn, "£WŒv_—Œ`", 3, 2, "(ˆ—I—¹)IDƒL[‚ªì‚ê‚Ü‚¹‚ñ" & vbCrLf & "¦ID:" & syutoku())
+            Call oshimai("", twn, "â–²é›†è¨ˆ_é››å½¢", 3, 2, "(å‡¦ç†çµ‚äº†)IDã‚­ãƒ¼ãŒä½œã‚Œã¾ã›ã‚“" & vbCrLf & "â€»ID:" & syutoku())
         End If
     ElseIf syutoku() = hunk2(-7, twbsh.Cells(3, 2).Value, "1", hk1) Then
-        'MsgBox "³‰ğ‚Å‚·"
-    Else  '"•s³‰ğ‚Å‚·"
+        'MsgBox "æ­£è§£ã§ã™"
+    Else  '"ä¸æ­£è§£ã§ã™"
         ThisWorkbook.Activate
-        Sheets("£WŒv_—Œ`").Select
-        twbsh.Cells(1, 1).Select  '—ÎFƒZƒ‹
-        Call oshimai("", twn, "£WŒv_—Œ`", 3, 2, "(ˆ—I—¹)IDƒL[•sˆê’v" & vbCrLf & "¦ID:" & syutoku())
+        Sheets("â–²é›†è¨ˆ_é››å½¢").Select
+        twbsh.Cells(1, 1).Select  'ç·‘è‰²ã‚»ãƒ«
+        Call oshimai("", twn, "â–²é›†è¨ˆ_é››å½¢", 3, 2, "(å‡¦ç†çµ‚äº†)IDã‚­ãƒ¼ä¸ä¸€è‡´" & vbCrLf & "â€»ID:" & syutoku())
     End If
     
-    hk1 = Left(twn, 7) & "r"   'ƒ‰ƒsƒhŒÅ’è
-    twbsh.Cells(2, 2).Value = syutoku() & "r" 'Vİ86_016e
+    hk1 = Left(twn, 7) & "r"   'ãƒ©ãƒ”ãƒ‰å›ºå®š
+    twbsh.Cells(2, 2).Value = syutoku() & "r" 'æ–°è¨­86_016e
 End Sub
 
